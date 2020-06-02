@@ -1,0 +1,3 @@
+com\ontimize\SongList\model\core\service\UserService.class
+com\ontimize\SongList\model\core\dao\UserDao.class
+com\ontimize\SongList\model\core\dao\UserRoleDao.class

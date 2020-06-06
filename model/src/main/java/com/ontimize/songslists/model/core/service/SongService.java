@@ -1,11 +1,10 @@
 package com.ontimize.songslists.model.core.service;
+
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
-
 import com.ontimize.db.EntityResult;
 import com.ontimize.songslists.api.core.service.ISongService;
 import com.ontimize.songslists.model.core.dao.SongDao;

@@ -12,4 +12,36 @@
   <Column>id_song</Column>
  </UpdateKeys>
  <GeneratedKey>id_song</GeneratedKey>
+ <Queries>
+     <Query id="default">
+         <AmbiguousColumns>
+            <AmbiguousColumn name="ID" prefix="c" />
+        </AmbiguousColumns>
+        <FunctionColumns>
+            <FunctionColumn name="ID_SONG" value="salb.id_song" />
+            <FunctionColumn name="NAME_SONG" value="s.name_song" />
+            <FunctionColumn name="DESCRIPTION_SONG" value="s.description_song" />
+            <FunctionColumn name="ID_ALBUM" value="salb.id_album" />
+            <FunctionColumn name="NAME_ALBUM" value="alb.name_album" />
+            <FunctionColumn name="YEAR_ALBUM" value="alb.year_album" />
+            <FunctionColumn name="ID_ARTIST" value="art.id_artist" />
+            <FunctionColumn name="NAME_ARTIST" value="art.name_artist" />
+            <FunctionColumn name="ID_GENRE" value="g.id_genre" />
+            <FunctionColumn name="NAME_GENRE" value="g.name_genre" />
+        </FunctionColumns>
+         <Sentence>
+            <![CDATA[
+            SELECT
+                #COLUMNS#
+            FROM
+                ${mainschema}.tsong s
+                LEFT JOIN ${mainschema}.tsong_album salb ON s.id_song = salb.id_song
+                LEFT JOIN ${mainschema}.talbum alb ON salb.id_album = alb.id_album                
+                LEFT JOIN ${mainschema}.tartist art ON alb.id_artist = art.id_artist
+                 LEFT JOIN ${mainschema}.tgenre g ON alb.id_genre = g.id_genre
+            #WHERE#
+            ]]>
+        </Sentence>
+     </Query>
+ </Queries>
 </JdbcEntitySetup>

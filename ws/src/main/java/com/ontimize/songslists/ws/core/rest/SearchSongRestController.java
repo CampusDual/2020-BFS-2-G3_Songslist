@@ -32,7 +32,7 @@ public class SearchSongRestController extends ORestController<ISongService> {
   }
  }
 
- private BasicExpression searchLike(String param, String toSearch,String option) {
+ private BasicExpression searchLike(String toSearch,String option) {
 switch(option) {
   case "song":
   param = SongDao.NAME_SONG;

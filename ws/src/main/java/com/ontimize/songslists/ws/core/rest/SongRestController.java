@@ -26,8 +26,9 @@ import com.ontimize.jee.server.rest.ORestController;
 @ComponentScan(basePackageClasses = { com.ontimize.songslists.api.core.service.ISongService.class })
 public class SongRestController extends ORestController<ISongService> {
 
- @Autowired
- private ISongService songService;
+	@Autowired
+	private ISongService songService;
+
 
  @Override
  public ISongService getService() {
@@ -76,4 +77,5 @@ public class SongRestController extends ORestController<ISongService> {
 		return bexp1;
 	}
  
+
 }

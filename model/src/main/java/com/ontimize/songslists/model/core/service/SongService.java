@@ -24,6 +24,7 @@ public class SongService implements ISongService{
 	   throws OntimizeJEERuntimeException {
 	  return this.daoHelper.query(this.songDao, keyMap, attrList);
 	 }
+	 
 
 	 
 	 @Override
@@ -41,5 +42,7 @@ public class SongService implements ISongService{
 	 public EntityResult songDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
 	  return this.daoHelper.delete(this.songDao, keyMap);
 	 }
+	 
+
 
 }

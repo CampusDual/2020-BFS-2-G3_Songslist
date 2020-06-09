@@ -17,6 +17,7 @@ import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 public class SongService implements ISongService{
 	 @Autowired private SongDao songDao;
 	 @Autowired private DefaultOntimizeDaoHelper daoHelper;
+	
 	 
 	 @Override
 	 public EntityResult songQuery(Map<String, Object> keyMap, List<String> attrList)
@@ -25,6 +26,7 @@ public class SongService implements ISongService{
 	 }
 	 
 
+	 
 	 @Override
 	 public EntityResult songInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
 	  return this.daoHelper.insert(this.songDao, attrMap);

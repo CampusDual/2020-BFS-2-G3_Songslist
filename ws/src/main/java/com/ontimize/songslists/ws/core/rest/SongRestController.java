@@ -76,5 +76,9 @@ public class SongRestController extends ORestController<ISongService> {
 		BasicExpression bexp1 = new BasicExpression(field, BasicOperator.LIKE_OP, "%"+toSearch+"%");
 		return bexp1;
 	}
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> b99ac840942ea1f97bf906c1c930cc7f7c172cfb
 
 }

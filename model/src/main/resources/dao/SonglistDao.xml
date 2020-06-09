@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+ xmlns="http://www.ontimize.com/schema/jdbc"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+ catalog="" schema="${mainschema}" table="tsong_list"
+ datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+ <DeleteKeys>
+  <Column>id_song_list</Column>
+ </DeleteKeys>
+ <UpdateKeys>
+  <Column>id_song_list</Column>
+ </UpdateKeys>
+ <GeneratedKey>id_song_list</GeneratedKey>
+  <Queries>
+     <Query id="default">
+        <FunctionColumns>
+            <FunctionColumn name="ID_SONGLIST" value="sl.id_song_list" />
+            <FunctionColumn name="NAME_SONGLIST" value="sl.name_song_list" />
+            <FunctionColumn name="USER_" value="u.user_" />
+        </FunctionColumns>
+         <Sentence>
+            <![CDATA[
+            SELECT
+                #COLUMNS#
+            FROM
+                ${mainschema}.tsong_list sl        
+                LEFT JOIN ${mainschema}.tuser u ON u.user_ = sl.user_
+            #WHERE#
+            ]]>
+        </Sentence>
+     </Query>
+ </Queries>
+</JdbcEntitySetup>

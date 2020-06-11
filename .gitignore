@@ -149,6 +149,3 @@ hs_err_pid*
 
 #personalizated
 .cache
-.~lock*
-package-lock.json
-*package-lock.json

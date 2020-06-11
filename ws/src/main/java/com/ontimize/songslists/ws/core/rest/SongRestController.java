@@ -42,7 +42,7 @@ public class SongRestController extends ORestController<ISongService> {
 			Map<String, Object> filter = (Map<String, Object>) req.get("filter");
 			String nameToSearch = (String) filter.get("NAME");
 			String option = (String) filter.get("OPTION");
-			if (option != null || option.equals("")) {
+			if (!option.equals("")) {
 			Map<String, Object> key = new HashMap<String, Object>();
 			key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
 					searchLike(nameToSearch, option));
@@ -102,9 +102,9 @@ public class SongRestController extends ORestController<ISongService> {
 		BasicExpression bexp2 = new BasicExpression(field2, BasicOperator.LIKE_OP, "%"+toSearch+"%");
 		BasicField field3 = new BasicField(param3);
 		BasicExpression bexp3 = new BasicExpression(field3, BasicOperator.LIKE_OP, "%"+toSearch+"%");
-		BasicExpression bexp5 = new BasicExpression(bexp,BasicOperator.AND_OP,bexp1);
-		BasicExpression bexp6 = new BasicExpression(bexp5,BasicOperator.AND_OP,bexp2);
-		BasicExpression bexp7 = new BasicExpression(bexp6,BasicOperator.AND_OP,bexp3);
+		BasicExpression bexp5 = new BasicExpression(bexp,BasicOperator.OR_OP,bexp1);
+		BasicExpression bexp6 = new BasicExpression(bexp5,BasicOperator.OR_OP,bexp2);
+		BasicExpression bexp7 = new BasicExpression(bexp6,BasicOperator.OR_OP,bexp3);
 	return  bexp7;
 }
 

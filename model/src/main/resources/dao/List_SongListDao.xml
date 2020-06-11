@@ -15,6 +15,9 @@
  
  <Queries>
      <Query id="default">
+     <AmbiguousColumns>
+      <AmbiguousColumn name="id_song_list" prefix="lsl" />
+        </AmbiguousColumns>
         <FunctionColumns>
             <FunctionColumn name="ID_LIST_SONGLIST" value="lsl.id_listsong_list" />
             <FunctionColumn name="ID_SONGLIST" value="lsl.id_song_list" />
@@ -31,7 +34,7 @@
                 ${mainschema}.tlists_song_list lsl
                 
                 LEFT JOIN ${mainschema}.tsong s ON s.id_song = lsl.id_song
-                LEFT JOIN ${mainschema}.tlist_song sl ON sl.id_song_list = lsl.id_song_list
+                LEFT JOIN ${mainschema}.tsong_list sl ON sl.id_song_list = lsl.id_song_list
 
             #WHERE#
             ]]>

@@ -54,7 +54,6 @@ public class SongRestController extends ORestController<ISongService> {
 			return songService.songQuery(key, columns);
 			
 		}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			EntityResult res = new EntityResult();
@@ -78,6 +77,7 @@ public class SongRestController extends ORestController<ISongService> {
 			param = SongDao.ATTR_ARTIST_NAME;
 			// code block
 			break;
+
 			case "genre":
 			param = SongDao.ATTR_GENRE_NAME;
 			// code block

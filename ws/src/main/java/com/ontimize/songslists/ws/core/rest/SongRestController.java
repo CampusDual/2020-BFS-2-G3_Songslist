@@ -42,10 +42,18 @@ public class SongRestController extends ORestController<ISongService> {
 			Map<String, Object> filter = (Map<String, Object>) req.get("filter");
 			String nameToSearch = (String) filter.get("NAME");
 			String option = (String) filter.get("OPTION");
+			if (!option.equals("")) {
 			Map<String, Object> key = new HashMap<String, Object>();
 			key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
 					searchLike(nameToSearch, option));
 			return songService.songQuery(key, columns);
+		}else {
+			Map<String, Object> key = new HashMap<String, Object>();
+			key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
+					searchAll(nameToSearch));
+			return songService.songQuery(key, columns);
+			
+		}
 		} catch (Exception e) {
 			e.printStackTrace();
 			EntityResult res = new EntityResult();
@@ -69,6 +77,11 @@ public class SongRestController extends ORestController<ISongService> {
 			param = SongDao.ATTR_ARTIST_NAME;
 			// code block
 			break;
+
+			case "genre":
+			param = SongDao.ATTR_GENRE_NAME;
+			// code block
+			break;
 		default:
 			// code block
 		}
@@ -76,6 +89,23 @@ public class SongRestController extends ORestController<ISongService> {
 		BasicExpression bexp1 = new BasicExpression(field, BasicOperator.LIKE_OP, "%"+toSearch+"%");
 		return bexp1;
 	}
- 
+	private BasicExpression searchAll(String toSearch) {		
+		String param = SongDao.ATTR_SONG_NAME;
+		String param1 = SongDao.ATTR_ALBUM_NAME;
+		String param2 = SongDao.ATTR_ARTIST_NAME;
+		String param3 = SongDao.ATTR_GENRE_NAME;
+		BasicField field = new BasicField(param);
+		BasicExpression bexp = new BasicExpression(field, BasicOperator.LIKE_OP, "%"+toSearch+"%");
+		BasicField field1 = new BasicField(param1);
+		BasicExpression bexp1 = new BasicExpression(field1, BasicOperator.LIKE_OP, "%"+toSearch+"%");
+		BasicField field2 = new BasicField(param2);
+		BasicExpression bexp2 = new BasicExpression(field2, BasicOperator.LIKE_OP, "%"+toSearch+"%");
+		BasicField field3 = new BasicField(param3);
+		BasicExpression bexp3 = new BasicExpression(field3, BasicOperator.LIKE_OP, "%"+toSearch+"%");
+		BasicExpression bexp5 = new BasicExpression(bexp,BasicOperator.OR_OP,bexp1);
+		BasicExpression bexp6 = new BasicExpression(bexp5,BasicOperator.OR_OP,bexp2);
+		BasicExpression bexp7 = new BasicExpression(bexp6,BasicOperator.OR_OP,bexp3);
+	return  bexp7;
+}
 
 }

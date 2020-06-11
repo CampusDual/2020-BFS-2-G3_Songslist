@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+ xmlns="http://www.ontimize.com/schema/jdbc"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+ catalog="" schema="${mainschema}" table="tlists_song_list"
+ datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+ <DeleteKeys>
+  <Column>id_listsong_list</Column>
+ </DeleteKeys>
+ <UpdateKeys>
+  <Column>id_listsong_list</Column>
+ </UpdateKeys>
+ <GeneratedKey>id_listsong_list</GeneratedKey>
+ 
+ <Queries>
+     <Query id="default">
+        <FunctionColumns>
+            <FunctionColumn name="ID_LIST_SONGLIST" value="lsl.id_listsong_list" />
+            <FunctionColumn name="ID_SONGLIST" value="lsl.id_song_list" />
+            <FunctionColumn name="ID_SONG" value="lsl.id_song" />
+            <FunctionColumn name="NAME_SONG" value="s.name_song" />
+            <FunctionColumn name="NAME_SONGLIST" value="sl.name_song_list" />
+
+        </FunctionColumns>
+         <Sentence>
+            <![CDATA[
+            SELECT
+                #COLUMNS#
+            FROM
+                ${mainschema}.tlists_song_list lsl
+                
+                LEFT JOIN ${mainschema}.tsong s ON s.id_song = lsl.id_song
+                LEFT JOIN ${mainschema}.tlist_song sl ON sl.id_song_list = lsl.id_song_list
+
+            #WHERE#
+            ]]>
+        </Sentence>
+     </Query>
+ </Queries>
+</JdbcEntitySetup>

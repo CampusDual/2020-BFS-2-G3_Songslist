@@ -23,7 +23,7 @@ import com.ontimize.jee.server.rest.ORestController;
 
 @RestController
 @RequestMapping("/songlists")
-@ComponentScan(basePackageClasses = { com.ontimize.songslists.api.core.service.IAlbumService.class })
+@ComponentScan(basePackageClasses = { com.ontimize.songslists.api.core.service.ISonglistService.class })
 public class SonglistRestController extends ORestController<ISonglistService> {
 
  @Autowired

@@ -15,19 +15,21 @@
  <Queries>
      <Query id="default">
          <AmbiguousColumns>
-            <AmbiguousColumn name="ID" prefix="c" />
+            <AmbiguousColumn name="id_song" prefix="s" />
+            <AmbiguousColumn name="id_album" prefix="alb" />
+            <AmbiguousColumn name="id_artist" prefix="art" />
+            <AmbiguousColumn name="id_genre" prefix="g" />
         </AmbiguousColumns>
         <FunctionColumns>
-            <FunctionColumn name="ID_SONG" value="salb.id_song" />
-            <FunctionColumn name="NAME_SONG" value="s.name_song" />
-            <FunctionColumn name="DESCRIPTION_SONG" value="s.description_song" />
-            <FunctionColumn name="ID_ALBUM" value="salb.id_album" />
-            <FunctionColumn name="NAME_ALBUM" value="alb.name_album" />
-            <FunctionColumn name="YEAR_ALBUM" value="alb.year_album" />
-            <FunctionColumn name="ID_ARTIST" value="art.id_artist" />
-            <FunctionColumn name="NAME_ARTIST" value="art.name_artist" />
-            <FunctionColumn name="ID_GENRE" value="g.id_genre" />
-            <FunctionColumn name="NAME_GENRE" value="g.name_genre" />
+            <FunctionColumn name="ID_SONG" value="id_song" />
+            <FunctionColumn name="NAME_SONG" value="name_song" />
+            <FunctionColumn name="DESCRIPTION_SONG" value="description_song" />
+            <FunctionColumn name="ID_ALBUM" value="id_album" />
+            <FunctionColumn name="NAME_ALBUM" value="name_album" />
+            <FunctionColumn name="ID_ARTIST" value="id_artist" />
+            <FunctionColumn name="NAME_ARTIST" value="name_artist" />
+            <FunctionColumn name="ID_GENRE" value="id_genre" />
+            <FunctionColumn name="NAME_GENRE" value="name_genre" />
         </FunctionColumns>
          <Sentence>
             <![CDATA[

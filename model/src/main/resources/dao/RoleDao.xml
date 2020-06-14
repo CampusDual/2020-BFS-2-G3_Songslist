@@ -11,4 +11,5 @@
     <UpdateKeys>
         <Column>ID_ROLENAME</Column>
     </UpdateKeys>
+    <GeneratedKey>ID_ROLENAME</GeneratedKey>
 </JdbcEntitySetup>

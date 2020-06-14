@@ -12,23 +12,24 @@
   <Column>id_song_list</Column>
  </UpdateKeys>
  <GeneratedKey>id_song_list</GeneratedKey>
-  <Queries>
+ 
+ <!--   <Queries>
      <Query id="default">
         <FunctionColumns>
-            <FunctionColumn name="ID_SONGLIST" value="sl.id_song_list" />
-            <FunctionColumn name="NAME_SONGLIST" value="sl.name_song_list" />
-            <FunctionColumn name="USER_" value="u.user_" />
+            <FunctionColumn name="ID_SONGLIST" value="id_song_list" />
+            <FunctionColumn name="NAME_SONGLIST" value="name_song_list" />
+            <FunctionColumn name="USER" value="user_" />
+
         </FunctionColumns>
          <Sentence>
             <![CDATA[
             SELECT
                 #COLUMNS#
             FROM
-                ${mainschema}.tsong_list sl        
-                LEFT JOIN ${mainschema}.tuser u ON u.user_ = sl.user_
+                ${mainschema}.tsong_list
             #WHERE#
             ]]>
         </Sentence>
      </Query>
- </Queries>
+ </Queries> -->
 </JdbcEntitySetup>

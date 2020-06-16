@@ -37,101 +37,75 @@ public class SongRestController extends ORestController<ISongService> {
 	@RequestMapping(value = "/searchSong", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public EntityResult currenSearch(@RequestBody Map<String, Object> req) {
 		String option;
+		HashMap<String, String> param = new HashMap<>() ;
 		try {
 			List<String> columns = (List<String>) req.get("columns");
 			Map<String, Object> filter = (Map<String, Object>) req.get("filter");
 
 			String toSearch = (String) filter.get("NAME");
-			if (filter.containsKey("OPTION")){
-			 option = (String) filter.get("OPTION");
-			}else {
+			if (filter.containsKey("OPTION")) {
+				option = (String) filter.get("OPTION");
+				if (option != null) {
+					switch (option) {
+					case "song":
+						param.put("song", SongDao.ATTR_SONG_NAME);
+						break;
+					case "album":
+						param.put("album", SongDao.ATTR_ALBUM_NAME);
+						break;
+					case "artist":
+						param.put("artist", SongDao.ATTR_ARTIST_NAME);
+						break;
+					case "genre":
+						param.put("genre", SongDao.ATTR_GENRE_NAME);
+						break;
+					case "":
+						param.put("song", SongDao.ATTR_SONG_NAME);
+						param.put("album", SongDao.ATTR_ALBUM_NAME);
+						param.put("artist", SongDao.ATTR_ARTIST_NAME);
+						param.put("genre", SongDao.ATTR_GENRE_NAME);
+					default:
+					}
+				}
+			} else {
 				option = null;
+				param.put("song", SongDao.ATTR_SONG_NAME);
+				param.put("album", SongDao.ATTR_ALBUM_NAME);
+				param.put("artist", SongDao.ATTR_ARTIST_NAME);
+				param.put("genre", SongDao.ATTR_GENRE_NAME);
 			}
-			if (option != null){
-				if (!option.equals("")) {
-					Map<String, Object> key = new HashMap<String, Object>();
-					key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
-							searchLike(toSearch, option));
-					return songService.songQuery(key, columns);
-			}
-			
-			} // option : null o ""
-				Map<String, Object> key = new HashMap<String, Object>();
-				key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, searchAll(toSearch));
-				return songService.songQuery(key, columns);
-
-			
+			Map<String, Object> key = new HashMap<String, Object>();
+			key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
+					searchLike(toSearch, param));
+			return songService.songQuery(key, columns);
 		} catch (Exception e) {
 			e.printStackTrace();
 			EntityResult res = new EntityResult();
 			res.setCode(EntityResult.OPERATION_WRONG);
 			return res;
 		}
-		}
-	
-
-	private BasicExpression searchLike(String toSearch, String option) {
-		String param = null;
-		switch (option) {
-		case "song":
-			param = SongDao.ATTR_SONG_NAME;
-			break;
-		case "album":
-			param = SongDao.ATTR_ALBUM_NAME;
-			break;
-		case "artist":
-			param = SongDao.ATTR_ARTIST_NAME;
-			break;
-		case "genre":
-			param = SongDao.ATTR_GENRE_NAME;
-			break;
-		default:
-
-		}
-		BasicField field = new BasicField(param);
-		String words[] = toSearch.replaceAll("\\s+", " ").trim().split(" ");
-		BasicExpression bexpB = null;
-		for (int i =0 ; i != words.length;i++){
-			BasicExpression bexpA = new BasicExpression(field, BasicOperator.LIKE_OP, "%"+words[i]+"%");
-			if (bexpB == null && i == 0){
-					bexpB = bexpA;
-				}else {
-					bexpB = new BasicExpression(bexpB, BasicOperator.OR_OP,bexpA);
-				}
-		}
-		return bexpB;
-
 	}
 
-	private BasicExpression searchAll(String toSearch) {
-		String param = SongDao.ATTR_SONG_NAME;
-		String param1 = SongDao.ATTR_ALBUM_NAME;
-		String param2 = SongDao.ATTR_ARTIST_NAME;
-		String param3 = SongDao.ATTR_GENRE_NAME;
+	private BasicExpression searchLike(String toSearch, HashMap<String, String> param) {
 		String words[] = toSearch.replaceAll("\\s+", " ").trim().split(" ");
-
+		BasicExpression bexpBParam = null;
 		BasicExpression bexpB = null;
-		for (int i =0 ; i != words.length;i++){
-		BasicField field = new BasicField(param);
-		BasicExpression bexp = new BasicExpression(field, BasicOperator.LIKE_OP, "%" + words[i] + "%");
-		BasicField field1 = new BasicField(param1);
-		BasicExpression bexp1 = new BasicExpression(field1, BasicOperator.LIKE_OP, "%" + words[i] + "%");
-		BasicField field2 = new BasicField(param2);
-		BasicExpression bexp2 = new BasicExpression(field2, BasicOperator.LIKE_OP, "%" + words[i] + "%");
-		BasicField field3 = new BasicField(param3);
-
-		BasicExpression bexp3 = new BasicExpression(field3, BasicOperator.LIKE_OP, "%"+words[i]+"%");
-		BasicExpression bexp5 = new BasicExpression(bexp,BasicOperator.OR_OP,bexp1);
-		BasicExpression bexp6 = new BasicExpression(bexp5,BasicOperator.OR_OP,bexp2);
-		BasicExpression bexpA = new BasicExpression(bexp6,BasicOperator.OR_OP,bexp3);
-		if (bexpB == null && i == 0){
-			bexpB = bexpA;
-		}else {
-			bexpB = new BasicExpression(bexpB, BasicOperator.OR_OP,bexpA);
+		for (int i = 0; i != words.length; i++) {
+			for (String param00 : param.values()) {
+				BasicField field = new BasicField(param00);
+				BasicExpression bexpAParam = new BasicExpression(field, BasicOperator.LIKE_OP, "%" + words[i] + "%");
+				if (bexpBParam == null && i == 0) {
+					bexpBParam = bexpAParam;
+				} else {
+					bexpBParam = new BasicExpression(bexpBParam, BasicOperator.OR_OP, bexpAParam);
+				}
+			}
+			if (bexpB == null && i == 0) {
+				bexpB = bexpBParam;
+			} else {
+				bexpB = new BasicExpression(bexpB, BasicOperator.OR_OP, bexpBParam);
+			}
 		}
-}
-	return  bexpB;
-}
-
-
+		return bexpB;
+	}
 }

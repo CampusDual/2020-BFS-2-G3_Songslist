@@ -6,10 +6,10 @@
 	catalog="" schema="${mainschema}" table="TUSER_ROLE"
 	datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
 	<DeleteKeys>
-		<Column>usro_id</Column>
+		<Column>id_user_role</Column>
 	</DeleteKeys>
 	<UpdateKeys>
-		<Column>usro_id</Column>
+		<Column>id_user_role</Column>
 	</UpdateKeys>
 	<Queries>
 		<Query id="login">
@@ -25,8 +25,8 @@
 		</Query>
 		<Query id="userRole">
 			<AmbiguousColumns>
-				<AmbiguousColumn name="USER_" prefix="tu" />
-				<AmbiguousColumn name="ID_ROLENAME" prefix="tr" />
+				<AmbiguousColumn name="id_user" prefix="tu" />
+				<AmbiguousColumn name="id_rolename" prefix="tr" />
 			</AmbiguousColumns>
 			<Sentence>
 					<![CDATA[
@@ -34,7 +34,7 @@
 						#COLUMNS#
 					from
 						${mainschema}.TUSER tu
-						JOIN ${mainschema}.TUSER_ROLE tur ON tu.USER_ = tur.USER_
+						JOIN ${mainschema}.TUSER_ROLE tur ON tu.id_user = tur.id_user
 						JOIN ${mainschema}.TROLE tr ON tur.ID_ROLENAME = tr.ID_ROLENAME
 					#WHERE#
 					#ORDER#

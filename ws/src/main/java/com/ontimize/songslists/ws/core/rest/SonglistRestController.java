@@ -23,7 +23,7 @@ import com.ontimize.jee.server.rest.ORestController;
 
 @RestController
 @RequestMapping("/songlists")
-@ComponentScan(basePackageClasses = { com.ontimize.songslists.api.core.service.IAlbumService.class })
+@ComponentScan(basePackageClasses = { com.ontimize.songslists.api.core.service.ISonglistService.class })
 public class SonglistRestController extends ORestController<ISonglistService> {
 
  @Autowired
@@ -58,7 +58,7 @@ public class SonglistRestController extends ORestController<ISonglistService> {
 	private BasicExpression searchLike(String songlistToSearch, String userToSearch) {
 			
 		BasicField songlists = new BasicField(SonglistDao.ATTR_SONGLIST_NAME);
-		BasicField users = new BasicField(SonglistDao.ATTR_SONGLIST_USER_);
+		BasicField users = new BasicField(SonglistDao.ATTR_SONGLIST_NICK_USER);
 		BasicExpression bexp1 = new BasicExpression(songlists, BasicOperator.LIKE_OP, "%"+songlistToSearch+"%");
 		BasicExpression bexp2 = new BasicExpression(users, BasicOperator.LIKE_OP, "%"+userToSearch+"%");
 		return new BasicExpression(bexp1, BasicOperator.AND_OP, bexp2);

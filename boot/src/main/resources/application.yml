@@ -29,25 +29,28 @@ ontimize:
       mode: default
       roleInformationService:
          roleRepository: UserRoleDao
-         roleNameColumn: ROLENAME
+         roleNameColumn: rolename
          serverPermissionQueryId: serverPermissions
          serverPermissionNameColumn: PERMISSION_NAME
          clientPermissionQueryId: clientPermissions
          clientPermissionColumn: XMLCLIENTPERMISSION
       userInformationService:
          userRepository: UserDao
-         userLoginColumn: user_
+         userLoginColumn: nick_user
          userPasswordColumn: password_user
          queryId: login
          otherData:
+            - id_user
             - name_user
             - surname_user
             - email_user
             - birthdate_user
+            - create_date_user
+            - delete_date_user
       userRoleInformationService:
          userRoleRepository: UserRoleDao
          queryId: userRole
-         roleLoginColumn: user_
+         roleLoginColumn: nick_user
          roleNameColumn: ROLENAME
 server:
    port: 33334

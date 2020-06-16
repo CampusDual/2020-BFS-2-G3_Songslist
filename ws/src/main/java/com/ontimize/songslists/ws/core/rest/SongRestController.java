@@ -36,29 +36,39 @@ public class SongRestController extends ORestController<ISongService> {
 
 	@RequestMapping(value = "/searchSong", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public EntityResult currenSearch(@RequestBody Map<String, Object> req) {
+		String option;
 		try {
 			List<String> columns = (List<String>) req.get("columns");
 			Map<String, Object> filter = (Map<String, Object>) req.get("filter");
+
 			String toSearch = (String) filter.get("NAME");
-			String option = (String) filter.get("OPTION");
-			if (!option.equals("")) {
-				Map<String, Object> key = new HashMap<String, Object>();
-				key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
-						searchLike(toSearch, option));
-				return songService.songQuery(key, columns);
-			} else {
+			if (filter.containsKey("OPTION")){
+			 option = (String) filter.get("OPTION");
+			}else {
+				option = null;
+			}
+			if (option != null){
+				if (!option.equals("")) {
+					Map<String, Object> key = new HashMap<String, Object>();
+					key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
+							searchLike(toSearch, option));
+					return songService.songQuery(key, columns);
+			}
+			
+			} // option : null o ""
 				Map<String, Object> key = new HashMap<String, Object>();
 				key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY, searchAll(toSearch));
 				return songService.songQuery(key, columns);
 
-			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			EntityResult res = new EntityResult();
 			res.setCode(EntityResult.OPERATION_WRONG);
 			return res;
 		}
-	}
+		}
+	
 
 	private BasicExpression searchLike(String toSearch, String option) {
 		String param = null;

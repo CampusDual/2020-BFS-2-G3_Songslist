@@ -12,7 +12,10 @@ package com.ontimize.songslists.model.core.dao;
 	@ConfigurationFile(configurationFile = "dao/SonglistDao.xml", configurationFilePlaceholder = "dao/placeholders.properties")
 	public class SonglistDao extends OntimizeJdbcDaoSupport {
 
-	 public static final String ATTR_ID_SONG_LIST = "id_song_list";
-	 public static final String ATTR_SONGLIST_NAME = "name_song_list"; 
-	 public static final String ATTR_SONGLIST_USER_ = "user_"; 
+	 public static final String ATTR_ID_SONG_LIST = "id_songlist";
+	 public static final String ATTR_SONGLIST_NAME = "name_songlist"; 
+	 public static final String ATTR_SONGLIST_NICK_USER = "nick_user"; 
+	 public static final String ATTR_SONGLIST_DESCRIPTION = "description_songlist"; 
 	}
+	
+	

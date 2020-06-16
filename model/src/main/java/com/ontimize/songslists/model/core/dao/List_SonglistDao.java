@@ -11,8 +11,8 @@ import com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport;
 @ConfigurationFile(configurationFile = "dao/List_SonglistDao.xml", configurationFilePlaceholder = "dao/placeholders.properties")
 public class List_SonglistDao extends OntimizeJdbcDaoSupport {
 
-	public static final String ATTR_ID_LIST_SONGLIST = "id_listsong_list";
+	public static final String ATTR_ID_LIST_SONGLIST = "id_list_songlist";
 	public static final String ATTR_SONG_ID = "id_song";
-	public static final String ATTR_SONGLIST_ID = "id_song_list";
+	public static final String ATTR_SONGLIST_ID = "id_songlist";
 
 }

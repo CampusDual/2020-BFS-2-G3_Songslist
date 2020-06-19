@@ -1,5 +1,32 @@
-<div fxLayout="row" layout-padding fxLayoutAlign="center center">
-  <p>
-    Ontimize web seed application home component
-  </p>
+
+<!-- Radio => onclick  -->
+<div >
+  <div >
+    <label id="search-radio-group-label"> select an option</label>
+    <input class="form-check-input-song" type="radio" value="song" 
+    name="radio-search"  [checked]="false" 
+    (click)="onClickRadio($event.target.value)"/> song
+    <input class="form-check-input-artist" type="radio" value="artist" 
+    name="radio-search" [checked]="false" 
+    (click)='onClickRadio($event.target.value)'/> artist 
+    <input class="form-check-input-album" type="radio" value="album" 
+    name="radio-search"  [checked]="false" 
+    (click)="onClickRadio($event.target.value)"/> album
+    <input class="form-check-input-genre" type="radio" value="genre" 
+    name="radio-search"  [checked]="false" 
+    (click)="onClickRadio($event.target.value)"/> genre
+  </div>
+</div>
+
+<!-- Input ==> onChange 3 letters  -->
+<div >
+  <label id="search-bar-label"> Search</label>
+  <input class="form-check-input-song" type="text" value="" 
+  name="input-search"  [checked]="false" 
+  (change)="onItemChange($event.target.value)"/>
+</div>
+
+<!-- Table  ==> aplicar los cambios  -->
+<div >
+  
 </div>

@@ -47,7 +47,8 @@ export class HomeComponent implements OnInit {
   stingValidate(){ // take al words legth >3
     let words: string[] =  this.searchText.trim().split(' ');
     for (let word of words){
-     if (word.length < 3){
+      let trimword = word.trim();
+     if (trimword.length < 3){
       this.removeItemFromArr(words , word );
      }
     }

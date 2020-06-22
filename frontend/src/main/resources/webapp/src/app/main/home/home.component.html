@@ -23,10 +23,19 @@
   <label id="search-bar-label"> Search</label>
   <input class="form-check-input-song" type="text" value="" 
   name="input-search"  [checked]="false" 
-  (change)="onItemChange($event.target.value)"/>
+  (keyup)="onItemChange($event.target.value)"/>
+</div>
+<!-- Input ==> onChange 3 letters  -->
+<div class='mesaje-error' *ngIf="display_error()">
+<p>{{mnjError}}</p>
 </div>
 
 <!-- Table  ==> aplicar los cambios  -->
 <div >
-  
+  muestro una tabla
+  <p>{{radioSelected}}</p>
+  <p>{{searchText}}</p>
+
 </div>
+
+

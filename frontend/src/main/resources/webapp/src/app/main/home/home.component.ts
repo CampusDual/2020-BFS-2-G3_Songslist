@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   // @ViewChild("album") refAlbum: ElementRef;
   // @ViewChild("artist") refArtist: ElementRef;
   // @ViewChild("genre") refGenre: ElementRef;
-  @ViewChild(".mensaje-error") refmenjErr: ElementRef;
+  //@ViewChild(".mensaje-error") refmenjErr: ElementRef;
   radioSelected: string;
   searchText: string = '';
   searchSongs: ISongModule[];
@@ -44,59 +44,57 @@ export class HomeComponent implements OnInit {
   }
 
 
-  stingValidate(){ // take al words legth >3
-    let words: string[] =  this.searchText.trim().split(' ');
-    for (let word of words){
+  stringValidate() { // take al words legth >3
+    let words: string[] = this.searchText.trim().split(' ');
+    console.log(words);
+    let wordToFind: string [] = new Array();
+    let a = false;
+    for (let word of words) {
+      console.log('cada letra : ' + word);
       let trimword = word.trim();
-     if (trimword.length < 3){
-      this.removeItemFromArr(words , word );
-     }
+      console.log('condicion letra : ' + trimword.length);
+      console.log('letra aplicando trim : ' + trimword);
+      if (trimword.length >= 3) {
+        console.log(trimword);
+        console.log(wordToFind);
+        wordToFind.push(trimword);
+        a = true;
+      }
     }
-    this.searchText = words.join(' ');
-  }
-
-   removeItemFromArr ( arr : string[] , item : string ) {
-    var i = arr.indexOf( item );
-    if ( i !== -1 ) {
-        arr.splice( i, 1 );
+    if (!a) {
+      this.mnjError = 'please put 3 letter to search';
+    } else {
+      this.mnjError = '';
     }
-}
-
-  display_error() {
-
-  if ( this.searchText.trim().length > 2){
-    this.mnjError = '';
-    return false;
-   } else {
-    this.mnjError = 'plis put 3 leter to search';
-   return true;
-   }
+    if (wordToFind ){
+    this.searchText = wordToFind.join(' ');
+    }
   }
 
 
   onClickRadio($event) {
     this.radioSelected = $event;
-    this.stingValidate();
-    if (this.searchText.length > 2 ) {
-    console.log(' radioSelected is : ', this.radioSelected);
-    this.homeService.getSongData(this.radioSelected, this.searchText).subscribe(
-      x => console.log('Observer got a next value: ' + x),
-      err => console.error('Observer got an error: ' + err),
-      () => console.log('Observer got a complete notification')
-    );
+    this.stringValidate();
+    if (this.searchText.length > 2) {
+      console.log(' radioSelected is : ', this.radioSelected);
+      this.homeService.getSongData(this.radioSelected, this.searchText).subscribe(
+        x => console.log(x),
+        err => console.error(err)
+
+      );
     }
   }
   onItemChange($event) {
     this.searchText = $event;
-    this.stingValidate();
-    if (this.searchText.length > 3) {
+    this.stringValidate();
+    if (this.searchText.length > 2) {
       this.error = false;
       // this.renderer.setAttribute( this.refmenjErr.nativeElement, 'display', 'none');
       console.log(' searchText is : ', this.searchText);
       this.homeService.getSongData(this.radioSelected, this.searchText).subscribe(
-        x => console.log('Observer got a next value: ' + x),
-        err => console.error('Observer got an error: ' + err),
-        () => console.log('Observer got a complete notification')
+        x => console.log(x),
+        err => console.error(err)
+
       );
     }
   }

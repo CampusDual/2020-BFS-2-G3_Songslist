@@ -18,8 +18,9 @@ export class HomeComponent implements OnInit {
   //@ViewChild(".mensaje-error") refmenjErr: ElementRef;
   radioSelected: string;
   searchText: string = '';
-  searchSongs: ISongModule[];
+  searchSongs: ISongModule[] = Array();
   error: boolean;
+  algo : any = Array();
   mnjError: string;
   constructor(
     private router: Router,
@@ -78,7 +79,7 @@ export class HomeComponent implements OnInit {
     if (this.searchText.length > 2) {
       console.log(' radioSelected is : ', this.radioSelected);
       this.homeService.getSongData(this.radioSelected, this.searchText).subscribe(
-        x => console.log(x),
+        (x) =>{ console.log(x);},
         err => console.error(err)
 
       );
@@ -92,7 +93,13 @@ export class HomeComponent implements OnInit {
       // this.renderer.setAttribute( this.refmenjErr.nativeElement, 'display', 'none');
       console.log(' searchText is : ', this.searchText);
       this.homeService.getSongData(this.radioSelected, this.searchText).subscribe(
-        x => console.log(x),
+        (x :any ) => {
+          console.log('recibo todo ', x);
+          console.log('recibo la parte de data ',  x['data']);
+          this.algo == x['data'];
+          this.searchSongs = x['data'];
+          console.log('igualo la parte de data a mi variable y la muestro ',  this.searchSongs);
+        },
         err => console.error(err)
 
       );

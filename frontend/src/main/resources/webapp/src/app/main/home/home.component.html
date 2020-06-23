@@ -1,4 +1,4 @@
-
+l
 <!-- Radio => onclick  -->
 <div >
   <div >
@@ -35,6 +35,27 @@
   muestro una tabla
   <p>{{radioSelected}}</p>
   <p>{{searchText}}</p>
+  <p>{{searchSongs | json }}</p>
+  <li *ngFor="let song of searchSongs">
+    {{song.name_song}}
+    &nbsp;
+     {{song.id_artist}}
+     &nbsp;
+     {{song.name_artist}}
+     &nbsp;
+     {{song.id_song}}
+     &nbsp;
+     {{song.id_genre}}
+     &nbsp;
+     {{song.id_album}}
+     &nbsp;
+     {{song.name_genre}}
+     &nbsp;
+     {{song.name_album}}
+  </li>
+
+
+
 </div>
 
 

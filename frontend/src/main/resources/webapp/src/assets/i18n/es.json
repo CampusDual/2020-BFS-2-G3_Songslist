@@ -13,5 +13,11 @@
   "ERROR_SESSION_EXPIRED": "La sesión ha caducado",
   "ERROR_USER_REQUIRED": "Nombre de usuario incorrecto.",
   "ERROR_PASS_REQUIRED": "Contraseña incorrecta.",
-  "ERROR_USER_PASS_INCORRECT": "Usuario o contraseña incorrecta."
+  "ERROR_USER_PASS_INCORRECT": "Usuario o contraseña incorrecta.",
+  "SELECT_OPTION": "Selecciona una opción de búsqueda",
+  "SONG": " Canción",
+  "ALBUM": "Disco",
+  "ARTIST": "Artista",
+  "GENRE": "Género",
+  "THREE_LETTER_ERROR": "Por favor, indica un mínimo de tres letras para realizar la búsqueda"
 }

@@ -1,24 +1,40 @@
 <!-- Radio => onclick  -->
 <div>
   <div>
-    <label id="search-radio-group-label"> select an option</label>
-    <input class="form-check-input-song" type="radio" value="song" name="radio-search" [checked]="false"
-      (click)="onClickRadio($event.target.value)" /> song
-    <input class="form-check-input-artist" type="radio" value="artist" name="radio-search" [checked]="false"
-      (click)='onClickRadio($event.target.value)' /> artist
-    <input class="form-check-input-album" type="radio" value="album" name="radio-search" [checked]="false"
-      (click)="onClickRadio($event.target.value)" /> album
-    <input class="form-check-input-genre" type="radio" value="genre" name="radio-search" [checked]="false"
-      (click)="onClickRadio($event.target.value)" /> genre
+    <mat-radio-group id="search-radio-group-label"> select an option  </mat-radio-group>
+    <mat-radio-button class="form-check-input-song" type="radio" value="song" name="radio-search" [checked]="false"
+      (click)="onClickRadio($event.target.value)" > song </mat-radio-button>
+    <mat-radio-button class="form-check-input-artist" type="radio" value="artist" name="radio-search" [checked]="false"
+      (click)='onClickRadio($event.target.value)' > artist </mat-radio-button>
+    <mat-radio-button class="form-check-input-album" type="radio" value="album" name="radio-search" [checked]="false"
+      (click)="onClickRadio($event.target.value)" > album </mat-radio-button>
+    <mat-radio-button class="form-check-input-genre" type="radio" value="genre" name="radio-search" [checked]="false"
+      (click)="onClickRadio($event.target.value)" > genre </mat-radio-button>
   </div>
 </div>
 
 <!-- Input ==> onChange 3 letters  -->
+
+
 <div>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Search</mat-label>
+      <input matInput #message maxlength="256" placeholder="Ex. I need help with..."
+      class="form-check-input-song" type="text" value="" name="input-search" [checked]="false"
+    (keyup)="onItemChange($event.target.value)"
+      >
+      <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+      <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+    </mat-form-field>
+  </form>
+</div>
+
+<!-- <div>
   <label id="search-bar-label"> Search</label>
   <input class="form-check-input-song" type="text" value="" name="input-search" [checked]="false"
     (keyup)="onItemChange($event.target.value)" />
-</div>
+</div> -->
 <!-- Input ==> onChange 3 letters  -->
 <div class='mesaje-error' *ngIf=" mnjError  && mnjError.length > 0">
   <p>{{mnjError}}</p>

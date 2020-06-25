@@ -1,15 +1,15 @@
 <!-- Radio => onclick  -->
 <div>
   <div>
-    <mat-radio-group id="search-radio-group-label"> select an option  </mat-radio-group>
-    <mat-radio-button class="form-check-input-song" type="radio" value="song" name="radio-search" [checked]="false"
-      (click)="onClickRadio($event.target.value)" > song </mat-radio-button>
-    <mat-radio-button class="form-check-input-artist" type="radio" value="artist" name="radio-search" [checked]="false"
-      (click)='onClickRadio($event.target.value)' > artist </mat-radio-button>
-    <mat-radio-button class="form-check-input-album" type="radio" value="album" name="radio-search" [checked]="false"
-      (click)="onClickRadio($event.target.value)" > album </mat-radio-button>
-    <mat-radio-button class="form-check-input-genre" type="radio" value="genre" name="radio-search" [checked]="false"
-      (click)="onClickRadio($event.target.value)" > genre </mat-radio-button>
+    <mat-radio-group id="search-radio-group-label"> select an option: </mat-radio-group>
+    <mat-radio-button class="form-check-input-song" type="radio" value="song" name="radio-search" 
+      (change)="onClickRadio($event)" > song </mat-radio-button>
+    <mat-radio-button class="form-check-input-artist" type="radio" value="artist" name="radio-search"
+      (change)='onClickRadio($event)' > artist </mat-radio-button>
+    <mat-radio-button class="form-check-input-album" type="radio" value="album" name="radio-search" 
+      (change)="onClickRadio($event)" > album </mat-radio-button>
+    <mat-radio-button class="form-check-input-genre" type="radio" value="genre" name="radio-search" 
+      (change)="onClickRadio($event)" > genre </mat-radio-button>
   </div>
 </div>
 
@@ -21,7 +21,7 @@
     <mat-form-field class="example-full-width">
       <mat-label>Search</mat-label>
       <input matInput #message maxlength="256" placeholder="Ex. I need help with..."
-      class="form-check-input-song" type="text" value="" name="input-search" [checked]="false"
+      class="form-check-input-song" type="text" value="" name="input-search" 
     (keyup)="onItemChange($event.target.value)"
       >
       <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>

@@ -84,9 +84,9 @@ export class HomeComponent implements OnInit {
           console.log('recibo todo ', x);
           if (x['data']) {
             console.log('recibo la parte de data ', x['data']);
-            if (x['data'].length > 1) {
+            console.log('nº results ', x['data'].length);
+            if (x['data'].length > 0) {
               console.log('recibo todo ', x);
-              this.algo == x['data'];
               this.searchSongs = x['data'];
               console.log('igualo la parte de data a mi variable y la muestro ', this.searchSongs);
             } else {
@@ -111,10 +111,9 @@ export class HomeComponent implements OnInit {
           console.log('recibo todo ', x);
           if (x['data']) {
             console.log('recibo la parte de data ', x['data']);
-            if (x['data'].length > 1) {
+            console.log('nº results ', x['data'].length);
+            if (x['data'].length > 0 {
               console.log('recibo todo ', x);
-
-              this.algo == x['data'];
               this.searchSongs = x['data'];
               console.log('igualo la parte de data a mi variable y la muestro ', this.searchSongs);
             } else {

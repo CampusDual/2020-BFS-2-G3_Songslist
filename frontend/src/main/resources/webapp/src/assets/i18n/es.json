@@ -13,5 +13,15 @@
   "ERROR_SESSION_EXPIRED": "La sesión ha caducado",
   "ERROR_USER_REQUIRED": "Nombre de usuario incorrecto.",
   "ERROR_PASS_REQUIRED": "Contraseña incorrecta.",
-  "ERROR_USER_PASS_INCORRECT": "Usuario o contraseña incorrecta."
+  "ERROR_USER_PASS_INCORRECT": "Usuario o contraseña incorrecta.",
+  "SELECT_OPTION": "Selecciona una opción de búsqueda (Sin selección = TODO)",
+  "SONG": "Canción",
+  "ALBUM": "Disco",
+  "ARTIST": "Artista",
+  "GENRE": "Género",
+  "SEARCH": "Buscar",
+  "THREE_LETTER_MSJ": "Longitud mínima para que se realice la búsqueda: 3",
+  "THREE_LETTER_ERROR": "Debes escribir una palabra de, al menos, tres caracteres",
+  "EXAMPLE_TEXT_SEARCH": "Ej: Stairway to heaven Led Zeppelin..."
+
 }

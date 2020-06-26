@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
       }
     }
     if (!a) {
-      this.mnjError = 'please put 3 letter to search';
+      this.mnjError = `ERROR`;
     } else {
       this.mnjError = '';
     }

@@ -1,6 +1,6 @@
 export interface IDataSongModule {
       id_song: number;  
-      img_song : string;
+      //img_song : string;
       name_song: string;
       description_song: string;
       id_artist: number;

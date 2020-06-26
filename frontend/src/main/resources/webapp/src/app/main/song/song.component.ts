@@ -9,28 +9,29 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./song.component.scss']
 })
 export class SongComponent implements OnInit {
-song: IDataSongModule = null;
-id: number;
+  song: IDataSongModule = null;
+  id: number;
   constructor(
-private songService: SongService ,
-private rutaActiva: ActivatedRoute // recivir parametro id
+    private songService: SongService,
+    private rutaActiva: ActivatedRoute // recivir parametro id
 
   ) { }
 
   ngOnInit() {
-  this.start();
-
-    }
-  start(){
     console.log(this.rutaActiva.snapshot.params);
     this.rutaActiva.params.subscribe(
       (params: Params) => {
         console.log(params);
         this.id = params.id;
         console.log(params.id);
+        this.start();
       }
     );
-    this.id = 12;
+   
+
+  }
+  start() {
+   // this.id = 12;
     this.songService.getFileSongData(this.id).subscribe(
       (x: any) => {
         console.log('recibo todo ', x);

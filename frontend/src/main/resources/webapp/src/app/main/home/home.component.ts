@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   navigate() {
@@ -112,7 +113,7 @@ export class HomeComponent implements OnInit {
           if (x['data']) {
             console.log('recibo la parte de data ', x['data']);
             console.log('nº results ', x['data'].length);
-            if (x['data'].length > 0 {
+            if (x['data'].length > 0 ){
               console.log('recibo todo ', x);
               this.searchSongs = x['data'];
               console.log('igualo la parte de data a mi variable y la muestro ', this.searchSongs);

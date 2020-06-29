@@ -29,14 +29,17 @@ export class AlbumService extends OntimizeEEService {
             filter: {
                 id_album: id
                  },
-            columns: ['id_album', 'name_album', 'id_artist', 'name_artist', 'id_genre', 'name_genre'],
+            columns: ['id_album', 'name_album', 'id_artist', 'name_artist', 'id_genre', 'name_genre', 'img_album', 'description_album', 'year_album'],
             sqltypes: {
                 'id_album': 4,
                 'name_album': 12,
                 'id_artist': 4,
                 'name_artist': 12,
                 'id_genre': 4,
-                'name_genre': 1
+                'name_genre': 1,
+                'img_album': 2004, 
+                'description_album': 12, 
+                'year_album': 91
             }
         });
         var self = this;

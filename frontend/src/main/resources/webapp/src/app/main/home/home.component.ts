@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HomeService } from './home.service';
 import { ISongModule } from 'app/shared/models/isong.model';
 import { MatRadioChange } from '@angular/material';
@@ -26,14 +26,26 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private actRoute: ActivatedRoute,
     protected homeService: HomeService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private rutaActiva: ActivatedRoute // recivir parametro id
 
   ) {
   }
 
   ngOnInit() {
-    this.searchSongs= JSON.parse(localStorage.getItem('Home_searchSong'));
-   console.log('OnInit',this.searchSongs)
+    if (this.rutaActiva) {
+      if (this.rutaActiva.params) {
+        this.rutaActiva.params.subscribe(
+          (params: Params) => {
+            if (params.searchSong) {
+              console.log('parametro recogido ',params.searchSong);
+              this.searchSongs = params.searchSong;
+              console.log('parametro aplicado ',this.searchSongs);
+            }
+          }
+        );
+      }
+    }
   }
 
   navigate() {
@@ -115,7 +127,7 @@ export class HomeComponent implements OnInit {
           if (x['data']) {
             console.log('recibo la parte de data ', x['data']);
             console.log('nº results ', x['data'].length);
-            if (x['data'].length > 0 ){
+            if (x['data'].length > 0) {
               console.log('recibo todo ', x);
               this.searchSongs = x['data'];
               localStorage.setItem('Home_searchSong', JSON.stringify(this.searchSongs));

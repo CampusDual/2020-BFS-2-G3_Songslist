@@ -1,6 +1,18 @@
-  <!-- <img src="assets/img/song/{{img_song}}"> 
-  <mat-form-field class="example-full-width">
-    <mat-label>{{'NAME_SONG' | oTranslate }}</mat-label>
-    <input matInput placeholder="" name="{{song.id_song}}" value="{{song.name_song}}">
-  </mat-form-field>
-  -->
+
+<div class='mesaje-error' *ngIf="song ">
+ <img *ngIf="song.img_song" src="assets/img/song/{{img_song}}"> 
+ <p *ngIf="song.id_song" >"{{song.id_song}}"</p>
+ <p *ngIf="song.name_song" >"{{song.name_song}}"</p>
+ <p *ngIf="song.description_song" >"{{song.description_song}}"</p>
+ <p *ngIf="song.id_artist" >"{{song.id_artist}}"</p>
+ <p *ngIf="song.name_artist" >"{{song.name_artist}}"</p>
+ <p *ngIf="song.id_genre" >"{{song.id_genre}}"</p>
+ <p *ngIf="song.name_genre" >"{{song.name_genre}}"</p>
+ <p *ngIf="song.id_album" >"{{song.id_album}}"</p>
+ <p *ngIf="song.name_album" >"{{song.name_album}}"</p>
+ <p *ngIf="song.year_album" >"{{song.year_album}}"</p>
+</div>
+
+<button mat-stroked-button color="primary"
+[routerLink]="['/main/home']" [queryParams]="{searchSong: getSearchSong()}"
+>Atras</button>

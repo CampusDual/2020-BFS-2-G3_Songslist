@@ -54,4 +54,7 @@ export class SongComponent implements OnInit {
 
     );
   }
+  getSearchSong(){
+    return   JSON.parse(localStorage.getItem('Home_searchSong'));
+  }
 }

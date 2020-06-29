@@ -29,7 +29,7 @@ export class SongService extends OntimizeEEService {
     }
 
     getFileSongData(id: number ) {
-        const url = CONFIG.apiEndpoint + '/' + 'songs/song';
+        const url = CONFIG.apiEndpoint + '/' + 'songs/song/search';
         var options = {
             headers: this.buildHeaders()
         };
@@ -37,7 +37,7 @@ export class SongService extends OntimizeEEService {
             filter: {
                 'id_song': id,
                  },
-            columns: ['id_song','name_song','description_song'],
+            columns: ['id_song','name_song','description_song','id_artist','name_artist', 'id_genre', 'name_genre', 'id_album', 'name_album', 'year_album'],
         });
         // Opción 1 - usando métodos de ontimize para parsear la respuesta
         var self = this;

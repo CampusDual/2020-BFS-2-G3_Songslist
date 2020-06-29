@@ -6,9 +6,11 @@ import { MainComponent } from './main.component';
 import { HomeModule } from './home/home.module';
 import { SongComponent } from './song/song.component';
 
+
 export function loadHomeModule() {
   return HomeModule;
 }
+
 
 export const routes: Routes = [
   {
@@ -21,14 +23,12 @@ export const routes: Routes = [
         path: 'home',
         loadChildren: loadHomeModule
       },
-      {
-        path: 'song/:id',
-        component: SongComponent
-
-      }
-
     ]
-  }
+  },
+  {
+    path: 'song/:id',
+    component : SongComponent,
+ }
 ];
 
 @NgModule({

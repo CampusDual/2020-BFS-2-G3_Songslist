@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SongService } from './song.service';
+import { SongService } from '../services/song.service';
 import { IDataSongModule } from 'app/shared/models/idataSong.model';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -18,21 +18,24 @@ export class SongComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
     console.log(this.rutaActiva.snapshot.params);
     this.rutaActiva.params.subscribe(
       (params: Params) => {
-        console.log(params);
+        console.log('paramtros recibidos' ,params);
         this.id = params.id;
-        console.log(params.id);
-        this.start();
+        console.log('parametro recogido ',params.id);
+        this.start(this.id);
       }
     );
+    
+  //  this.start(12);
    
 
   }
-  start() {
+  start(id : number) {
    // this.id = 12;
-    this.songService.getFileSongData(this.id).subscribe(
+    this.songService.getFileSongData(id).subscribe(
       (x: any) => {
         console.log('recibo todo ', x);
         if (x['data']) {

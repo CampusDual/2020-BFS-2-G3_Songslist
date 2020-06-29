@@ -89,7 +89,7 @@
 
     <ng-container matColumnDef="Song">
         <mat-header-cell *matHeaderCellDef>Song</mat-header-cell>
-        <mat-cell *matCellDef="let song"><a [routerLink]="['/song',song.id_song]" [queryParams]="{id: song.id_song}" href="#">
+        <mat-cell *matCellDef="let song"><a [routerLink]="['/main/song',song.id_song]" [queryParams]="{id: song.id_song}" href="#">
           {{song.name_song}}
         </a></mat-cell>
     </ng-container>
@@ -98,7 +98,7 @@
         <mat-header-cell *matHeaderCellDef>Artist</mat-header-cell>
         <mat-cell class="description-cell"
                   *matCellDef="let song">
-                   <a [routerLink]="['/artist', song.id_artist]" [queryParams]="{id: song.id_artist}" href="#">
+                   <a [routerLink]="['/main/artist', song.id_artist]" [queryParams]="{id: song.id_artist}" href="#">
                     {{song.name_artist}}
                   </a></mat-cell>
 
@@ -108,7 +108,7 @@
         <mat-header-cell *matHeaderCellDef>Genre</mat-header-cell>
         <mat-cell class="duration-cell"
                   *matCellDef="let song">
-                   <a [routerLink]="['/genre', song.id_genre]" [queryParams]="{id: song.id_genre}" href="#">
+                   <a [routerLink]="['/main/genre', song.id_genre]" [queryParams]="{id: song.id_genre}" href="#">
                     {{song.name_genre}}
                   </a></mat-cell>
     </ng-container>
@@ -118,7 +118,7 @@
       <mat-header-cell *matHeaderCellDef>Album</mat-header-cell>
       <mat-cell class="duration-cell"
                 *matCellDef="let song">
-                 <a [routerLink]="['/album', song.id_album]" [queryParams]="{id: song.id_album}" href="#">
+                 <a [routerLink]="['/main/album', song.id_album]" [queryParams]="{id: song.id_album}" href="#">
                   {{song.name_album}}
                 </a></mat-cell>
   </ng-container>

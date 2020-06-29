@@ -32,7 +32,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.searchSongs= JSON.parse(localStorage.getItem('Home_searchSong'));
+   console.log('OnInit',this.searchSongs)
   }
 
   navigate() {
@@ -89,6 +90,7 @@ export class HomeComponent implements OnInit {
             if (x['data'].length > 0) {
               console.log('recibo todo ', x);
               this.searchSongs = x['data'];
+              localStorage.setItem('Home_searchSong', JSON.stringify(this.searchSongs));
               console.log('igualo la parte de data a mi variable y la muestro ', this.searchSongs);
             } else {
               this.searchSongs = Array();
@@ -116,6 +118,7 @@ export class HomeComponent implements OnInit {
             if (x['data'].length > 0 ){
               console.log('recibo todo ', x);
               this.searchSongs = x['data'];
+              localStorage.setItem('Home_searchSong', JSON.stringify(this.searchSongs));
               console.log('igualo la parte de data a mi variable y la muestro ', this.searchSongs);
             } else {
               this.searchSongs = Array();

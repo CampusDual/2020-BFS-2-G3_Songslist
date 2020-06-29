@@ -1,0 +1,11 @@
+<div *ngIf="albumResult">
+  <h3>DATOS DEL ÁLBUM</h3>
+  <p><strong>{{'ALBUM' | oTranslate}} = </strong> {{albumResult.name_album}}</p>
+  <p><strong>{{'ARTIST' | oTranslate}} = </strong> {{albumResult.name_artist}}</p>
+  <p><strong>{{'GENRE' | oTranslate}} = </strong> {{albumResult.name_genre}}</p>
+  <hr>
+  <h3>LISTA DE CANCIONES DEL ÁLBUM</h3>
+  <div *ngFor="let song of songResult; let i = index">    
+    {{i+1}}. {{song.name_song}}
+  </div>
+</div>

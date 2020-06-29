@@ -97,7 +97,7 @@
   <ng-container matColumnDef="Album">
     <mat-header-cell *matHeaderCellDef>{{'ALBUM' | oTranslate}}</mat-header-cell>
     <mat-cell class="duration-cell" *matCellDef="let song">
-      <a [routerLink]="['/album', song.id_album]" [queryParams]="{id: song.id_album}" href="#">
+      <a [routerLink]="['/main/album', song.id_album]" [queryParams]="{id: song.id_album}" href="#">
         {{song.name_album}}
       </a></mat-cell>
   </ng-container>

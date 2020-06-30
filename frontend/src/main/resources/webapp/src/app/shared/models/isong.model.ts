@@ -8,4 +8,7 @@ export interface ISongModel {
     id_album: number;
     name_genre: string;
     name_album: string;
+    //img_song : string;
+    description_song ? : string;
+    year_album ? : string;
  }

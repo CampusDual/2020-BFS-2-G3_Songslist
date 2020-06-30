@@ -17,7 +17,6 @@
 </div>
 
 <!-- Input ==> onChange 3 letters  -->
-
 <br>
 <div>
   <form class="example-form">
@@ -31,59 +30,15 @@
   </form>
 </div>
 
-<!-- <div>
-  <label id="search-bar-label"> Search</label>
-  <input class="form-check-input-song" type="text" value="" name="input-search" [checked]="false"
-    (keyup)="onItemChange($event.target.value)" />
-</div> -->
 <!-- Input ==> onChange 3 letters  -->
 <div class='mensaje-error' *ngIf=" mnjError  && mnjError.length > 0">
   <p>{{'THREE_LETTER_ERROR' | oTranslate}}</p>
 </div>
 
-<!-- Table  ==> aplicar los cambios A pelo -->
-
-<!-- muestro una tabla
-  <p>{{radioSelected}}</p>
-  <p>{{searchText}}</p>
-  <p>{{searchSongs | json }}</p> -->
-
-<!-- 
-  <table>
-    <thead>
-      <th>Song Name</th>
-      <th>Artist Name</th>
-      <th>Genre Name</th>
-      <th> Album Name</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let song of searchSongs">
-        <td>
-          <a [routerLink]="['/song',song.id_song]" [queryParams]="{id: song.id_song}" href="#">
-            {{song.name_song}}
-          </a>
-        </td>
-
-        <td>
-          <a [routerLink]="['/artist', song.id_artist]" [queryParams]="{id: song.id_artist}" href="#">
-            {{song.name_artist}}
-          </a>
-        </td>
-        <td>
-          <a [routerLink]="['/genre', song.id_genre]" [queryParams]="{id: song.id_genre}" href="#">
-            {{song.name_genre}}
-          </a>
-        </td>
-        <td>
-          <a [routerLink]="['/album', song.id_album]" [queryParams]="{id: song.id_album}" href="#">
-            {{song.name_album}}
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
- -->
 <br><hr>
+
+
+<div  *ngIf=" searchSongs.length > 0" >
 
 <!-- Table  ==> aplicar los cambios Material -->
 <mat-table class="lessons-table mat-elevation-z8" [dataSource]="searchSongs">
@@ -120,13 +75,12 @@
       <a [routerLink]="['/genre', song.id_genre]" [queryParams]="{id: song.id_genre}" href="#">
         {{song.name_genre}}
       </a></mat-cell>
+
   </ng-container>
-
-
-
 
   <mat-header-row *matHeaderRowDef="['Song', 'Album', 'Artist','Genre']"></mat-header-row>
 
   <mat-row *matRowDef="let row; columns:['Song','Album','Artist','Genre']"></mat-row>
 
 </mat-table>
+</div>

@@ -39,11 +39,11 @@ export class SongComponent implements OnInit {
       (x: any) => {
         console.log('recibo todo ', x);
         if (x['data']) {
-          console.log('recibo la parte de data ', x['data']);
+          console.log('recibo la parte de data ', x['data'][0]);
           console.log('nº results ', x['data'].length);
           if (x['data'].length > 0) {
             console.log('recibo todo ', x);
-            this.song = x['data'];
+            this.song = x['data'][0];
             console.log('igualo la parte de data a mi variable y la muestro ', this.song);
           } else {
             this.song = null;

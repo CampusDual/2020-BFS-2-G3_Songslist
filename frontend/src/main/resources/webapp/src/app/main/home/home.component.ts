@@ -110,7 +110,6 @@ export class HomeComponent implements OnInit {
           }
         },
         err => console.error(err)
-
       );
     }
   }
@@ -138,7 +137,6 @@ export class HomeComponent implements OnInit {
           }
         },
         err => console.error(err)
-
       );
     }
   }

@@ -3,8 +3,7 @@ import { OntimizeWebModule } from 'ontimize-web-ngx';
 import { SharedModule } from '../shared/shared.module';
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
-import { SongComponent } from './song/song.component';
-import { SongService } from './services/song.service';
+
 
 import { AlbumService } from './services/album.service';
 import { AlbumComponent } from './album/album.component';
@@ -16,11 +15,9 @@ import { AlbumComponent } from './album/album.component';
     MainRoutingModule,
   ],
   declarations: [
-    MainComponent,
-    SongComponent
-  ], providers: [
-    SongService,
     AlbumComponent,
+    MainComponent,
+  ], providers: [
     AlbumService,
   ],
 })

@@ -11,6 +11,8 @@
       (change)='onClickRadio($event)'> {{'ARTIST' | oTranslate}} </mat-radio-button>
     <mat-radio-button class="form-check-input-genre" type="radio" value="genre" name="radio-search"
       (change)="onClickRadio($event)"> {{'GENRE' | oTranslate}} </mat-radio-button>
+    <mat-radio-button class="form-check-input-genre" type="radio" value="all" name="radio-search"
+      (change)="onClickRadio($event)"> {{'All' | oTranslate}} </mat-radio-button>
   </div>
 </div>
 
@@ -34,6 +36,8 @@
 </div>
 
 <br><hr>
+
+<div  *ngIf=" searchSongs.length > 0" >
   <!-- Table  ==> aplicar los cambios Material -->
   <mat-table class="lessons-table mat-elevation-z8" [dataSource]="searchSongs">
 
@@ -77,3 +81,4 @@
   <mat-row *matRowDef="let row; columns:['Song','Album','Artist','Genre']"></mat-row>
 
 </mat-table>
+</div>

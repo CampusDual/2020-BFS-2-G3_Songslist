@@ -4,6 +4,7 @@ import { HomeService } from './home.service';
 import { ISongModel } from 'app/shared/models/isong.model';
 import { MatRadioChange } from '@angular/material';
 import { CONFIG } from 'app/app.config';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'home',
@@ -11,6 +12,7 @@ import { CONFIG } from 'app/app.config';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  tosearch;
   // input radio
   selectOptions: string[] = ['Song', 'Album', 'Genre', 'Artist'];
   // @ViewChild("song") refSong: ElementRef;
@@ -34,76 +36,40 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    let map = this._route.snapshot.paramMap;
-    console.log(' map param keys ', map.keys);
-    console.log(' map param values ', map.getAll);
-    let param1 = this._route.snapshot.paramMap.get('searchSong');
-   
-    console.log(' param1 ', param1);
 
-    if (this._route) {
-      console.log('_route', this._route);
-      if (this._route.snapshot) {
-        if (this._route.params) {
-          console.log('_route.params', this._route.params);
-          this._route.params.subscribe(
-          (params: Params) => {
-            console.log('params[0]' , params[0]);
-            if (params){
-              console.log(' Simple OBj params ', params);
-              let o : string  = JSON.stringify(params);
-              console.log ('to JSON OBj parm ',o);
-            console.log(" %O" , params);
-            console.log('params ', params.searchSong);
-            if (params.searchSong) {
-              if (params.searchSong === "ok"){
-                const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
-                let obj = myData['searchSong'];
-                this.search(obj.radioSelect, obj.searchText);
-               }
-            }
-            if (params[0]) {
-              console.log('params[0] ', params[0]);
-              if(params[0]['search']){
-              console.log('value[0][\'search\'] ',params[0]['search']);
-               if (params[0]['search'] === "ok"){
-                const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
-                let obj = myData['search'];
-                this.search(obj.radioSelect, obj.searchText);
-               }
-              }
-              console.log('parametro aplicado ',this.searchSongs);
-            }
+    this._route.queryParams
+      .filter(params => params.tosearch)
+      .subscribe(params => {
+        if (params.tosearch === "ok") {
+          const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
+          let obj = myData['search'];
+          this.search(obj.radioSelect, obj.searchText);
+        }
+      });
+  };
+
+  search(radioSelected: string, searchText: string) {
+    this.homeService.getSongData(radioSelected, searchText).subscribe(
+      (x: any) => {
+        console.log('recibo todo ', x);
+        if (x['data']) {
+          console.log('recibo la parte de data ', x['data']);
+          console.log('nº results ', x['data'].length);
+          if (x['data'].length > 0) {
+            console.log('recibo todo ', x);
+            this.searchSongs = x['data'];
+            const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
+            myData['search'] = { radioSelect: this.radioSelected, searchText: this.searchText };
+            localStorage.setItem(CONFIG.uuid, JSON.stringify(myData));
+            console.log('igualo la parte de data a mi variable y la muestro ', this.searchSongs);
+          } else {
+            this.searchSongs = Array();
           }
         }
-        );
-      }
-    }
+      },
+      err => console.error(err)
+    );
   }
-};
-
- search(radioSelected : string ,searchText: string ){
-  this.homeService.getSongData(radioSelected, searchText).subscribe(
-    (x: any) => {
-      console.log('recibo todo ', x);
-      if (x['data']) {
-        console.log('recibo la parte de data ', x['data']);
-        console.log('nº results ', x['data'].length);
-        if (x['data'].length > 0) {
-          console.log('recibo todo ', x);
-          this.searchSongs = x['data'];
-          const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
-          myData['search']={radioSelect: this.radioSelected, searchText: this.searchText};
-          localStorage.setItem(CONFIG.uuid,JSON.stringify(myData));
-          console.log('igualo la parte de data a mi variable y la muestro ', this.searchSongs);
-        } else {
-          this.searchSongs = Array();
-        }
-      }
-    },
-    err => console.error(err)
-  );
-}
 
   navigate() {
     this.router.navigate(['../', 'login'], { relativeTo: this.actRoute });
@@ -149,14 +115,14 @@ export class HomeComponent implements OnInit {
     this.stringValidate();
     if (this.searchText.length > 2) {
       console.log(' radioSelected is : ', this.radioSelected);
-      this.search(this.radioSelected,this.searchText );
+      this.search(this.radioSelected, this.searchText);
     }
   }
   onItemChange($event) {
     this.searchText = $event;
     this.stringValidate();
     if (this.searchText.length > 2) {
-      this.search(this.radioSelected,this.searchText );
+      this.search(this.radioSelected, this.searchText);
       console.log(' searchText is : ', this.searchText);
 
     }

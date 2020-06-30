@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HomeService } from './home.service';
-import { ISongModule } from 'app/shared/models/isong.model';
+import { ISongModel } from 'app/shared/models/isong.model';
 import { MatRadioChange } from '@angular/material';
 
 @Component({
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   //@ViewChild(".mensaje-error") refmenjErr: ElementRef;
   radioSelected: string;
   searchText: string = '';
-  searchSongs: ISongModule[] = Array();
+  searchSongs: ISongModel[] = Array();
   error: boolean;
   mnjError: string;
   constructor(
@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit {
       }
     }
     if (!a) {
-      this.mnjError = 'please put 3 letter to search';
+      this.mnjError = `ERROR`;
     } else {
       this.mnjError = '';
     }

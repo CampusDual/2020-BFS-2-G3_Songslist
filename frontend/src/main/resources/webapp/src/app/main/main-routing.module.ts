@@ -6,6 +6,7 @@ import { MainComponent } from './main.component';
 import { HomeModule } from './home/home.module';
 import { SongComponent } from './song/song.component';
 
+import { AlbumComponent } from './album/album.component';
 
 export function loadHomeModule() {
   return HomeModule;
@@ -28,7 +29,15 @@ export const routes: Routes = [
   {
     path: 'song/:id',
     component : SongComponent,
- }
+ },
+  {
+    path: 'album/:id',
+    component: AlbumComponent
+  },      
+  {
+    path: '**',
+    loadChildren: loadHomeModule
+  }
 ];
 
 @NgModule({

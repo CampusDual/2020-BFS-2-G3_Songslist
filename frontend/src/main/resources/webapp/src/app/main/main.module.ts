@@ -6,6 +6,8 @@ import { MainRoutingModule } from './main-routing.module';
 import { SongComponent } from './song/song.component';
 import { SongService } from './services/song.service';
 
+import { AlbumService } from './services/album.service';
+import { AlbumComponent } from './album/album.component';
 
 @NgModule({
   imports: [
@@ -16,9 +18,10 @@ import { SongService } from './services/song.service';
   declarations: [
     MainComponent,
     SongComponent
-    
   ], providers: [
-    SongService
-  ]
+    SongService,
+    AlbumComponent,
+    AlbumService,
+  ],
 })
 export class MainModule { }

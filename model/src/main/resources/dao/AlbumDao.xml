@@ -14,10 +14,15 @@
  <GeneratedKey>id_album</GeneratedKey>
   <Queries>
      <Query id="default">
+     	<AmbiguousColumns>
+            <AmbiguousColumn name="id_artist" prefix="art" />
+            <AmbiguousColumn name="id_genre" prefix="g" />
+        </AmbiguousColumns>
         <FunctionColumns>
             <FunctionColumn name="ID_ALBUM" value="alb.id_album" />
             <FunctionColumn name="NAME_ALBUM" value="alb.name_album" />
             <FunctionColumn name="DESCRIPTION_ALBUM" value="alb.description_album" />
+            <FunctionColumn name="IMG_ALBUM" value="alb.img_album" />
             <FunctionColumn name="YEAR_ALBUM" value="alb.year_album" />
             <FunctionColumn name="ID_ARTIST" value="art.id_artist" />
             <FunctionColumn name="NAME_ARTIST" value="art.name_artist" />

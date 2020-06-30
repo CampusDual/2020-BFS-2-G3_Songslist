@@ -22,6 +22,9 @@
   "SEARCH": "Buscar",
   "THREE_LETTER_MSJ": "Longitud mínima para que se realice la búsqueda: 3",
   "THREE_LETTER_ERROR": "Debes escribir una palabra de, al menos, tres caracteres",
-  "EXAMPLE_TEXT_SEARCH": "Ej: Stairway to heaven Led Zeppelin..."
+  "EXAMPLE_TEXT_SEARCH": "Ej: Stairway to heaven Led Zeppelin...",
+  "FRONT": "Portada",
+  "DATE": "Fecha",
+  "DESCRIPTION": "Descripción"
 
 }

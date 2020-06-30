@@ -4,6 +4,7 @@ import { AuthGuardService } from 'ontimize-web-ngx';
 
 import { MainComponent } from './main.component';
 import { HomeModule } from './home/home.module';
+import { AlbumComponent } from './album/album.component';
 
 export function loadHomeModule() {
   return HomeModule;
@@ -21,6 +22,15 @@ export const routes: Routes = [
         loadChildren: loadHomeModule
       }
     ]
+
+  },
+  {
+    path: 'album/:id',
+    component: AlbumComponent
+  },      
+  {
+    path: '**',
+    loadChildren: loadHomeModule
   }
 ];
 

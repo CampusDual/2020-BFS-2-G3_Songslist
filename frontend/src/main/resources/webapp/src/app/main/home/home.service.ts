@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CONFIG } from 'app/app.config';
-import { ISongModule } from 'app/shared/models/isong.model';
+import { ISongModel } from 'app/shared/models/isong.model';
 import { OntimizeEEService, Observable } from 'ontimize-web-ngx';
 import { share } from 'rxjs/operators';
 

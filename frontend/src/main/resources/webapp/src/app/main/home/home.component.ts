@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HomeService } from './home.service';
-import { ISongModule } from 'app/shared/models/isong.model';
+import { ISongModel } from 'app/shared/models/isong.model';
 import { MatRadioChange } from '@angular/material';
 
 @Component({
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   //@ViewChild(".mensaje-error") refmenjErr: ElementRef;
   radioSelected: string;
   searchText: string = '';
-  searchSongs: ISongModule[] = Array();
+  searchSongs: ISongModel[] = Array();
   error: boolean;
   mnjError: string;
   constructor(
@@ -112,7 +112,7 @@ export class HomeComponent implements OnInit {
           if (x['data']) {
             console.log('recibo la parte de data ', x['data']);
             console.log('nº results ', x['data'].length);
-            if (x['data'].length > 0 {
+            if (x['data'].length > 0) {
               console.log('recibo todo ', x);
               this.searchSongs = x['data'];
               console.log('igualo la parte de data a mi variable y la muestro ', this.searchSongs);

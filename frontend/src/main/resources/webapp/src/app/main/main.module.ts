@@ -3,6 +3,8 @@ import { OntimizeWebModule } from 'ontimize-web-ngx';
 import { SharedModule } from '../shared/shared.module';
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
+import { AlbumService } from './services/album.service';
+import { AlbumComponent } from './album/album.component';
 
 @NgModule({
   imports: [
@@ -11,7 +13,11 @@ import { MainRoutingModule } from './main-routing.module';
     MainRoutingModule
   ],
   declarations: [
-    MainComponent
+    MainComponent,
+    AlbumComponent
+  ],
+  providers:[
+    AlbumService
   ]
 })
 export class MainModule { }

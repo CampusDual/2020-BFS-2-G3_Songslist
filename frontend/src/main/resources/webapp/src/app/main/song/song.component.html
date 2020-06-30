@@ -1,18 +1,17 @@
 
-<div class='mesaje-error' *ngIf="song ">
- <img *ngIf="song.img_song" src="assets/img/song/{{img_song}}"> 
- <p *ngIf="song.id_song" >"{{song.id_song}}"</p>
- <p *ngIf="song.name_song" >"{{song.name_song}}"</p>
- <p *ngIf="song.description_song" >"{{song.description_song}}"</p>
- <p *ngIf="song.id_artist" >"{{song.id_artist}}"</p>
- <p *ngIf="song.name_artist" >"{{song.name_artist}}"</p>
- <p *ngIf="song.id_genre" >"{{song.id_genre}}"</p>
- <p *ngIf="song.name_genre" >"{{song.name_genre}}"</p>
- <p *ngIf="song.id_album" >"{{song.id_album}}"</p>
- <p *ngIf="song.name_album" >"{{song.name_album}}"</p>
- <p *ngIf="song.year_album" >"{{song.year_album}}"</p>
+<div class='mesaje-error' *ngIf="songResult ">
+ <img *ngIf="songResult.img_song" src="assets/img/song/{{songResult.img_song}}"> 
+ <p *ngIf="songResult.id_song" >"{{songResult.id_song}}"</p>
+ <p *ngIf="songResult.name_song" >"{{songResult.name_song}}"</p>
+ <p *ngIf="songResult.description_song" >"{{songResult.description_song}}"</p>
+ <p *ngIf="songResult.id_artist" >"{{songResult.id_artist}}"</p>
+ <p *ngIf="songResult.name_artist" >"{{songResult.name_artist}}"</p>
+ <p *ngIf="songResult.id_genre" >"{{songResult.id_genre}}"</p>
+ <p *ngIf="songResult.name_genre" >"{{songResult.name_genre}}"</p>
+ <p *ngIf="songResult.id_album" >"{{songResult.id_album}}"</p>
+ <p *ngIf="songResult.name_album" >"{{songResult.name_album}}"</p>
+ <p *ngIf="songResult.year_album" >"{{songResult.year_album}}"</p>
 </div>
-
 <button mat-stroked-button color="primary"
 [routerLink]="['/main/home']" [queryParams]="{searchSong: getSearchSong()}"
 >Atras</button>

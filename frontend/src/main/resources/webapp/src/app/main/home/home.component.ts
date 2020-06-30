@@ -34,6 +34,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    let map = this._route.snapshot.paramMap;
+    console.log(' map param keys ', map.keys);
+    console.log(' map param values ', map.getAll);
+    let param1 = this._route.snapshot.paramMap.get('searchSong');
+   
+    console.log(' param1 ', param1);
+
     if (this._route) {
       console.log('_route', this._route);
       if (this._route.snapshot) {
@@ -47,19 +54,19 @@ export class HomeComponent implements OnInit {
               let o : string  = JSON.stringify(params);
               console.log ('to JSON OBj parm ',o);
             console.log(" %O" , params);
-            console.log('params ', params.tosearchSong);
-            if (params.tosearchSong) {
-              if (params.tosearchSong == 1){
+            console.log('params ', params.searchSong);
+            if (params.searchSong) {
+              if (params.searchSong == 1){
                 const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
-                let obj = myData['search'];
+                let obj = myData['searchSong'];
                 this.search(obj.radioSelect, obj.searchText);
                }
             }
             if (params[0]) {
               console.log('params[0] ', params[0]);
-              if(params[0]['tosearchSong']){
-              console.log('value[0][\'tosearchSong\'] ',params[0]['tosearchSong']);
-               if (params[0]['tosearchSong'] == 1){
+              if(params[0]['search']){
+              console.log('value[0][\'search\'] ',params[0]['search']);
+               if (params[0]['search'] == 1){
                 const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
                 let obj = myData['search'];
                 this.search(obj.radioSelect, obj.searchText);

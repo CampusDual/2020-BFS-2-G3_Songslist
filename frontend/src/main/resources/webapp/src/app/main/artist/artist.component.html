@@ -1,3 +1,9 @@
+<button mat-stroked-button color="primary"
+[routerLink]="['/main/home']" [queryParams]="{searchSong: 'ok'}">
+Atras
+</button>
+
+
 <div *ngIf="artistResult">
   <h3>DATOS DEL ARTISTA</h3>
   <p><strong>{{'ARTIST' | oTranslate}} = </strong> {{artistResult.name_artist}}</p>

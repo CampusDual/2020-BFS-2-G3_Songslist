@@ -11,6 +11,8 @@
       (change)='onClickRadio($event)'> {{'ARTIST' | oTranslate}} </mat-radio-button>
     <mat-radio-button class="form-check-input-genre" type="radio" value="genre" name="radio-search"
       (change)="onClickRadio($event)"> {{'GENRE' | oTranslate}} </mat-radio-button>
+      <mat-radio-button class="form-check-input-genre" type="radio" value="all" name="radio-search"
+      (change)="onClickRadio($event)"> {{'ALL' | oTranslate}} </mat-radio-button>
   </div>
 </div>
 
@@ -88,7 +90,7 @@
 
   <ng-container matColumnDef="Song">
     <mat-header-cell *matHeaderCellDef>{{'SONG' | oTranslate}}</mat-header-cell>
-    <mat-cell *matCellDef="let song"><a [routerLink]="['/song',song.id_song]" [queryParams]="{id: song.id_song}"
+    <mat-cell *matCellDef="let song"><a [routerLink]="['/main/song',song.id_song]" [queryParams]="{id: song.id_song}"
         href="#">
         {{song.name_song}}
       </a></mat-cell>

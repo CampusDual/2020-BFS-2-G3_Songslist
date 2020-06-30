@@ -14,5 +14,6 @@ package com.ontimize.songslists.model.core.dao;
 
 	 public static final String ATTR_ID_ARTIST = "id_artist";
 	 public static final String ATTR_ARTIST_NAME = "name_artist"; 
+	 public static final String ATTR_ARTIST_IMG = "img_artist"; 
 	 public static final String ATTR_ARTIST_DESCRIPTION = "description_artist"; 
 	}

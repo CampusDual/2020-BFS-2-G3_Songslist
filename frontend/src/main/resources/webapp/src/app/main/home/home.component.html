@@ -11,8 +11,8 @@
       (change)='onClickRadio($event)'> {{'ARTIST' | oTranslate}} </mat-radio-button>
     <mat-radio-button class="form-check-input-genre" type="radio" value="genre" name="radio-search"
       (change)="onClickRadio($event)"> {{'GENRE' | oTranslate}} </mat-radio-button>
-    <mat-radio-button class="form-check-input-genre" type="radio" value="all" name="radio-search"
-      (change)="onClickRadio($event)"> {{'All' | oTranslate}} </mat-radio-button>
+      <mat-radio-button class="form-check-input-genre" type="radio" value="all" name="radio-search"
+      (change)="onClickRadio($event)"> {{'ALL' | oTranslate}} </mat-radio-button>
   </div>
 </div>
 
@@ -37,43 +37,45 @@
 
 <br><hr>
 
+
 <div  *ngIf=" searchSongs.length > 0" >
-  <!-- Table  ==> aplicar los cambios Material -->
-  <mat-table class="lessons-table mat-elevation-z8" [dataSource]="searchSongs">
 
-    <ng-container matColumnDef="Song">
-        <mat-header-cell *matHeaderCellDef>Song</mat-header-cell>
-        <mat-cell *matCellDef="let song"><a [routerLink]="['/main/song',song.id_song]" [queryParams]="{id: song.id_song}" href="#">
-          {{song.name_song}}
-        </a></mat-cell>
-    </ng-container>
+<!-- Table  ==> aplicar los cambios Material -->
+<mat-table class="lessons-table mat-elevation-z8" [dataSource]="searchSongs">
 
-    <ng-container matColumnDef="Artist">
-        <mat-header-cell *matHeaderCellDef>Artist</mat-header-cell>
-        <mat-cell class="description-cell"
-                  *matCellDef="let song">
-                   <a [routerLink]="['/main/artist', song.id_artist]" [queryParams]="{id: song.id_artist}" href="#">
-                    {{song.name_artist}}
-                  </a></mat-cell>
+  <ng-container matColumnDef="Song">
+    <mat-header-cell *matHeaderCellDef>{{'SONG' | oTranslate}}</mat-header-cell>
+    <mat-cell *matCellDef="let song"><a [routerLink]="['/main/song',song.id_song]" [queryParams]="{id: song.id_song}"
+        href="#">
+        {{song.name_song}}
+      </a></mat-cell>
+  </ng-container>
 
-    </ng-container>
+  <ng-container matColumnDef="Album">
+    <mat-header-cell *matHeaderCellDef>{{'ALBUM' | oTranslate}}</mat-header-cell>
+    <mat-cell class="duration-cell" *matCellDef="let song">
 
-    <ng-container matColumnDef="Genre">
-        <mat-header-cell *matHeaderCellDef>Genre</mat-header-cell>
-        <mat-cell class="duration-cell"
-                  *matCellDef="let song">
-                   <a [routerLink]="['/main/genre', song.id_genre]" [queryParams]="{id: song.id_genre}" href="#">
-                    {{song.name_genre}}
-                  </a></mat-cell>
-    </ng-container>
-    
-    <ng-container matColumnDef="Album">
-      <mat-header-cell *matHeaderCellDef>Album</mat-header-cell>
-      <mat-cell class="duration-cell"
-                *matCellDef="let song">
-                 <a [routerLink]="['/main/album', song.id_album]" [queryParams]="{id: song.id_album}" href="#">
-                  {{song.name_album}}
-                </a></mat-cell>
+      <a [routerLink]="['/main/album', song.id_album]" [queryParams]="{id: song.id_album}" href="#">
+
+        {{song.name_album}}
+      </a></mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Artist">
+    <mat-header-cell *matHeaderCellDef>{{'ARTIST' | oTranslate}}</mat-header-cell>
+    <mat-cell class="description-cell" *matCellDef="let song">
+      <a [routerLink]="['/main/artist', song.id_artist]" [queryParams]="{id: song.id_artist}" href="#">
+        {{song.name_artist}}
+      </a></mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Genre">
+    <mat-header-cell *matHeaderCellDef>{{'GENRE' | oTranslate}}</mat-header-cell>
+    <mat-cell class="duration-cell" *matCellDef="let song">
+      <a [routerLink]="['/genre', song.id_genre]" [queryParams]="{id: song.id_genre}" href="#">
+        {{song.name_genre}}
+      </a></mat-cell>
+
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="['Song', 'Album', 'Artist','Genre']"></mat-header-row>

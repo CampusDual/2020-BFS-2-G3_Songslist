@@ -1,0 +1,8 @@
+<div *ngIf="songResult">
+  <h3>DATOS DE LA CANCIÓN</h3>
+  <p><strong>{{'SONG' | oTranslate}} = </strong> {{songResult.name_song}}</p>
+  <p><strong>{{'ALBUM' | oTranslate}} = </strong> {{songResult.name_album}}</p>
+  <p><strong>{{'ARTIST' | oTranslate}} = </strong> {{songResult.name_artist}}</p>
+  <p><strong>{{'GENRE' | oTranslate}} = </strong> {{songResult.name_genre}}</p>
+  <p><strong>{{'DESCRIPTION' | oTranslate}} = </strong> {{songResult.description_song}}</p>
+</div>

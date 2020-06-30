@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
             console.log(" %O" , params);
             console.log('params ', params.searchSong);
             if (params.searchSong) {
-              if (params.searchSong == 1){
+              if (params.searchSong === "ok"){
                 const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
                 let obj = myData['searchSong'];
                 this.search(obj.radioSelect, obj.searchText);
@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
               console.log('params[0] ', params[0]);
               if(params[0]['search']){
               console.log('value[0][\'search\'] ',params[0]['search']);
-               if (params[0]['search'] == 1){
+               if (params[0]['search'] === "ok"){
                 const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
                 let obj = myData['search'];
                 this.search(obj.radioSelect, obj.searchText);

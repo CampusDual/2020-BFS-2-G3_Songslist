@@ -1,5 +1,5 @@
 
-export interface ISongModule {
+export interface ISongModel {
   name_song: string;
     id_artist: number;
     name_artist: string;

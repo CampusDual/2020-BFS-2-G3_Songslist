@@ -15,11 +15,10 @@ export class HomeComponent implements OnInit {
   tosearch;
   // input radio
   selectOptions: string[] = ['Song', 'Album', 'Genre', 'Artist'];
-  // @ViewChild("song") refSong: ElementRef;
-  // @ViewChild("album") refAlbum: ElementRef;
-  // @ViewChild("artist") refArtist: ElementRef;
-  // @ViewChild("genre") refGenre: ElementRef;
-  //@ViewChild(".mensaje-error") refmenjErr: ElementRef;
+  @ViewChild("radioLabel")  refradioLabel: ElementRef;
+  @ViewChild("input")  refInput: ElementRef;
+  @ViewChild("radiobutton")  refRadioButton: ElementRef;
+  @ViewChild("radiogroupbutton")  refRadiogroupButton: ElementRef;
   radioSelected: string;
   searchText: string = '';
   searchSongs: ISongModel[] = Array();
@@ -62,8 +61,10 @@ export class HomeComponent implements OnInit {
             myData['search'] = { radioSelect: this.radioSelected, searchText: this.searchText };
             localStorage.setItem(CONFIG.uuid, JSON.stringify(myData));
             console.log('igualo la parte de data a mi variable y la muestro ', this.searchSongs);
+            this.onChangeHTML();
           } else {
             this.searchSongs = Array();
+              this. offChangeHTML;
           }
         }
       },
@@ -117,6 +118,9 @@ export class HomeComponent implements OnInit {
       console.log(' radioSelected is : ', this.radioSelected);
       this.search(this.radioSelected, this.searchText);
     }
+    if (!this.searchSongs){
+      this. offChangeHTML;
+    }
   }
   onItemChange($event) {
     this.searchText = $event;
@@ -124,8 +128,23 @@ export class HomeComponent implements OnInit {
     if (this.searchText.length > 2) {
       this.search(this.radioSelected, this.searchText);
       console.log(' searchText is : ', this.searchText);
-
     }
+    if (!this.searchSongs){
+      this. offChangeHTML;
+    }
+  }
+  onChangeHTML(){
+    this.renderer.addClass(this.refInput.nativeElement, "search-input");
+    this.renderer.addClass(this.refRadiogroupButton.nativeElement, "search-radio-group");
+    this.renderer.addClass(this.refRadioButton.nativeElement, "search-radio-buttonl");
+    this.renderer.addClass(this.refRadioButton.nativeElement, "smallRadio");
+    this.renderer.addClass(this.refradioLabel.nativeElement, "search-label");
+  }
+  offChangeHTML(){
+    this.renderer.removeClass(this.refInput.nativeElement, "search-input");
+    this.renderer.removeClass(this.refRadiogroupButton.nativeElement, "search-radio-group");
+    this.renderer.removeClass(this.refRadioButton.nativeElement, "search-radio-button");
+    this.renderer.removeClass(this.refradioLabel.nativeElement, "search-label");
   }
 
 }

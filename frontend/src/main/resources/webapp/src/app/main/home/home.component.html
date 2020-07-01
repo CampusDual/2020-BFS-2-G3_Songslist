@@ -1,38 +1,43 @@
 <!-- Radio => onclick  -->
 <div class="component">
-  <o-row>
-    <div fxFlex="20"></div>
-
-      <mat-radio-group id="search-radio-group-label" fxFlex="10"> {{'SELECT_OPTION' | oTranslate}} </mat-radio-group>
-      <div fxFlex="35">
-      <mat-radio-button class="form-check-input-song" type="radio" value="song" name="radio-search"
-        (change)="onClickRadio($event)"> {{'SONG' | oTranslate}} </mat-radio-button>
-      <mat-radio-button class="form-check-input-album" type="radio" value="album" name="radio-search"
-        (change)="onClickRadio($event)"> {{'ALBUM' | oTranslate}} </mat-radio-button>
-      <mat-radio-button class="form-check-input-artist" type="radio" value="artist" name="radio-search"
-        (change)='onClickRadio($event)'> {{'ARTIST' | oTranslate}} </mat-radio-button>
-      <mat-radio-button class="form-check-input-genre" type="radio" value="genre" name="radio-search"
-        (change)="onClickRadio($event)"> {{'GENRE' | oTranslate}} </mat-radio-button>
-      <mat-radio-button class="form-check-input-genre" type="radio" value="all" name="radio-search"
-        (change)="onClickRadio($event)"> {{'ALL' | oTranslate}} </mat-radio-button>
+  <o-row   *ngIf="!radioSelected">
+    <mat-label fxFlex class='label-radio-button'#radioLabel >
+      {{'SELECT_OPTION' | oTranslate}} </mat-label>
+  </o-row>
+  <o-row   *ngIf="radioSelected">
+    <mat-label fxFlex class='label-radio-button-selected'#radioLabel >
+      {{'SELECT_OPTION' | oTranslate}} </mat-label>
+  </o-row>
+  <o-row  >
+    <mat-radio-group  fxFlex id="search-radio-group-label" #radiogroupbutton>
+      <div class="input-radio-buttns" id="radio-button" >
+        <mat-radio-button #radiobutton class="form-check-input-song" type="radio" value="song" name="radio-search"
+          (change)="onClickRadio($event)"> {{'SONG' | oTranslate}} </mat-radio-button>
+        <mat-radio-button #radiobutton class="form-check-input-album" type="radio" value="album" name="radio-search"
+          (change)="onClickRadio($event)"> {{'ALBUM' | oTranslate}} </mat-radio-button>
+        <mat-radio-button #radiobutton class="form-check-input-artist" type="radio" value="artist" name="radio-search"
+          (change)='onClickRadio($event)'> {{'ARTIST' | oTranslate}} </mat-radio-button>
+        <mat-radio-button #radiobutton class="form-check-input-genre" type="radio" value="genre" name="radio-search"
+          (change)="onClickRadio($event)"> {{'GENRE' | oTranslate}} </mat-radio-button>
+        <mat-radio-button #radiobutton class="form-check-input-genre" type="radio" value="all" name="radio-search"
+          (change)="onClickRadio($event)"> {{'ALL' | oTranslate}} </mat-radio-button>
       </div>
+    </mat-radio-group>
+  </o-row>
 
-</o-row>
-<o-row>
 
-  <div fxFlex="65" >
-    <form class="input-search-song">
+  <o-row  >
+    <form fxFlex class="input-search-song">
       <mat-form-field class="example-full-width">
         <mat-label>{{'SEARCH' | oTranslate}}</mat-label>
-        <input matInput #message maxlength="256"  placeholder="{{'EXAMPLE_TEXT_SEARCH' | oTranslate}}"
+        <input #input id = "input" matInput #message maxlength="256" placeholder="{{'EXAMPLE_TEXT_SEARCH' | oTranslate}}"
           class="form-check-input-song" type="text" value="" name="input-search"
           (keyup)="onItemChange($event.target.value)">
         <mat-hint align="start"><strong>{{'THREE_LETTER_MSJ' | oTranslate}}</strong> </mat-hint>
         <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
       </mat-form-field>
     </form>
-  </div>
-</o-row>
+  </o-row>
 
   <!-- Input ==> onChange 3 letters  -->
   <div class='mensaje-error' *ngIf=" mnjError  && mnjError.length > 0">

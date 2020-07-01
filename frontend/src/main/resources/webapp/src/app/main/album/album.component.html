@@ -1,0 +1,44 @@
+<div class="component">
+
+  <o-button class="button-back" attr="raised" type="RAISED" label="{{'BACK' | oTranslate}}" layout-padding
+    [routerLink]="['/main/home']" [queryParams]="{tosearch: 'ok'}"></o-button>
+
+  <div *ngIf="albumResult">
+    <h3>DATOS DEL ÁLBUM</h3>
+    <o-form editable-detail="no" show-header="no">
+      <o-row>
+        <o-text-input attr="title" label="{{'ALBUM_TITLE' | oTranslate}}" data="{{albumResult.name_album}}">
+        </o-text-input>
+        <o-text-input attr="artist" label="{{'ARTIST' | oTranslate}}" data="{{albumResult.name_artist}}"></o-text-input>
+      </o-row>
+      <o-row>
+        <o-text-input attr="genre" label="{{'GENRE' | oTranslate}}" data="{{albumResult.name_genre}}"></o-text-input>
+        <o-text-input attr="year" label="{{'DATE' | oTranslate}}" data="{{albumResult.year_album}}"></o-text-input>
+      </o-row>
+    </o-form>
+
+  </div>
+
+  <div *ngIf="songResult">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'ALBUM_SONGLIST' | oTranslate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <o-list #list keys="" columns="" [static-data]="getSongResult()" quick-filter="false"
+          quick-filter-columns="song_name" refresh-button="false" insert-button="false" insert-button-position="bottom"
+          insert-button-floatable="false" delete-button="false" selectable="true" dense="false"
+          detail-button-in-row="false" detail-button-in-row-icon="chevron_right" edit-button-in-row="false"
+          edit-button-in-row-icon="edit" detail-mode="none">
+          <o-list-item *ngFor="let song of songResult">
+            <o-list-item-text #item title="{{ song.name_song}}"></o-list-item-text>
+          </o-list-item>
+        </o-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+</div>

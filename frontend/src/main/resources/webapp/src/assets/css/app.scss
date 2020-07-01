@@ -11,8 +11,8 @@
 @include ontimize-theme-styles($theme);
 
 // Include ontimize-lite theme
-// @import 'node_modules/ontimize-web-ngx-theming/ontimize-theme-lite.scss';
-// @include ontimize-theme-styles-lite($theme);
+@import 'node_modules/ontimize-web-ngx-theming/ontimize-theme-lite.scss';
+@include ontimize-theme-styles-lite($theme);
 
 // After define theme, it is necessary to transfer color to Ontimize Web framework
 @import 'node_modules/ontimize-web-ngx/theme.scss';
@@ -21,3 +21,5 @@
 // Propagate theme to screen styles definition.
 @import '../../app/login/login.theme.scss';
 @include login-theme($theme);
+
+@import './custom.scss';

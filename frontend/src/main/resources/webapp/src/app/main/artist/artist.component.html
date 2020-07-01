@@ -1,18 +1,18 @@
-<button mat-stroked-button color="primary"
-[routerLink]="['/main/home']" [queryParams]="{tosearch: 'ok'}">
-Atras
-</button>
+<div class="component">
+  <o-button class = "button-back" attr="raised" type="RAISED" label="{{'BACK' | oTranslate}}" layout-padding [routerLink]="['/main/home']"
+  [queryParams]="{tosearch: 'ok'}"></o-button>
 
 
-<div *ngIf="artistResult">
-  <h3>DATOS DEL ARTISTA</h3>
-  <p><strong>{{'ARTIST' | oTranslate}} = </strong> {{artistResult.name_artist}}</p>
-  <p><strong>{{'DESCRIPTION' | oTranslate}} = </strong> {{artistResult.description_album}}</p>
-  <hr>
-  <div *ngIf="albumResult">
-    <h3>DISCOGRAFÍA DEL ARTISTA</h3>
-    <div *ngFor="let album of albumResult; let i = index">
-      {{i+1}}. {{album.name_album}}
+  <div *ngIf="artistResult">
+    <h3>DATOS DEL ARTISTA</h3>
+    <p><strong>{{'ARTIST' | oTranslate}} = </strong> {{artistResult.name_artist}}</p>
+    <p><strong>{{'DESCRIPTION' | oTranslate}} = </strong> {{artistResult.description_album}}</p>
+    <hr>
+    <div *ngIf="albumResult">
+      <h3>DISCOGRAFÍA DEL ARTISTA</h3>
+      <div *ngFor="let album of albumResult; let i = index">
+        {{i+1}}. {{album.name_album}}
+      </div>
     </div>
   </div>
 </div>

@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from 'ontimize-web-ngx';
-
 import { MainComponent } from './main.component';
 import { HomeModule } from './home/home.module';
-
-
 import { AlbumComponent } from './album/album.component';
 import { ArtistComponent } from './artist/artist.component';
 import { SongComponent } from './song/song.component';
@@ -25,8 +22,7 @@ export const routes: Routes = [
       {
         path: 'home',
         loadChildren: loadHomeModule
-      },
-      {
+      },{
         path: 'song/:id',
         component: SongComponent
       }, 
@@ -37,12 +33,13 @@ export const routes: Routes = [
       {
         path: 'artist/:id',
         component: ArtistComponent
-      },     
+      },           
       {
         path: '**',
         loadChildren: loadHomeModule
       }
-    ]
+    ],
+    
 
   }
   

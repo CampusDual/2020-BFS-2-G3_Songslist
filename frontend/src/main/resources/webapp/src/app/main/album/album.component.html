@@ -7,15 +7,16 @@
     <h3>DATOS DEL ÁLBUM</h3>
     <o-form editable-detail="no" show-header="no">
       <o-row>
-        <o-text-input attr="title" label="{{'ALBUM_TITLE' | oTranslate}}" data="{{albumResult.name_album}}">
+        <o-text-input attr="title" label="{{'ALBUM_TITLE' | oTranslate}}" fxFlex="75" data="{{albumResult.name_album}}">
         </o-text-input>
-        <o-text-input attr="artist" label="{{'ARTIST' | oTranslate}}" data="{{albumResult.name_artist}}"></o-text-input>
+        <o-text-input attr="artist" label="{{'ARTIST' | oTranslate}}" fxFlex="25" data="{{albumResult.name_artist}}"></o-text-input>
       </o-row>
       <o-row>
-        <o-text-input attr="genre" label="{{'GENRE' | oTranslate}}" data="{{albumResult.name_genre}}"></o-text-input>
-        <o-text-input attr="year" label="{{'DATE' | oTranslate}}" data="{{albumResult.year_album}}"></o-text-input>
+        <o-text-input attr="genre" label="{{'GENRE' | oTranslate}}" fxFlex="35"data="{{albumResult.name_genre}}"></o-text-input>
+        <o-text-input attr="year" label="{{'DATE' | oTranslate}}" fxFlex="45"data="{{albumResult.year_album}}"></o-text-input>
       </o-row>
     </o-form>
+
 
   </div>
 

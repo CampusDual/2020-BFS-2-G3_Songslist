@@ -15,7 +15,7 @@
   "ERROR_USER_REQUIRED": "Nombre de usuario incorrecto.",
   "ERROR_PASS_REQUIRED": "Contraseña incorrecta.",
   "ERROR_USER_PASS_INCORRECT": "Usuario o contraseña incorrecta.",
-  "SELECT_OPTION": "Selecciona una opción de búsqueda (Sin selección = TODO)",
+  "SELECT_OPTION": "Selecciona una opción de búsqueda.",
   "ALBUM_INFORMATION": "INFORMACIÓN DEL ÁLBUM",
   "ALBUM_SONGLIST": "LISTA DE CANCIONES DEL ÁLBUM",
   "SONG": "Canción",

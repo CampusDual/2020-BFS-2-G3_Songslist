@@ -1,11 +1,11 @@
 <!-- Radio => onclick  -->
 <div class="component">
   <o-row   *ngIf="!radioSelected">
-    <mat-label fxFlex class='label-radio-button'#radioLabel >
+    <mat-label fxFlex class='label-radio-button' #radioLabel >
       {{'SELECT_OPTION' | oTranslate}} </mat-label>
   </o-row>
   <o-row   *ngIf="radioSelected">
-    <mat-label fxFlex class='label-radio-button-selected'#radioLabel >
+    <mat-label fxFlex class='label-radio-button-selected' #radioLabel >
       {{'SELECT_OPTION' | oTranslate}} </mat-label>
   </o-row>
   <o-row  >
@@ -32,7 +32,8 @@
         <mat-label>{{'SEARCH' | oTranslate}}</mat-label>
         <input #input id = "input" matInput #message maxlength="256" placeholder="{{'EXAMPLE_TEXT_SEARCH' | oTranslate}}"
           class="form-check-input-song" type="text" value="" name="input-search"
-          (keyup)="onItemChange($event.target.value)">
+          (keyup)="onItemChange($event.target.value)"
+          >
         <mat-hint align="start"><strong>{{'THREE_LETTER_MSJ' | oTranslate}}</strong> </mat-hint>
         <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
       </mat-form-field>

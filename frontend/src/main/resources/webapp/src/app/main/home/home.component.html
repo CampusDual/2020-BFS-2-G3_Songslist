@@ -1,86 +1,92 @@
 <!-- Radio => onclick  -->
-<div>
+<div class="component">
+  
   <div>
-    <mat-radio-group id="search-radio-group-label"> {{'SELECT_OPTION' | oTranslate}} </mat-radio-group>
-    <br>
-    <mat-radio-button class="form-check-input-song" type="radio" value="song" name="radio-search"
-      (change)="onClickRadio($event)"> {{'SONG' | oTranslate}} </mat-radio-button>
+    <div>
+      <mat-radio-group id="search-radio-group-label"> {{'SELECT_OPTION' | oTranslate}} </mat-radio-group>
+      <br>
+      <mat-radio-button class="form-check-input-song" type="radio" value="song" name="radio-search"
+        (change)="onClickRadio($event)"> {{'SONG' | oTranslate}} </mat-radio-button>
       <mat-radio-button class="form-check-input-album" type="radio" value="album" name="radio-search"
-      (change)="onClickRadio($event)"> {{'ALBUM' | oTranslate}} </mat-radio-button>
-    <mat-radio-button class="form-check-input-artist" type="radio" value="artist" name="radio-search"
-      (change)='onClickRadio($event)'> {{'ARTIST' | oTranslate}} </mat-radio-button>
-    <mat-radio-button class="form-check-input-genre" type="radio" value="genre" name="radio-search"
-      (change)="onClickRadio($event)"> {{'GENRE' | oTranslate}} </mat-radio-button>
+        (change)="onClickRadio($event)"> {{'ALBUM' | oTranslate}} </mat-radio-button>
+      <mat-radio-button class="form-check-input-artist" type="radio" value="artist" name="radio-search"
+        (change)='onClickRadio($event)'> {{'ARTIST' | oTranslate}} </mat-radio-button>
+      <mat-radio-button class="form-check-input-genre" type="radio" value="genre" name="radio-search"
+        (change)="onClickRadio($event)"> {{'GENRE' | oTranslate}} </mat-radio-button>
       <mat-radio-button class="form-check-input-genre" type="radio" value="all" name="radio-search"
-      (change)="onClickRadio($event)"> {{'ALL' | oTranslate}} </mat-radio-button>
+        (change)="onClickRadio($event)"> {{'ALL' | oTranslate}} </mat-radio-button>
+    </div>
   </div>
-</div>
 
-<!-- Input ==> onChange 3 letters  -->
-<br>
-<div>
-  <form class="example-form">
-    <mat-form-field class="example-full-width">
-      <mat-label>{{'SEARCH' | oTranslate}}</mat-label>
-      <input matInput #message maxlength="256" placeholder="{{'EXAMPLE_TEXT_SEARCH' | oTranslate}}" class="form-check-input-song"
-        type="text" value="" name="input-search" (keyup)="onItemChange($event.target.value)">
-      <mat-hint align="start"><strong>{{'THREE_LETTER_MSJ' | oTranslate}}</strong> </mat-hint>
-      <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-    </mat-form-field>
-  </form>
-</div>
+  <!-- Input ==> onChange 3 letters  -->
+  <br>
+  <div>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>{{'SEARCH' | oTranslate}}</mat-label>
+        <input matInput #message maxlength="256" placeholder="{{'EXAMPLE_TEXT_SEARCH' | oTranslate}}"
+          class="form-check-input-song" type="text" value="" name="input-search"
+          (keyup)="onItemChange($event.target.value)">
+        <mat-hint align="start"><strong>{{'THREE_LETTER_MSJ' | oTranslate}}</strong> </mat-hint>
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+      </mat-form-field>
+    </form>
+  </div>
 
-<!-- Input ==> onChange 3 letters  -->
-<div class='mensaje-error' *ngIf=" mnjError  && mnjError.length > 0">
-  <p>{{'THREE_LETTER_ERROR' | oTranslate}}</p>
-</div>
+  <!-- Input ==> onChange 3 letters  -->
+  <div class='mensaje-error' *ngIf=" mnjError  && mnjError.length > 0">
+    <p>{{'THREE_LETTER_ERROR' | oTranslate}}</p>
+  </div>
 
-<br><hr>
+  <br>
+  <hr>
 
 
-<div  *ngIf=" searchSongs.length > 0" >
+  <div *ngIf=" searchSongs.length > 0">
 
-<!-- Table  ==> aplicar los cambios Material -->
-<mat-table class="lessons-table mat-elevation-z8" [dataSource]="searchSongs">
+    <!-- Table  ==> aplicar los cambios Material -->
+    <mat-table class="lessons-table mat-elevation-z8" [dataSource]="searchSongs">
 
-  <ng-container matColumnDef="Song">
-    <mat-header-cell *matHeaderCellDef>{{'SONG' | oTranslate}}</mat-header-cell>
-    <mat-cell *matCellDef="let song"><a [routerLink]="['/main/song',song.id_song]" [queryParams]="{id: song.id_song}"
-        href="#">
-        {{song.name_song}}
-      </a></mat-cell>
-  </ng-container>
+      <ng-container matColumnDef="Song">
+        <mat-header-cell *matHeaderCellDef>{{'SONG' | oTranslate}}</mat-header-cell>
+        <mat-cell *matCellDef="let song"><a [routerLink]="['/main/song',song.id_song]"
+            [queryParams]="{id: song.id_song}" href="#">
+            {{song.name_song}}
+          </a></mat-cell>
+      </ng-container>
 
-  <ng-container matColumnDef="Album">
-    <mat-header-cell *matHeaderCellDef>{{'ALBUM' | oTranslate}}</mat-header-cell>
-    <mat-cell class="duration-cell" *matCellDef="let song">
+      <ng-container matColumnDef="Album">
+        <mat-header-cell *matHeaderCellDef>{{'ALBUM' | oTranslate}}</mat-header-cell>
+        <mat-cell class="duration-cell" *matCellDef="let song">
 
-      <a [routerLink]="['/main/album', song.id_album]" [queryParams]="{id: song.id_album}" href="#">
+          <a [routerLink]="['/main/album', song.id_album]" [queryParams]="{id: song.id_album}" href="#">
 
-        {{song.name_album}}
-      </a></mat-cell>
-  </ng-container>
+            {{song.name_album}}
+          </a></mat-cell>
+      </ng-container>
 
-  <ng-container matColumnDef="Artist">
-    <mat-header-cell *matHeaderCellDef>{{'ARTIST' | oTranslate}}</mat-header-cell>
-    <mat-cell class="description-cell" *matCellDef="let song">
-      <a [routerLink]="['/main/artist', song.id_artist]" [queryParams]="{id: song.id_artist}" href="#">
-        {{song.name_artist}}
-      </a></mat-cell>
-  </ng-container>
+      <ng-container matColumnDef="Artist">
+        <mat-header-cell *matHeaderCellDef>{{'ARTIST' | oTranslate}}</mat-header-cell>
+        <mat-cell class="description-cell" *matCellDef="let song">
+          <a [routerLink]="['/main/artist', song.id_artist]" [queryParams]="{id: song.id_artist}" href="#">
+            {{song.name_artist}}
+          </a></mat-cell>
+      </ng-container>
 
-  <ng-container matColumnDef="Genre">
-    <mat-header-cell *matHeaderCellDef>{{'GENRE' | oTranslate}}</mat-header-cell>
-    <mat-cell class="duration-cell" *matCellDef="let song">
-      <a [routerLink]="['/genre', song.id_genre]" [queryParams]="{id: song.id_genre}" href="#">
-        {{song.name_genre}}
-      </a></mat-cell>
+      <ng-container matColumnDef="Genre">
+        <mat-header-cell *matHeaderCellDef>{{'GENRE' | oTranslate}}</mat-header-cell>
+        <mat-cell class="duration-cell" *matCellDef="let song">
+          <a [routerLink]="['/genre', song.id_genre]" [queryParams]="{id: song.id_genre}" href="#">
+            {{song.name_genre}}
+          </a></mat-cell>
 
-  </ng-container>
+      </ng-container>
 
-  <mat-header-row *matHeaderRowDef="['Song', 'Album', 'Artist','Genre']"></mat-header-row>
+      <mat-header-row *matHeaderRowDef="['Song', 'Album', 'Artist','Genre']"></mat-header-row>
 
-  <mat-row *matRowDef="let row; columns:['Song','Album','Artist','Genre']"></mat-row>
+      <mat-row *matRowDef="let row; columns:['Song','Album','Artist','Genre']"></mat-row>
 
-</mat-table>
+    </mat-table>
+
+  </div>
 </div>

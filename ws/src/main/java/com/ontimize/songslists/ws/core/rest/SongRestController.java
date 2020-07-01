@@ -37,7 +37,7 @@ public class SongRestController extends ORestController<ISongService> {
 	@RequestMapping(value = "/searchSong", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public EntityResult currenSearch(@RequestBody Map<String, Object> req) {
 		String option;
-		HashMap<String, String> param = new HashMap<>() ;
+		HashMap<String, String> param = new HashMap<>();
 		try {
 			List<String> columns = (List<String>) req.get("columns");
 			Map<String, Object> filter = (Map<String, Object>) req.get("filter");
@@ -47,24 +47,29 @@ public class SongRestController extends ORestController<ISongService> {
 				option = (String) filter.get("OPTION");
 				if (option != null) {
 					switch (option) {
-					case "song":
-						param.put("song", SongDao.ATTR_SONG_NAME);
-						break;
-					case "album":
-						param.put("album", SongDao.ATTR_ALBUM_NAME);
-						break;
-					case "artist":
-						param.put("artist", SongDao.ATTR_ARTIST_NAME);
-						break;
-					case "genre":
-						param.put("genre", SongDao.ATTR_GENRE_NAME);
-						break;
-					case "":
-						param.put("song", SongDao.ATTR_SONG_NAME);
-						param.put("album", SongDao.ATTR_ALBUM_NAME);
-						param.put("artist", SongDao.ATTR_ARTIST_NAME);
-						param.put("genre", SongDao.ATTR_GENRE_NAME);
-					default:
+						case "song":
+							param.put("song", SongDao.ATTR_SONG_NAME);
+							break;
+						case "album":
+							param.put("album", SongDao.ATTR_ALBUM_NAME);
+							break;
+						case "artist":
+							param.put("artist", SongDao.ATTR_ARTIST_NAME);
+							break;
+						case "genre":
+							param.put("genre", SongDao.ATTR_GENRE_NAME);
+							break;
+						case "all":
+							param.put("song", SongDao.ATTR_SONG_NAME);
+							param.put("album", SongDao.ATTR_ALBUM_NAME);
+							param.put("artist", SongDao.ATTR_ARTIST_NAME);
+							param.put("genre", SongDao.ATTR_GENRE_NAME);
+						case "":
+							param.put("song", SongDao.ATTR_SONG_NAME);
+							param.put("album", SongDao.ATTR_ALBUM_NAME);
+							param.put("artist", SongDao.ATTR_ARTIST_NAME);
+							param.put("genre", SongDao.ATTR_GENRE_NAME);
+						default:
 					}
 				}
 			} else {

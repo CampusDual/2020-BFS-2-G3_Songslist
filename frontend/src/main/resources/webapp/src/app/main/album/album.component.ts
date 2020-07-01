@@ -80,7 +80,14 @@ export class AlbumComponent implements OnInit {
 
         );
         console.log('fuera del subscribe', this.songResult);
+    }
 
+    getAlbumResult(){
+        return this.albumResult;
+    }
+
+    getSongResult(){
+        return this.songResult;
     }
 
 

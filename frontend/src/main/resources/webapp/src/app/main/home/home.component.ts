@@ -15,11 +15,6 @@ export class HomeComponent implements OnInit {
   tosearch;
   // input radio
   selectOptions: string[] = ['Song', 'Album', 'Genre', 'Artist'];
-  // @ViewChild("song") refSong: ElementRef;
-  // @ViewChild("album") refAlbum: ElementRef;
-  // @ViewChild("artist") refArtist: ElementRef;
-  // @ViewChild("genre") refGenre: ElementRef;
-  //@ViewChild(".mensaje-error") refmenjErr: ElementRef;
   radioSelected: string;
   searchText: string = '';
   searchSongs: ISongModel[] = Array();
@@ -100,6 +95,7 @@ export class HomeComponent implements OnInit {
     }
     if (!a) {
       this.mnjError = `ERROR`;
+      this.searchSongs = Array();
     } else {
       this.mnjError = '';
     }
@@ -118,14 +114,19 @@ export class HomeComponent implements OnInit {
       this.search(this.radioSelected, this.searchText);
     }
   }
+
   onItemChange($event) {
     this.searchText = $event;
     this.stringValidate();
     if (this.searchText.length > 2) {
       this.search(this.radioSelected, this.searchText);
       console.log(' searchText is : ', this.searchText);
-
-    }
+    
   }
+ 
+
+
+  }
+ 
 
 }

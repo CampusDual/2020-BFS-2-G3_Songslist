@@ -17,7 +17,7 @@
           <mat-radio-button #radiobutton class="form-check-input-genre" type="radio" value="genre" name="radio-search"
             (change)="onClickRadio($event)"> {{'GENRE' | oTranslate}} </mat-radio-button>
           <mat-radio-button #radiobutton class="form-check-input-genre" type="radio" value="all" name="radio-search"
-            (change)="onClickRadio($event)"> {{'ALL' | oTranslate}} </mat-radio-button>
+            (change)="onClickRadio($event)" checked="checked"> {{'ALL' | oTranslate}} </mat-radio-button>
         </div>
       </mat-radio-group>
     </p>
@@ -26,23 +26,32 @@
 
 
   <div class="div-center div-input">
-    <form class="form-width" >
-      <mat-form-field class="form-field-width" >
+    <form class="form-width">
+      <mat-form-field class="form-field-width">
         <mat-label>{{'SEARCH' | oTranslate}}</mat-label>
         <input class="mat-input-element" #input id="input" matInput #message maxlength="256"
           placeholder="{{'EXAMPLE_TEXT_SEARCH' | oTranslate}}" type="text" value="" name="input-search"
           (keyup)="onItemChange($event.target.value)">
-        <mat-hint align="start"><strong>{{'THREE_LETTER_MSJ' | oTranslate}}</strong> </mat-hint>
+        <mat-hint align="start">
+          <strong>
+            <span *ngIf=" !mnjError " style ="color: black;">
+              {{'THREE_LETTER_MSJ' | oTranslate}}
+            </span>
+            <span class='mensaje-error' *ngIf=" mnjError  && mnjError.length > 0">
+              {{'THREE_LETTER_MSJ' | oTranslate}}
+            </span>
+          </strong>
+        </mat-hint>
         <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
       </mat-form-field>
     </form>
   </div>
 
-  <!-- Input ==> onChange 3 letters  -->
+  <!-- Input ==> onChange 3 letters  
   <div class='mensaje-error div-center' *ngIf=" mnjError  && mnjError.length > 0">
     <p>{{'THREE_LETTER_ERROR' | oTranslate}}</p>
   </div>
-
+-->
   <div *ngIf=" searchSongs.length > 0">
 
     <!-- Table  ==> aplicar los cambios Material -->

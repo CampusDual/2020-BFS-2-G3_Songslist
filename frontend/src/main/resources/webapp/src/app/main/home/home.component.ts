@@ -95,6 +95,7 @@ export class HomeComponent implements OnInit {
     }
     if (!a) {
       this.mnjError = `ERROR`;
+      this.searchSongs = Array();
     } else {
       this.mnjError = '';
     }

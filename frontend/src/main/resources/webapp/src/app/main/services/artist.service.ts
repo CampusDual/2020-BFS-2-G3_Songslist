@@ -27,11 +27,12 @@ export class ArtistService extends OntimizeEEService {
             filter: {
                 id_artist: id
                  },
-            columns: ['id_artist', 'name_artist', 'description_artist'],
+            columns: ['id_artist', 'name_artist', 'description_artist', 'img_artist'],
             sqltypes: {
                 'id_artist': 4,
                 'name_artist': 12,
                 'description_artist': 12, 
+                'img_artist': 1111
             }
         });
         var self = this;

@@ -41,8 +41,6 @@ export class ArtistComponent implements OnInit {
                 if (artistData['data'].length > 0) {
 
                     this.artistResult = artistData['data'][0];
-                    console.log('DATA', artistData['data'])
-                    console.log('RESULT  ', this.artistResult.name_artist);
 
                 } else {
                     this.artistResult = null;
@@ -51,7 +49,6 @@ export class ArtistComponent implements OnInit {
         },
         err => console.error(err)
     );
-    console.log('fuera del subscribe', this.artistResult);
 }
 ngOnStartArtistAlbumlist(id: number) {
 
@@ -78,6 +75,16 @@ ngOnStartArtistAlbumlist(id: number) {
   );
   console.log('fuera del subscribe', this.albumResult);
 
+}
+getAlbumResult(){
+    console.log('Contenido de album', this.albumResult);
+    return this.albumResult;
+
+}
+
+getArtistDescription(){
+    console.log('Contenido de descripción', this.artistResult);
+    return this.artistResult.description_artist;
 }
 
 

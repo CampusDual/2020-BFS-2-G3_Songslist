@@ -1,3 +1,14 @@
+
+$font-size-normal: 14px ;
+$font-size-medium: 16px ;
+$font-size-small: 12px ;
+$color-black:rgba(0, 0, 0, 0.87);
+$color-White:rgba(255, 255, 255, 0.87);
+$color-grey : #808787;
+$color-dark-grey:#676d6d;
+$color-select :rgb(255, 204, 0);
+
+
 .div-center{
   //width: 100%;
     //display: block;
@@ -65,7 +76,7 @@
 //  tabla 
 
 .mat-header-cell{ // header
-  color: black;
+  color: $color-black;
   font-style: initial;
   font-weight: bold;
   font-size: medium;
@@ -73,13 +84,12 @@
 
 .mat-cell{
   text-align: center;
-  color: black
-
+  color: $color-grey;
 }
 .mat-cell :hover{
   font-weight: bold;
-  color: blue;
-  border: blue 5px solid;
+  color: $color-select;
+  border: $color-select  1px solid;
 }
 
   .example-form {
@@ -95,10 +105,24 @@
   width: 100%;
 }
 
-
 .mat-input-element{
   font-size: 30px ;
 }
 .mat-table-element{
   margin-top: 5%;
+  color: $color-black;
+  font-size: $font-size-normal ;
+}
+.mat-label-element{
+ color: $color-dark-grey;
+ font-size: $font-size-small ;
+}
+.mat-radio-group-element{
+  color: $color-black;
+  font-size: $font-size-normal ;
+}
+
+ a {
+  text-decoration: none;
+  color: $color-black;
 }

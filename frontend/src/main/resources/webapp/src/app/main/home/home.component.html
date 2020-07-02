@@ -2,11 +2,11 @@
 <div class="component">
   <div class="div-center div-radioButon">
     <p>
-      <mat-label class='label-radio-button'>
+      <mat-label class='label-radio-button mat-label-element'>
         {{'SELECT_OPTION' | oTranslate}} </mat-label>
     </p>
     <p>
-      <mat-radio-group id="search-radio-group-label">
+      <mat-radio-group class="mat-radio-group-element">
         <div class="input-radio-buttns">
           <mat-radio-button #radiobutton class="form-check-input-song" type="radio" value="song" name="radio-search"
             (change)="onClickRadio($event)"> {{'SONG' | oTranslate}} </mat-radio-button>

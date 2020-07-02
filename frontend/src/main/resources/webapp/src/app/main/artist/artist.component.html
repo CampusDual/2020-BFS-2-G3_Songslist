@@ -7,16 +7,16 @@
 
   <div *ngIf="artistResult">
     <h1 class="datasheet-h1">{{artistResult.name_artist}}</h1>
-    <o-row class = datasheet-o-row>
-    <o-image class="datasheet-img" attr="image" type="RAISED" data="{{artistResult.img_artist}}" fxFlex="30"
+    <o-row class=datasheet-o-row>
+      <o-image class="datasheet-img" attr="image" type="RAISED" data="{{artistResult.img_artist}}" fxFlex="30"
         height="90%" width="20%" auto-fit="true" enabled="true" read-only="true" show-controls="false"
         full-screen-button="false" empty-image="./assets/images/no-image.png">
       </o-image>
-    <o-form editable-detail="no" show-header="no">
-      <o-textarea-input attr="longtext" label="{{'DESCRIPTION' | oTranslate}}" [data]="getArtistDescription()"
-      fxFlex="70" height="90%" width="80%"required="no" read-only="true"></o-textarea-input>
-    </o-form>
-  </o-row>
+      <o-form editable-detail="no" show-header="no">
+        <o-textarea-input attr="longtext" label="{{'DESCRIPTION' | oTranslate}}" [data]="getArtistDescription()"
+          fxFlex="70" height="100%" width="80%" required="no" read-only="true"></o-textarea-input>
+      </o-form>
+    </o-row>
   </div>
   <div>
     <mat-accordion class="datasheet-acordion">
@@ -24,24 +24,21 @@
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-panel-description>
-              {{'DISCOGRAPHY_AVALIABLE' | oTranslate}}
+              {{'SHOW_DISCOGRAPHY' | oTranslate}}
               <mat-icon></mat-icon>
             </mat-panel-description>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <o-list [static-data]="getAlbumResult()" quick-filter="false" refresh-button="false" insert-button="false"
+        <o-list [static-data]="getAlbumResult()" title = "{{'DISCOGRAPHY_AVAILABLE' | oTranslate}}" quick-filter="false" refresh-button="false" insert-button="false"
           insert-button-floatable="false" delete-button="false" selectable="true" dense="false"
           detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
           <o-list-item *ngFor="let album of albumResult">
-            <o-row>
-            <o-list-item-text #item title=" {{ album.name_album}}" [routerLink]="['/main/album', album.id_album]" [queryParams]="{id: album.id_album}" href="#" >  
+            <o-list-item-text #item title=" {{ album.name_album}} ({{ album.year_album | date: 'yyyy' }})" [routerLink]="['/main/album', album.id_album]"
+              [queryParams]="{id: album.id_album}" href="#">
             </o-list-item-text>
-            <o-list-item-text #item title=" ({{ album.year_album | date: 'yyyy' }})" style="margin-left: 1rem;" > </o-list-item-text>
-          </o-row>
-        </o-list-item>
+          </o-list-item>
         </o-list>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
 </div>
-

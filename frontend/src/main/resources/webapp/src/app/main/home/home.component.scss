@@ -1,11 +1,128 @@
+$font-size-grande: 18px ;
+$font-size-medium: 16px ;
+$font-size-normal: 14px ;
+$font-size-small: 12px ;
+$color-black:rgba(0, 0, 0, 0.87);
+$color-White:rgba(255, 255, 255, 0.87);
+$color-grey : #808787;
+$color-dark-grey:#676d6d;
+$color-select :rgb(255, 204, 0);
+
+.div-center{
+  //width: 100%;
+    //display: block;
+    // align-content: center;
+     //text-align: center;
+     display: flex;
+     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-right: auto;
+    margin-left: auto;
+    //width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 16px;
+}
+
+.div-radioButon{
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 16px;
+  height: auto;
+  width: auto;
+}
+.div-input{
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 16px;
+  height: auto;
+  width: auto;
+}
+
+
 .bg {
   background-color: darkred;
 }
+.mat-radio-label-content {
+  font-size: calc(0.25em + 0.25vw);
+}
+.mat-radio-outer-circle {
+  display:flex ;
+  width:  100%;
+  height: 100%;
+}
+.mat-radio-group{
+  justify-content: space-between;
+}
+
 .mat-radio-button ~ .mat-radio-button {
-  margin: 2k rem;;
+  margin-left: 16px;
 }
 
 
+// .example-form {
+//   min-width: 150px;
+//   max-width: 500px;
+//   width: 100%;
+// }
+
+
+
+//  tabla 
+
+.mat-header-cell{ // header
+  color: $color-black;
+  font-style: initial;
+  font-weight: bold;
+  font-size: medium;
+}
+
+.mat-cell{
+  text-align: center;
+  color: $color-grey;
+}
+.mat-cell :hover{
+  font-weight: bold;
+  color: $color-select;
+  border: $color-select  1px solid;
+}
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.form-width {
+  width: 80%;
+}
+.form-field-width{
+  width: 100%;
+}
+
 .mat-input-element{
-  font-size: 30px ;
+  font-size: $font-size-grande ;
+}
+.mat-table-element{
+  margin-top: 5%;
+  color: $color-black;
+  font-size: $font-size-normal ;
+}
+.mat-label-element{
+ color: $color-dark-grey;
+ font-size: $font-size-small ;
+}
+.mat-radio-group-element{
+  color: $color-black;
+  font-size: $font-size-normal ;
+}
+
+ a {
+  text-decoration: none;
+  color: $color-black;
+}
+
+.mensaje-error{
+  color: $color-select;
 }

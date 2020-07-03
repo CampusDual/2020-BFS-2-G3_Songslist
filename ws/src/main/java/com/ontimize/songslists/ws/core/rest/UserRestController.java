@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ontimize.songslists.api.core.service.IUserService;
+
 import com.ontimize.db.EntityResult;
 import com.ontimize.jee.server.rest.ORestController;
+import com.ontimize.songslists.api.core.service.IUserService;
 
 
 @RestController

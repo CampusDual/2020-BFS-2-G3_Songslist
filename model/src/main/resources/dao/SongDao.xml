@@ -26,6 +26,7 @@
             <FunctionColumn name="DESCRIPTION_SONG" value="description_song" />
             <FunctionColumn name="ID_ALBUM" value="id_album" />
             <FunctionColumn name="NAME_ALBUM" value="name_album" />
+            <FunctionColumn name="YEAR_ALBUM" value="year_album" />
             <FunctionColumn name="ID_ARTIST" value="id_artist" />
             <FunctionColumn name="NAME_ARTIST" value="name_artist" />
             <FunctionColumn name="ID_GENRE" value="id_genre" />

@@ -51,5 +51,15 @@ export class SongComponent implements OnInit {
     );
     console.log('fuera del subscribe', this.songResult);
   }
+  getSongResult() {
+    console.log('Contenido de album', this.songResult);
+    return this.songResult;
+
+
+  }
+  getSongDescription(){
+    console.log('Contenido de descripción', this.songResult);
+    return this.songResult.description_song;
+}
 
 }

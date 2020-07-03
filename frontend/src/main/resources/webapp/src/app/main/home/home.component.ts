@@ -91,6 +91,8 @@ export class HomeComponent implements OnInit {
         console.log(wordToFind);
         wordToFind.push(trimword);
         a = true;
+      }else if(trimword.length == 0){
+        a = true;
       }
     }
     if (!a) {

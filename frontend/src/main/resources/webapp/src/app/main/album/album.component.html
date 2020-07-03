@@ -1,45 +1,57 @@
 <div class="component">
-
-  <o-button class="button-back" attr="raised" type="RAISED" label="{{'BACK' | oTranslate}}" layout-padding
-    [routerLink]="['/main/home']" [queryParams]="{tosearch: 'ok'}"></o-button>
-
+  <div>
+    <o-button class="button-back" attr="raised" type="RAISED" label="{{'BACK' | oTranslate}}" layout-padding
+      [routerLink]="['/main/home']" [queryParams]="{tosearch: 'ok'}"></o-button>
+  </div>
   <div *ngIf="albumResult">
-    <h3>DATOS DEL ÁLBUM</h3>
-    <o-form editable-detail="no" show-header="no">
-      <o-row>
-        <o-text-input attr="title" label="{{'ALBUM_TITLE' | oTranslate}}" fxFlex="75" data="{{albumResult.name_album}}">
+
+    <!----Information panel---->
+
+    <h2 class="datasheet-h2">{{albumResult.name_album}}</h2>
+    <o-row class="datasheet-information-panel">
+      <o-image class="datasheet-img" attr="image" type="RAISED" data="{{albumResult.img_album}}" fxFlex="20"
+        height="90%" width="20%" auto-fit="true" enabled="true" read-only="true" show-controls="false"
+        full-screen-button="false" empty-image="./assets/images/no-image.png">
+      </o-image>
+      <o-form class="datashet-inputs-panel" editable-detail="no" show-header="no">
+        <o-text-input class="datasheet-text-input-hover" attr="artist" label="{{'ARTIST' | oTranslate}}" fxFlex="75"
+          data="{{albumResult.name_artist}}" [routerLink]="['/main/artist', albumResult.id_artist]"
+          [queryParams]="{id: albumResult.id_artist}" href="#">
         </o-text-input>
-        <o-text-input attr="artist" label="{{'ARTIST' | oTranslate}}" fxFlex="25" data="{{albumResult.name_artist}}"></o-text-input>
-      </o-row>
-      <o-row>
-        <o-text-input attr="genre" label="{{'GENRE' | oTranslate}}" fxFlex="35"data="{{albumResult.name_genre}}"></o-text-input>
-        <o-text-input attr="year" label="{{'DATE' | oTranslate}}" fxFlex="45"data="{{albumResult.year_album}}"></o-text-input>
-      </o-row>
-    </o-form>
-
-
+        <o-text-input class="datasheet-input" attr="genre" label="{{'GENRE' | oTranslate}}" fxFlex="75"
+          data="{{albumResult.name_genre}}">
+        </o-text-input>
+        <o-text-input class="datasheet-input" attr="year" label="{{'DATE' | oTranslate}}" fxFlex="75" type="date"
+          data="{{albumResult.year_album | date: 'yyyy'}}" read-only="yes">
+        </o-text-input>
+      </o-form>
+    </o-row>
   </div>
 
-  <div *ngIf="songResult">
-    <mat-accordion>
-      <mat-expansion-panel hideToggle>
+  <!-----Expansion panel------>
+
+  <div  *ngIf="songResult">
+    <mat-accordion class="datasheet-acordion">
+      <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{'ALBUM_SONGLIST' | oTranslate}}
+            <mat-panel-description>
+              {{'SHOW_SONGLIST' | oTranslate}}
+            </mat-panel-description>
           </mat-panel-title>
         </mat-expansion-panel-header>
-
-        <o-list #list keys="" columns="" [static-data]="getSongResult()" quick-filter="false"
-          quick-filter-columns="song_name" refresh-button="false" insert-button="false" insert-button-position="bottom"
-          insert-button-floatable="false" delete-button="false" selectable="true" dense="false"
-          detail-button-in-row="false" detail-button-in-row-icon="chevron_right" edit-button-in-row="false"
-          edit-button-in-row-icon="edit" detail-mode="none">
+        <o-list [static-data]="getSongResult()" title="{{'ALBUM_SONGLIST' | oTranslate}}" quick-filter="false"
+          refresh-button="false" insert-button="false" insert-button-floatable="false" delete-button="false"
+          selectable="true" dense="false" detail-button-in-row="false" edit-button-in-row="false" detail-mode="none" >
           <o-list-item *ngFor="let song of songResult">
-            <o-list-item-text #item title="{{ song.name_song}}"></o-list-item-text>
+            <p class="item-hover" [routerLink]="['/main/song', song.id_song]"
+            [queryParams]="{id: song.id_song}" href="#">{{song.name_song}}</p>
           </o-list-item>
+          <div class="div-button-add">
+            <o-button class="button-add" attr="raised" type="RAISED" label="{{'ADD' | oTranslate}}"></o-button>
+          </div>
         </o-list>
       </mat-expansion-panel>
-    </mat-accordion>
+    </mat-accordion>    
   </div>
-
 </div>

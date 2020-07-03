@@ -17,14 +17,11 @@
           <mat-radio-button #radiobutton class="form-check-input-genre" type="radio" value="genre" name="radio-search"
             (change)="onClickRadio($event)"> {{'GENRE' | oTranslate}} </mat-radio-button>
           <mat-radio-button #radiobutton class="form-check-input-genre" type="radio" value="all" name="radio-search"
-            (change)="onClickRadio($event)" checked="checked"> {{'ALL' | oTranslate}} </mat-radio-button>
+            checked="checked" (change)="onClickRadio($event)"> {{'ALL' | oTranslate}} </mat-radio-button>
         </div>
       </mat-radio-group>
     </p>
   </div>
-
-
-
   <div class="div-center div-input">
     <form class="form-width">
       <mat-form-field class="form-field-width">
@@ -34,7 +31,7 @@
           (keyup)="onItemChange($event.target.value)">
         <mat-hint align="start">
           <strong>
-            <span *ngIf=" !mnjError " style ="color: black;">
+            <span *ngIf=" !mnjError " style="color: black;">
               {{'THREE_LETTER_MSJ' | oTranslate}}
             </span>
             <span class='mensaje-error' *ngIf=" mnjError  && mnjError.length > 0">
@@ -46,14 +43,7 @@
       </mat-form-field>
     </form>
   </div>
-
-  <!-- Input ==> onChange 3 letters  
-  <div class='mensaje-error div-center' *ngIf=" mnjError  && mnjError.length > 0">
-    <p>{{'THREE_LETTER_ERROR' | oTranslate}}</p>
-  </div>
--->
   <div *ngIf=" searchSongs.length > 0">
-
     <!-- Table  ==> aplicar los cambios Material -->
     <div class="div-result">
       <mat-table class="lessons-table mat-elevation-z8 mat-table-element" [dataSource]="searchSongs">

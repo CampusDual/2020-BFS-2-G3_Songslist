@@ -18,7 +18,6 @@ export class AlbumComponent implements OnInit {
 
     constructor(
         private _route: ActivatedRoute,
-        //private _router: Route,
         private albumService: AlbumService
     ) {
 
@@ -43,8 +42,7 @@ export class AlbumComponent implements OnInit {
                     if (albumData['data'].length > 0) {
 
                         this.albumResult = albumData['data'][0];
-                        console.log('DATA', albumData['data'])
-                        console.log('ALBUMRESULT  ', this.albumResult.name_album);
+                    
 
                     } else {
                         this.albumResult = null;

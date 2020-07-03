@@ -1,30 +1,5 @@
 <!-- Radio => onclick  -->
 <div class="component">
-<<<<<<< HEAD
-  <o-row>
-    <div fxFlex="20"></div>
-
-      <mat-radio-group id="search-radio-group-label" fxFlex="10"> {{'SELECT_OPTION' | oTranslate}} </mat-radio-group>
-      <div fxFlex="35">
-      <mat-radio-button class="form-check-input-song" type="radio" value="song" name="radio-search"
-        (change)="onClickRadio($event)"> {{'SONG' | oTranslate}} </mat-radio-button>
-      <mat-radio-button class="form-check-input-album" type="radio" value="album" name="radio-search"
-        (change)="onClickRadio($event)"> {{'ALBUM' | oTranslate}} </mat-radio-button>
-      <mat-radio-button class="form-check-input-artist" type="radio" value="artist" name="radio-search"
-        (change)='onClickRadio($event)'> {{'ARTIST' | oTranslate}} </mat-radio-button>
-      <mat-radio-button class="form-check-input-genre" type="radio" value="genre" name="radio-search"
-        (change)="onClickRadio($event)"> {{'GENRE' | oTranslate}} </mat-radio-button>
-      <mat-radio-button class="form-check-input-genre" type="radio" value="all" name="radio-search"
-        (change)="onClickRadio($event)" checked="checked"> {{'ALL' | oTranslate}} </mat-radio-button>
-      </div>
-
-</o-row>
-<o-row>
-
-  <div fxFlex="65" >
-    <form class="input-search-song">
-      <mat-form-field class="example-full-width">
-=======
   <div class="div-center div-radioButon">
     <p>
       <mat-label class='label-radio-button mat-label-element'>
@@ -42,25 +17,21 @@
           <mat-radio-button #radiobutton class="form-check-input-genre" type="radio" value="genre" name="radio-search"
             (change)="onClickRadio($event)"> {{'GENRE' | oTranslate}} </mat-radio-button>
           <mat-radio-button #radiobutton class="form-check-input-genre" type="radio" value="all" name="radio-search"
-            (change)="onClickRadio($event)" checked="checked"> {{'ALL' | oTranslate}} </mat-radio-button>
+            checked="checked" (change)="onClickRadio($event)"> {{'ALL' | oTranslate}} </mat-radio-button>
         </div>
       </mat-radio-group>
     </p>
   </div>
-
-
-
   <div class="div-center div-input">
     <form class="form-width">
       <mat-form-field class="form-field-width">
->>>>>>> develop
         <mat-label>{{'SEARCH' | oTranslate}}</mat-label>
         <input class="mat-input-element" #input id="input" matInput #message maxlength="256"
           placeholder="{{'EXAMPLE_TEXT_SEARCH' | oTranslate}}" type="text" value="" name="input-search"
           (keyup)="onItemChange($event.target.value)">
         <mat-hint align="start">
           <strong>
-            <span *ngIf=" !mnjError " style ="color: black;">
+            <span *ngIf=" !mnjError " style="color: black;">
               {{'THREE_LETTER_MSJ' | oTranslate}}
             </span>
             <span class='mensaje-error' *ngIf=" mnjError  && mnjError.length > 0">
@@ -72,14 +43,7 @@
       </mat-form-field>
     </form>
   </div>
-
-  <!-- Input ==> onChange 3 letters  
-  <div class='mensaje-error div-center' *ngIf=" mnjError  && mnjError.length > 0">
-    <p>{{'THREE_LETTER_ERROR' | oTranslate}}</p>
-  </div>
--->
   <div *ngIf=" searchSongs.length > 0">
-
     <!-- Table  ==> aplicar los cambios Material -->
     <div class="div-result">
       <mat-table class="lessons-table mat-elevation-z8 mat-table-element" [dataSource]="searchSongs">

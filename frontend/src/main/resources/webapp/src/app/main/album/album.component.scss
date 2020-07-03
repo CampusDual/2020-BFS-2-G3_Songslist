@@ -1,13 +1,24 @@
+$font-size-grande: 18px ;
+$font-size-medium: 16px ;
+$font-size-normal: 14px ;
+$font-size-small: 12px ;
+$color-black:rgba(0, 0, 0, 0.87);
+$color-White:rgba(255, 255, 255, 0.87);
+$color-grey : #808787;
+$color-dark-grey:#676d6d;
+$color-select :rgb(255, 204, 0);
+
+
 .datasheet-text-input{
     margin: 0.5rem;
     font-size: medium;
 }
 
-.datasheet-h1{
+.datasheet-h2{
     text-align: center;
 }
 
-.datasheet-information-pane{
+.datasheet-information-panel{
     padding: 2rem;
     
 }
@@ -44,5 +55,43 @@
   .datasheet-o-row{
       width: 100%;
   }
+
+.datasheet-input,
+.datasheet-text-input-hover{
+    padding: 1rem;
+}
+
+.datasheet-text-input-hover:hover{
+    font-weight: bold;
+    color: $color-select;
+    padding: 1rem;
+}
+
+.datasheet-description{
+    font-weight: bold;
+    padding-top: 1rem;
+}
+
+.div-button-add{
+    padding: 2rem;
+    text-align: end;
+}
+
+.item-hover:hover{
+    font-weight: bold;
+    color: $color-select;
+}
+
+.mat-toolbar.mat-toolbar-single-row.ng-star-inserted{
+    background-color: rgb(255, 255, 255);;
+}
+
+.mat-toolbar{
+    display: none;
+}
+
+.accordion-panel{
+    margin: 1rem;
+}
 
 

@@ -28,16 +28,18 @@ export class SongService extends OntimizeEEService {
             filter: {
                 id_song: id
                  },
-            columns: ['id_song', 'name_song', 'id_album', 'name_album', 'id_artist', 'name_artist', 'id_genre', 'name_genre'],
+            columns: ['id_song', 'name_song', 'id_album', 'name_album', 'year_album', 'id_artist', 'name_artist', 'id_genre', 'name_genre', 'description_song'],
             sqltypes: {
                 'id_song': 4,
                 'name_song': 12,
                 'id_album': 4,
                 'name_album': 12,
+                'year_album': 93,
                 'id_artist': 4,
                 'name_artist': 12,
                 'id_genre': 4,
-                'name_genre': 1,
+                'name_genre': 12,
+                'description_song': 12
             }
         });
         var self = this;

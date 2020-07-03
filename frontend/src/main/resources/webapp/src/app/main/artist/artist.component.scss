@@ -1,0 +1,44 @@
+$font-size-grande: 18px ;
+$font-size-medium: 16px ;
+$font-size-normal: 14px ;
+$font-size-small: 12px ;
+$color-black:rgba(0, 0, 0, 0.87);
+$color-White:rgba(255, 255, 255, 0.87);
+$color-grey : #808787;
+$color-dark-grey:#676d6d;
+$color-select :rgb(255, 204, 0);
+
+.datasheet-text-input{
+    margin: 0.5rem;
+    font-size: $font-size-medium;
+}
+
+.datasheet-h2{
+    text-align: center;
+}
+
+.datasheet-information-pane{
+    padding: 2rem;
+    
+}
+
+.datashet-inputs-panel{
+    height: 100%;
+    margin-left: 1rem;
+}
+
+.datasheet-img{
+    align-self: center;
+    padding: 0.1rem;
+}
+
+  .item-hover:hover{
+    font-weight: bold;
+    color: $color-select;
+}
+
+.div-button-add{
+    text-align:end;
+    margin-top: 2rem;
+}
+

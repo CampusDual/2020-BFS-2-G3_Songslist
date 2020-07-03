@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.ontimize.songslists.api.core.service.ISonglistService;
 import com.ontimize.songslists.model.core.dao.SongDao;
 import com.ontimize.songslists.model.core.dao.SonglistDao;
@@ -23,7 +24,7 @@ import com.ontimize.jee.server.rest.ORestController;
 
 @RestController
 @RequestMapping("/songlists")
-@ComponentScan(basePackageClasses = { com.ontimize.songslists.api.core.service.ISonglistService.class })
+
 public class SonglistRestController extends ORestController<ISonglistService> {
 
  @Autowired

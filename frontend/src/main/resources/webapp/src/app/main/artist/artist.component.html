@@ -1,18 +1,44 @@
 <div class="component">
-  <o-button class = "button-back" attr="raised" type="RAISED" label="{{'BACK' | oTranslate}}" layout-padding [routerLink]="['/main/home']"
-  [queryParams]="{tosearch: 'ok'}"></o-button>
+  <div>
+    <o-button class="button-back" attr="raised" type="RAISED" label="{{'BACK' | oTranslate}}" layout-padding
+      [routerLink]="['/main/home']" [queryParams]="{tosearch: 'ok'}">
+    </o-button>
+  </div>
+  <div *ngIf="artistResult">
+    <h2 class="datasheet-h2">{{artistResult.name_artist}}</h2>
 
+
+    <div class=datasheet-div>
+      <o-image class="datasheet-img" attr="image" type="RAISED" data="{{artistResult.img_artist}}" fxFlex="30"
+        height="90%" width="20%" auto-fit="true" enabled="true" read-only="true" show-controls="false"
+        full-screen-button="false" empty-image="./assets/images/no-image.png">
+      </o-image>
+      <o-form editable-detail="no" show-header="no">
+        <o-textarea-input attr="longtext" label="{{'DESCRIPTION' | oTranslate}}" [data]="getArtistDescription()"
+          fxFlex="70" height="100%" width="80%" required="no" read-only="true"></o-textarea-input>
+      </o-form>
+    </div>
+  </div>
 
   <div *ngIf="artistResult">
-    <h3>DATOS DEL ARTISTA</h3>
-    <p><strong>{{'ARTIST' | oTranslate}} = </strong> {{artistResult.name_artist}}</p>
-    <p><strong>{{'DESCRIPTION' | oTranslate}} = </strong> {{artistResult.description_album}}</p>
-    <hr>
-    <div *ngIf="albumResult">
-      <h3>DISCOGRAFÍA DEL ARTISTA</h3>
-      <div *ngFor="let album of albumResult; let i = index">
-        {{i+1}}. {{album.name_album}}
-      </div>
-    </div>
+    <mat-accordion class="datasheet-acordion">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-panel-description>
+              {{'SHOW_DISCOGRAPHY' | oTranslate}}
+            </mat-panel-description>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <o-list [static-data]="getAlbumResult()" title="{{'DISCOGRAPHY_AVAILABLE' | oTranslate}}" quick-filter="false"
+          refresh-button="false" insert-button="false" insert-button-floatable="false" delete-button="false"
+          selectable="true" dense="false" detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
+          <o-list-item *ngFor="let album of albumResult">
+            <p class=item-hover [routerLink]="['/main/album', album.id_album]" [queryParams]="{id: album.id_album}"
+              href="#">{{ album.name_album}}</p>
+          </o-list-item>
+        </o-list>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 </div>

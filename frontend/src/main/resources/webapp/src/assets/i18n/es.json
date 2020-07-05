@@ -33,6 +33,7 @@
   "EXAMPLE_TEXT_SEARCH": "Ej: Stairway to heaven Led Zeppelin...",
   "FRONT": "Portada",
   "DATE": "Fecha",
-  "DESCRIPTION": "Descripción"
-
+  "DESCRIPTION": "Descripción",
+  "SAVE":"Guardar", 
+  "CLEAN":"Limpiar"
 }

@@ -34,5 +34,7 @@
   "EXAMPLE_TEXT_SEARCH": "Ex: Stairway to heaven Led Zeppelin...",
   "FRONT": "Front",
   "DATE": "Date",
-  "DESCRIPTION": "Description"
+  "DESCRIPTION": "Description",
+  "SAVE":"Save" ,
+  "CLEAN":"Clean"
 }

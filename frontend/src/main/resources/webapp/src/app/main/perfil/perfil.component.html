@@ -1,90 +1,44 @@
 <div class="component">
-  <!-- <div>
-  <o-button class="button-back" attr="raised" type="RAISED" label="{{'BACK' | oTranslate}}" layout-padding
-    [routerLink]="['/main/home']" [queryParams]="{tosearch: 'ok'}"></o-button>
-  <div *ngIf="perfilResult && contactForm ">
-    <div class="datashet-information-panel">
-      <o-form class="datasheet-inputs-panel" editable-detail="no" show-header="no"
-      [formGroup]="contactForm" (ngSubmit)="onSaveForm()"
-        width="25%">
-        <o-text-input class="datasheet-text-input-hover" enabled="yes" attr="nick_user" label="{{'NICK' | oTranslate}}"
-          data='{{perfilResult.nick_user}}' read-only="no"
-          formControlName="nick">
-        </o-text-input>
-        <o-text-input class="datasheet-text-input-hover" enabled="yes" attr="name_user" label="{{'NAME' | oTranslate}}"
-           data="{{perfilResult.name_user}}" read-only="no"
-           formControlName="name_u">
-        </o-text-input>
-        <o-text-input class="datasheet-text-input-hover" enabled="yes" attr="surname_user"
-          label="{{'SURNAME' | oTranslate}}"  data="{{perfilResult.surname_user}}"
-          read-only="no"
-          formControlName="surname">
-        </o-text-input>
-        <o-text-input class="datasheet-input" enabled="yes" attr="email_user" label="{{'EMAIL' | oTranslate}}"
-          data="{{perfilResult.email_user}}" read-only="no"
-          formControlName="email">>
-        </o-text-input>
-        <o-text-input class="datasheet-input" enabled="yes" attr="birthdate_user" label="{{'BIRTHDATE' | oTranslate}}"
-          type="date"  data="{{perfilResult.birthdate_user | date: 'yyyy'}}" read-only="no"
-          formControlName="birthdate" >
-        </o-text-input>
-        <o-textarea-input class="datasheet-description" attr="longtext" label="{{'DESCRIPTION' | oTranslate}}"
-          data="{{perfilResult.description_user}}" height="90%" width="100%" required="no"
-          read-only="no"
-          formControlName="description">
-        </o-textarea-input>
-        <div>
-          <button type="submit" class="btn-send" [disabled]="!contactForm.valid">Send</button>
-        </div>
-
-      </o-form>
-    </div>
-</div> -->
+ 
 
   <div>
       <h1>Contact us!</h1>
       <form appearance="fill" *ngIf="contactForm" [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
 
 
-        <mat-form-field>
+        <mat-form-field [ngClass]="displayFieldCss('nick')" >
           <mat-label>{{'NICK' | oTranslate}}</mat-label>
-          <input matInput type="text" formControlName="nick" placeholder="Your Nick">
+          <input matInput type="text" formControlName="nick" placeholder="Your Nick" readonly="yes">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field [ngClass]="displayFieldCss('name')" >
           <mat-label>{{'NAME' | oTranslate}}</mat-label>
           <input matInput type="text" formControlName="name" placeholder="Your Name">
         </mat-form-field>
-
-        <mat-form-field>
+        <br>
+        <mat-form-field [ngClass]="displayFieldCss('email')">
           <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
-          <input matInput type="text" formControlName="email" placeholder="Your email">
+          <input matInput type="email" formControlName="email" placeholder="Your email">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field [ngClass]="displayFieldCss('surname')">
           <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
           <input matInput type="text" formControlName="surname" placeholder="Your surname>">
         </mat-form-field>
-
-        <mat-form-field>
+        <br>
+        <mat-form-field [ngClass]="displayFieldCss('birthdate')">
           <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
           <input matInput type="date" formControlName="birthdate" placeholder="Your birthdate">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field [ngClass]="displayFieldCss('description')" >
         <textarea matInput formControlName="description" placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
-
+        <br>
       </mat-form-field>
             <button mat-button type="submit" [disabled]="!contactForm.valid" >{{'SAVE' | oTranslate}}</button>
             <button mat-button >Cancel</button>
       </form>
 
     </div>
-       
-
-   
-
-
-
 
 </div>

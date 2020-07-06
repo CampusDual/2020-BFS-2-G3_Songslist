@@ -2,18 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { PerfilService } from '../services/perfil.service';
 import { IUserModel } from 'app/shared/models/iuser.model';
 import { ReactiveFormsModule, FormBuilder, FormGroup,FormControl,Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-perfil-edit',
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.scss']
+  styleUrls: ['./perfil.component.scss'],
+  providers:[DatePipe]
 })
 export class PerfilComponent implements OnInit {
    public perfilResult: IUserModel = null;
    public contactForm: FormGroup = null;
+
   constructor(
-    private perfilService: PerfilService
+    private perfilService: PerfilService,
+    private datePipe: DatePipe
     ) {  }
   ngOnInit() {
      this.ngOnStartUser();
@@ -45,10 +49,7 @@ export class PerfilComponent implements OnInit {
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   get name() { return this.contactForm.get('name'); }
   get email() { return this.contactForm.get('email'); }
-  get message() { return this.contactForm.get('message'); }
-
   get nick() { return this.contactForm.get('nick'); }
-  get name_u() { return this.contactForm.get('name_u'); }
   get surname() { return this.contactForm.get('surname'); }
   get birthdate() { return this.contactForm.get('birthdate'); }
   get description() { return this.contactForm.get('description'); }
@@ -57,13 +58,12 @@ export class PerfilComponent implements OnInit {
     console.log('method : createForm')
     console.log('perfilData',perfilData)
     return new FormGroup({
-      name: new FormControl(perfilData ? perfilData.nick_user : '' , [Validators.required, Validators.minLength(3)]),
-      email: new FormControl(perfilData ? perfilData.email_user: '' , [Validators.required, Validators.minLength(3), Validators.pattern(this.emailPattern)]),
-      nick: new FormControl(perfilData ? perfilData.nick_user : '' , [Validators.required, Validators.minLength(3)]),
-      name_u: new FormControl(perfilData ? perfilData.name_user : '' , [Validators.required, Validators.minLength(3)]),
-      surname : new FormControl(perfilData ? perfilData.surname_user : '', [Validators.required, Validators.minLength(3)]),
-      birthdate:  new FormControl(perfilData ? perfilData.birthdate_user : '', [Validators.required, Validators.minLength(3)]),
-      description: new FormControl(perfilData ? perfilData.description_user : '', [Validators.required, Validators.minLength(10), Validators.maxLength(100)])
+      name: new FormControl(perfilData ? perfilData.nick_user : '' , [ Validators.minLength(3)]),
+      email: new FormControl(perfilData ? perfilData.email_user: '' , [ Validators.minLength(3), Validators.pattern(this.emailPattern)]),
+      nick: new FormControl(perfilData ? perfilData.nick_user : '' , [ Validators.minLength(3)]),
+      surname : new FormControl(perfilData ? perfilData.surname_user : '', [ Validators.minLength(3)]),
+      birthdate:  new FormControl(perfilData ? this.datePipe.transform(perfilData.birthdate_user, 'yyyy-MM-dd' ) : '', [ Validators.minLength(3)]),
+      description: new FormControl(perfilData ? perfilData.description_user : '', [ Validators.minLength(10), Validators.maxLength(100)])
 
     });
   }
@@ -78,6 +78,15 @@ export class PerfilComponent implements OnInit {
     }
   }
 
+  isFieldValid(field: string) {
+    return !this.contactForm.get(field).valid && this.contactForm.get(field).touched;
+  }
   
+  displayFieldCss(field: string) {
+    return {
+      'has-error': this.isFieldValid(field),
+      'has-feedback': this.isFieldValid(field)
+    };
+  }
 
 }

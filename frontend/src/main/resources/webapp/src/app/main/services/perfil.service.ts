@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CONFIG } from 'app/app.config';
 import { OntimizeEEService, Observable } from 'ontimize-web-ngx';
 import { share } from 'rxjs/operators';
+import { IUserModel } from 'app/shared/models/iuser.model';
 
 @Injectable(
      {    
@@ -67,7 +68,7 @@ export class PerfilService extends OntimizeEEService {
                 'surname_user': 12,
                 'email_user': 12,
                 'password': 12,
-                'birthdate_user': 12
+                'birthdate_user': 93
             }
         });
         var self = this;
@@ -81,8 +82,14 @@ export class PerfilService extends OntimizeEEService {
         return dataObservable.pipe(share());
     }
 
-    saveMessage(data){
-        console.log(data);
+    saveMessage(data ){
+        console.log('data',data);
+        console.log('data.name',data.name);
+        console.log('data.email',data.email);
+        console.log('data.nick',data.nick);
+        console.log('data.surname',data.surname);
+        console.log('data.birthdate',data.birthdate);
+        console.log('data.description',data.description);
     } 
 
 }

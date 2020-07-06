@@ -19,7 +19,9 @@ export class PerfilService extends OntimizeEEService {
             'Content-Type': 'application/json;charset=UTF-8',
             'Authorization': 'Bearer ' + myData.session.id
         });
-    }
+    } 
+
+
     getUserData() {
         const url = CONFIG.apiEndpoint + '/' + 'users/user/search';
         var options = {
@@ -27,9 +29,9 @@ export class PerfilService extends OntimizeEEService {
         };
         var body = JSON.stringify({
             filter: {
-                'user_' : this.user
+                'nick_user' : this.user
                  },
-            columns: ['user_','name_user', 'surname_user', 'email_user', 'password_user', 'birthdate_user']
+            columns: ['nick_user','name_user', 'surname_user', 'email_user', 'password_user', 'birthdate_user']
         });
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {
@@ -45,13 +47,13 @@ export class PerfilService extends OntimizeEEService {
     }
 
     setUserData(name_user?: string , surname_user?: string, email_user?: string, birthdate_user? ) {
-        const url = CONFIG.apiEndpoint + '/' + 'albums/album/search';
+        const url = CONFIG.apiEndpoint + '/' + 'users/user';
         var options = {
             headers: this.buildHeaders()
         };
         var body = JSON.stringify({
             filter: {
-                'user_': this.user,
+               
                  },
                  data: {
                     'name_user': name_user,

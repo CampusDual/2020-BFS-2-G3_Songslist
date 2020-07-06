@@ -31,7 +31,7 @@ export class PerfilComponent implements OnInit {
           console.log('nº results ', userData['data'].length);
           if (userData['data'].length > 0) {
             console.log('recibo todo ', userData);
-            this.perfilResult = userData['data'];
+            this.perfilResult = userData['data'][0];
           } else {
             this.perfilResult = null;
           }
@@ -42,6 +42,13 @@ export class PerfilComponent implements OnInit {
   }
   getUserDescription(){
     return this.perfilResult.description_user;
+  }
+  onClickSave($event){
+    console.log(this.perfilResult);
+
+  }
+  onClickClear($event){
+    console.log(this.perfilResult);
   }
 
 }

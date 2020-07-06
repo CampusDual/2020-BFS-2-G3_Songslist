@@ -35,5 +35,10 @@
   "DATE": "Fecha",
   "DESCRIPTION": "Descripción",
   "SAVE":"Guardar", 
-  "CLEAN":"Limpiar"
+  "CLEAN":"Limpiar",
+  "NICK":"Nick",
+  "NAME":"Nombre",
+  "SURNAME":"Apellidos",
+  "EMAIL":
+
 }

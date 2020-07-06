@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.ontimize.songslists.api.core.service.IUserService;
 import com.ontimize.songslists.model.core.dao.UserDao;
+import com.ontimize.songslists.model.core.dao.UserNickDao;
 import com.ontimize.db.EntityResult;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 
@@ -24,6 +25,9 @@ public class UserService implements IUserService {
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private UserNickDao userNickDao;
 
 	@Autowired
 	private DefaultOntimizeDaoHelper daoHelper;
@@ -32,6 +36,12 @@ public class UserService implements IUserService {
 	}
 
 	public EntityResult userQuery(Map<?, ?> keyMap, List<?> attrList) {
+		keyMap.values();
+		if (keyMap.isEmpty()) {
+			System.out.println("hola");
+			keyMap.put("user", this.daoHelper.getUser().getUsername());	
+			return this.daoHelper.query(userNickDao, keyMap, attrList);
+		}
 		return this.daoHelper.query(userDao, keyMap, attrList);
 	}
 

@@ -81,4 +81,8 @@ export class PerfilService extends OntimizeEEService {
         return dataObservable.pipe(share());
     }
 
+    saveMessage(data){
+        console.log(data);
+    } 
+
 }

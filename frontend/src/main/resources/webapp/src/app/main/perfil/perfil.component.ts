@@ -13,7 +13,9 @@ import { DatePipe } from '@angular/common';
 })
 export class PerfilComponent implements OnInit {
    public perfilResult: IUserModel = null;
+   public perfiUpdate: IUserModel = null;
    public contactForm: FormGroup = null;
+   private id : number;
 
   constructor(
     private perfilService: PerfilService,
@@ -33,6 +35,8 @@ export class PerfilComponent implements OnInit {
           console.log('nº results ', userData['data'].length);
           if (userData['data'].length > 0) {
             console.log('recibo todo ', userData);
+            console.log('recibo id ',  userData['data'][0].id_user);
+            this.id = userData['data'][0].id_user;
             this.perfilResult = userData['data'][0];
             this.contactForm=this.createForm(userData['data'][0]); 
             return this.perfilResult;
@@ -47,6 +51,7 @@ export class PerfilComponent implements OnInit {
   }
 
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  // get id() { return this.contactForm.get('id'); }
   get name() { return this.contactForm.get('name'); }
   get email() { return this.contactForm.get('email'); }
   get nick() { return this.contactForm.get('nick'); }
@@ -58,6 +63,7 @@ export class PerfilComponent implements OnInit {
     console.log('method : createForm')
     console.log('perfilData',perfilData)
     return new FormGroup({
+      // id :new FormControl(perfilData ? perfilData.id_user : '' ),
       name: new FormControl(perfilData ? perfilData.nick_user : '' , [ Validators.minLength(3)]),
       email: new FormControl(perfilData ? perfilData.email_user: '' , [ Validators.minLength(3), Validators.pattern(this.emailPattern)]),
       nick: new FormControl(perfilData ? perfilData.nick_user : '' , [ Validators.minLength(3)]),
@@ -71,8 +77,14 @@ export class PerfilComponent implements OnInit {
     this.contactForm.reset();
   }
   onSaveForm(): void {
-    console.log('pulsoboton')
     if (this.contactForm.valid) {
+      this.perfiUpdate.id_user =this.id ;
+      this.perfiUpdate.nick_user =this.contactForm.value.nick;
+      this.perfiUpdate.name_user =this.contactForm.value.name;
+      this.perfiUpdate.email_user =this.contactForm.value.email;
+      this.perfiUpdate.surname_user =this.contactForm.value.surname;
+      this.perfiUpdate.birthdate_user =this.contactForm.value.birthdate;
+      this.perfiUpdate.description_user =this.contactForm.value.description;
       this.perfilService.saveMessage(this.contactForm.value);
       this.onResetForm();
     }

@@ -1,4 +1,5 @@
 export interface IUserModel {
+      id_user: number ;
       nick_user: string ;
       name_user?: string,
       surname_user?: string,

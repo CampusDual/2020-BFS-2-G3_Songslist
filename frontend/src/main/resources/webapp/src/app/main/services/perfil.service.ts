@@ -32,7 +32,7 @@ export class PerfilService extends OntimizeEEService {
             filter: {
                 'nick_user' : this.user
                  },
-            columns: ['nick_user','name_user', 'surname_user', 'email_user', 'password_user', 'birthdate_user']
+            columns: ['id_user','nick_user','name_user', 'surname_user', 'email_user', 'password_user', 'birthdate_user']
         });
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {

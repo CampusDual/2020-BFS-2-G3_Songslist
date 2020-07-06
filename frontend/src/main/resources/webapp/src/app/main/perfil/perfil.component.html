@@ -4,8 +4,7 @@
   <div>
       <h1>Contact us!</h1>
       <form appearance="fill" *ngIf="contactForm" [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
-
-
+       
         <mat-form-field [ngClass]="displayFieldCss('nick')" >
           <mat-label>{{'NICK' | oTranslate}}</mat-label>
           <input matInput type="text" formControlName="nick" placeholder="Your Nick" readonly="yes">

@@ -13,7 +13,7 @@ import { DatePipe } from '@angular/common';
 })
 export class PerfilComponent implements OnInit {
    public perfilResult: IUserModel = null;
-   public perfiUpdate: IUserModel = null;
+   // public perfiUpdate: IUserModel ;
    public contactForm: FormGroup = null;
    private id : number;
 
@@ -76,29 +76,77 @@ export class PerfilComponent implements OnInit {
   onResetForm(): void {
     this.contactForm.reset();
   }
-  onSaveForm(): void {
-    if (this.contactForm.valid) {
-      this.perfiUpdate.id_user =this.id ;
-      this.perfiUpdate.nick_user =this.contactForm.value.nick;
-      this.perfiUpdate.name_user =this.contactForm.value.name;
-      this.perfiUpdate.email_user =this.contactForm.value.email;
-      this.perfiUpdate.surname_user =this.contactForm.value.surname;
-      this.perfiUpdate.birthdate_user =this.contactForm.value.birthdate;
-      this.perfiUpdate.description_user =this.contactForm.value.description;
-      this.perfilService.saveMessage(this.contactForm.value);
-      this.onResetForm();
-    }
+  inputChange() : boolean{
+    if ( this.contactForm.value.name != this.perfilResult.name_user ){
+     return true;
+      }
+     else if ( this.contactForm.value.email != this.perfilResult.email_user ){
+        return true;
+      }
+     else if ( this.contactForm.value.surname != this.perfilResult.surname_user ){
+        return true;
+      }
+    else  if ( this.contactForm.value.birthdate != this.datePipe.transform(this.perfilResult.birthdate_user, 'yyyy-MM-dd' ) ){
+        return true;
+      }
+     else if ( this.contactForm.value. description != this.perfilResult.description_user ){
+        return true;
+      }else {
+        return false;
+      }
+
+
   }
 
-  isFieldValid(field: string) {
-    return !this.contactForm.get(field).valid && this.contactForm.get(field).touched;
-  }
-  
-  displayFieldCss(field: string) {
-    return {
-      'has-error': this.isFieldValid(field),
-      'has-feedback': this.isFieldValid(field)
-    };
-  }
+
+  onSaveForm(): void {
+    
+
+      const perfiUpdate : IUserModel  = <IUserModel>   {
+      id_user : this.perfilResult.id_user
+      }
+      if ( this.contactForm.value.name != this.perfilResult.name_user ){
+      perfiUpdate['name_user'] =this.contactForm.value.nick ;
+      }
+      if ( this.contactForm.value.email != this.perfilResult.email_user ){
+      perfiUpdate['email_user'] =this.contactForm.value.email ;
+      }
+      if ( this.contactForm.value.surname != this.perfilResult.surname_user ){
+      perfiUpdate['surname_user'] =this.contactForm.value.surname ;
+      }
+      if ( this.contactForm.value.birthdate != this.datePipe.transform(this.perfilResult.birthdate_user, 'yyyy-MM-dd' ) ){
+      perfiUpdate['birthdate_user'] =this.contactForm.value.birthdate ;
+      }
+      if ( this.contactForm.value. description != this.perfilResult.description_user ){
+      perfiUpdate['description_user'] =this.contactForm.value. description ;
+      }
+      console.log('perfiUpdate',perfiUpdate);
+      this.perfilService.setUserData(
+        perfiUpdate.id_user , perfiUpdate.name_user , perfiUpdate.surname_user, 
+        perfiUpdate.email_user , perfiUpdate.birthdate_user , perfiUpdate.description_user 
+        ,perfiUpdate.password_user )
+      .subscribe(
+        (userData: any) => {
+          console.log('recibo todo ', userData);
+          if (userData['data']) {
+            console.log('recibo la parte de data ', userData['data']);
+            console.log('nº results ', userData['data'].length);
+            if (userData['data'].length > 0) {
+              console.log('recibo todo ', userData);
+              console.log('recibo id ',  userData['data'][0].id_user);
+              this.id = userData['data'][0].id_user;
+              this.perfilResult = userData['data'][0];
+              this.contactForm=this.createForm(userData['data'][0]); 
+              return this.perfilResult;
+            } else {
+              this.perfilResult = null;
+            }
+          }
+        },
+        err => console.error(err)
+      ); 
+
+    }
+ 
 
 }

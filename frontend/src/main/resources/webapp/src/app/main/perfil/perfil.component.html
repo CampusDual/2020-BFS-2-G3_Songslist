@@ -5,36 +5,36 @@
       <h1>Contact us!</h1>
       <form appearance="fill" *ngIf="contactForm" [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
        
-        <mat-form-field [ngClass]="displayFieldCss('nick')" >
+        <mat-form-field [ngClass]="" >
           <mat-label>{{'NICK' | oTranslate}}</mat-label>
           <input matInput type="text" formControlName="nick" placeholder="Your Nick" readonly="yes">
         </mat-form-field>
 
-        <mat-form-field [ngClass]="displayFieldCss('name')" >
+        <mat-form-field [ngClass]="" >
           <mat-label>{{'NAME' | oTranslate}}</mat-label>
           <input matInput type="text" formControlName="name" placeholder="Your Name">
         </mat-form-field>
         <br>
-        <mat-form-field [ngClass]="displayFieldCss('email')">
+        <mat-form-field [ngClass]="">
           <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
           <input matInput type="email" formControlName="email" placeholder="Your email">
         </mat-form-field>
 
-        <mat-form-field [ngClass]="displayFieldCss('surname')">
+        <mat-form-field [ngClass]="">
           <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
           <input matInput type="text" formControlName="surname" placeholder="Your surname>">
         </mat-form-field>
         <br>
-        <mat-form-field [ngClass]="displayFieldCss('birthdate')">
+        <mat-form-field [ngClass]="">
           <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
           <input matInput type="date" formControlName="birthdate" placeholder="Your birthdate">
         </mat-form-field>
 
-        <mat-form-field [ngClass]="displayFieldCss('description')" >
+        <mat-form-field [ngClass]="" >
         <textarea matInput formControlName="description" placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
         <br>
       </mat-form-field>
-            <button mat-button type="submit" [disabled]="!contactForm.valid" >{{'SAVE' | oTranslate}}</button>
+            <button mat-button type="submit" [disabled]="!inputChange()" >{{'SAVE' | oTranslate}}</button>
             <button mat-button >Cancel</button>
       </form>
 

@@ -3,6 +3,7 @@ import { PerfilService } from '../services/perfil.service';
 import { IUserModel } from 'app/shared/models/iuser.model';
 import { ReactiveFormsModule, FormBuilder, FormGroup,FormControl,Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { VALID } from '@angular/forms/src/model';
 
 
 @Component({
@@ -77,19 +78,19 @@ export class PerfilComponent implements OnInit {
     this.contactForm.reset();
   }
   inputChange() : boolean{
-    if ( this.contactForm.value.name != this.perfilResult.name_user ){
+    if ( this.contactForm.value.name != this.perfilResult.name_user  && this.contactForm.get('name').status == 'VALID'  ){
      return true;
       }
-     else if ( this.contactForm.value.email != this.perfilResult.email_user ){
+     else if ( this.contactForm.value.email != this.perfilResult.email_user  && this.contactForm.get('email').status == 'VALID'){
         return true;
       }
-     else if ( this.contactForm.value.surname != this.perfilResult.surname_user ){
+     else if ( this.contactForm.value.surname != this.perfilResult.surname_user  && this.contactForm.get('surname').status == 'VALID'){
         return true;
       }
-    else  if ( this.contactForm.value.birthdate != this.datePipe.transform(this.perfilResult.birthdate_user, 'yyyy-MM-dd' ) ){
+    else  if ( this.contactForm.value.birthdate != this.datePipe.transform(this.perfilResult.birthdate_user, 'yyyy-MM-dd' )  && this.contactForm.get('birthdate').status == 'VALID'){
         return true;
       }
-     else if ( this.contactForm.value. description != this.perfilResult.description_user ){
+     else if ( this.contactForm.value.description != this.perfilResult.description_user  && this.contactForm.get('description').status == 'VALID'  ){
         return true;
       }else {
         return false;
@@ -105,19 +106,19 @@ export class PerfilComponent implements OnInit {
       const perfiUpdate : IUserModel  = <IUserModel>   {
       id_user : this.perfilResult.id_user
       }
-      if ( this.contactForm.value.name != this.perfilResult.name_user ){
+      if ( this.contactForm.value.name != this.perfilResult.name_user  && this.contactForm.get('name').status == 'VALID'){
       perfiUpdate['name_user'] =this.contactForm.value.nick ;
       }
-      if ( this.contactForm.value.email != this.perfilResult.email_user ){
+      if ( this.contactForm.value.email != this.perfilResult.email_user  && this.contactForm.get('email').status == 'VALID'){
       perfiUpdate['email_user'] =this.contactForm.value.email ;
       }
-      if ( this.contactForm.value.surname != this.perfilResult.surname_user ){
+      if ( this.contactForm.value.surname != this.perfilResult.surname_user  && this.contactForm.get('surname').status == 'VALID'){
       perfiUpdate['surname_user'] =this.contactForm.value.surname ;
       }
-      if ( this.contactForm.value.birthdate != this.datePipe.transform(this.perfilResult.birthdate_user, 'yyyy-MM-dd' ) ){
+      if ( this.contactForm.value.birthdate != this.datePipe.transform(this.perfilResult.birthdate_user, 'yyyy-MM-dd' ) && this.contactForm.get('birthdate').status == 'VALID' ){
       perfiUpdate['birthdate_user'] =this.contactForm.value.birthdate ;
       }
-      if ( this.contactForm.value. description != this.perfilResult.description_user ){
+      if ( this.contactForm.value.description != this.perfilResult.description_user  && this.contactForm.get('description').status == 'VALID'){
       perfiUpdate['description_user'] =this.contactForm.value. description ;
       }
       console.log('perfiUpdate',perfiUpdate);

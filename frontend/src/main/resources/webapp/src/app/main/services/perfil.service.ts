@@ -23,7 +23,6 @@ export class PerfilService extends OntimizeEEService {
         });
     } 
 
-
     getUserData() {
         const url = CONFIG.apiEndpoint + '/' + 'users/user/search';
         var options = {
@@ -48,7 +47,7 @@ export class PerfilService extends OntimizeEEService {
         return dataObservable.pipe(share());
     }
 
-    setUserData( id_user: number,  name_user?: string , surname_user?: string, email_user?: string, birthdate_user? :Date, description_user? : string, password_user? :string ) {
+    setUserData( id_user: number,  name_user?: string , surname_user?: string, email_user?: string, birthdate_user? :Data, description_user? : string, password_user? :string ) {
         const url = CONFIG.apiEndpoint + '/' + 'users/user';
         var options = {
             headers: this.buildHeaders()
@@ -68,7 +67,7 @@ export class PerfilService extends OntimizeEEService {
                  },
                  data: dataObject,
             sqltypes: {
-                'id_user': 9,
+                'id_user': 4,
                 'nick_user': 12,
                 'name_user': 12,
                 'surname_user': 12,

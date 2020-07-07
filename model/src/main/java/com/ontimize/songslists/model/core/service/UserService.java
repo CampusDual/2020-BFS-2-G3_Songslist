@@ -1,17 +1,14 @@
 package com.ontimize.songslists.model.core.service;
 
-
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import com.ontimize.songslists.api.core.service.IUserService;
 import com.ontimize.songslists.model.core.dao.UserDao;
 import com.ontimize.db.EntityResult;
@@ -24,6 +21,8 @@ public class UserService implements IUserService {
 
 	@Autowired
 	private UserDao userDao;
+	
+
 
 	@Autowired
 	private DefaultOntimizeDaoHelper daoHelper;

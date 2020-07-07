@@ -17,7 +17,7 @@ export class PerfilComponent implements OnInit {
    // public perfiUpdate: IUserModel ;
    public contactForm: FormGroup = null;
    private id : number;
-
+   public change : boolean = false;
   constructor(
     private perfilService: PerfilService,
     private datePipe: DatePipe
@@ -52,6 +52,7 @@ export class PerfilComponent implements OnInit {
   }
 
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  private textPattern: any = /^[a-zA-Z0-9]+(?:[_ -]?[a-zA-Z0-9])*$/;
   // get id() { return this.contactForm.get('id'); }
   get name() { return this.contactForm.get('name'); }
   get email() { return this.contactForm.get('email'); }
@@ -65,13 +66,12 @@ export class PerfilComponent implements OnInit {
     console.log('perfilData',perfilData)
     return new FormGroup({
       // id :new FormControl(perfilData ? perfilData.id_user : '' ),
-      name: new FormControl(perfilData ? perfilData.nick_user : '' , [ Validators.minLength(3)]),
-      email: new FormControl(perfilData ? perfilData.email_user: '' , [ Validators.minLength(3), Validators.pattern(this.emailPattern)]),
-      nick: new FormControl(perfilData ? perfilData.nick_user : '' , [ Validators.minLength(3)]),
-      surname : new FormControl(perfilData ? perfilData.surname_user : '', [ Validators.minLength(3)]),
-      birthdate:  new FormControl(perfilData ? this.datePipe.transform(perfilData.birthdate_user, 'yyyy-MM-dd' ) : '', [ Validators.minLength(3)]),
-      description: new FormControl(perfilData ? perfilData.description_user : '', [ Validators.minLength(10), Validators.maxLength(100)])
-
+      name: new FormControl(perfilData ? perfilData.nick_user : '' , [ Validators.minLength(0), Validators.maxLength(25),Validators.pattern(this.textPattern)]),
+      email: new FormControl(perfilData ? perfilData.email_user: '' , [ Validators.minLength(0), Validators.maxLength(50), Validators.pattern(this.emailPattern)]),
+      nick: new FormControl(perfilData ? perfilData.nick_user : '' , [ Validators.minLength(0), Validators.maxLength(25),Validators.pattern(this.textPattern)]),
+      surname : new FormControl(perfilData ? perfilData.surname_user : '', [ Validators.minLength(0), Validators.maxLength(50),Validators.pattern(this.textPattern)]),
+      birthdate:  new FormControl(perfilData ? this.datePipe.transform(perfilData.birthdate_user, 'yyyy-MM-dd' ) : ''),
+      description: new FormControl(perfilData ? perfilData.description_user : '', [ Validators.minLength(0), Validators.maxLength(200)])
     });
   }
   onResetForm(): void {
@@ -95,14 +95,10 @@ export class PerfilComponent implements OnInit {
       }else {
         return false;
       }
-
-
   }
 
-
   onSaveForm(): void {
-    
-
+    if(this.contactForm.valid){
       const perfiUpdate : IUserModel  = <IUserModel>   {
       id_user : this.perfilResult.id_user
       }
@@ -144,10 +140,11 @@ export class PerfilComponent implements OnInit {
             }
           }
         },
-        err => console.error(err)
+        err => {
+          console.error(err)
+          this.change = false;
+        }
       ); 
-
+      }
     }
- 
-
 }

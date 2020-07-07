@@ -4,7 +4,6 @@ import { IUserModel } from 'app/shared/models/iuser.model'
 import { Observable } from 'rxjs';
 
 import { IAuthService } from 'ontimize-web-ngx';
-import { timeStamp } from 'console';
 import { DialogService, ODialogConfig } from 'ontimize-web-ngx';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RegisterService } from 'app/main/services/registerService';
@@ -28,10 +27,7 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit() {
         this.contactForm = this.createForm();
-
-    }
-
-     
+    }    
 
     get name() { return this.contactForm.get('name'); }
     get email() { return this.contactForm.get('email'); }
@@ -69,22 +65,15 @@ export class RegisterComponent implements OnInit {
             this.user.surname_user = this.contactForm.value.surname;
             this.user.email_user = this.contactForm.value.email;
             this.user.birthdate_user = this.contactForm.value.birthdate;
-
-
         }
 
 
         this.registerService.registerUser(this.user).subscribe(
             (userData: any) => {
-              console.log('recibo todo ', userData);
               if (userData['data']) {
-                console.log('recibo la parte de data ', userData['data']);
-                console.log('nº results ', userData['data'].length);
                 if (userData['data'].length > 0) {
-                  console.log('recibo todo ', userData);
-                  console.log('recibo id ',  userData['data'][0].id_user);
                   this.userResult = userData['data'][0];
-                  this.contactForm=this.createForm(userData['data'][0]); 
+                  this.contactForm=this.createForm(); 
                   return this.userResult;
                 } else {
                   this.userResult = null;

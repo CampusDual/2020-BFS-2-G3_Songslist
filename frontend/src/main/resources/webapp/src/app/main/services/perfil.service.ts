@@ -23,7 +23,6 @@ export class PerfilService extends OntimizeEEService {
         });
     } 
 
-
     getUserData() {
         const url = CONFIG.apiEndpoint + '/' + 'users/user/search';
         var options = {
@@ -68,7 +67,7 @@ export class PerfilService extends OntimizeEEService {
                  },
                  data: dataObject,
             sqltypes: {
-                'id_user': 9,
+                'id_user': 4,
                 'nick_user': 12,
                 'name_user': 12,
                 'surname_user': 12,

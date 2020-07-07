@@ -56,6 +56,7 @@ body {
 }
 
 .column {
+    margin: 1rem;
     border :solid green 1px;
     flex-direction: column;
     display:flex;
@@ -88,6 +89,8 @@ input {
     font-size: medium;
 }
 textarea {
+    // margin-left: 0.5rem;
+    // margin-top: 0.5rem;
     border :solid blue 1px;
     margin: 0.5rem;
     font-size: medium;

@@ -1,52 +1,89 @@
 <div class="component">
-
+  <div class="row width_50">
+    <o-image class="flex ico-select" attr="image1" [data]="img1"></o-image>
+    <o-image class="flex ico-select" attr="image2" [data]="img2"></o-image>
+    <o-image class="flex ico-select" attr="image3" [data]="img3"></o-image>
+    <o-image class="flex ico-select" attr="image4" [data]="img4"></o-image>
+    <o-image class="flex ico-select " attr="image5" [data]="img5"></o-image>
+    <o-image class="flex ico-select" attr="image6" [data]="img6"></o-image>
+    <o-image class="flex ico-select" attr="image7" [data]="img7"></o-image>
+    <o-image class="flex ico-select" attr="image8" [data]="img8"></o-image>
+    <o-image class="flex ico-select" attr="image9" [data]="img9"></o-image>
+    <o-image class="flex ico-select" attr="image10" [data]="img10"></o-image>
+    <o-image class="flex ico-select" attr="image11" [data]="img11"></o-image>
+    <o-image class="flex ico-select" attr="image12" [data]="img12"></o-image>
+  </div>
   <div>
     <h2 class="datasheet-h2">{{'PERFIL' | oTranslate}}</h2>
     <form class="" appearance="fill" *ngIf="contactForm" [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
-      <div class="colum center around midddle between ">
-        <div class="row center between  ">
-          <mat-form-field  class="column" [ngClass]="">
-            <mat-label>{{'NICK' | oTranslate}}</mat-label>
-            <input class="datasheet-input" matInput type="text" formControlName="nick" placeholder="Your Nick"
-              readonly="yes">
-          </mat-form-field>
 
-          <mat-form-field class="column"  [ngClass]="">
-            <mat-label>{{'NAME' | oTranslate}}</mat-label>
-            <input class="datasheet-input" matInput type="text" formControlName="name" placeholder="Your Name">
-          </mat-form-field>
-        </div>
+      <o-row class=" center widthAll">
 
-        <div class="row center between">
-          <mat-form-field class="column"[ngClass]="">
-            <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
-            <input class="datasheet-input" matInput type="email" formControlName="email" placeholder="Your email">
-          </mat-form-field>
+        <o-column class=" center width_25">
+          holaaaaaaaaaaaa
+        </o-column>
 
-          <mat-form-field class="column" [ngClass]="">
-            <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
-            <input class="datasheet-input" matInput type="text" formControlName="surname" placeholder="Your surname>">
-          </mat-form-field>
-        </div>
-        <div class="row center between">
-          <mat-form-field class="column" [ngClass]="">
-            <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
-            <input class="datasheet-input" matInput type="date" formControlName="birthdate"
-              placeholder="Your birthdate">
-          </mat-form-field>
-          <br>
-          <mat-form-field class="column" [ngClass]="">
-            <mat-label>{{'DESCRIPTION' | oTranslate}}</mat-label>
-            <textarea class="datasheet-input" matInput formControlName="description"
-              placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
-          </mat-form-field>
-        </div>
 
-        <div class="div-button row right">
-          <button mat-button type="submit" [disabled]="!inputChange()">{{'SAVE' | oTranslate}}</button>
-          <button mat-button>Cancel</button>
-        </div>
-      </div>
+        <o-column class="  center around midddle between width_75 ">
+
+
+          <o-row class="  center between widthAll ">
+            <o-column>
+              <mat-form-field class="  width_50" [ngClass]="">
+                <mat-label>{{'NICK' | oTranslate}}</mat-label>
+                <input class="datasheet-input" matInput type="text" formControlName="nick" placeholder="Your Nick"
+                  readonly="yes">
+              </mat-form-field>
+            </o-column>
+
+            <o-column>
+              <mat-form-field class=" width_75" [ngClass]="">
+                <mat-label>{{'NAME' | oTranslate}}</mat-label>
+                <input class="datasheet-input" matInput type="text" formControlName="name" placeholder="Your Name">
+              </mat-form-field>
+            </o-column>
+          </o-row>
+
+          <o-row class=" center between widthAll ">
+            <o-column>
+              <mat-form-field class=" width_75" [ngClass]="">
+                <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
+                <input class="datasheet-input" matInput type="email" formControlName="email" placeholder="Your email">
+              </mat-form-field>
+            </o-column>
+            <o-column>
+              <mat-form-field class=" width_75" [ngClass]="">
+                <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
+                <input class="datasheet-input" matInput type="text" formControlName="surname"
+                  placeholder="Your surname>">
+              </mat-form-field>
+            </o-column>
+          </o-row>
+
+          <o-row class=" center between widthAll">
+            <o-column>
+              <mat-form-field class=" width_75" [ngClass]="">
+                <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
+                <input class="datasheet-input" matInput type="date" formControlName="birthdate"
+                  placeholder="Your birthdate">
+              </mat-form-field>
+            </o-column>
+            <o-column>
+              <mat-form-field class=" width_75" [ngClass]="">
+                <mat-label>{{'DESCRIPTION' | oTranslate}}</mat-label>
+                <textarea class="datasheet-input" matInput formControlName="description"
+                  placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
+              </mat-form-field>
+            </o-column>
+          </o-row>
+
+        </o-column>
+      </o-row>
+      <o-row class="div-button  right widthAll">
+        <button class=" right   width_10  height_2" mat-button type="submit"
+          [disabled]="!inputChange()">{{'SAVE' | oTranslate}}</button>
+        <button class=" right   width_10 height_2" mat-button>Cancel</button>
+      </o-row>
     </form>
   </div>
 </div>

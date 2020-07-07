@@ -27,7 +27,6 @@ export class AlbumService extends OntimizeEEService {
         };
         var body = JSON.stringify({
             filter: {
-                id_album: id
                  },
             columns: ['id_album', 'name_album', 'id_artist', 'name_artist', 'id_genre', 'name_genre', 'img_album', 'description_album', 'year_album'],
             sqltypes: {
@@ -62,7 +61,6 @@ export class AlbumService extends OntimizeEEService {
         };
         var body = JSON.stringify({
             filter: {
-                'id_album': id,
                  },
             columns: ['id_song', 'name_song', 'id_artist', 'name_artist', 'id_genre', 'name_genre', 'id_album', 'name_album'],
             sqltypes: {

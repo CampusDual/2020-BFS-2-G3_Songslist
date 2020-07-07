@@ -47,12 +47,12 @@ export class PerfilService extends OntimizeEEService {
         return dataObservable.pipe(share());
     }
 
-    setUserData( id_user: number,  name_user?: string , surname_user?: string, email_user?: string, birthdate_user? :Data, description_user? : string, password_user? :string ) {
+    setUserData( nick_user:string, name_user?: string , surname_user?: string, email_user?: string, birthdate_user? :Data, description_user? : string, password_user? :string ) {
         const url = CONFIG.apiEndpoint + '/' + 'users/user';
         var options = {
             headers: this.buildHeaders()
         };
-        console.log ('Parametros',id_user,  name_user , surname_user , email_user , birthdate_user ,description_user, password_user)
+        console.log ('Parametros',  name_user , surname_user , email_user , birthdate_user ,description_user, password_user)
         var dataObject = {}
         if (name_user ) dataObject['name_user']=name_user ;
         if (surname_user ) dataObject['surname_user']=surname_user ;
@@ -63,7 +63,7 @@ export class PerfilService extends OntimizeEEService {
 
         var body = JSON.stringify({
             filter: {
-                'id_user': id_user
+                'nick_user' : this.user
                  },
                  data: dataObject,
             sqltypes: {

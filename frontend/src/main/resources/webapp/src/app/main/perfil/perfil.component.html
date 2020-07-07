@@ -1,0 +1,52 @@
+<div class="component">
+
+  <div>
+    <h2 class="datasheet-h2">{{'PERFIL' | oTranslate}}</h2>
+    <form class="" appearance="fill" *ngIf="contactForm" [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
+      <div class="colum center around midddle between ">
+        <div class="row center between  ">
+          <mat-form-field  class="column" [ngClass]="">
+            <mat-label>{{'NICK' | oTranslate}}</mat-label>
+            <input class="datasheet-input" matInput type="text" formControlName="nick" placeholder="Your Nick"
+              readonly="yes">
+          </mat-form-field>
+
+          <mat-form-field class="column"  [ngClass]="">
+            <mat-label>{{'NAME' | oTranslate}}</mat-label>
+            <input class="datasheet-input" matInput type="text" formControlName="name" placeholder="Your Name">
+          </mat-form-field>
+        </div>
+
+        <div class="row center between">
+          <mat-form-field class="column"[ngClass]="">
+            <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
+            <input class="datasheet-input" matInput type="email" formControlName="email" placeholder="Your email">
+          </mat-form-field>
+
+          <mat-form-field class="column" [ngClass]="">
+            <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
+            <input class="datasheet-input" matInput type="text" formControlName="surname" placeholder="Your surname>">
+          </mat-form-field>
+        </div>
+        <div class="row center between">
+          <mat-form-field class="column" [ngClass]="">
+            <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
+            <input class="datasheet-input" matInput type="date" formControlName="birthdate"
+              placeholder="Your birthdate">
+          </mat-form-field>
+          <br>
+          <mat-form-field class="column" [ngClass]="">
+            <mat-label>{{'DESCRIPTION' | oTranslate}}</mat-label>
+            <textarea class="datasheet-input" matInput formControlName="description"
+              placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="div-button row right">
+          <button mat-button type="submit" [disabled]="!inputChange()">{{'SAVE' | oTranslate}}</button>
+          <button mat-button>Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

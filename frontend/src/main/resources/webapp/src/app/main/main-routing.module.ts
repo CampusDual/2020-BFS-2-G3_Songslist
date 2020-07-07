@@ -6,6 +6,7 @@ import { HomeModule } from './home/home.module';
 import { AlbumComponent } from './album/album.component';
 import { ArtistComponent } from './artist/artist.component';
 import { SongComponent } from './song/song.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 export function loadHomeModule() {
   return HomeModule;
@@ -33,7 +34,11 @@ export const routes: Routes = [
       {
         path: 'artist/:id',
         component: ArtistComponent
-      },           
+      },       
+      {
+        path: 'perfil',
+        component: PerfilComponent
+      },       
       {
         path: '**',
         loadChildren: loadHomeModule

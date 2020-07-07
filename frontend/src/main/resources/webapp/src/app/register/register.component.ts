@@ -94,7 +94,7 @@ export class RegisterComponent implements OnInit {
             err => console.error(err)
           ); 
         console.log('PASS   ', this.contactForm.value.pass);
-        //this.onResetForm();
+        this.onResetForm();
     }
 }
 

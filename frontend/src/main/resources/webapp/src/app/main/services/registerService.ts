@@ -23,8 +23,6 @@ export class RegisterService extends OntimizeEEService {
 
     registerUser(  user: IUserModel ) {
         let bd = new Date(user.birthdate_user).getTime() / 1000;
-        console.log('USER1 = ',  user.nick_user);
-        console.log('PASS1 = ',  user.password_user);
         const url = CONFIG.apiEndpoint + '/' + 'users/user';
         var options = {
             headers: this.buildHeaders()
@@ -41,7 +39,7 @@ export class RegisterService extends OntimizeEEService {
             
             },
             sqltypes: {
-                'id_user': 9,
+                'id_user': 4,
                 'nick_user': 12,
                 'name_user': 12,
                 'surname_user': 12,
@@ -52,8 +50,6 @@ export class RegisterService extends OntimizeEEService {
                 
             }
         });
-        console.log('USER2 = ',  user.nick_user);
-        console.log('PASS2 = ',  user.password_user);
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {
             self.httpClient.post(url, body, options).subscribe(function (resp) {

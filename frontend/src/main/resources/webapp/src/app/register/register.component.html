@@ -1,0 +1,120 @@
+<section id="register">
+
+    <!--<div class="div-center div-input">
+        <form #formRegister="ngForm" class="div-center div-input" (ngSubmit)="onRegisterUser()">
+            <div class="form-group">
+                <mat-form-field class="form-field-width">
+                    <mat-label>{{'NICKNAME' | oTranslate}}</mat-label>
+                    <input class="mat-input-element form-control" id="nick_user" matInput maxlength="25"
+                        placeholder="{{'NICKNAME' | oTranslate}}" type="text" value="" name="nick_user"
+                        required="yes" [(ngModel)]="user.nick_user">
+                    <mat-hint align="start">
+                        <strong>
+                            <span class='mensaje-error' *ngIf="nickEmpty" style="color: red;">
+                            </span>
+                        </strong>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="form-field-width">
+                    <mat-label>{{'PASSWORD' | oTranslate}}</mat-label>
+                    <input class="mat-input-element form-control" id="password_user" matInput maxlength="25"
+                        placeholder="{{'PASSWORD' | oTranslate}}" type="text" value="" name="password_user"
+                        required="yes" [(ngModel)]="user.password_user">
+                    <mat-hint align="start">
+                        <strong>
+                            <span class='mensaje-error' *ngIf="passwordEmpty" style="color: red;">
+                            </span>
+                        </strong>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="form-field-width">
+                    <mat-label>{{'NAME' | oTranslate}}</mat-label>
+                    <input class="mat-input-element form-control" id="name_user" matInput maxlength="25"
+                        placeholder="{{'NAME' | oTranslate}}" type="text" value="" name="name_user"
+                        required="no" [(ngModel)]="user.name_user">
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="form-field-width">
+                    <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
+                    <input class="mat-input-element form-control" id="surname_user" matInput maxlength="50"
+                        placeholder="{{'SURNAME' | oTranslate}}" type="text" value="" name="surname_user"
+                        required="no" [(ngModel)]="user.surname_user">
+                    <mat-hint align="start">
+                        <strong>
+                            <span class='mensaje-error' *ngIf="passwordEmpty" style="color: red;">
+                            </span>
+                        </strong>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="birthdate_user" maxlength="25"
+                    placeholder="{{'BIRTHDATE' | oTranslate}}" type="date" name="birthdate_user" required="no"
+                    [(ngModel)]="user.birthdate_user">
+            </div>
+
+            <div class="form-group">
+                <input class="form-control" id="email_user" maxlength="50" placeholder="{{'EMAIL' | oTranslate}}"
+                    type="email" name="email_user" required="no" [(ngModel)]="user.email_user">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="description_user" maxlength="200"
+                    placeholder="{{'DESCRIPTION' | oTranslate}}" type="text" name="description_user" required="no"
+                    [(ngModel)]="user.description_user">
+            </div>
+            <button type="submit" class="btn">Register</button>
+            <br>
+            <a routerLink="./login" class="form-control login">Do you have account?</a>
+        </form>
+    </div>-->
+
+    <div>
+        <h1>Contact us!</h1>
+        <form appearance="fill" *ngIf="contactForm" [formGroup]="contactForm" (ngSubmit)="onRegisterUser()">
+   
+          <mat-form-field>
+            <mat-label>{{'NICK' | oTranslate}}</mat-label>
+            <input matInput type="text" formControlName="nick" placeholder="Your Nick" required = "true">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>{{'PASSWORD' | oTranslate}}</mat-label>
+            <input matInput type="password" formControlName="pass" placeholder="Your Password" required = "true">
+          </mat-form-field>
+   
+          <mat-form-field>
+            <mat-label>{{'NAME' | oTranslate}}</mat-label>
+            <input matInput type="text" formControlName="name" placeholder="Your Name">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
+            <input matInput type="email" formControlName="email" placeholder="Your email">
+          </mat-form-field>
+   
+          <mat-form-field>
+            <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
+            <input matInput type="text" formControlName="surname" placeholder="Your surname>">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
+            <input matInput type="date" formControlName="birthdate" placeholder="Your birthdate">
+          </mat-form-field>
+   
+          <mat-form-field>
+            <mat-label>{{'ABOUT_YOU' | oTranslate}}</mat-label>
+          <textarea matInput formControlName="description" placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
+          <br>
+        </mat-form-field>
+              <button mat-button type="submit" [disabled]="!contactForm.valid" >{{'CREATE_USER' | oTranslate}}</button>
+              <button mat-button >Cancel</button>
+        </form>
+   
+      </div>
+</section>

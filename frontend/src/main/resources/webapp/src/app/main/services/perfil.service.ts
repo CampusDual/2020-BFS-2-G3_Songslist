@@ -3,44 +3,37 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CONFIG } from 'app/app.config';
 import { OntimizeEEService, Observable } from 'ontimize-web-ngx';
 import { share } from 'rxjs/operators';
+import { IUserModel } from 'app/shared/models/iuser.model';
+import { Data } from '@angular/router';
 
 @Injectable(
      {    
      providedIn: 'root'
      }
 )
-export class AlbumService extends OntimizeEEService {
-
+export class PerfilService extends OntimizeEEService {
+    user : string ;
     buildHeaders () {
         const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
+        this.user = myData.session.user;
         return new HttpHeaders({
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json;charset=UTF-8',
             'Authorization': 'Bearer ' + myData.session.id
         });
-    }
+    } 
 
-    getAlbumData(id:number) {
-        const url = CONFIG.apiEndpoint + '/' + 'albums/album/search';
+
+    getUserData() {
+        const url = CONFIG.apiEndpoint + '/' + 'users/user/search';
         var options = {
             headers: this.buildHeaders()
         };
         var body = JSON.stringify({
             filter: {
-                id_album: id
+                'nick_user' : this.user
                  },
-            columns: ['id_album', 'name_album', 'id_artist', 'name_artist', 'id_genre', 'name_genre', 'img_album', 'description_album', 'year_album'],
-            sqltypes: {
-                'id_album': 4,
-                'name_album': 12,
-                'id_artist': 4,
-                'name_artist': 12,
-                'id_genre': 4,
-                'name_genre': 12,
-                'img_album': 4, 
-                'description_album': 12, 
-                'year_album': 91
-            }
+            columns: ['id_user','nick_user','name_user', 'surname_user', 'email_user', 'password_user', 'birthdate_user']
         });
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {
@@ -55,30 +48,38 @@ export class AlbumService extends OntimizeEEService {
         return dataObservable.pipe(share());
     }
 
-    getAlbumSonglist(id: number) {
-        const url = CONFIG.apiEndpoint + '/' + 'songs/song/search';
+    setUserData( id_user: number,  name_user?: string , surname_user?: string, email_user?: string, birthdate_user? :Date, description_user? : string, password_user? :string ) {
+        const url = CONFIG.apiEndpoint + '/' + 'users/user';
         var options = {
             headers: this.buildHeaders()
         };
+        console.log ('Parametros',id_user,  name_user , surname_user , email_user , birthdate_user ,description_user, password_user)
+        var dataObject = {}
+        if (name_user ) dataObject['name_user']=name_user ;
+        if (surname_user ) dataObject['surname_user']=surname_user ;
+        if (email_user ) dataObject['email_user']=email_user ;
+        if (birthdate_user ) dataObject['birthdate_user']=birthdate_user ;
+        if (description_user ) dataObject['description_user']=description_user ;
+        if (password_user ) dataObject['password_user']=password_user ;
+
         var body = JSON.stringify({
             filter: {
-                'id_album': id,
+                'id_user': id_user
                  },
-            columns: ['id_song', 'name_song', 'id_artist', 'name_artist', 'id_genre', 'name_genre', 'id_album', 'name_album'],
+                 data: dataObject,
             sqltypes: {
-                'id_song': 4,
-                'name_song': 12,
-                'id_album': 4,
-                'name_album': 12,
-                'id_artist': 4,
-                'name_artist': 12,
-                'id_genre': 4,
-                'name_genre': 12
+                'id_user': 9,
+                'nick_user': 12,
+                'name_user': 12,
+                'surname_user': 12,
+                'email_user': 12,
+                'password': 12,
+                'birthdate_user': 93
             }
         });
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {
-            self.httpClient.post(url, body, options).subscribe(function (resp) {
+            self.httpClient.put(url, body, options).subscribe(function (resp) {
                 self.parseSuccessfulQueryResponse(resp, _innerObserver);
             }, function (error) {
                 self.parseUnsuccessfulQueryResponse(error, _innerObserver);
@@ -86,6 +87,9 @@ export class AlbumService extends OntimizeEEService {
         });
         return dataObservable.pipe(share());
     }
+
+    saveMessage(data : IUserModel ){
+       
+    } 
+
 }
-
-

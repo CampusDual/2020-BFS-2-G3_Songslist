@@ -11,6 +11,8 @@ import { ArtistComponent } from './artist/artist.component';
 import { SongComponent } from './song/song.component';
 import { SongService } from './services/song.service';
 import { ArtistService } from './services/artist.service';
+import { PerfilComponent } from './perfil/perfil.component';
+import { PerfilService } from './services/perfil.service';
 
 @NgModule({
   imports: [
@@ -22,11 +24,13 @@ import { ArtistService } from './services/artist.service';
     AlbumComponent,
     MainComponent,
     ArtistComponent,
-    SongComponent
+    SongComponent,
+    PerfilComponent
   ], providers: [
     AlbumService,
     ArtistService,
-    SongService
+    SongService,
+    PerfilService
   ],
 })
 export class MainModule { }

@@ -7,6 +7,7 @@ import { IAuthService } from 'ontimize-web-ngx';
 import { DialogService, ODialogConfig } from 'ontimize-web-ngx';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RegisterService } from 'app/main/services/registerService';
+import { viewAttached, getViewData } from '@angular/core/src/render3/instructions';
 
 @Component({
     selector: 'register',
@@ -71,6 +72,10 @@ export class RegisterComponent implements OnInit {
         this.registerService.registerUser(this.user).subscribe(
             (userData: any) => {
               if (userData['data']) {
+                this.onAssignRole(userData['data'].id_user);
+                console.log('USERNICKNICK = ', this.user.nick_user);
+                this.onAssignPreference(this.user.nick_user);          
+
                 if (userData['data'].length > 0) {
                   this.userResult = userData['data'][0];
                   this.contactForm=this.createForm(); 
@@ -80,10 +85,57 @@ export class RegisterComponent implements OnInit {
                 }
               }
             },
-            err => console.error(err)
+            err => {
+                console.error(err);
+            }
           ); 
-        console.log('PASS   ', this.contactForm.value.pass);
+
         this.onResetForm();
     }
+
+    onAssignRole(id: number){
+
+        console.log('USERID = ',id)
+        this.registerService.assignRole(id).subscribe(
+            (userData: any) => {
+              if (userData['data']) {
+                console.log('USERNICKNICK = ', this.user.nick_user)
+                this.registerService.assignTokenPreference(this.user.nick_user).subscribe;        
+
+                if (userData['data'].length > 0) {
+                  this.userResult = userData['data'][0];
+                  this.contactForm=this.createForm(); 
+                  return this.userResult;
+                } else {
+                  this.userResult = null;
+                }
+              }
+            },
+            err => {
+                console.error(err);
+            }
+          ); 
+        }
+        onAssignPreference(nick: string){
+
+            console.log('USERNICK = ',nick)
+            this.registerService.assignTokenPreference(nick).subscribe(
+                (userData: any) => {
+                  if (userData['data']) {    
+                    if (userData['data'].length > 0) {
+                      this.userResult = userData['data'][0];
+                      this.contactForm=this.createForm(); 
+                      return this.userResult;
+                    } else {
+                      this.userResult = null;
+                    }
+                  }
+                },
+                err => {
+                    console.error(err);
+                }
+              ); 
+            }
+
 }
 

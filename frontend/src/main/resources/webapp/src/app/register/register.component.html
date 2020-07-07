@@ -1,0 +1,47 @@
+<section id="register">
+
+    <div>
+        <h1>Contact us!</h1>
+        <form appearance="fill" *ngIf="contactForm" [formGroup]="contactForm" (ngSubmit)="onRegisterUser()">
+   
+          <mat-form-field>
+            <mat-label>{{'NICK' | oTranslate}}</mat-label>
+            <input matInput type="text" formControlName="nick" placeholder="Your Nick" required = "true">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>{{'PASSWORD' | oTranslate}}</mat-label>
+            <input matInput type="password" formControlName="pass" placeholder="Your Password" required = "true">
+          </mat-form-field>
+   
+          <mat-form-field>
+            <mat-label>{{'NAME' | oTranslate}}</mat-label>
+            <input matInput type="text" formControlName="name" placeholder="Your Name">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
+            <input matInput type="email" formControlName="email" placeholder="Your email">
+          </mat-form-field>
+   
+          <mat-form-field>
+            <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
+            <input matInput type="text" formControlName="surname" placeholder="Your surname>">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
+            <input matInput type="date" formControlName="birthdate" placeholder="Your birthdate">
+          </mat-form-field>
+   
+          <mat-form-field>
+            <mat-label>{{'ABOUT_YOU' | oTranslate}}</mat-label>
+          <textarea matInput formControlName="description" placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
+          <br>
+        </mat-form-field>
+              <button mat-button type="submit" [disabled]="!contactForm.valid" >{{'CREATE_USER' | oTranslate}}</button>
+              <button mat-button >Cancel</button>
+        </form>
+   
+      </div>
+</section>

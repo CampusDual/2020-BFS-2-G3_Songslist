@@ -30,7 +30,11 @@ export const routes: Routes = [
       {
         path: 'album/:id',
         component: AlbumComponent
-      },   
+      }, 
+      {
+        path: 'perfil',
+        component: PerfilComponent
+      },    
       {
         path: 'artist/:id',
         component: ArtistComponent

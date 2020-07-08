@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<div mat-dialog-content>
+  <p>Select perfil avatar</p>
+  <div class="row width_50">
+    <o-image class="flex ico-select" attr="image1" [data]="img1"></o-image>
+    <o-image class="flex ico-select" attr="image2" [data]="img2"></o-image>
+    <o-image class="flex ico-select" attr="image3" [data]="img3"></o-image>
+    <o-image class="flex ico-select" attr="image4" [data]="img4"></o-image>
+    <o-image class="flex ico-select " attr="image5" [data]="img5"></o-image>
+    <o-image class="flex ico-select" attr="image6" [data]="img6"></o-image>
+    <o-image class="flex ico-select" attr="image7" [data]="img7"></o-image>
+    <o-image class="flex ico-select" attr="image8" [data]="img8"></o-image>
+    <o-image class="flex ico-select" attr="image9" [data]="img9"></o-image>
+    <o-image class="flex ico-select" attr="image10" [data]="img10"></o-image>
+    <o-image class="flex ico-select" attr="image11" [data]="img11"></o-image>
+    <o-image class="flex ico-select" attr="image12" [data]="img12"></o-image>
+  </div>
+  <mat-form-field>
+    <mat-label>Favorite Animal</mat-label>
+    <input matInput [(ngModel)]="data.animal">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>

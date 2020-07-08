@@ -27,7 +27,7 @@ body {
     //flex-direction: row;
     flex-direction: column;
 } 
-.widthAll{
+.width_100{
     width: 100%;
 }
 .width_25{
@@ -115,127 +115,65 @@ form {
     margin-left: auto;
     margin-right: auto;
 }
+.o-row{margin: 1rem;}
+.div-nick{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    text-align: center;
+}
+.div-passw{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    // margin-left: 2rem;
+    // margin-right: 2rem;
+}
 
 input {
-    padding: 0rem;
-    border :solid blue 1px;
-    margin: 0.5rem;
-    font-size: medium;
-    width: 85%;  
-    height: 100%;
-    align-items: stretch;
-    display: flex;
-    margin: 0.5rem;
-    font-size: medium;
+    // padding: 0rem;
+    // //border :solid blue 1px;
+    // //margin: 0.5rem;
+    // font-size: medium;
+    // width: 85%;  
+    // height: 100%;
+    // align-items: stretch;
+    // display: flex;
+    // margin: 0.5rem;
+    // font-size: medium;
 }
 textarea {
     // margin-left: 0.5rem;
     // margin-top: 0.5rem;
-    border :solid blue 1px;
-    margin: 0.5rem;
-    font-size: medium;
-    width: 85%;  
-    align-items: stretch;
-    display: flex;
-    margin: 0.5rem;
-    font-size: medium;
-}
+//     border :solid blue 1px;
+//     margin: 0.5rem;
+//     font-size: medium;
+//     width: 85%;  
+//     align-items: stretch;
+//     display: flex;
+//     margin: 0.5rem;
+//     font-size: medium;
+ }
 mat-form-field {
     width: auto;
-    display: flex !important;
+    display: flex 
   
 }
 
-.mat-form-field-infix {
-    display: block !important;
-}
 // titulo
 h2{
-    border : solid orange 1px;
+    //border : solid orange 1px;
     text-align: center;
 }
 
-//form
-.datasheet-text-input{
-    margin: 0.5rem;
-    font-size: medium;
-}
 
-.datasheet-information-panel{
-    padding: 2rem;
-    
-}
-
-.datashet-inputs-panel{
-    height: 100%;
-    margin-left: 1rem;
-}
-
-.datasheet-component{
-    width: 100;
-    height: 100%;
-    padding-top: 1.5%;
-    padding-left: 1.5%;
-    padding-right: 3%;
-    padding-bottom: 3%;
-    color:  rgb(15, 15, 15); 
-}
-
-.datasheet-acordion {
-    justify-content: space-between;
-    //align-items: center;
-    flex-basis: 0;
-  }
-
-  .datasheet-o-row{
-      width: 100%;
-  }
-
-.datasheet-input,
-.datasheet-text-input-hover{
-    //padding: 1rem;
-}
-
-.datasheet-text-input-hover:hover{
-    font-weight: bold;
-    color: $color-select;
-    //padding: 1rem;
-}
-
-.datasheet-description{
-    font-weight: bold;
-    //padding-top: 1rem;
-}
-
-
-.item-hover:hover{
-    font-weight: bold;
-    color: $color-select;
-}
-
-.mat-toolbar.mat-toolbar-single-row.ng-star-inserted{
-    background-color: rgb(255, 255, 255);;
-}
-
-.mat-toolbar{
-    display: none;
-}
-
-.accordion-panel{
-    margin: 1rem;
-}
-
- // [Css Imgen]
-.datasheet-img{
-    align-self: center;
-    padding: 0.1rem;
-    border-radius: 4px;
-    overflow: visible;
-    transform: translate3d(0,0,0);
-    transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
-}
 .o-image{
-    width: 8%;
-    height: 10%;
+    width: auto;
+    height: auto;
+    margin: 1rem;
 
+}
+.o-form-toolbar {
+    flex: none;
+    display: none !important;
 }

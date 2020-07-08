@@ -1,40 +1,142 @@
 <div class="component">
-  <div class="row width_50">
-    <o-image class="flex ico-select" attr="image1" [data]="img1"></o-image>
-    <o-image class="flex ico-select" attr="image2" [data]="img2"></o-image>
-    <o-image class="flex ico-select" attr="image3" [data]="img3"></o-image>
-    <o-image class="flex ico-select" attr="image4" [data]="img4"></o-image>
-    <o-image class="flex ico-select " attr="image5" [data]="img5"></o-image>
-    <o-image class="flex ico-select" attr="image6" [data]="img6"></o-image>
-    <o-image class="flex ico-select" attr="image7" [data]="img7"></o-image>
-    <o-image class="flex ico-select" attr="image8" [data]="img8"></o-image>
-    <o-image class="flex ico-select" attr="image9" [data]="img9"></o-image>
-    <o-image class="flex ico-select" attr="image10" [data]="img10"></o-image>
-    <o-image class="flex ico-select" attr="image11" [data]="img11"></o-image>
-    <o-image class="flex ico-select" attr="image12" [data]="img12"></o-image>
-  </div>
-  <div>
+
+  <div *ngIf=" contactForm">
     <h2 class="datasheet-h2">{{'PERFIL' | oTranslate}}</h2>
-    <form class="" appearance="fill" *ngIf="contactForm" [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
 
-      <o-row class=" center widthAll">
+    <form *ngIf="perfilResult && contactForm " [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
+      <o-row>
+        <!-- <o-text-input  class="input-padding" attr="{{'NICK' | oTranslate}}" formControlName="nick" 
+        readonly="yes">
+        </o-text-input> -->
+        <div fxFlex="15" class="div-nick" style="margin:1rem;"> {{'NICK' | oTranslate}} </div>
+        <input fxFlex="15" display="flex" class="datasheet-input" matInput type="text" formControlName="nick"
+          readonly="yes">
 
-        <o-column class=" center width_25">
-          holaaaaaaaaaaaa
+
+
+
+      </o-row>
+      <o-row style="margin: 1rem;">
+        <o-column fxFlex="25">
+
+          <!-- <o-image show-header-navigation="no" id="CUSTOMER_PHOTO" attr="PHOTO" empty-image="assets/images/no-image.png" sql-type="OTHER">
+          </o-image> -->
+
+          <o-image attr="image" enabled="true" read-only="false" show-controls="false" full-screen-button="true"
+            empty-image="./assets/images/no-image.png" auto-fit="true"></o-image>
         </o-column>
 
+        <o-column title-label="CUSTOMER_PERSONAL_INFORMATION" fxFlex="75">
 
-        <o-column class="  center around midddle between width_75 ">
+          <o-row style="margin: 1rem;">
+
+            <!-- <o-text-input  class="input-padding" attr="{{'NAME' | oTranslate}}" formControlName="name" fxFlex="40"
+              required="no"></o-text-input> -->
+
+            <mat-form-field fxFlex="40" display="flex">
+              <mat-label>{{'NAME' | oTranslate}}</mat-label>
+              <input class="datasheet-input" matInput type="text" formControlName="name" placeholder="Your Name">
+            </mat-form-field>
 
 
-          <o-row class="  center between widthAll ">
-            <o-column>
+            <!-- <o-text-input class="input-padding" attr="{{'SURNAME' | oTranslate}}" formControlName="surname" fxFlex="40"
+              required="no"></o-text-input> -->
+
+            <mat-form-field fxFlex="40" display="flex">
+              <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
+              <input class="datasheet-input" matInput type="text" formControlName="surname" placeholder="Your surname>">
+            </mat-form-field>
+
+
+            <!-- <o-date-input class="input-padding" attr="{{'BIRTHDATE' | oTranslate}}" formControlName="birthdate" fxFlex="40"
+              required="no">
+             </o-date-input> -->
+
+
+
+
+          </o-row>
+
+          <o-row style="margin: 1rem;">
+            <!-- <o-email-input  attr="{{'EMAIL' | oTranslate}}" formControlName="email" fxFlex></o-email-input> -->
+
+            <mat-form-field fxFlex="40" display="flex" [ngClass]="">
+              <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
+              <input class="datasheet-input" matInput type="email" formControlName="email" placeholder="Your email">
+            </mat-form-field>
+
+            <mat-form-field fxFlex="40" display="flex">
+              <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
+              <input class="datasheet-input" matInput type="date" formControlName="birthdate"
+                placeholder="Your birthdate">
+            </mat-form-field>
+
+          </o-row>
+        </o-column>
+      </o-row>
+      <o-column>
+        <o-row>
+          <mat-form-field fxFlex="40" display="flex">
+            <input matInput placeholder="New password" [type]="hide ? 'password' 
+              : 'text'" formControlName="newpassw">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 
+              'visibility_off'}}</mat-icon>
+            <mat-error *ngIf="passFormControl.hasError('required')">
+              Please enter your newpassword
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="40" display="flex">
+            <input matInput placeholder="Confirm password" [type]="hide ? 
+                  'password' : 'text'" formControlName="repnewpassw">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 
+                    'visibility_off'}}</mat-icon>
+            <mat-error *ngIf="newpassw != repnewpassw ">
+              Confirm your password
+            </mat-error>
+          </mat-form-field>
+        </o-row>
+
+        <o-row>
+          <!-- <o-textarea-input  attr="{{'DESCRIPTION' | oTranslate}}" fxFlex formControlName="description">
+            </o-textarea-input> -->
+          <mat-form-field>
+            <mat-label>{{'DESCRIPTION' | oTranslate}}</mat-label>
+            <textarea class=" width_100" matInput formControlName="description"
+              placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
+          </mat-form-field>
+        </o-row>
+
+
+        <o-row>
+          <div fxFlex="40" display="flex" class="div-passw"> {{'TO_CONFIRM' | oTranslate}} </div>
+          <mat-form-field fxFlex="40" display="flex">
+            <mat-label>{{'PASWORD' | oTranslate}}</mat-label>
+            <input class="datasheet-input" matInput type="password" formControlName="passw">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 
+                'visibility_off'}}</mat-icon>
+          </mat-form-field>
+        </o-row>
+
+
+      </o-column>
+      <o-row layout-align="right">
+        <button class=" right   width_10  height_2" mat-button type="submit"
+          [disabled]="!inputChange()">{{'SAVE' | oTranslate}}</button>
+        <button class=" right   width_10 height_2" mat-button>Cancel</button>
+      </o-row>
+    </form>
+  </div>
+</div>
+
+<!-- 
+              <o-column>
               <mat-form-field class="  width_50" [ngClass]="">
                 <mat-label>{{'NICK' | oTranslate}}</mat-label>
                 <input class="datasheet-input" matInput type="text" formControlName="nick" placeholder="Your Nick"
                   readonly="yes">
               </mat-form-field>
-            </o-column>
+            </o-column> 
 
             <o-column>
               <mat-form-field class=" width_75" [ngClass]="">
@@ -42,9 +144,13 @@
                 <input class="datasheet-input" matInput type="text" formControlName="name" placeholder="Your Name">
               </mat-form-field>
             </o-column>
-          </o-row>
+              -->
 
-          <o-row class=" center between widthAll ">
+
+
+<!--
+          <o-row >
+            
             <o-column>
               <mat-form-field class=" width_75" [ngClass]="">
                 <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
@@ -57,7 +163,7 @@
                 <input class="datasheet-input" matInput type="text" formControlName="surname"
                   placeholder="Your surname>">
               </mat-form-field>
-            </o-column>
+            </o-column> 
           </o-row>
 
           <o-row class=" center between widthAll">
@@ -68,6 +174,8 @@
                   placeholder="Your birthdate">
               </mat-form-field>
             </o-column>
+
+
             <o-column>
               <mat-form-field class=" width_75" [ngClass]="">
                 <mat-label>{{'DESCRIPTION' | oTranslate}}</mat-label>
@@ -78,12 +186,4 @@
           </o-row>
 
         </o-column>
-      </o-row>
-      <o-row class="div-button  right widthAll">
-        <button class=" right   width_10  height_2" mat-button type="submit"
-          [disabled]="!inputChange()">{{'SAVE' | oTranslate}}</button>
-        <button class=" right   width_10 height_2" mat-button>Cancel</button>
-      </o-row>
-    </form>
-  </div>
-</div>
+        -->

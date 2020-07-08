@@ -48,6 +48,18 @@
     <div class="div-result">
       <mat-table class="lessons-table mat-elevation-z8 mat-table-element" [dataSource]="searchSongs">
 
+        <ng-container matColumnDef="Img">
+          <mat-header-cell *matHeaderCellDef>{{'IMG' | oTranslate}}</mat-header-cell>
+          <mat-cell #cell (onmouseover)='cell_onmouseover()' *matCellDef="let song"><a
+              [routerLink]="['/main/song',song.id_song]" [queryParams]="{id: song.id_song}" href="#">
+               <!-- <img src='./assets/images/album/{{song.img_album}}'> -->
+              <o-image class="datasheet-img" attr="image" type="RAISED"  fxFlex="40" data="./assets/images/album/{{song.img_album}}.jpg"
+              height="90%" width="20%" auto-fit="true" enabled="true" read-only="true" show-controls="false"
+              full-screen-button="false" empty-image="./assets/images/no-image.png">
+            </o-image>
+            </a></mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="Song">
           <mat-header-cell *matHeaderCellDef>{{'SONG' | oTranslate}}</mat-header-cell>
           <mat-cell #cell (onmouseover)='cell_onmouseover()' *matCellDef="let song"><a
@@ -83,9 +95,18 @@
 
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="['Song', 'Album', 'Artist','Genre']"></mat-header-row>
+        <ng-container matColumnDef="Action">
+          <mat-header-cell *matHeaderCellDef>{{'ACTION' | oTranslate}}</mat-header-cell>
+          <mat-cell class="duration-cell" *matCellDef="let song">
+            <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+              <mat-icon>playlist_add</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
 
-        <mat-row *matRowDef="let row; columns:['Song','Album','Artist','Genre']"></mat-row>
+        <mat-header-row *matHeaderRowDef="['Img','Song', 'Album', 'Artist','Genre','Action']"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns:['Img','Song','Album','Artist','Genre','Action']"></mat-row>
 
       </mat-table>
 

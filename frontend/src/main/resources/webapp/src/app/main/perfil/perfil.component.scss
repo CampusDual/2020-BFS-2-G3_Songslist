@@ -10,7 +10,6 @@ $color-select :rgb(255, 204, 0);
 
 @use "@material/image-list";
 
-
 * {
   
 }
@@ -62,7 +61,6 @@ body {
     align-items: stretch;
    
 }
-
 .center {
     justify-content: center;
 }
@@ -159,13 +157,11 @@ mat-form-field {
     display: flex 
   
 }
-
 // titulo
 h2{
     //border : solid orange 1px;
     text-align: center;
 }
-
 
 .o-image{
     width: auto;

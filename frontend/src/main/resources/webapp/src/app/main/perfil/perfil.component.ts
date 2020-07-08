@@ -111,9 +111,11 @@ confirmFormControl = new FormControl('', [
       repnewpassw: new FormControl( '', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)])
     });
   }
+
   onResetForm(): void {
     this.contactForm.reset();
   }
+
   inputChange(): boolean {
     if (this.perfilResult && this.contactForm) {
       if (this.contactForm.value.name != this.perfilResult.name_user && this.contactForm.get('name').status == 'VALID') {
@@ -137,6 +139,7 @@ confirmFormControl = new FormControl('', [
       return null
     }
   }
+
   showConfigured() {
     // SnackBar configuration
     const configuration: OSnackBarConfig = {
@@ -206,12 +209,9 @@ confirmFormControl = new FormControl('', [
     }
   }
   cargarForm():boolean {
-
-
   if (this.contactForm && this.perfilResult ){
     console.log('load form ',this.contactForm);
     console.log('load perfilData ',this.perfilResult);
-
     return true;
   }
     return false;

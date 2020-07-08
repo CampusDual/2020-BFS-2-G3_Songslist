@@ -12,9 +12,6 @@
         <input fxFlex="15" display="flex" class="datasheet-input" matInput type="text" formControlName="nick"
           readonly="yes">
 
-
-
-
       </o-row>
       <o-row style="margin: 1rem;">
         <o-column fxFlex="25">
@@ -27,9 +24,7 @@
         </o-column>
 
         <o-column title-label="CUSTOMER_PERSONAL_INFORMATION" fxFlex="75">
-
           <o-row style="margin: 1rem;">
-
             <!-- <o-text-input  class="input-padding" attr="{{'NAME' | oTranslate}}" formControlName="name" fxFlex="40"
               required="no"></o-text-input> -->
 
@@ -38,15 +33,12 @@
               <input class="datasheet-input" matInput type="text" formControlName="name" placeholder="Your Name">
             </mat-form-field>
 
-
             <!-- <o-text-input class="input-padding" attr="{{'SURNAME' | oTranslate}}" formControlName="surname" fxFlex="40"
               required="no"></o-text-input> -->
-
             <mat-form-field fxFlex="40" display="flex">
               <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
               <input class="datasheet-input" matInput type="text" formControlName="surname" placeholder="Your surname>">
             </mat-form-field>
-
 
             <!-- <o-date-input class="input-padding" attr="{{'BIRTHDATE' | oTranslate}}" formControlName="birthdate" fxFlex="40"
               required="no">
@@ -56,10 +48,8 @@
 
 
           </o-row>
-
           <o-row style="margin: 1rem;">
             <!-- <o-email-input  attr="{{'EMAIL' | oTranslate}}" formControlName="email" fxFlex></o-email-input> -->
-
             <mat-form-field fxFlex="40" display="flex" [ngClass]="">
               <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
               <input class="datasheet-input" matInput type="email" formControlName="email" placeholder="Your email">
@@ -70,7 +60,6 @@
               <input class="datasheet-input" matInput type="date" formControlName="birthdate"
                 placeholder="Your birthdate">
             </mat-form-field>
-
           </o-row>
         </o-column>
       </o-row>
@@ -96,7 +85,6 @@
             </mat-error>
           </mat-form-field>
         </o-row>
-
         <o-row>
           <!-- <o-textarea-input  attr="{{'DESCRIPTION' | oTranslate}}" fxFlex formControlName="description">
             </o-textarea-input> -->
@@ -107,7 +95,6 @@
           </mat-form-field>
         </o-row>
 
-
         <o-row>
           <div fxFlex="40" display="flex" class="div-passw"> {{'TO_CONFIRM' | oTranslate}} </div>
           <mat-form-field fxFlex="40" display="flex">
@@ -117,7 +104,6 @@
                 'visibility_off'}}</mat-icon>
           </mat-form-field>
         </o-row>
-
 
       </o-column>
       <o-row layout-align="right">

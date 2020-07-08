@@ -1,47 +1,106 @@
-<section id="register">
+<section id="register" class = "component">
+  <div fxLayout="row" fxFill fxLayoutAlign="center center" class="login-outer-container component">
 
-    <div>
-        <h1>Contact us!</h1>
-        <form appearance="fill" *ngIf="contactForm" [formGroup]="contactForm" (ngSubmit)="onRegisterUser()">
-   
-          <mat-form-field>
-            <mat-label>{{'NICK' | oTranslate}}</mat-label>
-            <input matInput type="text" formControlName="nick" placeholder="Your Nick" required = "true">
-          </mat-form-field>
+    <div fxLayout="column" class="login-inner-container mat-elevation-z1 ">
+      <h2 class = "h2-register">{{'NEW_USER' |oTranslate}}</h2>
 
-          <mat-form-field>
-            <mat-label>{{'PASSWORD' | oTranslate}}</mat-label>
-            <input matInput type="password" formControlName="pass" placeholder="Your Password" required = "true">
-          </mat-form-field>
-   
-          <mat-form-field>
-            <mat-label>{{'NAME' | oTranslate}}</mat-label>
-            <input matInput type="text" formControlName="name" placeholder="Your Name">
-          </mat-form-field>
-          <br>
-          <mat-form-field>
-            <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
-            <input matInput type="email" formControlName="email" placeholder="Your email">
-          </mat-form-field>
-   
-          <mat-form-field>
-            <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
-            <input matInput type="text" formControlName="surname" placeholder="Your surname>">
-          </mat-form-field>
-          <br>
-          <mat-form-field>
-            <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
-            <input matInput type="date" formControlName="birthdate" placeholder="Your birthdate">
-          </mat-form-field>
-   
-          <mat-form-field>
-            <mat-label>{{'ABOUT_YOU' | oTranslate}}</mat-label>
-          <textarea matInput formControlName="description" placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
-          <br>
+      <form class="form-register" [formGroup]="registerForm" (ngSubmit)="onRegisterUser()">
+
+        <div fxLayout="row" fxFill class="login-outer-container">
+
+          <div class="form-column-left" fxLayout="column">
+
+
+            <mat-form-field>
+              <mat-label>{{'NICK' | oTranslate}}</mat-label>
+              <input class = "input-register" matInput type="text" formControlName="nick" placeholder="Your Nick" required="true"
+                variant="outlined">
+            </mat-form-field>
+            <div layout-padding></div>
+            <div layout-padding></div>
+            <mat-form-field>
+              <mat-label>{{'PASSWORD' | oTranslate}}</mat-label>
+              <input class = "input-register" matInput type="password" class="form-control" formControlName="password" name="password"
+                ng-model="user.pass" placeholder="{{PASSWORD}}" class="form-control input" required="true"
+                (keyup)="checkPasswords($event.target.value)">
+              <mat-hint align="start">
+                <strong>
+                  <span *ngIf=" !this.minLenght " style="color: red;">
+                    {{'MIN_LENGHT_SIX' | oTranslate}}
+                  </span>
+                </strong>
+              </mat-hint>
+            </mat-form-field>
+            <div layout-padding></div>
+            <div layout-padding></div>
+            <mat-form-field>
+              <mat-label>{{'CONFIRM_PASSWORD' | oTranslate}}</mat-label>
+              <input class = "input-register" matInput type="password" formControlName="confirmPass" name="confirmPass"
+                ng-model="user.confirmPassword" placeholder="{{CONFIRM_PASSWORD}}" compare-to="user.password"
+                class="form-control input" required="true" (keyup)="checkPasswords($event.target.value)">
+              <mat-hint align="start">
+                <strong>
+                  <span
+                    *ngIf=" this.match && this.registerForm.value.password.length > 5 && this.registerForm.value.confirmPass > 0"
+                    style="color: green;">
+                    {{ 'PASSWORD_MATCH' | oTranslate }}
+                  </span>
+                  <span *ngIf=" !this.match && this.minLenght && this.registerForm.value.confirmPass > 0"
+                    style="color: red;">
+                    {{'PASSWORD_NOT_MATCH' | oTranslate}}
+                  </span>
+                </strong>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="form-column-right" fxLayout="column" fxLayoutAlign="center">
+
+            <mat-form-field>
+              <mat-label>{{'NAME' | oTranslate}}</mat-label>
+              <input class = "input-register" matInput type="text" formControlName="name" placeholder="Your Name">
+            </mat-form-field>
+            <div layout-padding></div>
+            <div layout-padding></div>
+            <mat-form-field>
+              <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
+              <input class = "input-register" matInput type="email" formControlName="email" placeholder="Your email">
+            </mat-form-field>
+            <div layout-padding></div>
+            <div layout-padding></div>
+
+            <mat-form-field>
+              <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
+              <input class = "input-register" matInput type="text" formControlName="surname" placeholder="Your surname>">
+            </mat-form-field>
+            <div layout-padding></div>
+            <div layout-padding></div>
+            <mat-form-field>
+              <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
+              <input class = "input-register" matInput type="date" formControlName="birthdate" placeholder="Your birthdate">
+            </mat-form-field>
+            <div layout-padding></div>
+            <div layout-padding></div>
+
+
+
+
+
+          </div>
+        </div>
+
+        <mat-form-field fxFill fxLayoutAlign="center center">
+          <mat-label>{{'ABOUT_YOU' | oTranslate}}</mat-label>
+          <textarea class = "input-register" matInput formControlName="description" placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
+          <div layout-padding></div>
+          <div layout-padding></div>
         </mat-form-field>
-              <button mat-button type="submit" [disabled]="!contactForm.valid" >{{'CREATE_USER' | oTranslate}}</button>
-              <button mat-button >Cancel</button>
-        </form>
-   
-      </div>
+
+<o-row class="row-register">
+        <button mat-raised-button color="primary" type="submit"
+          [disabled]="!registerForm.valid || !this.match">{{'CREATE_USER' | oTranslate}}</button>
+        <button mat-button>Cancel</button>
+      </o-row>
+      </form>
+    </div>
+  </div>
 </section>

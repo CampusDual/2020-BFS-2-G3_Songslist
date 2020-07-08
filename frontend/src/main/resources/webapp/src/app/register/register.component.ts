@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
   };
   public match: boolean = false;
   public minLenght: boolean = true;
+  public writeSomething: boolean = false;
   constructor(private registerService: RegisterService, protected dialogService: DialogService) { }
   ngOnInit() {
     this.registerForm = this.createForm();
@@ -45,7 +46,7 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', [Validators.minLength(3), Validators.pattern(this.emailPattern)]),
       nick: new FormControl('', [Validators.minLength(3), Validators.maxLength(25)]),
       password: new FormControl('', [Validators.minLength(6), Validators.maxLength(25)]),
-      confirmPass: new FormControl('', [Validators.minLength(6), Validators.required]),
+      confirmPass: new FormControl(),
       surname: new FormControl('', [Validators.minLength(3), Validators.maxLength(50)]),
       birthdate: new FormControl(''),
       description: new FormControl('', [Validators.minLength(0), Validators.maxLength(200)])
@@ -136,6 +137,7 @@ export class RegisterComponent implements OnInit {
   checkPasswords() { // take al words legth >3
     let pass: string = this.registerForm.value.password;
     let repeatpass: string = this.registerForm.value.confirmPass;
+    this.writeSomething = repeatpass.length>0 ? true : false;
     if (pass.length > 0) {
       this.minLenght = pass.length < 6 ? false : true;
       if (repeatpass.length > 0){

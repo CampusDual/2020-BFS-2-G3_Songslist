@@ -6,7 +6,7 @@ import { DatePipe } from '@angular/common';
 import { VALID } from '@angular/forms/src/model';
 import { SnackBarService, OSnackBarConfig, DialogService } from 'ontimize-web-ngx';
 import { MatDialog } from '@angular/material';
-import { DialogImageSelect } from './imageSelectDialog/imageSelect.dialog.componet';
+
 
 
 @Component({
@@ -216,24 +216,6 @@ confirmFormControl = new FormControl('', [
   }
     return false;
   }
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(DialogImageSelect, {
-  //     height: '400px',
-  //     width: '600px',
-  //     data: {name: this.imgselect}
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     this.imgselect = result;
-  //   });
-  // }
-
-  // showInfo(evt: any) {
-  //   if (this.dialogService) {
-  //   this.dialogService.info('Info dialog title',
-  //       'This is an amazing "Information" dialog');
-  //   }
-// }
+ 
 
 }

@@ -134,13 +134,18 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
-  checkPasswords() { // take al words legth >3
-    let pass: string = this.registerForm.value.password;
-    let repeatpass: string = this.registerForm.value.confirmPass;
-    this.writeSomething = repeatpass.length>0 ? true : false;
-    if (pass.length > 0) {
-      this.minLenght = pass.length < 6 ? false : true;
-      if (repeatpass.length > 0){
+  checkPasswords() { 
+
+    let pass: number = (this.registerForm.value.password) ? this.registerForm.value.password.length : 0;
+    let repeatpass: number = (this.registerForm.value.confirmPass) ? this.registerForm.value.confirmPass.length : 0 ;
+    this.writeSomething = repeatpass>0 ? true : false;
+    if (pass > 0) {
+      this.minLenght = pass < 6 ? false : true;
+      console.log('pass = ', pass);
+      console.log('match = ', this.match);
+      console.log('minLenght = ', this.minLenght);
+      console.log('writeSomething = ', this.writeSomething);
+      if (repeatpass > 0){
         this.match = (pass > repeatpass || pass < repeatpass) ? false : true;
       }
     }else{ this.minLenght = true }

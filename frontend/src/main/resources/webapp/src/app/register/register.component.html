@@ -44,14 +44,11 @@
             class="form-control input" required="true" (keyup)="checkPasswords($event.target.value)">
           <mat-hint align="start">
             <strong>
-              <span
-                *ngIf=" this.match && this.minLenght"
-                style="color: green;">
+              <span *ngIf=" this.match && this.minLenght" style="color: green;">
                 {{ 'PASSWORD_MATCH' | oTranslate }}
               </span>
-              <span *ngIf=" !this.match && this.writeSomething"
-                style="color: red;">
-                 {{ 'PASSWORD_NOT_MATCH' | oTranslate }}
+              <span *ngIf=" !this.match && this.writeSomething" style="color: red;">
+                {{ 'PASSWORD_NOT_MATCH' | oTranslate }}
               </span>
             </strong>
           </mat-hint>
@@ -86,7 +83,8 @@
             [disabled]="!registerForm.valid || !this.match">{{'CREATE_USER' | oTranslate}}</button>
         </o-column>
         <o-column>
-          <button mat-button>Cancel</button>
+          <o-button class="button-back" attr="raised" type="RAISED" label="{{'CANCEL' | oTranslate}}" layout-padding
+            [routerLink]="['/login']"></o-button>
         </o-column>
       </div>
 

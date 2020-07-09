@@ -6,7 +6,7 @@ export interface IAlbumModel {
       id_genre: number;      
       name_genre: string;
       year_album: Date;
-      img_album: ImageBitmap;
+      img_album: number;
       description_album: string;
    }
   

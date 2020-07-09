@@ -31,6 +31,7 @@
             <FunctionColumn name="NAME_ARTIST" value="name_artist" />
             <FunctionColumn name="ID_GENRE" value="id_genre" />
             <FunctionColumn name="NAME_GENRE" value="name_genre" />
+            <FunctionColumn name="IMG_ALBUM" value="img_album" />
         </FunctionColumns>
          <Sentence>
             <![CDATA[

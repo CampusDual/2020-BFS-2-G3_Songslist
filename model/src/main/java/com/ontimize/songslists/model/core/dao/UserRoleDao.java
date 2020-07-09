@@ -22,5 +22,3 @@ public class UserRoleDao extends OntimizeJdbcDaoSupport {
 	public static final String NICK 			= "nick_user";
 	public static final String ROLENAME 		= "rolename";
 }
-
-		

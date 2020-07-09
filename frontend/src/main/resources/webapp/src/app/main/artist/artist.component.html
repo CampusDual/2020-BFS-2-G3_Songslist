@@ -19,25 +19,26 @@
       </o-form>
     </div>
   </div>
-</div>
-<div>
-  <mat-accordion class="datasheet-acordion">
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-panel-description>
-            {{'SHOW_DISCOGRAPHY' | oTranslate}}
-          </mat-panel-description>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <o-list [static-data]="getAlbumResult()" title="{{'DISCOGRAPHY_AVAILABLE' | oTranslate}}" quick-filter="false"
-        refresh-button="false" insert-button="false" insert-button-floatable="false" delete-button="false"
-        selectable="true" dense="false" detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
-        <o-list-item *ngFor="let album of albumResult">
-          <p class=item-hover [routerLink]="['/main/album', album.id_album]" [queryParams]="{id: album.id_album}"
-            href="#">{{ album.name_album}}</p>
-        </o-list-item>
-      </o-list>
-    </mat-expansion-panel>
-  </mat-accordion>
+
+  <div *ngIf="artistResult">
+    <mat-accordion class="datasheet-acordion">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-panel-description>
+              {{'SHOW_DISCOGRAPHY' | oTranslate}}
+            </mat-panel-description>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <o-list [static-data]="getAlbumResult()" title="{{'DISCOGRAPHY_AVAILABLE' | oTranslate}}" quick-filter="false"
+          refresh-button="false" insert-button="false" insert-button-floatable="false" delete-button="false"
+          selectable="true" dense="false" detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
+          <o-list-item *ngFor="let album of albumResult">
+            <p class=item-hover [routerLink]="['/main/album', album.id_album]" [queryParams]="{id: album.id_album}"
+              href="#">{{ album.name_album}}</p>
+          </o-list-item>
+        </o-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 </div>

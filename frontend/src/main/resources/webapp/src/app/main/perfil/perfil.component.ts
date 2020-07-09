@@ -4,7 +4,9 @@ import { IUserModel } from 'app/shared/models/iuser.model';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { VALID } from '@angular/forms/src/model';
-import { SnackBarService, OSnackBarConfig } from 'ontimize-web-ngx';
+import { SnackBarService, OSnackBarConfig, DialogService } from 'ontimize-web-ngx';
+import { MatDialog } from '@angular/material';
+
 
 
 @Component({
@@ -14,15 +16,45 @@ import { SnackBarService, OSnackBarConfig } from 'ontimize-web-ngx';
   providers: [DatePipe]
 })
 export class PerfilComponent implements OnInit {
-  public perfilResult: IUserModel = null;
+  ico_png ='./assets/images/ico/avatar/png/';
+  public img1 = this.ico_png + '1.png';
+  public img2 = this.ico_png + '2.png';
+  public img3 = this.ico_png + '3.png';
+  public img4 = this.ico_png + '4.png';
+  public img5 = this.ico_png + '5.png';
+  public img6 = this.ico_png + '6.png';
+  public img7 = this.ico_png + '7.png';
+  public img8 = this.ico_png + '8.png';
+  public img9 = this.ico_png + '9.png';
+  public img10 = this.ico_png + '10.png';
+  public img11 = this.ico_png + '11.png';
+  public img12 = this.ico_png + '12.png';
+
+
+
+  public perfilResult: IUserModel ;
   // public perfiUpdate: IUserModel ;
-  public contactForm: FormGroup = null;
+  public contactForm: FormGroup;
   public alert: number;
   public change: boolean = false;
+
+
+  passFormControl = new FormControl('', [
+    Validators.required,
+]);
+confirmFormControl = new FormControl('', [
+    Validators.required,
+    ]);
+
+     hide =true;
+
+  public imgselect : string ;
   constructor(
     private perfilService: PerfilService,
     private datePipe: DatePipe,
-    protected snackBarService: SnackBarService
+    protected snackBarService: SnackBarService,
+    public dialog: MatDialog,
+    protected dialogService: DialogService
   ) { }
   ngOnInit() {
     this.ngOnStartForm();
@@ -54,28 +86,36 @@ export class PerfilComponent implements OnInit {
 
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   private textPattern: any = /^[a-zA-Z0-9]+(?:[_ -]?[a-zA-Z0-9])*$/;
+  get nick() { return this.contactForm.get('nick'); }
+  get passw() { return this.contactForm.get('passw'); }
   get name() { return this.contactForm.get('name'); }
   get email() { return this.contactForm.get('email'); }
-  get nick() { return this.contactForm.get('nick'); }
   get surname() { return this.contactForm.get('surname'); }
   get birthdate() { return this.contactForm.get('birthdate'); }
   get description() { return this.contactForm.get('description'); }
+  get newpassw() { return this.contactForm.get('description'); }
+  get repnewpassw() { return this.contactForm.get('description'); }
 
   createForm(perfilData: IUserModel) {
     console.log('method : createForm')
     console.log('perfilData', perfilData)
     return new FormGroup({
-      name: new FormControl(perfilData ? perfilData.name_user : '', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
-      email: new FormControl(perfilData ? perfilData.email_user : '', [Validators.minLength(0), Validators.maxLength(50), Validators.pattern(this.emailPattern)]),
       nick: new FormControl(perfilData ? perfilData.nick_user : '', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
+      passw: new FormControl( '', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
+      name: new FormControl(perfilData ? perfilData.name_user : '', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
       surname: new FormControl(perfilData ? perfilData.surname_user : '', [Validators.minLength(0), Validators.maxLength(50), Validators.pattern(this.textPattern)]),
       birthdate: new FormControl(perfilData ? this.datePipe.transform(perfilData.birthdate_user, 'yyyy-MM-dd') : ''),
-      description: new FormControl(perfilData ? perfilData.description_user : '', [Validators.minLength(0), Validators.maxLength(200)])
+      email: new FormControl(perfilData ? perfilData.email_user : '', [Validators.minLength(0), Validators.maxLength(50), Validators.pattern(this.emailPattern)]),
+      description: new FormControl(perfilData ? perfilData.description_user : '', [Validators.minLength(0), Validators.maxLength(200)]),
+      newpassw: new FormControl( '', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
+      repnewpassw: new FormControl( '', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)])
     });
   }
+
   onResetForm(): void {
     this.contactForm.reset();
   }
+
   inputChange(): boolean {
     if (this.perfilResult && this.contactForm) {
       if (this.contactForm.value.name != this.perfilResult.name_user && this.contactForm.get('name').status == 'VALID') {
@@ -99,6 +139,7 @@ export class PerfilComponent implements OnInit {
       return null
     }
   }
+
   showConfigured() {
     // SnackBar configuration
     const configuration: OSnackBarConfig = {
@@ -167,5 +208,14 @@ export class PerfilComponent implements OnInit {
         );
     }
   }
+  cargarForm():boolean {
+  if (this.contactForm && this.perfilResult ){
+    console.log('load form ',this.contactForm);
+    console.log('load perfilData ',this.perfilResult);
+    return true;
+  }
+    return false;
+  }
+ 
 
 }

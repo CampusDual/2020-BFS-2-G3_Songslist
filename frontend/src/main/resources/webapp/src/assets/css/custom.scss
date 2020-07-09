@@ -9,6 +9,7 @@ $color-dark-grey:#676d6d;
 $color-select :rgb(255, 204, 0);
 $color-inputs : #242424;
 $color-background-forms : #fafafa;
+$custom-color-background : #fafafa;;
 
 
 .button-back button{
@@ -24,7 +25,8 @@ $color-background-forms : #fafafa;
 }
 
 .component{   
-    width: 100;
+
+    width: 100%;
     height: 100%;
     margin-top: 1.5%;
     margin-left: 1.5%;
@@ -103,6 +105,10 @@ body {
     display:flex;
     width: 45%;
 }
+.content-colum{
+        margin-left: auto;
+        margin-right: auto; 
+}
 
 // [CSS Button]
 .div-button{
@@ -112,10 +118,9 @@ body {
 
 // [CSS Titulo + Formulario]
 form {
-    padding: 2rem;
     max-width: 60rem;
-    margin-left: auto;
-    margin-right: auto;
+     margin-left: auto;
+     margin-right: auto;
 }
 
 input {
@@ -141,14 +146,11 @@ textarea {
     margin: 0.5rem;
     font-size: medium;
 }
-mat-form-field {
-    width: auto;
-    display: flex !important;
-  
+.mat-table{
+    background: $custom-color-background;
 }
-
-.mat-form-field-infix {
-    display: block !important;
+.mat-paginator{
+    background: $custom-color-background;
 }
 // titulo
 h2{
@@ -189,7 +191,7 @@ h2{
   }
 
   .datasheet-o-row{
-      width: 100%;
+   //   width: 100%;
   }
 
 .datasheet-input,
@@ -210,7 +212,7 @@ h2{
 
 
 .item-hover:hover{
-    font-weight: bold;
+    //font-weight: bold;
     color: $color-select;
 }
 

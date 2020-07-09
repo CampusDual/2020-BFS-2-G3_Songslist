@@ -26,9 +26,9 @@
     <form class="form-width">
       <mat-form-field class="form-field-width">
         <mat-label>{{'SEARCH' | oTranslate}}</mat-label>
-        <input class="mat-input-element" #input id="input" matInput #message maxlength="256"
+        <input class="mat-input-element"  id="input" matInput #message maxlength="256"
           placeholder="{{'EXAMPLE_TEXT_SEARCH' | oTranslate}}" type="text" value="" name="input-search"
-          (keyup)="onItemChange($event.target.value)">
+          (keyup)="onItemChange($event.target.value)" autocomplete="off">
         <mat-hint align="start">
           <strong>
             <span *ngIf=" !mnjError " style="color: black;">
@@ -46,7 +46,26 @@
   <div *ngIf=" searchSongs.length > 0">
     <!-- Table  ==> aplicar los cambios Material -->
     <div class="div-result">
-      <mat-table class="lessons-table mat-elevation-z8 mat-table-element" [dataSource]="searchSongs">
+      <mat-table class="lessons-table mat-table-element" [dataSource]="dataSource">
+
+        <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
 
         <ng-container matColumnDef="Song">
           <mat-header-cell *matHeaderCellDef>{{'SONG' | oTranslate}}</mat-header-cell>
@@ -77,17 +96,17 @@
         <ng-container matColumnDef="Genre">
           <mat-header-cell *matHeaderCellDef>{{'GENRE' | oTranslate}}</mat-header-cell>
           <mat-cell class="duration-cell" *matCellDef="let song">
-            <a [routerLink]="['/genre', song.id_genre]" [queryParams]="{id: song.id_genre}" href="#">
               {{song.name_genre}}
-            </a></mat-cell>
+            </mat-cell>
 
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="['Song', 'Album', 'Artist','Genre']"></mat-header-row>
+        <mat-header-row *matHeaderRowDef="['select','Song', 'Album', 'Artist','Genre']"></mat-header-row>
 
-        <mat-row *matRowDef="let row; columns:['Song','Album','Artist','Genre']"></mat-row>
+        <mat-row *matRowDef="let row; columns:['select','Song','Album','Artist','Genre']"></mat-row>
 
       </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
     </div>
   </div>

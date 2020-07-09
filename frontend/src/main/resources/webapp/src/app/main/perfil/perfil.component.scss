@@ -1,0 +1,176 @@
+
+$font-size-grande: 18px ;
+$font-size-medium: 16px ;
+$font-size-normal: 14px ;
+$font-size-small: 12px ;
+$color-black:rgba(0, 0, 0, 0.87);
+$color-White:rgba(255, 255, 255, 0.87);
+$color-grey : #808787;
+$color-dark-grey:#676d6d;
+$color-select :rgb(255, 204, 0);
+
+@use "@material/image-list";
+
+* {
+  
+}
+
+html {
+   
+}
+
+body {
+    margin: 0;
+}
+.flex{
+    display: flex;
+    //flex-direction: row;
+    flex-direction: column;
+} 
+.width_100{
+    width: 100%;
+}
+.width_25{
+    width: 25%;
+}
+.width_75{
+    width: 75%;
+}
+.width_50{
+    width: 50%;
+}
+.width_20{
+    width: 20%;
+}
+.width_15{
+    width: 15%;
+}
+
+.width_10{
+    width: 10%;
+}
+
+.height_5{
+    height: 5%;
+}
+.height_2{
+    height: 2%;
+}
+.row {
+    border :solid red 1px;
+    display: flex;
+    align-items: stretch;
+   
+}
+.center {
+    justify-content: center;
+}
+
+.left {
+    justify-content: flex-start;
+}
+
+.right {
+    justify-content: flex-end;
+}
+
+.between {
+    justify-content: space-between;
+}
+
+.around {
+    justify-content: space-around;
+}
+
+.middle {
+    align-items: center;
+}
+
+.top {
+    align-items: flex-start;
+}
+
+.column {
+    margin: 1rem;
+    border :solid green 1px;
+    flex-direction: column;
+    display:flex;
+
+}
+.ico-select{
+    max-width: 5%;
+    max-height: 10%;
+}
+// [CSS Button]
+.div-button{
+   // padding: 2rem;
+    text-align: end;
+}
+
+// [CSS Titulo + Formulario]
+form {
+    //padding: 2rem;
+    max-width: 100rem;
+    // margin-left: auto;
+    // margin-right: auto;
+}
+.o-row{margin: 1rem;}
+.div-nick{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    text-align: center;
+}
+.div-passw{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    // margin-left: 2rem;
+    // margin-right: 2rem;
+}
+
+input {
+    // padding: 0rem;
+    // //border :solid blue 1px;
+    // //margin: 0.5rem;
+    // font-size: medium;
+    // width: 85%;  
+    // height: 100%;
+    // align-items: stretch;
+    // display: flex;
+    // margin: 0.5rem;
+    // font-size: medium;
+}
+textarea {
+    // margin-left: 0.5rem;
+    // margin-top: 0.5rem;
+//     border :solid blue 1px;
+//     margin: 0.5rem;
+//     font-size: medium;
+//     width: 85%;  
+//     align-items: stretch;
+//     display: flex;
+//     margin: 0.5rem;
+//     font-size: medium;
+ }
+mat-form-field {
+    width: auto;
+    display: flex 
+  
+}
+// titulo
+h2{
+    //border : solid orange 1px;
+    text-align: center;
+}
+
+.o-image{
+    width: auto;
+    height: auto;
+    margin: 1rem;
+
+}
+.o-form-toolbar {
+    flex: none;
+    display: none !important;
+}

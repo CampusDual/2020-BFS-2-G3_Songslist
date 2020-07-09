@@ -32,6 +32,7 @@
   "SHOW_SONGLIST": "Mostrar lista de canciones",
   "ALL": "Todo",
   "SONG": "Canción",
+  "MY_SONGLISTS": "Mis listas",
   "ALBUM": "Álbum",
   "ARTIST": "Artista",
   "GENRE": "Género",
@@ -50,6 +51,7 @@
   "CREATE_USER": "Crear usuario",
   "NEW_USER": "Nuevo usuario",
   "CANCEL": "Cancelar",
+  "EDIT_PROFILE": "Editar perfil",
   "PASSWORD_MATCH": "La contraseña coincide",
   "PASSWORD_NOT_MATCH": "La contraseña no coincide",
   "MIN_LENGHT_SIX": "La contraseña debe tener al menos 6 caracteres"

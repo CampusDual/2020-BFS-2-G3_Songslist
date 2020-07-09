@@ -1,9 +1,16 @@
 {
-  "APP_TITLE": "Quickstart",
+  "APP_TITLE": "Songlist",
   "VERSION": "Version",
   "EXAMPLE_LOGIN_INFO": "Use this user and password for login",
   "USERNAME": "Username",
+  "NICKNAME": "Nickname",
+  "NICK": "Nickname",
+  "NAME": "Name",
+  "SURNAME": "Surname",
   "PASSWORD": "Password",
+  "CONFIRM_PASSWORD": "Confirm password",
+  "BIRTHDATE": "Birthdate",
+  "ABOUT_YOU": "About you",
   "LOGIN": "Login",
   "LOGOUT": "Logout",
   "VIEW": "Views",
@@ -36,5 +43,16 @@
   "DATE": "Date",
   "DESCRIPTION": "Description",
   "SAVE":"Save" ,
-  "CLEAN":"Clean"
+  "CLEAN":"Clean",
+  "EMAIL": "Email",
+  "NOT_ACCOUNT": "Don't have an account?",
+  "SIGN_UP": "Sign up",
+  "CREATE_USER": "Create user",
+  "NEW_USER": "New user",
+  "CANCEL": "Cancel",
+  "PASSWORD_MATCH": "Password matches",
+  "PASSWORD_NOT_MATCH": "Password doesn't match",
+  "MIN_LENGHT_SIX": "Password must contain at least 6 characters"
+  
+
 }

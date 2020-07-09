@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+ xmlns="http://www.ontimize.com/schema/jdbc"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+ catalog="" schema="${mainschema}" table="tuser_preference"
+ datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+ <DeleteKeys>
+  <Column>id_user_preference</Column>
+ </DeleteKeys>
+ <UpdateKeys>
+  <Column>id_user_preference</Column>
+ </UpdateKeys>
+ <GeneratedKey>id_user_preference</GeneratedKey>
+  <Queries>
+     <Query id="default">
+        <FunctionColumns>
+            <FunctionColumn name="ID_USER_PREFERENCE" value="id_user_preference" />
+            <FunctionColumn name="PREFERENCE_NAME" value="preference_name" />
+            <FunctionColumn name="USER_LOGIN" value="user_login" />
+            <FunctionColumn name="PREFERENCE_VALUE" value="preference_value" />
+        </FunctionColumns>
+         <Sentence>
+            <![CDATA[
+            SELECT
+                #COLUMNS#
+            FROM
+                ${mainschema}.tuser_preference
+            #WHERE#
+            ]]>
+        </Sentence>
+     </Query>
+     <Query id="userPreference">
+        <FunctionColumns>
+            <FunctionColumn name="ID_USER_PREFERENCE" value="id_user_preference" />
+            <FunctionColumn name="PREFERENCE_NAME" value="preference_name" />
+            <FunctionColumn name="USER_LOGIN" value="user_login" />
+            <FunctionColumn name="PREFERENCE_VALUE" value="preference_value" />
+        </FunctionColumns>
+         <Sentence>
+            <![CDATA[
+            SELECT
+                #COLUMNS#
+            FROM
+                ${mainschema}.tuser_preference
+            #WHERE#
+            ]]>
+        </Sentence>
+     </Query>
+ </Queries>
+</JdbcEntitySetup>

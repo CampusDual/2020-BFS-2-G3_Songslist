@@ -35,8 +35,8 @@ export class AlbumService extends OntimizeEEService {
                 'id_artist': 4,
                 'name_artist': 12,
                 'id_genre': 4,
-                'name_genre': 1,
-                'img_album': 2004, 
+                'name_genre': 12,
+                'img_album': 4, 
                 'description_album': 12, 
                 'year_album': 91
             }

@@ -2,9 +2,14 @@ import { NgModule, NgModuleFactory } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginModule } from './login/login.module';
 import { MainModule } from './main/main.module';
+import { RegisterModule } from './register/register.module';
 
 export function loadLoginModule() {
   return LoginModule;
+}
+
+export function loadRegisterModule() {
+  return RegisterModule;
 }
 
 export function loadMainModule() {
@@ -14,6 +19,7 @@ export function loadMainModule() {
 export const routes: Routes = [
   { path: 'main', loadChildren: loadMainModule },
   { path: 'login', loadChildren: loadLoginModule },
+  { path: 'register', loadChildren: loadRegisterModule },
   { path: '', redirectTo: 'main', pathMatch: 'full' }
 ];
 

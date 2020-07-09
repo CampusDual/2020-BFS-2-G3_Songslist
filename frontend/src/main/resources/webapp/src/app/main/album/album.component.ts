@@ -87,9 +87,4 @@ export class AlbumComponent implements OnInit {
     getSongResult(){
         return this.songResult;
     }
-
-
-
-
-
 }

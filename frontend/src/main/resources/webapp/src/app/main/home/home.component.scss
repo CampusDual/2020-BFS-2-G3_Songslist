@@ -40,6 +40,11 @@ $color-select :rgb(255, 204, 0);
   width: auto;
 }
 
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+    /* padding: 0; */
+    /* border-bottom-width: 1px; */
+    border-bottom-style: none;
+}
 
 .bg {
   background-color: darkred;
@@ -83,9 +88,9 @@ $color-select :rgb(255, 204, 0);
   color: $color-grey;
 }
 .mat-cell :hover{
-  font-weight: bold;
+ // font-weight: bold;
   color: $color-select;
-  border: $color-select  1px solid;
+  // border: $color-select  1px solid;
 }
 
   .example-form {

@@ -19,13 +19,13 @@ $color-select :rgb(255, 204, 0);
 }
 
 .datasheet-information-panel{
-    padding: 2rem;
+    padding: 0.5rem;
     
 }
 
 .datashet-inputs-panel{
     height: 100%;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
 }
 
 .datasheet-img{
@@ -58,18 +58,18 @@ $color-select :rgb(255, 204, 0);
 
 .datasheet-input,
 .datasheet-text-input-hover{
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 .datasheet-text-input-hover:hover{
     font-weight: bold;
     color: $color-select;
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 .datasheet-description{
     font-weight: bold;
-    padding-top: 1rem;
+    padding-top: 0.5rem;
 }
 
 .div-button-add{

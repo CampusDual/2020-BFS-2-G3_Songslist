@@ -10,6 +10,10 @@ import {
 import { CONFIG } from './app.config';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { PerfilComponent } from './main/perfil/perfil.component';
+import { RegisterComponent } from './register/register.component';
+import { RegisterService } from './main/services/registerService';
 
 // Standard providers...
 // Defining custom providers (if needed)...
@@ -20,7 +24,8 @@ export const customProviders: any = [
   imports: [
     ONTIMIZE_MODULES,
     OntimizeWebModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   declarations: [
     AppComponent
@@ -28,7 +33,7 @@ export const customProviders: any = [
   bootstrap: [
     AppComponent
   ],
-  providers: [
+  providers: [RegisterService,
     { provide: APP_CONFIG, useValue: CONFIG },
     ...ONTIMIZE_PROVIDERS,
     ...customProviders

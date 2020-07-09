@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HomeService } from './home.service';
 import { ISongModel } from 'app/shared/models/isong.model';
-import { MatRadioChange } from '@angular/material';
+import { MatRadioChange, MatPaginator, MatTableDataSource } from '@angular/material';
 import { CONFIG } from 'app/app.config';
 import 'rxjs/add/operator/filter';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'home',
@@ -16,10 +17,14 @@ export class HomeComponent implements OnInit {
   // input radio
   selectOptions: string[] = ['Song', 'Album', 'Genre', 'Artist'];
   radioSelected: string;
+  dataSource;
   searchText: string = '';
   searchSongs: ISongModel[] = Array();
   error: boolean;
   mnjError: string;
+  selection = new SelectionModel<ISongModel>(true, []);
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   constructor(
     private router: Router,
     private actRoute: ActivatedRoute,
@@ -31,7 +36,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this._route.queryParams
       .filter(params => params.tosearch)
       .subscribe(params => {
@@ -57,6 +61,8 @@ export class HomeComponent implements OnInit {
             myData['search'] = { radioSelect: this.radioSelected, searchText: this.searchText };
             localStorage.setItem(CONFIG.uuid, JSON.stringify(myData));
             console.log('igualo la parte de data a mi variable y la muestro ', this.searchSongs);
+           this.dataSource = new MatTableDataSource<ISongModel>( this.searchSongs);
+           this.dataSource.paginator = this.paginator;
           } else {
             this.searchSongs = Array();
           }
@@ -129,6 +135,26 @@ export class HomeComponent implements OnInit {
 
 
   }
- 
+ /** Whether the number of selected elements matches the total number of rows. */
+ isAllSelected() {
+  const numSelected = this.selection.selected.length;
+  const numRows = this.searchSongs.length;
+  return numSelected === numRows;
+}
+
+/** Selects all rows if they are not all selected; otherwise clear selection. */
+masterToggle() {
+  this.isAllSelected() ?
+      this.selection.clear() :
+      this.searchSongs.forEach(row => this.selection.select(row));
+}
+
+/** The label for the checkbox on the passed row */
+checkboxLabel(row?: any): string {
+  if (!row) {
+    return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+  }
+  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+}
 
 }

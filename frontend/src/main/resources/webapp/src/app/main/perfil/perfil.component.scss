@@ -1,3 +1,4 @@
+
 $font-size-grande: 18px ;
 $font-size-medium: 16px ;
 $font-size-normal: 14px ;
@@ -7,6 +8,8 @@ $color-White:rgba(255, 255, 255, 0.87);
 $color-grey : #808787;
 $color-dark-grey:#676d6d;
 $color-select :rgb(255, 204, 0);
+
+@use "@material/image-list";
 
 * {
   
@@ -19,14 +22,46 @@ html {
 body {
     margin: 0;
 }
+.flex{
+    display: flex;
+    //flex-direction: row;
+    flex-direction: column;
+} 
+.width_100{
+    width: 100%;
+}
+.width_25{
+    width: 25%;
+}
+.width_75{
+    width: 75%;
+}
+.width_50{
+    width: 50%;
+}
+.width_20{
+    width: 20%;
+}
+.width_15{
+    width: 15%;
+}
 
+.width_10{
+    width: 10%;
+}
+
+.height_5{
+    height: 5%;
+}
+.height_2{
+    height: 2%;
+}
 .row {
     border :solid red 1px;
     display: flex;
     align-items: stretch;
-    width: auto;
+   
 }
-
 .center {
     justify-content: center;
 }
@@ -60,137 +95,82 @@ body {
     border :solid green 1px;
     flex-direction: column;
     display:flex;
-    width: 45%;
-}
 
+}
+.ico-select{
+    max-width: 5%;
+    max-height: 10%;
+}
 // [CSS Button]
 .div-button{
-    padding: 2rem;
+   // padding: 2rem;
     text-align: end;
 }
 
 // [CSS Titulo + Formulario]
 form {
-    padding: 2rem;
-    max-width: 60rem;
-    margin-left: auto;
-    margin-right: auto;
+    //padding: 2rem;
+    max-width: 100rem;
+    // margin-left: auto;
+    // margin-right: auto;
+}
+.o-row{margin: 1rem;}
+.div-nick{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    text-align: center;
+}
+.div-passw{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    // margin-left: 2rem;
+    // margin-right: 2rem;
 }
 
 input {
-    border :solid blue 1px;
-    margin: 0.5rem;
-    font-size: medium;
-    width: 85%;  
-    height: 100%;
-    align-items: stretch;
-    display: flex;
-    margin: 0.5rem;
-    font-size: medium;
+    // padding: 0rem;
+    // //border :solid blue 1px;
+    // //margin: 0.5rem;
+    // font-size: medium;
+    // width: 85%;  
+    // height: 100%;
+    // align-items: stretch;
+    // display: flex;
+    // margin: 0.5rem;
+    // font-size: medium;
 }
 textarea {
     // margin-left: 0.5rem;
     // margin-top: 0.5rem;
-    border :solid blue 1px;
-    margin: 0.5rem;
-    font-size: medium;
-    width: 85%;  
-    align-items: stretch;
-    display: flex;
-    margin: 0.5rem;
-    font-size: medium;
-}
+//     border :solid blue 1px;
+//     margin: 0.5rem;
+//     font-size: medium;
+//     width: 85%;  
+//     align-items: stretch;
+//     display: flex;
+//     margin: 0.5rem;
+//     font-size: medium;
+ }
 mat-form-field {
     width: auto;
-    display: flex !important;
+    display: flex 
   
-}
-
-.mat-form-field-infix {
-    display: block !important;
 }
 // titulo
 h2{
-    border : solid orange 1px;
+    //border : solid orange 1px;
     text-align: center;
 }
 
-//form
-.datasheet-text-input{
-    margin: 0.5rem;
-    font-size: medium;
-}
-
-.datasheet-information-panel{
-    padding: 2rem;
-    
-}
-
-.datashet-inputs-panel{
-    height: 100%;
-    margin-left: 1rem;
-}
-
-.datasheet-component{
-    width: 100;
-    height: 100%;
-    padding-top: 1.5%;
-    padding-left: 1.5%;
-    padding-right: 3%;
-    padding-bottom: 3%;
-    color:  rgb(15, 15, 15); 
-}
-
-.datasheet-acordion {
-    justify-content: space-between;
-    //align-items: center;
-    flex-basis: 0;
-  }
-
-  .datasheet-o-row{
-      width: 100%;
-  }
-
-.datasheet-input,
-.datasheet-text-input-hover{
-    padding: 1rem;
-}
-
-.datasheet-text-input-hover:hover{
-    font-weight: bold;
-    color: $color-select;
-    padding: 1rem;
-}
-
-.datasheet-description{
-    font-weight: bold;
-    padding-top: 1rem;
-}
-
-
-.item-hover:hover{
-    font-weight: bold;
-    color: $color-select;
-}
-
-.mat-toolbar.mat-toolbar-single-row.ng-star-inserted{
-    background-color: rgb(255, 255, 255);;
-}
-
-.mat-toolbar{
-    display: none;
-}
-
-.accordion-panel{
+.o-image{
+    width: auto;
+    height: auto;
     margin: 1rem;
-}
 
- // [Css Imgen]
-.datasheet-img{
-    align-self: center;
-    padding: 0.1rem;
-    border-radius: 4px;
-    overflow: visible;
-    transform: translate3d(0,0,0);
-    transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+}
+.o-form-toolbar {
+    flex: none;
+    display: none !important;
 }

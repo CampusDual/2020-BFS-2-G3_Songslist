@@ -7,6 +7,9 @@ $color-White:rgba(255, 255, 255, 0.87);
 $color-grey : #808787;
 $color-dark-grey:#676d6d;
 $color-select :rgb(255, 204, 0);
+$color-inputs : #242424;
+$color-background-forms : #fafafa;
+$custom-color-background : #fafafa;;
 
 
 .button-back button{
@@ -22,13 +25,14 @@ $color-select :rgb(255, 204, 0);
 }
 
 .component{   
-    width: 100;
+
+    width: 100%;
     height: 100%;
-    padding-top: 1.5%;
-    padding-left: 1.5%;
-    padding-right: 3%;
-    padding-bottom: 3%;
-    background-color: #e5e6e8;
+    margin-top: 1.5%;
+    margin-left: 1.5%;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    background-color: $color-background-forms;
     text-decoration-color: #d89237;
 }
 
@@ -38,5 +42,239 @@ $color-select :rgb(255, 204, 0);
     text-align: center;
     
 }
+
+$font-size-grande: 18px ;
+$font-size-medium: 16px ;
+$font-size-normal: 14px ;
+$font-size-small: 12px ;
+$color-black:rgba(0, 0, 0, 0.87);
+$color-White:rgba(255, 255, 255, 0.87);
+$color-grey : #808787;
+$color-dark-grey:#676d6d;
+$color-select :rgb(255, 204, 0);
+
+* {
+  
+}
+
+html {
+   
+}
+
+body {
+    margin: 0;
+}
+
+.row {
+    display: flex;
+    align-items: stretch;
+    width: auto;
+}
+
+.center {
+    justify-content: center;
+}
+
+.left {
+    justify-content: flex-start;
+}
+
+.right {
+    justify-content: flex-end;
+}
+
+.between {
+    justify-content: space-between;
+}
+
+.around {
+    justify-content: space-around;
+}
+
+.middle {
+    align-items: center;
+}
+
+.top {
+    align-items: flex-start;
+}
+
+.column {
+    margin: 1rem;
+    flex-direction: column;
+    display:flex;
+    width: 45%;
+}
+.content-colum{
+        margin-left: auto;
+        margin-right: auto; 
+}
+
+// [CSS Button]
+.div-button{
+    padding: 2rem;
+    text-align: end;
+}
+
+// [CSS Titulo + Formulario]
+form {
+    max-width: 60rem;
+     margin-left: auto;
+     margin-right: auto;
+}
+
+input {
+    border :solid blue 1px;
+    margin: 0.5rem;
+    font-size: medium;
+    width: 85%;  
+    height: 100%;
+    align-items: stretch;
+    display: flex;
+    margin: 0.5rem;
+    font-size: medium;
+}
+textarea {
+    // margin-left: 0.5rem;
+    // margin-top: 0.5rem;
+    border :solid blue 1px;
+    margin: 0.5rem;
+    font-size: medium;
+    width: 85%;  
+    align-items: stretch;
+    display: flex;
+    margin: 0.5rem;
+    font-size: medium;
+}
+.mat-table{
+    background: $custom-color-background;
+}
+.mat-paginator{
+    background: $custom-color-background;
+}
+// titulo
+h2{
+    text-align: center;
+}
+
+//form
+.datasheet-text-input{
+    margin: 0.5rem;
+    font-size: medium;
+    
+}
+
+.datasheet-information-panel{
+    padding: 0.2rem;
+    
+}
+
+.datashet-inputs-panel{
+    height: 100%;
+    margin-left: 1rem;
+}
+
+.datasheet-component{
+    width: 100;
+    height: 100%;
+    padding-top: 1.5%;
+    padding-left: 1.5%;
+    padding-right: 3%;
+    padding-bottom: 3%;
+    color:  rgb(15, 15, 15); 
+}
+
+.datasheet-acordion {
+    justify-content: space-between;
+    //align-items: center;
+    flex-basis: 0;
+  }
+
+  .datasheet-o-row{
+   //   width: 100%;
+  }
+
+.datasheet-input,
+.datasheet-text-input-hover{
+    padding: 1rem;
+}
+
+.datasheet-text-input-hover:hover{
+    font-weight: bold;
+    color: $color-select;
+    padding: 1rem;
+}
+
+.datasheet-description{
+    font-weight: bold;
+    padding-top: 1rem;
+}
+
+
+.item-hover:hover{
+    //font-weight: bold;
+    color: $color-select;
+}
+
+.mat-toolbar.mat-toolbar-single-row.ng-star-inserted{
+    background-color: rgb(255, 255, 255);;
+}
+
+.mat-toolbar{
+    display: none;
+}
+
+.accordion-panel{
+    margin: 1rem;
+}
+
+ // [Css Imgen]
+.datasheet-img{
+    align-self: center;
+    padding: 0.1rem;
+    border-radius: 4px;
+    overflow: visible;
+    transform: translate3d(0,0,0);
+    transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+}
+
+.title_page{
+    text-align: center;
+}
+
+// ************** REGISTRO *********
+
+.row-reg{
+    display: flex;
+    align-items: stretch;
+    width: auto;
+    width: 90%;
+    justify-content: space-evenly;
+}
+
+
+
+.input-register{
+    color: $color-inputs;
+}
+.label-register{
+    color: $color-inputs;
+}
+
+
+.component-register{   
+    width: 100;
+    height: 100%;
+    background-color: $color-background-forms;
+    text-decoration-color: #d89237;
+}
+
+.column-reg {
+    margin: 1rem;
+    flex-direction: column;
+    display:flex;
+    width: 45%;
+}
+
 
 

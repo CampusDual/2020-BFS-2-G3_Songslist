@@ -56,8 +56,17 @@ export class RegisterComponent implements OnInit {
   onResetForm(): void {
     this.registerForm.reset();
   }
-  onRegisterUser(): void {
 
+  
+  showConfirm(evt: any) {
+    if (this.dialogService) {
+      const config: ODialogConfig = {
+        icon: 'alarm',
+        okButtonText: 'Usuario creado, It rocks!'
+      };
+    }
+  }
+  onRegisterUser(): void {
     console.log('pulsoboton')
     console.log('PARAMETROS: ', this.registerForm.value)
     new Date(this.registerForm.value.birthdate).getTime() / 1000
@@ -86,10 +95,9 @@ export class RegisterComponent implements OnInit {
         this.onResetForm();
       },
       err => {
-        console.error(err);
+        
       }
     );
-
 
   }
 
@@ -130,25 +138,25 @@ export class RegisterComponent implements OnInit {
         }
       },
       err => {
+        
         console.error(err);
       }
     );
   }
-  checkPasswords() { 
-
+  checkPasswords() {
+    let stringpass = this.registerForm.value.password;
+    let stringrepeat = this.registerForm.value.confirmPass;
     let pass: number = (this.registerForm.value.password) ? this.registerForm.value.password.length : 0;
-    let repeatpass: number = (this.registerForm.value.confirmPass) ? this.registerForm.value.confirmPass.length : 0 ;
-    this.writeSomething = repeatpass>0 ? true : false;
+    let repeatpass: number = (this.registerForm.value.confirmPass) ? this.registerForm.value.confirmPass.length : 0;
+    this.writeSomething = repeatpass > 0 ? true : false;
     if (pass > 0) {
       this.minLenght = pass < 6 ? false : true;
-      console.log('pass = ', pass);
-      console.log('match = ', this.match);
-      console.log('minLenght = ', this.minLenght);
-      console.log('writeSomething = ', this.writeSomething);
-      if (repeatpass > 0){
-        this.match = (pass > repeatpass || pass < repeatpass) ? false : true;
+      if (repeatpass > 0) {
+        let stringpass = this.registerForm.value.password;
+        let stringrepeat = this.registerForm.value.confirmPass;
+        this.match = (stringpass > stringrepeat || stringpass < stringrepeat) ? false : true;
       }
-    }else{ this.minLenght = true }
+    } else { this.minLenght = true }
   }
 }
 

@@ -56,7 +56,6 @@ export class RegisterComponent implements OnInit {
   onResetForm(): void {
     this.registerForm.reset();
   }
-
   
   showConfirm(evt: any) {
     if (this.dialogService) {
@@ -94,15 +93,12 @@ export class RegisterComponent implements OnInit {
         }
         this.onResetForm();
       },
-      err => {
-        
+      err => {        
       }
     );
-
   }
 
   onAssignRole(id: number) {
-
     console.log('USERID = ', id)
     this.registerService.assignRole(id).subscribe(
       (userData: any) => {

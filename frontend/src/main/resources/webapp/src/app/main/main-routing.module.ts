@@ -7,12 +7,13 @@ import { AlbumComponent } from './album/album.component';
 import { ArtistComponent } from './artist/artist.component';
 import { SongComponent } from './song/song.component';
 import { PerfilComponent } from './perfil/perfil.component';
-
+import { LoginComponent } from 'app/login/login.component';
 export function loadHomeModule() {
   return HomeModule;
 }
-
-
+function User (): boolean {
+  return JSON.parse(localStorage.getItem('com.ontimize.web.ngx.jee.seed')).session.id ;
+}
 export const routes: Routes = [
   {
     path: '',
@@ -30,28 +31,29 @@ export const routes: Routes = [
       {
         path: 'album/:id',
         component: AlbumComponent
-      }, 
+      },
       {
         path: 'perfil',
         component: PerfilComponent
-      },    
+      },
       {
         path: 'artist/:id',
         component: ArtistComponent
-      },       
+      },
       {
         path: 'perfil',
         component: PerfilComponent
-      },       
+      },
+      {
+        path: 'settings',
+        component: User ? PerfilComponent : LoginComponent
+      },
       {
         path: '**',
         loadChildren: loadHomeModule
       }
     ],
-    
-
   }
-  
 ];
 
 @NgModule({

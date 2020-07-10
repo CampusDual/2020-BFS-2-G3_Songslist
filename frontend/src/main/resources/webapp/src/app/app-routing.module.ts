@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginModule } from './login/login.module';
 import { MainModule } from './main/main.module';
 import { RegisterModule } from './register/register.module';
+import { PerfilComponent } from './main/perfil/perfil.component';
 
 export function loadLoginModule() {
   return LoginModule;
@@ -16,10 +17,16 @@ export function loadMainModule() {
   return MainModule;
 }
 
+export function  loadSettingsModule(){
+  return RegisterModule;
+ // return PerfilComponent;
+}
+
 export const routes: Routes = [
   { path: 'main', loadChildren: loadMainModule },
   { path: 'login', loadChildren: loadLoginModule },
   { path: 'register', loadChildren: loadRegisterModule },
+  { path: 'settings', loadChildren: loadSettingsModule },
   { path: '', redirectTo: 'main', pathMatch: 'full' }
 ];
 

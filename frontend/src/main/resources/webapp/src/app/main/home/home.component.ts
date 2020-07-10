@@ -2,10 +2,11 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HomeService } from './home.service';
 import { ISongModel } from 'app/shared/models/isong.model';
-import { MatRadioChange, MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatRadioChange, MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
 import { CONFIG } from 'app/app.config';
 import 'rxjs/add/operator/filter';
 import { SelectionModel } from '@angular/cdk/collections';
+import { CreateListComponent } from './create-list/create-list.component';
 
 @Component({
   selector: 'home',
@@ -26,11 +27,13 @@ export class HomeComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
+    public dialog: MatDialog,
     private router: Router,
     private actRoute: ActivatedRoute,
     protected homeService: HomeService,
     private renderer: Renderer2,
-    private _route: ActivatedRoute // recivir parametro id
+    private _route: ActivatedRoute, // recivir parametro id
+
 
   ) {
   }
@@ -157,4 +160,6 @@ checkboxLabel(row?: any): string {
   return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
 }
 
+
 }
+

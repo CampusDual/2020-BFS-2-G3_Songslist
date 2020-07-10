@@ -33,7 +33,7 @@
     "ontimize-web-ngx-theming": "4.0.2",
     "reflect-metadata": "0.1.12",
     "rxjs": "6.3.3",
-    "rxjs-compat": "^6.5.5",
+    "rxjs-compat": "^6.6.0",
     "zone.js": "0.8.26"
   },
   "devDependencies": {

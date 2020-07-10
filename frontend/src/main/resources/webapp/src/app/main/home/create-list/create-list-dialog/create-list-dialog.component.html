@@ -1,0 +1,75 @@
+
+<!-- <h2 mat-dialog-title>Add song to :</h2>
+
+<mat-dialog-content *ngIf="subtasks">
+  Select a  crerate list:
+  <ul *ngIf="subtasks.length > 0">
+    <li *ngFor="let subtask of subtasks">
+      <mat-checkbox [(ngModel)]="subtask.completed" [color]="subtask.color" >
+        {{subtask.name}}
+      </mat-checkbox>
+    </li>
+  </ul>
+
+</mat-dialog-content>
+
+<mat-dialog-content [formGroup]="form">
+  Add new List
+    <mat-form-field>
+        <input matInput
+                placeholder="List name"
+               formControlName="lstname">
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+</mat-dialog-actions> -->
+
+<h2 mat-dialog-title>Add song to :</h2>
+
+<mat-accordion mat-dialog-content>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Select a  crerate list:
+      </mat-panel-title>
+      <mat-panel-description>
+        This is a summary of the content
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ul *ngIf="subtasks.length > 0">
+      <li *ngFor="let subtask of subtasks">
+        <mat-checkbox [(ngModel)]="subtask.completed" [color]="subtask.color" >
+          {{subtask.name}}
+        </mat-checkbox>
+      </li>
+    </ul>
+  </mat-expansion-panel>
+  <mat-expansion-panel
+   (opened)="panelOpenState = true"
+   (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Add new List
+      </mat-panel-title>
+      <mat-panel-description >
+        Currently I am {{panelOpenState ? 'open' : 'closed'}}
+        
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div  [formGroup]="form">
+    <mat-form-field>
+      <input matInput
+              placeholder="List name"
+             formControlName="lstname">
+  </mat-form-field>
+</div>
+    <p>I'm visible because I am open</p>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-dialog-actions>
+  <button class="mat-raised-button"(click)="close()">Close</button>
+  <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+</mat-dialog-actions> -->

@@ -32,7 +32,7 @@ export class PerfilService extends OntimizeEEService {
             filter: {
                 'nick_user' : this.user
                  },
-            columns: ['id_user','nick_user','name_user', 'surname_user', 'email_user', 'password_user', 'birthdate_user']
+            columns: ['nick_user','name_user', 'surname_user', 'email_user', 'password_user', 'birthdate_user']
         });
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {
@@ -47,23 +47,24 @@ export class PerfilService extends OntimizeEEService {
         return dataObservable.pipe(share());
     }
 
-    setUserData( nick_user:string, name_user?: string , surname_user?: string, email_user?: string, birthdate_user? :Data, description_user? : string, password_user? :string ) {
+    setUserData( password_user:string, name_user?: string , surname_user?: string, email_user?: string, birthdate_user? :Data, description_user? : string, new_passw? :string ) {
         const url = CONFIG.apiEndpoint + '/' + 'users/user';
         var options = {
             headers: this.buildHeaders()
         };
-        console.log ('Parametros',  name_user , surname_user , email_user , birthdate_user ,description_user, password_user)
+        console.log ('Parametros', password_user, name_user , surname_user , email_user , birthdate_user ,description_user, )
         var dataObject = {}
+        if (password_user ) dataObject['password_user']=password_user ;
         if (name_user ) dataObject['name_user']=name_user ;
         if (surname_user ) dataObject['surname_user']=surname_user ;
         if (email_user ) dataObject['email_user']=email_user ;
         if (birthdate_user ) dataObject['birthdate_user']=birthdate_user ;
         if (description_user ) dataObject['description_user']=description_user ;
-        if (password_user ) dataObject['password_user']=password_user ;
+        if (new_passw ) dataObject['new_passw']=description_user ;
+        
 
         var body = JSON.stringify({
             filter: {
-                'nick_user' : this.user
                  },
                  data: dataObject,
             sqltypes: {

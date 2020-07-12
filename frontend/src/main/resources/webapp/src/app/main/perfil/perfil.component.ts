@@ -16,7 +16,7 @@ import { MatDialog } from '@angular/material';
   providers: [DatePipe]
 })
 export class PerfilComponent implements OnInit {
-  ico_png ='./assets/images/ico/avatar/png/';
+  ico_png = './assets/images/ico/avatar/png/';
   public img1 = this.ico_png + '1.png';
   public img2 = this.ico_png + '2.png';
   public img3 = this.ico_png + '3.png';
@@ -32,7 +32,7 @@ export class PerfilComponent implements OnInit {
 
 
 
-  public perfilResult: IUserModel ;
+  public perfilResult: IUserModel;
   // public perfiUpdate: IUserModel ;
   public contactForm: FormGroup;
   public alert: number;
@@ -41,14 +41,14 @@ export class PerfilComponent implements OnInit {
 
   passFormControl = new FormControl('', [
     Validators.required,
-]);
-confirmFormControl = new FormControl('', [
+  ]);
+  confirmFormControl = new FormControl('', [
     Validators.required,
-    ]);
+  ]);
 
-     hide =true;
+  hide = true;
 
-  public imgselect : string ;
+  public imgselect: string;
   constructor(
     private perfilService: PerfilService,
     private datePipe: DatePipe,
@@ -101,14 +101,14 @@ confirmFormControl = new FormControl('', [
     console.log('perfilData', perfilData)
     return new FormGroup({
       nick: new FormControl(perfilData ? perfilData.nick_user : '', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
-      passw: new FormControl( '', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
+      passw: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
       name: new FormControl(perfilData ? perfilData.name_user : '', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
       surname: new FormControl(perfilData ? perfilData.surname_user : '', [Validators.minLength(0), Validators.maxLength(50), Validators.pattern(this.textPattern)]),
       birthdate: new FormControl(perfilData ? this.datePipe.transform(perfilData.birthdate_user, 'yyyy-MM-dd') : ''),
       email: new FormControl(perfilData ? perfilData.email_user : '', [Validators.minLength(0), Validators.maxLength(50), Validators.pattern(this.emailPattern)]),
       description: new FormControl(perfilData ? perfilData.description_user : '', [Validators.minLength(0), Validators.maxLength(200)]),
-      newpassw: new FormControl( '', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
-      repnewpassw: new FormControl( '', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)])
+      newpassw: new FormControl('', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
+      repnewpassw: new FormControl('', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)])
     });
   }
 
@@ -118,22 +118,33 @@ confirmFormControl = new FormControl('', [
 
   inputChange(): boolean {
     if (this.perfilResult && this.contactForm) {
-      if (this.contactForm.value.name != this.perfilResult.name_user && this.contactForm.get('name').status == 'VALID') {
-        return true;
-      }
-      else if (this.contactForm.value.email != this.perfilResult.email_user && this.contactForm.get('email').status == 'VALID') {
-        return true;
-      }
-      else if (this.contactForm.value.surname != this.perfilResult.surname_user && this.contactForm.get('surname').status == 'VALID') {
-        return true;
-      }
-      else if (this.contactForm.value.birthdate != this.datePipe.transform(this.perfilResult.birthdate_user, 'yyyy-MM-dd') && this.contactForm.get('birthdate').status == 'VALID') {
-        return true;
-      }
-      else if (this.contactForm.value.description != this.perfilResult.description_user && this.contactForm.get('description').status == 'VALID') {
-        return true;
+      if (this.contactForm.value.passw != '' && this.contactForm.get('passw').status == 'VALID') {
+        if (this.contactForm.value.name != this.perfilResult.name_user && this.contactForm.get('name').status == 'VALID') {
+          return true;
+        }
+        else if (this.contactForm.value.email != this.perfilResult.email_user && this.contactForm.get('email').status == 'VALID') {
+          return true;
+        }
+        else if (this.contactForm.value.surname != this.perfilResult.surname_user && this.contactForm.get('surname').status == 'VALID') {
+          return true;
+        }
+        else if (this.contactForm.value.birthdate != this.datePipe.transform(this.perfilResult.birthdate_user, 'yyyy-MM-dd') && this.contactForm.get('birthdate').status == 'VALID') {
+          return true;
+        }
+        else if (this.contactForm.value.description != this.perfilResult.description_user && this.contactForm.get('description').status == 'VALID') {
+          return true;
+        }
+        else if (this.contactForm.value.newpassw == this.contactForm.value.repnewpassw
+          && this.contactForm.value.newpassw != ''  && this.contactForm.value.repnewpassw != ''
+          && this.contactForm.get('repnewpassw').status == 'VALID'
+          && this.contactForm.get('newpassw').status == 'VALID'
+          ) {
+          return true;
+        } else {
+          return false;
+        }
       } else {
-        return false;
+        return null
       }
     } else {
       return null
@@ -151,11 +162,12 @@ confirmFormControl = new FormControl('', [
   }
 
   onSaveForm(): void {
-    if (this.contactForm.valid) {
+    if (this.contactForm.valid ) {
       const perfiUpdate: IUserModel = <IUserModel>{
+        'password_user' : this.contactForm.value.passw 
       }
       if (this.contactForm.value.name != this.perfilResult.name_user && this.contactForm.get('name').status == 'VALID') {
-        perfiUpdate['name_user'] = this.contactForm.value.nick;
+        perfiUpdate['name_user'] = this.contactForm.value.name;
       }
       if (this.contactForm.value.email != this.perfilResult.email_user && this.contactForm.get('email').status == 'VALID') {
         perfiUpdate['email_user'] = this.contactForm.value.email;
@@ -169,11 +181,18 @@ confirmFormControl = new FormControl('', [
       if (this.contactForm.value.description != this.perfilResult.description_user && this.contactForm.get('description').status == 'VALID') {
         perfiUpdate['description_user'] = this.contactForm.value.description;
       }
+      if (this.contactForm.value.newpassw == this.contactForm.value.repnewpassw
+        && this.contactForm.value.newpassw != ''  && this.contactForm.value.repnewpassw != ''
+        && this.contactForm.get('repnewpassw').status == 'VALID'
+        && this.contactForm.get('newpassw').status == 'VALID'
+        ) {
+          perfiUpdate['new_passw'] = this.contactForm.value.newpassw;
+        }
       console.log('perfiUpdate', perfiUpdate);
       this.perfilService.setUserData(
-        perfiUpdate.nick_user, perfiUpdate.name_user, perfiUpdate.surname_user,
+        perfiUpdate.password_user, perfiUpdate.name_user, perfiUpdate.surname_user,
         perfiUpdate.email_user, perfiUpdate.birthdate_user, perfiUpdate.description_user
-        , perfiUpdate.password_user)
+        , perfiUpdate.new_passw)
         .subscribe(
           (userData: any) => {
             console.log('recibo todo ', userData);
@@ -208,14 +227,14 @@ confirmFormControl = new FormControl('', [
         );
     }
   }
-  cargarForm():boolean {
-  if (this.contactForm && this.perfilResult ){
-    console.log('load form ',this.contactForm);
-    console.log('load perfilData ',this.perfilResult);
-    return true;
-  }
+  cargarForm(): boolean {
+    if (this.contactForm && this.perfilResult) {
+      console.log('load form ', this.contactForm);
+      console.log('load perfilData ', this.perfilResult);
+      return true;
+    }
     return false;
   }
- 
+
 
 }

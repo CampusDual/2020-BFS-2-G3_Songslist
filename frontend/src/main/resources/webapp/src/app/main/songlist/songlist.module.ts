@@ -3,6 +3,7 @@ import { OntimizeWebModule } from 'ontimize-web-ngx';
 import { SharedModule } from '../../shared/shared.module';
 import { SonglistComponent } from './songlist.component';
 import { CreateListModule } from '../create-list/create-list.module';
+import { CreateListDialogComponent } from '../create-list/create-list-dialog/create-list-dialog.component';
 
 
 
@@ -13,8 +14,7 @@ import { CreateListModule } from '../create-list/create-list.module';
     CreateListModule
   ],
   declarations: [
-    SonglistComponent,
-    CreatelistDialogComponent
+    SonglistComponent
   ],
    schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ]
 })

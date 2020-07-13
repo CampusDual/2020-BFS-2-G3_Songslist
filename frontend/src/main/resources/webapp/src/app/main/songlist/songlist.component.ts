@@ -27,11 +27,8 @@ export class SonglistComponent implements OnInit {
   }
 
   loadMySonglists(){
-
     this.songlistService.getAllSonglist().subscribe(
-
       (songlist: any) => {
-
           if (songlist['data']) {
 
               if (songlist['data'].length > 0) {
@@ -69,29 +66,6 @@ export class SonglistComponent implements OnInit {
   console.log('fuera del subscribe', this.songResult);
   }
 
-  createlist(){
-    let nameSL: string;
-    let descriptionSL: string;
-
-
-
-
-
-    this.listService.insertList(nameSL, descriptionSL).subscribe(
-      (sl: any) => {
-          if (sl['data']) {
-              if (sl['data'].length > 0) {
-                  this.songResult = sl['data'];
-                  console.log('DATA SONGLIST ', sl['data']);
-                  console.log('SONGLIST ', this.songResult);
-              } else {
-                  this.songResult = null;              }
-          }
-      },
-      err => console.error(err)
-  );
-  console.log('fuera del subscribe', this.songResult);
-  }
   getResult(){
     return this.songlistResult;
   }

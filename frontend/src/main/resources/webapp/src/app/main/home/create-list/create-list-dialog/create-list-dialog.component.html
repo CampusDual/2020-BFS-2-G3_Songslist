@@ -1,9 +1,10 @@
-<div *ngIf="action == 'button'">
 
-  <h2 mat-dialog-title>Add song to :</h2>
 
-  <mat-accordion mat-dialog-content>
-    <mat-expansion-panel hideToggle>
+  <mat-dialog-content >
+    <h2  *ngIf="action" mat-dialog-title  style="color: black;">Add song to :</h2>
+    <h2  *ngIf="!action" mat-dialog-title  style="color: black; display: none;">Add new list :</h2>
+  <mat-accordion >
+    <mat-expansion-panel  [expanded]="step === 0" (opened)="setStep(0)" hideToggle  *ngIf="action">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Select a crerate list:
@@ -20,80 +21,55 @@
         </li>
       </ul>
     </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+
+    <mat-expansion-panel  [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
           Add new List
         </mat-panel-title>
         <mat-panel-description>
           Currently I am {{panelOpenState ? 'open' : 'closed'}}
-
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <div [formGroup]="form">
+
+      <form (ngSubmit)="onSaveForm()" [formGroup]="form">
         <mat-form-field>
-          <input matInput placeholder="List name" formControlName="lstname">
+          <input matInput placeholder="List name" formControlName="lstName">
         </mat-form-field>
-      </div>
+        <mat-form-field>
+          <mat-label>{{'ABOUT_YOU' | oTranslate}}</mat-label>
+          <textarea matInput formControlName="lstDescription" placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
+        </mat-form-field>
+    </form>
       <p>I'm visible because I am open</p>
     </mat-expansion-panel>
   </mat-accordion>
+    
+<!-- </mat-dialog-content>
+  <mat-dialog-content *ngIf="!action">
+    <mat-expansion-panel panelOpenState = "true">  
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Add new List
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am 
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <form (ngSubmit)="onSaveForm()" [formGroup]="form">
+            <mat-form-field>
+          <input matInput placeholder="List name" formControlName="lstName">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{'ABOUT_YOU' | oTranslate}}</mat-label>
+          <textarea matInput formControlName="lstDescription" placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
+        </mat-form-field>
+    </form>
+      <p>I'm visible because I am open</p>
+    </mat-expansion-panel>
+  </mat-dialog-content> -->
+  
   <mat-dialog-actions>
     <button class="mat-raised-button" (click)="close()">Close</button>
-    <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
-  </mat-dialog-actions>
-</div>
-
-
-<div *ngIf="action == 'grid'">
-
-
-<mat-accordion mat-dialog-content>
-  <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Select a  crerate list:
-      </mat-panel-title>
-      <mat-panel-description>
-        This is a summary of the content
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <ul *ngIf="subtasks.length > 0">
-      <li *ngFor="let subtask of subtasks">
-        <mat-checkbox [(ngModel)]="subtask.completed" [color]="subtask.color" >
-          {{subtask.name}}
-        </mat-checkbox>
-      </li>
-    </ul>
-  </mat-expansion-panel>
-  <mat-expansion-panel
-   (opened)="panelOpenState = true"
-   (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Add new List
-      </mat-panel-title>
-      <mat-panel-description >
-        Currently I am {{panelOpenState ? 'open' : 'closed'}}
-        
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <div  [formGroup]="form">
-    <mat-form-field>
-      <input matInput
-              placeholder="List name"
-             formControlName="lstName">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput
-            placeholder="description"
-           formControlName="lstDescription">
-</mat-form-field>
-</div>
-    <p>I'm visible because I am open</p>
-  </mat-expansion-panel>
-</mat-accordion>
-<mat-dialog-actions>
-  <button class="mat-raised-button"(click)="close()">Close</button>
-  <button   [disabled]="!inputChange()" class="mat-raised-button mat-primary"(click)="save()" type="submit">Save</button>
-</mat-dialog-actions> -->
+    <button type="submit" [disabled]="!inputChange()">Save</button>
+  </mat-dialog-actions> 

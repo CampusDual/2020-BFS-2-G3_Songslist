@@ -113,13 +113,20 @@
         <ng-container matColumnDef="Action">
           <mat-header-cell *matHeaderCellDef>{{'ACTION' | oTranslate}}</mat-header-cell>
           <mat-cell class="duration-cell" *matCellDef="let song">
-            <app-create-list  [id]= "song.id_song" [action]= "button"></app-create-list>
+            <app-create-list  [id]= "song.id_song" [action]= "true"></app-create-list>
           </mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="['select','Img','Song', 'Album', 'Artist','Genre','Action']"></mat-header-row>
+        <ng-container matColumnDef="ActionGrid">
+          <mat-header-cell *matHeaderCellDef>{{'ACTIONGRID' | oTranslate}}</mat-header-cell>
+          <mat-cell class="duration-cell" *matCellDef="let song">
+            <app-create-list  [id]= "song.id_song" [action]= "false"></app-create-list>
+          </mat-cell>
+        </ng-container>
 
-        <mat-row *matRowDef="let row; columns:['select','Img','Song','Album','Artist','Genre','Action']"></mat-row>
+        <mat-header-row *matHeaderRowDef="['select','Img','Song', 'Album', 'Artist','Genre','Action','ActionGrid']"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns:['select','Img','Song','Album','Artist','Genre','Action','ActionGrid']"></mat-row>
       </mat-table>
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 

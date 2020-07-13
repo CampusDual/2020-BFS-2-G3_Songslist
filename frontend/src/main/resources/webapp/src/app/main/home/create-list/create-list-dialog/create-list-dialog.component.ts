@@ -17,9 +17,9 @@ export class CreateListDialogComponent implements OnInit {
   name: string;
   songid: number;
   subtasks ;
-  action : string ;
- 
+  action : boolean ;
   panelOpenState = false;
+  step : number ;
   private textPattern: any = /^[a-zA-Z0-9]+(?:[_ -]?[a-zA-Z0-9])*$/;
   constructor(
     public  listService: ListService ,
@@ -34,6 +34,11 @@ export class CreateListDialogComponent implements OnInit {
       {name: 'list2', completed: false, color: 'accent'},
       {name: 'lis3', completed: false, color: 'accent'}
     ];
+    if ( data.action = false){
+      this.step = 1;
+    }else{
+      this.step = 0;
+    }
      }
 
   ngOnInit() {
@@ -42,10 +47,14 @@ export class CreateListDialogComponent implements OnInit {
       lstDescription: ['',[ Validators.minLength(0), Validators.maxLength(200), Validators.pattern(this.textPattern)]]
   });
   }
+  setStep(index: number) {
+    this.step = index;
+  }
+
   get lstName() { return this.form.get('lstName'); }
   get lstDescription() { return this.form.get('lstDescription'); }
 
-save() {
+  onSaveForm() {
   if (this.form.valid ) {
     const newList: ISongListModel = <ISongListModel>{
     }

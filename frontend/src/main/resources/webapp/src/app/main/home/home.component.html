@@ -31,7 +31,7 @@
           (keyup)="onItemChange($event.target.value)" autocomplete="off">
         <mat-hint align="start">
           <strong>
-            <span *ngIf=" !mnjError " style="color: black;">
+            <span *ngIf=" !mnjError " style="color: #0199c3">
               {{'THREE_LETTER_MSJ' | oTranslate}}
             </span>
             <span class='mensaje-error' *ngIf=" mnjError  && mnjError.length > 0">
@@ -39,7 +39,7 @@
             </span>
           </strong>
         </mat-hint>
-        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+        <mat-hint align="end" style="color: #0199c3;">{{message.value.length}} / 256</mat-hint>
       </mat-form-field>
     </form>
   </div>
@@ -69,7 +69,7 @@
               [queryParams]="{id: song.id_song}" href="#">
               <!-- <img src='./assets/images/album/{{song.img_album}}'> -->
               <o-image class="datasheet-img" attr="image" type="RAISED" fxFlex="40"
-                data="./assets/images/album/{{song.img_album}}.jpg" height="90%" width="20%" auto-fit="true"
+                data="./assets/images/album/{{song.img_album}}.jfif" height="90%" width="20%" auto-fit="true"
                 enabled="true" read-only="true" show-controls="false" full-screen-button="false"
                 empty-image="./assets/images/no-image.png">
               </o-image>
@@ -113,7 +113,7 @@
         <ng-container matColumnDef="Action">
           <mat-header-cell *matHeaderCellDef>{{'ACTION' | oTranslate}}</mat-header-cell>
           <mat-cell class="duration-cell" *matCellDef="let song">
-            <app-create-list [id]= "song.id_song"></app-create-list>
+            <app-create-list [id]= "song.id_song" [action]= "button" ></app-create-list>
           </mat-cell>
         </ng-container>
 

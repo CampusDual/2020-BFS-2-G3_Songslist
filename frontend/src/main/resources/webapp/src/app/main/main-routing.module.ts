@@ -8,6 +8,7 @@ import { ArtistComponent } from './artist/artist.component';
 import { SongComponent } from './song/song.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { LoginComponent } from 'app/login/login.component';
+import { SonglistComponent } from './songlist/songlist.component';
 export function loadHomeModule() {
   return HomeModule;
 }
@@ -27,6 +28,9 @@ export const routes: Routes = [
       },{
         path: 'song/:id',
         component: SongComponent
+      }, {
+        path: 'songlist',
+        component:  SonglistComponent
       }, 
       {
         path: 'album/:id',

@@ -7,6 +7,7 @@ import { DialogService, ODialogConfig } from 'ontimize-web-ngx';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RegisterService } from 'app/main/services/registerService';
 import { viewAttached, getViewData } from '@angular/core/src/render3/instructions';
+import { OSnackBarConfig, SnackBarService } from 'ontimize-web-ngx';
 
 @Component({
   selector: 'register',
@@ -66,6 +67,7 @@ export class RegisterComponent implements OnInit {
     }
   }
   onRegisterUser(): void {
+    let snackBarService:SnackBarService;
     console.log('pulsoboton')
     console.log('PARAMETROS: ', this.registerForm.value)
     new Date(this.registerForm.value.birthdate).getTime() / 1000
@@ -91,10 +93,13 @@ export class RegisterComponent implements OnInit {
             this.userResult = null;
           }
         }
+        snackBarService.open("{{ 'USER_CREATED' | oTranslate}}");
         this.onResetForm();
       },
       err => {        
+        snackBarService.open("{{ 'USER_CREATED_ERROR' | oTranslate}}");
       }
+      
     );
   }
 

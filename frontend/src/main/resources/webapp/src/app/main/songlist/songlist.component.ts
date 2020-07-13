@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ISonglistModel} from 'app/shared/models/isonglistmodel';
 import { SonglistService } from '../services/songlist.service';
+import { ListService } from '../services/listService';
 import { ISongModel } from 'app/shared/models/isong.model';
+import { DialogService } from 'ontimize-web-ngx';
 
 @Component({
   selector: 'app-songlist',
@@ -14,7 +16,9 @@ export class SonglistComponent implements OnInit {
   public songResult: ISongModel;
 
   constructor(
-    private songlistService: SonglistService
+    private songlistService: SonglistService,
+    private listService: ListService,
+    private dialogService: DialogService
   ) { }
 
   ngOnInit(  
@@ -55,6 +59,30 @@ export class SonglistComponent implements OnInit {
               if (songs['data'].length > 0) {
                   this.songResult = songs['data'];
                   console.log('DATA SONGLIST ', songs['data']);
+                  console.log('SONGLIST ', this.songResult);
+              } else {
+                  this.songResult = null;              }
+          }
+      },
+      err => console.error(err)
+  );
+  console.log('fuera del subscribe', this.songResult);
+  }
+
+  createlist(){
+    let nameSL: string;
+    let descriptionSL: string;
+
+
+
+
+
+    this.listService.insertList(nameSL, descriptionSL).subscribe(
+      (sl: any) => {
+          if (sl['data']) {
+              if (sl['data'].length > 0) {
+                  this.songResult = sl['data'];
+                  console.log('DATA SONGLIST ', sl['data']);
                   console.log('SONGLIST ', this.songResult);
               } else {
                   this.songResult = null;              }

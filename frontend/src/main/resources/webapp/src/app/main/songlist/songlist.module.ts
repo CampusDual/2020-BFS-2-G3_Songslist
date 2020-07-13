@@ -5,6 +5,7 @@ import { SonglistComponent } from './songlist.component';
 import { CreateListModule } from '../create-list/create-list.module';
 import { CreateListComponent } from '../create-list/create-list.component';
 import { CreateListDialogComponent } from '../create-list/create-list-dialog/create-list-dialog.component';
+import { CreatelistDialogComponent } from './createlist-dialog/createlist-dialog.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { CreateListDialogComponent } from '../create-list/create-list-dialog/cre
     CreateListModule
   ],
   declarations: [
-    SonglistComponent
+    SonglistComponent,
+    CreatelistDialogComponent
   ],
    schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ]
 })

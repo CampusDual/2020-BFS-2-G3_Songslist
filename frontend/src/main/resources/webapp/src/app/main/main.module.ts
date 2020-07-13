@@ -15,12 +15,14 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { PerfilService } from './services/perfil.service';
 import { SonglistComponent } from './songlist/songlist.component';
 import { SonglistService } from './services/songlist.service';
+import { SonglistModule } from './songlist/songlist.module';
 
 @NgModule({
   imports: [
     SharedModule,
     OntimizeWebModule,
     MainRoutingModule,
+    SonglistModule
   ],
   declarations: [
     AlbumComponent,
@@ -28,7 +30,7 @@ import { SonglistService } from './services/songlist.service';
     ArtistComponent,
     SongComponent,
     PerfilComponent,
-    SonglistComponent
+
   ], providers: [
     AlbumService,
     ArtistService,

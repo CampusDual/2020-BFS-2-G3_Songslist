@@ -9,8 +9,12 @@ import { SongComponent } from './song/song.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { LoginComponent } from 'app/login/login.component';
 import { SonglistComponent } from './songlist/songlist.component';
+import { SonglistModule } from './songlist/songlist.module';
 export function loadHomeModule() {
   return HomeModule;
+}
+export function loadSonglistModule() {
+  return SonglistModule;
 }
 function User (): boolean {
   return JSON.parse(localStorage.getItem('com.ontimize.web.ngx.jee.seed')).session.id ;
@@ -30,7 +34,7 @@ export const routes: Routes = [
         component: SongComponent
       }, {
         path: 'songlist',
-        component:  SonglistComponent
+        component : SonglistComponent 
       }, 
       {
         path: 'album/:id',

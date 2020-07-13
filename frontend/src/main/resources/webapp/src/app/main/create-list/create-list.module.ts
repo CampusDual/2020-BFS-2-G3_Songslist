@@ -17,8 +17,10 @@ import { CreateListDialogComponent } from './create-list-dialog/create-list-dial
     CreateListDialogComponent
   ],
   entryComponents: [CreateListDialogComponent],
-  exports : [CreateListComponent,
-    CreateListDialogComponent],
+  exports : [
+    CreateListComponent,
+    CreateListDialogComponent
+  ]
 
 
 })

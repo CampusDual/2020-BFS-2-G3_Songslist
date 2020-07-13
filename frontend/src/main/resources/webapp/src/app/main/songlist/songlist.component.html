@@ -4,13 +4,14 @@
   sortable-columns="name" sort-column="" controls="false" refresh-button="false" pagination-controls="false"
   gutter-size="1px" [ngStyle]="{'height':'10rem'}">
 
-  <app-create-list  [id]= "song.id_song" [action]= "true"></app-create-list>
+ 
 
   <o-grid-item>
-    <o-column layout-padding class="container-item">
+    <app-create-list [action]= "false"></app-create-list> 
+    <!-- <o-column layout-padding class="container-item">
       <img src="./assets/images/Add_new_songlist.png" style="margin-top:8px">
       <h4 class="self-center">{{ 'CREATE_NEW_SONGLIST' | oTranslate }}</h4>
-    </o-column>
+    </o-column> -->
   </o-grid-item>
   
   <o-grid-item *ngFor="let list of grid.dataArray">

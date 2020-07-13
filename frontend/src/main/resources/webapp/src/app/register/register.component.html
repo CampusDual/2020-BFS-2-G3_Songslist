@@ -1,95 +1,105 @@
-<section id="register" class="center between">
-  <form class="form-register" appearance="fill" [formGroup]="registerForm" (ngSubmit)="onRegisterUser()">
-    <div class="colum center around midddle between ">
-      <div class="row-reg center between">
-        <o-column>
-          <h2 class="datasheet-h2">{{'NEW_USER' |oTranslate}}</h2>
-        </o-column>
-      </div>
-      <div class="row-reg center between  ">
-        <mat-form-field class="column-reg" [ngClass]="">
-          <mat-label>{{'NICK' | oTranslate}}</mat-label>
-          <input class="input-register" matInput type="text" formControlName="nick" placeholder="Your Nick"
-            required="true" variant="outlined">
-        </mat-form-field>
-        <mat-form-field class="column-reg" [ngClass]="">
-          <mat-label>{{'NAME' | oTranslate}}</mat-label>
-          <input class="input-register" matInput type="text" formControlName="name" placeholder="Your Name">
-        </mat-form-field>
-      </div>
-      <div class="row-reg center between">
-        <mat-form-field class="column-reg" [ngClass]="">
-          <mat-label>{{'PASSWORD' | oTranslate}}</mat-label>
-          <input class="input-register" matInput type="password" class="form-control" formControlName="password"
-            name="password" ng-model="user.pass" placeholder="{{PASSWORD}}" class="form-control input" required="true"
-            (keyup)="checkPasswords($event.target.value)">
-          <mat-hint align="start">
-            <strong>
-              <span *ngIf=" !this.minLenght " style="color: red;">
-                {{'MIN_LENGHT_SIX' | oTranslate}}
-              </span>
-            </strong>
-          </mat-hint>
-        </mat-form-field>
-        <mat-form-field class="column-reg" [ngClass]="">
-          <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
-          <input class="input-register" matInput type="text" formControlName="surname" placeholder="Your surname>">
-        </mat-form-field>
-      </div>
-      <div class="row-reg center between">
-        <mat-form-field class="column-reg" [ngClass]="">
-          <mat-label>{{'CONFIRM_PASSWORD' | oTranslate}}</mat-label>
-          <input class="input-register" matInput type="password" formControlName="confirmPass" name="confirmPass"
-            ng-model="user.confirmPassword" placeholder="{{CONFIRM_PASSWORD}}" compare-to="user.password"
-            class="form-control input" required="true" (keyup)="checkPasswords($event.target.value)">
-          <mat-hint align="start">
-            <strong>
-              <span *ngIf=" this.match && this.minLenght" style="color: green;">
-                {{ 'PASSWORD_MATCH' | oTranslate }}
-              </span>
-              <span *ngIf=" !this.match && this.writeSomething" style="color: red;">
-                {{ 'PASSWORD_NOT_MATCH' | oTranslate }}
-              </span>
-            </strong>
-          </mat-hint>
-        </mat-form-field>
-
-        <mat-form-field class="column-reg" [ngClass]="">
-          <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
-          <input class="input-register" matInput type="email" formControlName="email" placeholder="Your email">
-        </mat-form-field>
-      </div>
-
-
-      <div class="row-reg center between">
-        <mat-form-field class="column-reg" [ngClass]="">
-
-          <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
-          <input class="input-register" matInput type="date" formControlName="birthdate" placeholder="Your birthdate">
-        </mat-form-field>
-
-
-
-        <mat-form-field class="column-reg" [ngClass]="">
-          <mat-label>{{'ABOUT_YOU' | oTranslate}}</mat-label>
-          <textarea class="input-register" margin = "dense" matInput formControlName="description"
-            placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
-        </mat-form-field>
-      </div>
-
-      <div class="row-reg center between">
-        <o-column>
-          <button mat-raised-button color="primary" type="submit"
-            [disabled]="!registerForm.valid || !this.match">{{'CREATE_USER' | oTranslate}}</button>
-        </o-column>
-        <o-column>
-          <o-button class="button-back" attr="raised" type="RAISED" label="{{'CANCEL' | oTranslate}}" layout-padding
-            [routerLink]="['/login']"></o-button>
-        </o-column>
-      </div>
-
+<section id="register" class="section-register center between">
+  <div class="colum between ">
+    <div>
+      <o-column>
+        <h2 class="datasheet-h2">{{'NEW_USER' |oTranslate}}</h2>
+      </o-column>
     </div>
 
-  </form>
+    <!-- *** AVATAR ***-->
+    <form class="form-register" appearance="fill" [formGroup]="registerForm" (ngSubmit)="onRegisterUser()">
+      <o-column display="display: flow-root;" class="column-image" fxFlex="25" align-items="flow-root;"
+        justifyContent="center" layout-align="center">
+        <o-image layout-align="center" attr="image" enabled="true" read-only="false" show-controls="false"
+          full-screen-button="true" empty-image="./assets/images/no-image.png" auto-fit="true"></o-image>
+      </o-column>
 
+
+      <o-column display="flex" fxFlex="75" align-items="center" justifyContent="center">
+
+        <!-- *** NICK + EMAIL ***-->
+        <div class="row-reg center between  ">
+          <mat-form-field class="column-reg" [ngClass]="">
+            <mat-label>{{'NICK' | oTranslate}}</mat-label>
+            <input class="input-register" matInput type="text" formControlName="nick" placeholder="Your Nick"
+              required="true" variant="outlined">
+          </mat-form-field>
+          <mat-form-field class="column-reg" [ngClass]="">
+            <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
+            <input class="input-register" matInput type="email" formControlName="email" placeholder="Your email">
+          </mat-form-field>
+        </div>
+
+        <!-- *** NAME + SURNAME ***-->
+        <div class="row-reg center between">
+          <mat-form-field class="column-reg" [ngClass]="">
+            <mat-label>{{'NAME' | oTranslate}}</mat-label>
+            <input class="input-register" matInput type="text" formControlName="name" placeholder="Your Name">
+          </mat-form-field>
+          <mat-form-field class="column-reg" [ngClass]="">
+            <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
+            <input class="input-register" matInput type="text" formControlName="surname" placeholder="Your surname>">
+          </mat-form-field>
+        </div>
+        <!-- *** bIRTHDATE + DESCRIPTION ***-->
+        <div class="row-reg center between">
+          <mat-form-field class="column-reg" [ngClass]="">
+            <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
+            <input class="input-register" matInput type="date" formControlName="birthdate" placeholder="Your birthdate">
+          </mat-form-field>
+          <mat-form-field class="column-reg" [ngClass]="">
+            <mat-label>{{'ABOUT_YOU' | oTranslate}}</mat-label>
+            <textarea class="input-register" margin="dense" matInput formControlName="description"
+              placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
+          </mat-form-field>
+        </div>
+        <!-- *** PASSWORD + REPEAT_PASSWORD ***-->
+        <div class="row-reg center between">
+          <mat-form-field class="column-reg" [ngClass]="">
+            <mat-label>{{'PASSWORD' | oTranslate}}</mat-label>
+            <input class="input-register" matInput type="password" class="form-control" formControlName="password"
+              name="password" ng-model="user.pass" placeholder="{{PASSWORD}}" class="form-control input" required="true"
+              (keyup)="checkPasswords($event.target.value)">
+            <mat-hint align="start">
+              <strong>
+                <span *ngIf=" !this.minLenght " style="color: red;">
+                  {{'MIN_LENGHT_SIX' | oTranslate}}
+                </span>
+              </strong>
+            </mat-hint>
+          </mat-form-field>
+          <mat-form-field class="column-reg" [ngClass]="">
+            <mat-label>{{'CONFIRM_PASSWORD' | oTranslate}}</mat-label>
+            <input class="input-register" matInput type="password" formControlName="confirmPass" name="confirmPass"
+              ng-model="user.confirmPassword" placeholder="{{CONFIRM_PASSWORD}}" compare-to="user.password"
+              class="form-control input" required="true" (keyup)="checkPasswords($event.target.value)">
+            <mat-hint align="start">
+              <strong>
+                <span *ngIf=" this.match && this.minLenght" style="color: green;">
+                  {{ 'PASSWORD_MATCH' | oTranslate }}
+                </span>
+                <span *ngIf=" !this.match && this.writeSomething" style="color: red;">
+                  {{ 'PASSWORD_NOT_MATCH' | oTranslate }}
+                </span>
+              </strong>
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <!-- *** BUTTONS ***-->
+        <div class="row-reg center around">
+         
+            <button mat-raised-button color="primary" type="submit" [ngStyle]="{'color':'#8b97a1'}"
+              [disabled]="!registerForm.valid || !this.match">{{'CREATE_USER' | oTranslate}}</button>
+       
+
+        
+            <button mat-raised-button color="primary" type="button"
+              [routerLink]="['/login']">{{'CANCEL' | oTranslate}}</button>
+          
+        </div>
+
+      </o-column>
+
+    </form>
+  </div>
 </section>

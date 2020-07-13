@@ -33,7 +33,6 @@ export class PerfilComponent implements OnInit {
 
 
   public perfilResult: IUserModel ;
-  // public perfiUpdate: IUserModel ;
   public contactForm: FormGroup;
   public alert: number;
   public change: boolean = false;
@@ -56,9 +55,12 @@ confirmFormControl = new FormControl('', [
     public dialog: MatDialog,
     protected dialogService: DialogService
   ) { }
+
   ngOnInit() {
     this.ngOnStartForm();
+    
   }
+
   ngOnStartForm(): IUserModel {
     console.log('iniciando');
     console.log('method : ngOnStartUser')
@@ -208,13 +210,21 @@ confirmFormControl = new FormControl('', [
         );
     }
   }
-  cargarForm():boolean {
-  if (this.contactForm && this.perfilResult ){
-    console.log('load form ',this.contactForm);
-    console.log('load perfilData ',this.perfilResult);
-    return true;
+  getForm() {
+
+    return this.perfilResult;
   }
-    return false;
+  getNick(): string{
+    return this.perfilResult.nick_user;
+  }
+  getName(): string{
+    return this.perfilResult.name_user;
+  }
+  getSurname(): string{
+    return this.perfilResult.surname_user;
+  }
+  getEmail(): string{
+    return this.perfilResult.email_user;
   }
  
 

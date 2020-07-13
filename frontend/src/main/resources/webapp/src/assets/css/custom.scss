@@ -1,15 +1,20 @@
-$font-size-grande: 18px ;
+$font-size-xtra: 24px ;
+$font-size-grande: 20px ;
 $font-size-medium: 16px ;
-$font-size-normal: 14px ;
+$font-size-normal: 16px ;
 $font-size-small: 12px ;
 $color-black:rgba(0, 0, 0, 0.87);
 $color-White:rgba(255, 255, 255, 0.87);
 $color-grey : #808787;
 $color-dark-grey:#676d6d;
 $color-select :rgb(255, 204, 0);
-$color-inputs : #242424;
-$color-background-forms : #fafafa;
-$custom-color-background : #fafafa;;
+$color-inputs : #ffffff;
+$custom-color-background : #03192b;
+$custom-color-background-elements : #032540;
+$custom-color-font-title: #ffffff;
+$custom-color-font-text: #8b97a1;
+$custom-color-font-other: #0199c3;
+$color-font: #8b97a1;
 
 
 .button-back button{
@@ -21,57 +26,105 @@ $custom-color-background : #fafafa;;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 14px;
     font-weight: 500;
+    background: #061220;
+    color: $color-font;
+    font-weight: bold;
     
+    
+}
+
+.o-app-sidenav .o-app-sidenav-container .o-app-sidenav-content {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: $custom-color-background;
+}
+
+.o-app-sidenav-sidenav .o-scroll{
+    background-color: $custom-color-background;
+}
+.o-app-sidenav .o-app-sidenav-sidenav {
+    background: #021d33;;
+}
+.mat-checkbox-inner-container-no-side-margin {
+    margin-left: 0;
+    margin-right: 0;
+    border-color: #FFFFFF;
+    background: #032540;
+}
+
+.mat-header-cell {
+    color: $custom-color-font-title !important;
+    font-style: initial;
+    font-weight: bold;
+    font-size: medium;
+}
+
+mat-toolbar{
+    border: none;
 }
 
 .component{   
 
     width: 100%;
     height: 100%;
-    margin-top: 1.5%;
-    margin-left: 1.5%;
-    margin-right: 3%;
-    margin-bottom: 3%;
-    background-color: $color-background-forms;
+    padding-top: 1.5%;
+    padding-left: 1.5%;
+    padding-right: 1%;
+    padding-bottom: 1%;    
     text-decoration-color: #d89237;
-}
-
-.button-back{
-   
-    margin: 2k rem;
-    text-align: center;
     
 }
 
-$font-size-grande: 18px ;
-$font-size-medium: 16px ;
-$font-size-normal: 14px ;
-$font-size-small: 12px ;
-$color-black:rgba(0, 0, 0, 0.87);
-$color-White:rgba(255, 255, 255, 0.87);
-$color-grey : #808787;
-$color-dark-grey:#676d6d;
-$color-select :rgb(255, 204, 0);
-
-* {
-  
+mat-header-cell{
+    color: $custom-color-font-text;
 }
 
-html {
-   
+
+mat-form-field {
+    padding:1.5rem;
+    border: medium;
+    border-color: #8b97a1;
+    border-style: solid;
+    border-radius: 1em;
 }
+
 ul{
     list-style-type: none
 }
 
-body {
-    margin: 0;
+a{
+    color: $custom-color-font-text !important;
+}
+
+a:hover{
+    color: $color-select !important;
+    font-weight: bold;
+    padding: 1rem;
+}
+a[_ngcontent-c11] {
+    color: $custom-color-font-text ;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+.mat-cell[_ngcontent-c11] {
+    text-align: center;
+    color: #808787;
+    padding: 1rem;
+}
+
+a[_ngcontent-c11]:hover {
+    color: $color-select ;
+    font-weight: bold;
+    padding: 1rem;
 }
 
 .row {
     display: flex;
     align-items: stretch;
     width: auto;
+    
 }
 
 .center {
@@ -103,14 +156,31 @@ body {
 }
 
 .column {
-    margin: 1rem;
+    margin: 0rem;
+    padding: 1;
     flex-direction: column;
     display:flex;
-    width: 45%;
+    width: 100%;
+    padding: 2rem;
 }
+.column-image{
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    max-width: 100%;
+    place-content: flex-start !important;
+    align-items: stretch;
+    flex: 1 1 100%;
+}
+
 .content-colum{
         margin-left: auto;
         margin-right: auto; 
+}
+
+.div{
+    color: $color-font;
+    background: $custom-color-background;
 }
 
 // [CSS Button]
@@ -121,26 +191,39 @@ body {
 
 // [CSS Titulo + Formulario]
 form {
-    max-width: 60rem;
-     margin-left: auto;
-     margin-right: auto;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background: $custom-color-background !important;
+     
+}
+
+label{
+    color: $color-font !important;
 }
 
 input {
-    border :solid blue 1px;
     margin: 0.5rem;
-    font-size: medium;
+    font-size: $font-size-medium;
     width: 85%;  
     height: 100%;
     align-items: stretch;
     display: flex;
-    margin: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 1rem;
     font-size: medium;
+    color: $color-inputs !important;    
+}
+.input-disable {
+    color: $color-select !important;   
+    font-weight: bolder;
+    font-size: $font-size-grande;
+    font-style: italic;
 }
 textarea {
     // margin-left: 0.5rem;
     // margin-top: 0.5rem;
-    border :solid blue 1px;
     margin: 0.5rem;
     font-size: medium;
     width: 85%;  
@@ -148,22 +231,52 @@ textarea {
     display: flex;
     margin: 0.5rem;
     font-size: medium;
+    color: $custom-color-font-text;
+}
+
+.span-description{
+    align-self: center;
+    color: $custom-color-font-text;
+}
+
+.register-access{
+    color: $custom-color-font-title !important;
+    font-size: $font-size-xtra;
+    font-weight: bold;
+}
+.register-access:hover{
+    color: $color-select !important;
+    font-size: $font-size-xtra;
+    font-weight: bolder;
+}
+
+.annotation{
+    color: $custom-color-font-other;
 }
 .mat-table{
     background: $custom-color-background;
+    color: $color-font;
 }
 .mat-paginator{
     background: $custom-color-background;
+    color: $color-font;
 }
-// titulo
+
 h2{
     text-align: center;
+    color: $custom-color-font-title;
+}
+h1{
+    text-align: center;
+    color: $custom-color-font-title;
 }
 
 //form
 .datasheet-text-input{
     margin: 0.5rem;
-    font-size: medium;
+    font-size: $font-size-medium;
+    background: $custom-color-background;
+    color: $color-inputs;
     
 }
 
@@ -184,7 +297,8 @@ h2{
     padding-left: 1.5%;
     padding-right: 3%;
     padding-bottom: 3%;
-    color:  rgb(15, 15, 15); 
+    color: $color-font;
+    background: $custom-color-background;
 }
 
 .datasheet-acordion {
@@ -193,42 +307,48 @@ h2{
     flex-basis: 0;
   }
 
-  .datasheet-o-row{
-   //   width: 100%;
-  }
-
 .datasheet-input,
 .datasheet-text-input-hover{
     padding: 1rem;
+    color: $color-inputs;
 }
 
 .datasheet-text-input-hover:hover{
     font-weight: bold;
     color: $color-select;
+    background: $custom-color-background;
     padding: 1rem;
 }
 
 .datasheet-description{
     font-weight: bold;
     padding-top: 1rem;
+    color: $color-font;
+    background: $custom-color-background;
 }
 
 
 .item-hover:hover{
-    //font-weight: bold;
+    font-weight: bold;
     color: $color-select;
+    background: $custom-color-background;
 }
 
 .mat-toolbar.mat-toolbar-single-row.ng-star-inserted{
-    background-color: rgb(255, 255, 255);;
+    color: $color-font;
+    background: $custom-color-background;
 }
 
 .mat-toolbar{
     display: none;
+    color: $color-font;
+    background: $custom-color-background;
 }
 
 .accordion-panel{
     margin: 1rem;
+    color: $color-font;
+    background: $custom-color-background;
 }
 
  // [Css Imgen]
@@ -243,40 +363,86 @@ h2{
 
 .title_page{
     text-align: center;
+    color: $color-font;
+    background: $custom-color-background;
 }
 
 // ************** REGISTRO *********
 
 .row-reg{
-    display: flex;
+    //display: flex;
     align-items: stretch;
     width: auto;
     width: 90%;
     justify-content: space-evenly;
 }
 
+.row-form{
+    place-content: stretch;
+    align-items: stretch;
+    width: auto;
+    width: 90%;
+    justify-content: space-evenly;
+    place-content: flex-start;
+}
 
+.mat-drawer-container {
+    background-color: #fafafa;
+    color: $custom-color-font-title;
+
+}
 
 .input-register{
     color: $color-inputs;
+    background: $custom-color-background;
 }
 .label-register{
-    color: $color-inputs;
+    color: $color-font
 }
 
 
 .component-register{   
     width: 100;
     height: 100%;
-    background-color: $color-background-forms;
+    color: $color-font;
+    background: $custom-color-background;
     text-decoration-color: #d89237;
+}
+.section-register{
+    width: 100%;
+    height: 100%;
+    background-color: $custom-color-background;
+}
+section{
+    background-color: $custom-color-background;
 }
 
 .column-reg {
     margin: 1rem;
     flex-direction: column;
     display:flex;
-    width: 45%;
+    width: 35%;
+}
+
+// songlist
+.o-grid{
+    align-items: flex-start;
+}
+.o-grid-item{
+    align-items: flex-start;
+    display: flex;
+}
+
+.mat-grid-tile .mat-figure {
+    align-items: flex-start !important;
+}
+
+.self-center{
+    align-self: center;
+}
+
+.login-inner-container{
+    background-color: $custom-color-background !important;
 }
 
 

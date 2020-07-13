@@ -13,6 +13,8 @@ import { SongService } from './services/song.service';
 import { ArtistService } from './services/artist.service';
 import { PerfilComponent } from './perfil/perfil.component';
 import { PerfilService } from './services/perfil.service';
+import { SonglistComponent } from './songlist/songlist.component';
+import { SonglistService } from './services/songlist.service';
 
 @NgModule({
   imports: [
@@ -25,12 +27,14 @@ import { PerfilService } from './services/perfil.service';
     MainComponent,
     ArtistComponent,
     SongComponent,
-    PerfilComponent
+    PerfilComponent,
+    SonglistComponent
   ], providers: [
     AlbumService,
     ArtistService,
     SongService,
-    PerfilService
+    PerfilService,
+    SonglistService
   ],
 })
 export class MainModule { }

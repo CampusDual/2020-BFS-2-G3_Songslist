@@ -14,6 +14,7 @@ export class CreateListDialogComponent implements OnInit {
   name: string;
   songid: number;
   subtasks ;
+  action: string;
   panelOpenState = false;
   constructor(
      private fb: FormBuilder,
@@ -21,6 +22,7 @@ export class CreateListDialogComponent implements OnInit {
      @Inject(MAT_DIALOG_DATA) data) {
      this.name = data.name;
      this.songid = data.id;
+     this.action = data.action;
      this.subtasks = [
       {name: 'list1', completed: false, color: 'accent'},
       {name: 'list2', completed: false, color: 'accent'},

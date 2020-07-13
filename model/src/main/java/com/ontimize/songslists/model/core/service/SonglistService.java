@@ -43,9 +43,17 @@ public class SonglistService implements ISonglistService{
 	 public EntityResult songlistDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
 	  return this.daoHelper.delete(this.songlistDao, keyMap);
 	 }
-	 
+	  
+	 public EntityResult songlistOutnerQuery(Map<String, Object> keyMap, List<String> attrList)
+			   throws OntimizeJEERuntimeException {
+			HashMap <String, String> mykeyMap =  new HashMap<String, String>();
+			mykeyMap.put("nick_user", this.daoHelper.getUser().getUsername());
+			return this.daoHelper.query(songlistDao, mykeyMap, attrList);
+			 }
 	 
 	 // todos los usuarios 
+	 
+	 // puedo llamar a UserService.getID
 	 
 	 public boolean isNameSonglist ( String nameSongList ) {
 		try {

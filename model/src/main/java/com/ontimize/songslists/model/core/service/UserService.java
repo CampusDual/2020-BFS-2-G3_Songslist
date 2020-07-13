@@ -31,19 +31,18 @@ public class UserService implements IUserService {
 	public void loginQuery(Map<?, ?> key, List<?> attr) {
 	}
 
-	public EntityResult userQuery(Map<?, ?> keyMap, List<?> attrList) throws OntimizeJEERuntimeException {
-		attrList.size();
+	public EntityResult userQuery(Map<?, ?> keyMap, List<?> attrList) {
 		HashMap <String, String> mykeyMap =  new HashMap<String, String>();
 		mykeyMap.put("nick_user", this.daoHelper.getUser().getUsername());
 		return this.daoHelper.query(userDao, mykeyMap, attrList);
 	}
 
-	public EntityResult userInsert(Map<?, ?> attrMap) throws OntimizeJEERuntimeException {
+	public EntityResult userInsert(Map<?, ?> attrMap)  {
 		System.out.println(attrMap.toString());
 		return this.daoHelper.insert(userDao, attrMap);
 	}
 
-	public EntityResult userUpdate(Map<?, ?> attrMap, Map<?, ?> keyMap) throws OntimizeJEERuntimeException {
+	public EntityResult userUpdate(Map<?, ?> attrMap, Map<?, ?> keyMap)  {
 		try {
 		String passw = (String) attrMap.get("password_user");
 		if ( !ispassword(passw)) {
@@ -72,7 +71,7 @@ public class UserService implements IUserService {
 		}
 	}
 
-	public EntityResult userDelete(Map<?, ?> keyMap) throws OntimizeJEERuntimeException {
+	public EntityResult userDelete(Map<?, ?> keyMap) {
 		Map<Object, Object> attrMap = new HashMap<>();
 		attrMap.put("delete_date_user", new Timestamp(Calendar.getInstance().getTimeInMillis()));
 		return this.daoHelper.update(this.userDao, attrMap, keyMap);

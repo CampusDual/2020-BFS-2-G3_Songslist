@@ -11,10 +11,10 @@ import com.ontimize.db.EntityResult;
 
 public interface IUserService {
 
-	public EntityResult userQuery(Map<?, ?> keyMap, List<?> attrList) throws OntimizeJEERuntimeException;
-	public EntityResult userInsert(Map<?, ?> attrMap) throws OntimizeJEERuntimeException;
-	public EntityResult userUpdate(Map<?, ?> attrMap, Map<?, ?> keyMap) throws OntimizeJEERuntimeException;
-	public EntityResult userDelete(Map<?, ?> keyMap) throws OntimizeJEERuntimeException;
+	public EntityResult userQuery(Map<?, ?> keyMap, List<?> attrList) ;
+	public EntityResult userInsert(Map<?, ?> attrMap) ;
+	public EntityResult userUpdate(Map<?, ?> attrMap, Map<?, ?> keyMap) ;
+	public EntityResult userDelete(Map<?, ?> keyMap) ;
 	public boolean isnick ( String nameSongList );
 	public int getID();
 	public boolean ispassword ( String password );

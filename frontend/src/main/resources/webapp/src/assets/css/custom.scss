@@ -33,6 +33,13 @@ $color-font: #8b97a1;
     
 }
 
+.o-form form .o-form-content-wrapper {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1em;
+}
+
 .o-app-sidenav .o-app-sidenav-container .o-app-sidenav-content {
     min-height: 100%;
     display: flex;
@@ -44,7 +51,33 @@ $color-font: #8b97a1;
     background-color: $custom-color-background;
 }
 .o-app-sidenav .o-app-sidenav-sidenav {
-    background: #021d33;;
+    background: #021d33;
+}
+
+.mat-select-arrow {
+    color: $custom-color-font-text
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: $color-select;
+    background-color: $custom-color-background;
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: $color-select;
+    background-color: $custom-color-background;
+}
+.mat-primary .mat-option.mat-selected:hover(.mat-option-disabled) {
+    color: $color-select;
+    background-color: $custom-color-background !important;
+}
+
+.mat-option {
+    color: $color-inputs;
+    background-color: $custom-color-background-elements;
+    text-align: center !important;
+}
+
+.mat-option :hover {
+    color: $color-black
 }
 .mat-checkbox-inner-container-no-side-margin {
     margin-left: 0;
@@ -68,12 +101,17 @@ mat-toolbar{
 
     width: 100%;
     height: 100%;
-    padding-top: 1.5%;
-    padding-left: 1.5%;
-    padding-right: 1%;
-    padding-bottom: 1%;    
+    //padding-top: 1.5%;
+    //padding-left: 1.5%;
+    //padding-right: 1%;
+    //padding-bottom: 1%;    
     text-decoration-color: #d89237;
     
+}
+
+
+::placeholder{
+    color: $custom-color-font-text !important;
 }
 
 mat-header-cell{
@@ -95,29 +133,40 @@ ul{
 
 a{
     color: $custom-color-font-text !important;
+    font-size: $font-size-medium;
 }
 
 a:hover{
     color: $color-select !important;
     font-weight: bold;
-    padding: 1rem;
+    font-size: $font-size-medium;
 }
 a[_ngcontent-c11] {
     color: $custom-color-font-text ;
+    font-size: $font-size-medium;
     font-weight: bold;
-    padding: 1rem;
+
 }
 
 .mat-cell[_ngcontent-c11] {
+    font-size: $font-size-medium;
     text-align: center;
     color: #808787;
-    padding: 1rem;
+}
+
+.mat-select-value {
+    color: $custom-color-font-text;
+}
+.mat-paginator-page-size-select {
+    margin: 6px 4px 0 4px;
+    width: 56px;
+    border: none;
 }
 
 a[_ngcontent-c11]:hover {
+    font-size: $font-size-medium;
     color: $color-select ;
     font-weight: bold;
-    padding: 1rem;
 }
 
 .row {
@@ -125,6 +174,18 @@ a[_ngcontent-c11]:hover {
     align-items: stretch;
     width: auto;
     
+}
+.o-app-sidenav .o-app-sidenav-container .mat-drawer.o-app-sidenav-sidenav.mat-drawer-closed .o-app-sidenav-image .o-app-sidenav-image-container .o-app-sidenav-image {
+    max-height: 48px;
+    margin: 0 0 0 0 !important;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.o-app-sidenav-image{
+    margin: none !important;
 }
 
 .center {

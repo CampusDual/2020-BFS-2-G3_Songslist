@@ -6,6 +6,7 @@ export interface IUserModel {
       email_user?: string,
       password_user: string,
       birthdate_user?: Date,
-      description_user? : string
+      description_user? : string,
+      new_passw? : string,
    }
   

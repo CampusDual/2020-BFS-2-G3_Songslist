@@ -56,9 +56,12 @@ export class PerfilComponent implements OnInit {
     public dialog: MatDialog,
     protected dialogService: DialogService
   ) { }
+
   ngOnInit() {
     this.ngOnStartForm();
+    
   }
+
   ngOnStartForm(): IUserModel {
     console.log('iniciando');
     console.log('method : ngOnStartUser')
@@ -227,14 +230,7 @@ export class PerfilComponent implements OnInit {
         );
     }
   }
-  cargarForm(): boolean {
-    if (this.contactForm && this.perfilResult) {
-      console.log('load form ', this.contactForm);
-      console.log('load perfilData ', this.perfilResult);
-      return true;
-    }
-    return false;
-  }
+
 
 
 }

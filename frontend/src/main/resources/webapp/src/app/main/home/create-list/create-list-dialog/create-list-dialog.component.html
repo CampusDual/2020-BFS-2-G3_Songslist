@@ -63,13 +63,18 @@
     <mat-form-field>
       <input matInput
               placeholder="List name"
-             formControlName="lstname">
+             formControlName="lstName">
   </mat-form-field>
+  <mat-form-field>
+    <input matInput
+            placeholder="description"
+           formControlName="lstDescription">
+</mat-form-field>
 </div>
     <p>I'm visible because I am open</p>
   </mat-expansion-panel>
 </mat-accordion>
 <mat-dialog-actions>
   <button class="mat-raised-button"(click)="close()">Close</button>
-  <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+  <button   [disabled]="!inputChange()" class="mat-raised-button mat-primary"(click)="save()" type="submit">Save</button>
 </mat-dialog-actions> -->

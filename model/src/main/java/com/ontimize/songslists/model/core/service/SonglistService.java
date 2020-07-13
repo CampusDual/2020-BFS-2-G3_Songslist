@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import com.ontimize.db.EntityResult;
 import com.ontimize.songslists.api.core.service.ISonglistService;
+import com.ontimize.songslists.api.core.service.IUserService;
 import com.ontimize.songslists.model.core.dao.SonglistDao;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
@@ -21,6 +22,7 @@ import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 public class SonglistService implements ISonglistService{
 	 @Autowired private SonglistDao songlistDao;
 	 @Autowired private DefaultOntimizeDaoHelper daoHelper;
+	 @Autowired private IUserService userSrv;
 	 
 	 @Override
 	 public EntityResult songlistQuery(Map<String, Object> keyMap, List<String> attrList)
@@ -30,6 +32,7 @@ public class SonglistService implements ISonglistService{
 
 	 @Override
 	 public EntityResult songlistInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
+		 attrMap.put("id_user", userSrv.getID());
 	  return this.daoHelper.insert(this.songlistDao, attrMap);
 	 }
 
@@ -62,6 +65,7 @@ public class SonglistService implements ISonglistService{
 			 List <String> myList =  new ArrayList<String>();
 				myList.add("name_songlist");
 			 EntityResult enRest =this.daoHelper.query(this.songlistDao, mykeyMap, myList);
+			 enRest.getRecordValues(0);
 			 Vector contentpassw =  (Vector) enRest.get("name_songlist");
 			 String restPassw = (String) contentpassw.elementAt(0);
 			 boolean a0 = restPassw.equals(nameSongList);
@@ -75,14 +79,15 @@ public class SonglistService implements ISonglistService{
 
 		// en el propio usuario
 
-		public int getID() {
+		public int getSongListID(String name) {
 			try {
-				HashMap<String, String> mykeyMap = new HashMap<String, String>();
-				mykeyMap.put("nick_user", this.daoHelper.getUser().getUsername());
+				HashMap<String, Object> mykeyMap = new HashMap<String, Object>();
+				mykeyMap.put("name_songlist", name);
+				mykeyMap.put("id_user", userSrv.getID());
 				List<String> myList = new ArrayList<String>();
-				myList.add("id_user");
+				myList.add("id_songlist");
 				EntityResult enRest = this.daoHelper.query(this.songlistDao, mykeyMap, myList);
-				Vector contentID = (Vector) enRest.get("id_user");
+				Vector contentID = (Vector) enRest.get("id_songlist");
 				int id = (int) contentID.elementAt(0);
 				return id;
 			} catch (Exception e) {

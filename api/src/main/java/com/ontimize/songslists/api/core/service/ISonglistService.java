@@ -19,7 +19,7 @@ public interface ISonglistService {
 
 	public EntityResult songlistDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
 
-	 public int getID() ;
+	 public int getSongListID(String name) ;
 	 
 	 public boolean isNameSonglist ( String nameSongList ) ;
 }

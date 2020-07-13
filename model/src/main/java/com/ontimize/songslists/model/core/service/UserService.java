@@ -67,6 +67,7 @@ public class UserService implements IUserService {
 			e.printStackTrace();
 			EntityResult res = new EntityResult();
 			res.setCode(EntityResult.OPERATION_WRONG);
+			res.setMessage(e.getMessage());
 			return res;
 		}
 	}

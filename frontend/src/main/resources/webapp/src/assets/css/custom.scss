@@ -54,6 +54,24 @@ $color-font: #8b97a1;
     background: #021d33;
 }
 
+.mat-expansion-panel-header:not([aria-disabled=true]) {
+    cursor: pointer;
+    background: $custom-color-background-elements;
+}
+
+.mat-expansion-panel-header:hover {
+    cursor: pointer;
+    background: $custom-color-background-elements;
+}
+
+.mat-expansion-panel-header-title {
+    color: $custom-color-font-text
+}
+
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']).cdk-keyboard-focused, .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']).cdk-program-focused, .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']):hover {
+    background: $custom-color-background;
+}
+
 .mat-select-arrow {
     color: $custom-color-font-text
 }
@@ -91,6 +109,17 @@ $color-font: #8b97a1;
     font-style: initial;
     font-weight: bold;
     font-size: medium;
+}
+
+.mat-dialog-container {
+    background: $custom-color-background-elements;
+    color: $custom-color-font-text;
+}
+
+.mat-accordion>.mat-expansion-panel-spacing:last-child, .mat-accordion>:last-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing {
+    margin-bottom: 0;
+    background: $custom-color-background-elements;
+    color: $custom-color-font-text;
 }
 
 mat-toolbar{

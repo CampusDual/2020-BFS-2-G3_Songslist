@@ -40,7 +40,6 @@ export class SonglistComponent implements OnInit {
                   this.songlistResult = null;
               }
           }
-
       },
       err => console.error(err)
 

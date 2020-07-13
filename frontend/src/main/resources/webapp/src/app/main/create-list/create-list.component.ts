@@ -55,14 +55,6 @@ showConfigured() {
         iconPosition: 'left'
     };
   }
-    onClickAddList($event){
-      console.log('mostrar un dialogo con un formulario nueva lista');
-     
-    }
-    onClickSelectList($event){
-      console.log('mostrar un dialogo con un formulario lista seleccionada');
-      this.snackBarService.open('añadida cancion a lista seleccionada', this.configuration);
-    }
     openDialog(): void {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
@@ -77,7 +69,7 @@ showConfigured() {
         console.log('The dialog was closed', result);
         this.name = result;
         // add service -- add list
-        this.snackBarService.open('añadida cancion a nueva lista', this.configuration);
+       //this.snackBarService.open('añadida cancion a nueva lista', this.configuration);
       });
     }
 

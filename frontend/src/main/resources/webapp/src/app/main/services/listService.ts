@@ -22,7 +22,7 @@ export class ListService extends OntimizeEEService {
 
 
     insertList(name :string,description?: string ) {
-         const url = CONFIG.apiEndpoint + '/' + 'songs/song/search';
+         const url = CONFIG.apiEndpoint + '/' + 'songlists/songlist';
          var dataObject = {}
          if (name ) dataObject['name_songlist']=name ;
          if (description ) dataObject['description_songlist']=description ;

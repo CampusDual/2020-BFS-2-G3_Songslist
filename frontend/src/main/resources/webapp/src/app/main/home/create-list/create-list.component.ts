@@ -20,7 +20,7 @@ export class CreateListComponent implements OnInit {
   value = 'Clear me';
   name: string;
   @Input('id') id: string;
-  @Input('action') action: string;
+  @Input('action') action: boolean;
   constructor(
     protected snackBarService: SnackBarService,
     public dialog: MatDialog

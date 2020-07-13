@@ -19,18 +19,24 @@ $color-font: #8b97a1;
 
 .button-back button{
    
-    margin: 2k  rem;
+    margin: 2em;
     //background-color: rgb(197, 236, 232);
     text-align: center;
     //color: #f7a240;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-size: 14px;
+    font-size: $font-size-medium;
     font-weight: 500;
-    background: #061220;
-    color: $color-font;
-    font-weight: bold;
-    
-    
+    background: $color-black;
+    color: $color-White;
+    font-weight: bold;    
+}
+
+.button-back:hover button{
+    color: $color-select;
+}
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+    color: $custom-color-font-text;
 }
 
 .o-form form .o-form-content-wrapper {
@@ -52,6 +58,19 @@ $color-font: #8b97a1;
 }
 .o-app-sidenav .o-app-sidenav-sidenav {
     background: #021d33;
+}
+
+.datasheet-information-panel[_ngcontent-c11] {
+    /* padding-left: 20%; */
+    /* padding-right: 30%; */
+    padding-left: 20%;
+    padding-right: 20%;
+    width: auto !important;
+}
+
+
+.mat-expansion-panel-header-description, .mat-expansion-indicator::after {
+    color: #8b97a1 !important;
 }
 
 .mat-expansion-panel-header:not([aria-disabled=true]) {
@@ -393,28 +412,33 @@ h1{
 
 .datasheet-acordion {
     justify-content: space-between;
-    //align-items: center;
     flex-basis: 0;
   }
 
 .datasheet-input,
-.datasheet-text-input-hover{
-    padding: 1rem;
+.datasheet-text-input-hover input{
+    
     color: $color-inputs;
 }
 
-.datasheet-text-input-hover:hover{
-    font-weight: bold;
-    color: $color-select;
+.datasheet-text-input-hover:hover input{
+    
+    color: $color-select !important;
     background: $custom-color-background;
-    padding: 1rem;
 }
 
 .datasheet-description{
-    font-weight: bold;
-    padding-top: 1rem;
-    color: $color-font;
+    color: $color-inputs;
     background: $custom-color-background;
+}
+.o-form-content-wrapper{
+    flex-direction: column;
+    box-sizing: border-box;
+    display: block !important;
+    max-width: 100%;
+    place-content: stretch flex-start;
+    align-items: stretch;
+    padding: 2em !important;
 }
 
 

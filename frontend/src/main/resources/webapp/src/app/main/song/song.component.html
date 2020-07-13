@@ -2,30 +2,23 @@
   <o-button class="button-back" attr="raised" type="RAISED" label="{{'BACK' | oTranslate}}" layout-padding
     [routerLink]="['/main/home']" [queryParams]="{tosearch: 'ok'}"></o-button>
   <div *ngIf="songResult">
-    <h2 class="datasheet-h2">
-      {{songResult.name_song}}
-    </h2>
-    <div class="datasheet-information-panel">
+
+    <div class="datasheet-information-panel" width="80%">
       <o-form class="datashet-inputs-panel" editable-detail="no" show-header="no" width="25%">
-        <o-row class="row-reg center between">
-          <o-column class="column-reg">
-
-            
-            <o-text-input class="datasheet-text-input-hover" attr="album" label="{{'ALBUM' | oTranslate}}"
-              data="{{songResult.name_album}}" [routerLink]="['/main/album', songResult.id_album]"
-              [queryParams]="{id: songResult.id_album}" href="#">
-            </o-text-input>
-            </o-column>
-          <o-column class="column-reg">
-            <o-text-input class="datasheet-text-input-hover" attr="artist" label="{{'ARTIST' | oTranslate}}"
-              data="{{songResult.name_artist}}" [routerLink]="['/main/artist', songResult.id_artist]"
-              [queryParams]="{id: songResult.id_artist}" href="#">
-            </o-text-input>
-
-          </o-column>
+        <h2 class="datasheet-h2">
+          {{songResult.name_song}}
+        </h2>
 
 
-        </o-row>
+        <o-text-input class="datasheet-text-input-hover" attr="album" label="{{'ALBUM' | oTranslate}}"
+          data="{{songResult.name_album}}" [routerLink]="['/main/album', songResult.id_album]"
+          [queryParams]="{id: songResult.id_album}" href="#">
+        </o-text-input>
+
+        <o-text-input class="datasheet-text-input-hover" attr="artist" label="{{'ARTIST' | oTranslate}}"
+          data="{{songResult.name_artist}}" [routerLink]="['/main/artist', songResult.id_artist]"
+          [queryParams]="{id: songResult.id_artist}" href="#">
+        </o-text-input>
 
 
         <o-text-input class="datasheet-input" attr="genre" label="{{'GENRE' | oTranslate}}"

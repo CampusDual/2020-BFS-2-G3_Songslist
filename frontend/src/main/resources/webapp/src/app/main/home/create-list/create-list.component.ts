@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { SnackBarService, OSnackBarConfig } from 'ontimize-web-ngx';
-import { CreateListService } from 'app/main/services/createList.service';
+import { ListService } from 'app/main/services/listService';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material/dialog';
 import { CreateListDialogComponent } from './create-list-dialog/create-list-dialog.component';
 
@@ -20,7 +20,7 @@ export class CreateListComponent implements OnInit {
   value = 'Clear me';
   name: string;
   @Input('id') id: string;
-  @Input('action') action: string;
+  @Input('action') action: boolean;
   constructor(
     protected snackBarService: SnackBarService,
     public dialog: MatDialog
@@ -71,7 +71,6 @@ showConfigured() {
       dialogConfig.data = {
          id: this.id,
          action: this.action,
-        title: 'Angular For Beginners'
       };
       const dialogRef = this.dialog.open(CreateListDialogComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(result => {

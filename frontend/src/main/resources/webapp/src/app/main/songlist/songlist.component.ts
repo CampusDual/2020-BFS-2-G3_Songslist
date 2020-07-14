@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ISonglistModel} from 'app/shared/models/isonglistmodel';
+
 import { SonglistService } from '../services/songlist.service';
 import { ListService } from '../services/listService';
 import { ISongModel } from 'app/shared/models/isong.model';
 import { DialogService } from 'ontimize-web-ngx';
+import { ISongListModel } from 'app/shared/models/isongList.model';
 
 @Component({
   selector: 'app-songlist',
@@ -12,7 +13,7 @@ import { DialogService } from 'ontimize-web-ngx';
 })
 export class SonglistComponent implements OnInit {
 
-  public songlistResult: ISonglistModel;
+  public songlistResult: ISongListModel;
   public img : number;
 
   constructor(

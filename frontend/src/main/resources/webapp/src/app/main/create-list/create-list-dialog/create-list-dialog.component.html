@@ -4,7 +4,8 @@
     <h2 *ngIf="action" mat-dialog-title style="color: black;">Add song to :</h2>
     <h2 *ngIf="!action" mat-dialog-title style="color: black; display: none;">Add new list :</h2>
     <mat-accordion>
-      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle *ngIf="action">
+      <span *ngIf="subtasks">
+      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle *ngIf="action" >
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{'ADD_TO_MY_SONGLISTS' | oTranslate}}
@@ -12,12 +13,13 @@
         </mat-expansion-panel-header>
         <ul *ngIf="subtasks.length > 0">
           <li *ngFor="let subtask of subtasks">
-            <mat-checkbox [(ngModel)]="subtask.completed">
-              {{subtask.name}}
+            <mat-checkbox >
+              {{subtask.name_songlist}}
             </mat-checkbox>
           </li>
         </ul>
       </mat-expansion-panel>
+    </span>
 
       <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
         <mat-expansion-panel-header>

@@ -35,9 +35,54 @@ $color-font: #8b97a1;
     color: $color-select;
 }
 
+.mat-expansion-panel{
+    background-color: $custom-color-background-elements !important;
+}
+
+.form-dialog{
+    background-color: $custom-color-background-elements !important;
+}
+
 .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
     color: $custom-color-font-text;
 }
+
+.mat-dialog-title ng-star-inserted{
+    color: $color-White;
+    background-color: $custom-color-background-elements !important;
+}
+
+.mat-expansion-panel-body{
+    background-color: $custom-color-background-elements;
+    color: $custom-color-font-text;
+}
+.mat.expanded{
+    background-color: $custom-color-background-elements;
+    color: $custom-color-font-text;
+}
+
+.mat-dialog-content{
+    background-color: $custom-color-background-elements;
+    color: $custom-color-font-text;
+}
+
+mat-expansion-panel-header ng-tns-c31-12 ng-star-inserted mat-expanded ng-trigger ng-trigger-expansionHeight{
+    background-color: $custom-color-background-elements;
+}
+
+.mat-menu-content:not(:empty) {
+    color: $color-White !important;
+    background-color:$custom-color-background-elements;
+}
+.mat-menu-panel {
+    color: $color-White !important;
+    background-color:$custom-color-background-elements;
+}
+
+.mat-menu-item{
+    color: $color-White !important;
+}
+
 
 .o-form form .o-form-content-wrapper {
     height: 100%;
@@ -172,6 +217,10 @@ mat-toolbar{
     //padding-bottom: 1%;    
     text-decoration-color: #d89237;
     
+}
+
+.mat-button.mat-primary[disabled], .mat-button.mat-accent[disabled], .mat-button.mat-warn[disabled], .mat-button[disabled][disabled], .mat-icon-button.mat-primary[disabled], .mat-icon-button.mat-accent[disabled], .mat-icon-button.mat-warn[disabled], .mat-icon-button[disabled][disabled], .mat-stroked-button.mat-primary[disabled], .mat-stroked-button.mat-accent[disabled], .mat-stroked-button.mat-warn[disabled], .mat-stroked-button[disabled][disabled] {
+    color: $custom-color-font-text;
 }
 
 

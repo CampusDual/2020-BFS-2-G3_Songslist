@@ -62,7 +62,7 @@ export class SonglistService extends OntimizeEEService {
                 USER: this.nick_user,
                 SONGLIST: id
                  },
-            columns: ['img_album'],
+            columns: ['id_song', 'name_song', 'name_album', 'img_album', 'year_album', 'name_artist', 'name_genre'],
         });
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {

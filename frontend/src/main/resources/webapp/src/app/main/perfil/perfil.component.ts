@@ -104,13 +104,13 @@ export class PerfilComponent implements OnInit {
     console.log('perfilData', perfilData)
     return new FormGroup({
       nick: new FormControl(perfilData ? perfilData.nick_user : '', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
-      passw: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
+      passw: new FormControl('', [Validators.required, Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
       name: new FormControl(perfilData ? perfilData.name_user : '', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
       surname: new FormControl(perfilData ? perfilData.surname_user : '', [Validators.minLength(0), Validators.maxLength(50), Validators.pattern(this.textPattern)]),
       birthdate: new FormControl(perfilData ? this.datePipe.transform(perfilData.birthdate_user, 'yyyy-MM-dd') : ''),
       email: new FormControl(perfilData ? perfilData.email_user : '', [Validators.minLength(0), Validators.maxLength(50), Validators.pattern(this.emailPattern)]),
       description: new FormControl(perfilData ? perfilData.description_user : '', [Validators.minLength(0), Validators.maxLength(200)]),
-      newpassw: new FormControl('', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
+      newpassw: new FormControl('', [Validators.minLength(6), Validators.maxLength(25), Validators.pattern(this.textPattern)]),
       repnewpassw: new FormControl('', [Validators.minLength(0), Validators.maxLength(25), Validators.pattern(this.textPattern)])
     });
   }

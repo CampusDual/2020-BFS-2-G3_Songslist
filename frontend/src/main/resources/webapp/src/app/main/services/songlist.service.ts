@@ -53,7 +53,7 @@ export class SonglistService extends OntimizeEEService {
     }
 
     getSongs(id:number) {
-        const url = CONFIG.apiEndpoint + '/' + 'listsonglists/searchSonglist';
+        const url = CONFIG.apiEndpoint + '/' + 'list_songlists/list_songlist/search';
         var options = {
             headers: this.buildHeaders()
         };
@@ -62,7 +62,7 @@ export class SonglistService extends OntimizeEEService {
                 USER: this.nick_user,
                 SONGLIST: id
                  },
-            columns: ['name_song', 'name_artist', 'name_album', 'name_genre', 'description_song', 'year_album'],
+            columns: ['img_album'],
         });
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {

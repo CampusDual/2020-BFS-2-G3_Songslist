@@ -13,7 +13,7 @@ import { DialogService } from 'ontimize-web-ngx';
 export class SonglistComponent implements OnInit {
 
   public songlistResult: ISonglistModel;
-  public songResult: ISongModel;
+  public img : number;
 
   constructor(
     private songlistService: SonglistService,
@@ -28,14 +28,12 @@ export class SonglistComponent implements OnInit {
 
   loadMySonglists(){
     this.songlistService.getAllSonglist().subscribe(
-      (songlist: any) => {
-          if (songlist['data']) {
+      (sl: any) => {
+          if (sl['data']) {
 
-              if (songlist['data'].length > 0) {
+              if (sl['data'].length > 0) {
 
-                  this.songlistResult = songlist['data'];
-                  console.log('DATA SONGLIST ', songlist['data']);
-                  console.log('SONGLIST ', this.songlistResult);
+                  this.songlistResult = sl['data'];
 
               } else {
                   this.songlistResult = null;
@@ -49,29 +47,13 @@ export class SonglistComponent implements OnInit {
 
   }
 
-  loadSongs(id: number){
-    this.songlistService.getSongs(id).subscribe(
-      (songs: any) => {
-          if (songs['data']) {
-              if (songs['data'].length > 0) {
-                  this.songResult = songs['data'];
-                  console.log('DATA SONGLIST ', songs['data']);
-                  console.log('SONGLIST ', this.songResult);
-              } else {
-                  this.songResult = null;              }
-          }
-      },
-      err => console.error(err)
-  );
-  console.log('fuera del subscribe', this.songResult);
-  }
+
 
   getResult(){
     return this.songlistResult;
   }
-  getSongs(){
-    return this.songResult;
-  }
+
+
 
 
 }

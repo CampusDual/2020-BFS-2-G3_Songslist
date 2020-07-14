@@ -7,11 +7,8 @@
       <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle *ngIf="action">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Select a crerate list:
+            {{'ADD_TO_MY_SONGLISTS' | oTranslate}}
           </mat-panel-title>
-          <mat-panel-description>
-            This is a summary of the content
-          </mat-panel-description>
         </mat-expansion-panel-header>
         <ul *ngIf="subtasks.length > 0">
           <li *ngFor="let subtask of subtasks">

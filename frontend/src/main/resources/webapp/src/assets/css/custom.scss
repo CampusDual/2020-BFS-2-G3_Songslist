@@ -64,6 +64,10 @@ $color-font: #8b97a1;
 
     width: auto !important;
 }
+.mat-form-field {
+    margin-left: 2rem;
+
+}
 
 
 .mat-expansion-panel-header-description, .mat-expansion-indicator::after {
@@ -233,8 +237,20 @@ a[_ngcontent-c11]:hover {
 .row {
     display: flex;
     align-items: stretch;
-    width: auto;
-    
+    width: auto;    
+}
+::-webkit-scrollbar {
+    width: 0;
+    height: 4px;
+    background-color: transparent;
+    opacity: 1.0;
+}
+.o-image .o-image-content .read-only-blocker {
+    left: 0;
+    right: 0;
+    position: initial !important;
+    top: 0;
+    z-index: 2;
 }
 .o-app-sidenav .o-app-sidenav-container .mat-drawer.o-app-sidenav-sidenav.mat-drawer-closed .o-app-sidenav-image .o-app-sidenav-image-container .o-app-sidenav-image {
     max-height: 48px;
@@ -551,19 +567,6 @@ section{
     flex-direction: column;
     display:flex;
     width: 35%;
-}
-
-// songlist
-.o-grid{
-    align-items: flex-start;
-}
-.o-grid-item{
-    align-items: flex-start;
-    display: flex;
-}
-
-.mat-grid-tile .mat-figure {
-    align-items: flex-start !important;
 }
 
 .self-center{

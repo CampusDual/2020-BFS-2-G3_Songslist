@@ -72,6 +72,42 @@ export class CreateListDialogComponent implements OnInit {
               console.log('recibo la parte de data ', userData['data']);
               console.log('nº results ', userData['data'].length);
               if (userData['code'] == 0) {
+                console.log('addSong parameter songid[',this.songid,'] name_songList [',newList.name_songlist,']')
+                this.listService.addSong(this.songid, newList.name_songlist)
+                  .subscribe(
+                    (userData: any) => {
+                      console.log('recibo todo ', userData);
+                      if (userData['data']) {
+                        console.log('recibo la parte de data ', userData['data']);
+                        console.log('nº results ', userData['data'].length);
+                        if (userData['code'] == 0) {
+                          this.snackBarService.open('open', {
+                            action: 'Done',
+                            milliseconds: 5000,
+                            icon: 'check_circle',
+                            iconPosition: 'left'
+                          });
+                          this.dialogRef.close(this.form.value);
+                        } else if (userData['code'] == 1) {
+                          this.snackBarService.open('warning', {
+                            action: 'Warning',
+                            milliseconds: 5000,
+                            icon: 'check_circle',
+                            iconPosition: 'left'
+                          });
+                        }
+                      }
+                    },
+                    err => {
+                      console.error(err)
+                      this.snackBarService.open('error', {
+                        action: 'Error',
+                        milliseconds: 5000,
+                        icon: 'check_circle',
+                        iconPosition: 'left'
+                      });
+                    }
+                  );
                 this.snackBarService.open('open', {
                   action: 'Done',
                   milliseconds: 5000,
@@ -109,5 +145,4 @@ export class CreateListDialogComponent implements OnInit {
   inputChange(): boolean {
     return (this.form.get('lstName').status == 'VALID' && this.form.get('lstDescription').status == 'VALID');
   }
-
 }

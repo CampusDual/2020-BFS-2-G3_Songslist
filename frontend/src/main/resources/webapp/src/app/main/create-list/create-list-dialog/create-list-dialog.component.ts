@@ -2,9 +2,10 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DialogData } from '../create-list.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ISongListModel } from 'app/shared/models/isongList.model';
 import { SnackBarService } from 'ontimize-web-ngx';
 import { ListService } from 'app/main/services/listService';
+import { SonglistService } from 'app/main/services/songlist.service';
+import { ISongListModel } from 'app/shared/models/isongList.model';
 
 
 @Component({
@@ -16,12 +17,13 @@ export class CreateListDialogComponent implements OnInit {
   form: FormGroup;
   name: string;
   songid: number;
-  subtasks;
+  subtasks : ISongListModel[] ;
   action: boolean;
   panelOpenState = false;
   step: number;
   private textPattern: any = /^[a-zA-Z0-9]+(?:[_ -]?[a-zA-Z0-9])*$/;
   constructor(
+    public songlistService: SonglistService,
     public listService: ListService,
     protected snackBarService: SnackBarService,
     private fb: FormBuilder,
@@ -29,11 +31,11 @@ export class CreateListDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data) {
     this.songid = data.id;
     this.action = data.action;
-    this.subtasks = [
-      { name: 'list1', completed: false, color: 'accent' },
-      { name: 'list2', completed: false, color: 'accent' },
-      { name: 'lis3', completed: false, color: 'accent' }
-    ];
+    // this.subtasks = [
+    //   { name: 'list1', completed: false, color: 'accent' },
+    //   { name: 'list2', completed: false, color: 'accent' },
+    //   { name: 'lis3', completed: false, color: 'accent' }
+    // ];
     if (data.action = false) {
       this.step = 1;
     } else {
@@ -46,7 +48,35 @@ export class CreateListDialogComponent implements OnInit {
       lstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(25), Validators.pattern(this.textPattern)]],
       lstDescription: ['', [Validators.minLength(0), Validators.maxLength(200)]]
     });
+    this.songlistService.getAllSonglist().subscribe(
+      (userData: any) => {
+        console.log('recibo todo getAllSonglist', userData);
+        if (userData['data']) {
+          console.log('recibo la parte de data  getAllSonglist', userData['data']);
+          console.log('nº results getAllSonglist', userData['data'].length);
+          if (userData['code'] == 0) {
+            this.subtasks = userData['data'];
+            console.log('this.subtasks',this.subtasks)
+            console.log('this.subtasks nameSongList',this.subtasks[0].name_songlist)
+          } else if (userData['code'] == 1) {
+            
+          }
+        }
+      },
+      err => {
+        console.error(err)
+        this.snackBarService.open('error', {
+          action: 'Error',
+          milliseconds: 5000,
+          icon: 'check_circle',
+          iconPosition: 'left'
+        }
+        );
+
+      }
+    );
   }
+
   setStep(index: number) {
     this.step = index;
   }
@@ -72,7 +102,7 @@ export class CreateListDialogComponent implements OnInit {
               console.log('recibo la parte de data ', userData['data']);
               console.log('nº results ', userData['data'].length);
               if (userData['code'] == 0) {
-                console.log('addSong parameter songid[',this.songid,'] name_songList [',newList.name_songlist,']')
+                console.log('addSong parameter songid[', this.songid, '] name_songList [', newList.name_songlist, ']')
                 this.listService.addSong(this.songid, newList.name_songlist)
                   .subscribe(
                     (userData: any) => {

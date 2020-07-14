@@ -13,12 +13,12 @@
 
       <p class="session-expired" *ngIf="sessionExpired">{{ 'ERROR_SESSION_EXPIRED' | oTranslate }}</p>
 
-      <mat-form-field style="width:80%;">
-        <input matInput class="mat-input" #usery placeholder="{{ 'USERNAME' | oTranslate }}" id="username"
-          formControlName="username">
+      <mat-form-field style="width:60%;">
+        <input matInput class="mat-input " #usery placeholder="{{ 'USERNAME' | oTranslate }}" id="username"
+          formControlName="username" autocomplete="off">
       </mat-form-field>
       <div layout-padding></div>
-      <mat-form-field style="width:80%;">
+      <mat-form-field style="width:60%;">
         <input matInput class="mat-input" #password placeholder="{{ 'PASSWORD' | oTranslate }}" id="password"
           type="password"  formControlName="password">
       </mat-form-field>

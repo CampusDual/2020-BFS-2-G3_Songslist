@@ -79,10 +79,10 @@ public class SonglistService implements ISonglistService{
 
 		// en el propio usuario
 
-		public int getSongListID(String name) {
+		public int getSongListID(String nameSongList) {
 			try {
 				HashMap<String, Object> mykeyMap = new HashMap<String, Object>();
-				mykeyMap.put("name_songlist", name);
+				mykeyMap.put("name_songlist", nameSongList);
 				mykeyMap.put("id_user", userSrv.getID());
 				List<String> myList = new ArrayList<String>();
 				myList.add("id_songlist");

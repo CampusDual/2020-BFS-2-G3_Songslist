@@ -22,7 +22,7 @@ export class ListService extends OntimizeEEService {
 
 
     insertList(name :string,description?: string ) {
-         const url = CONFIG.apiEndpoint + '/' + 'songs/song/search';
+         const url = CONFIG.apiEndpoint + '/' + 'songlists/songlist';
          var dataObject = {}
          if (name ) dataObject['name_songlist']=name ;
          if (description ) dataObject['description_songlist']=description ;
@@ -49,4 +49,33 @@ export class ListService extends OntimizeEEService {
          });
          return dataObservable.pipe(share());
      }
+
+     addSong(id_song : number , name_songlist: string ){
+        const url = CONFIG.apiEndpoint + '/' + 'list_songlists/list_songlist';
+        var dataObject = {}
+        if (name_songlist ) dataObject['name_songlist']=name_songlist ;
+        if (id_song ) dataObject['id_song']=id_song ;
+        var options = {
+           headers: this.buildHeaders()
+        };
+      var body = JSON.stringify({
+       data: dataObject,
+       sqltypes: {
+           'id_list_songlist': 4,
+           'id_songlist': 4,
+           'id_song': 4,
+       }
+   });
+        var self = this;
+        var dataObservable = new Observable(function (_innerObserver) {
+
+            self.httpClient.post(url, body, options).subscribe(function (resp) {
+                self.parseSuccessfulQueryResponse(resp, _innerObserver);
+
+            }, function (error) {
+                self.parseUnsuccessfulQueryResponse(error, _innerObserver);
+            }, function () { return _innerObserver.complete(); });
+        });
+        return dataObservable.pipe(share());
+    }
 }

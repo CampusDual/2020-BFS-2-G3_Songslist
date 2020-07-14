@@ -1,14 +1,20 @@
 <o-grid #grid class="list-grid-item" attr="grid" title="{{ 'PERSONAL_SONGLIST' | oTranslate }}" [static-data]="getResult()"
   columns="name_user;name_songlist;description_songlist;" keys="id_songlist" [cols]="4" query-rows="12" show-page-size="true"
-  page-size-options="4;8;12;16;20" orderable="false" quick-filter="false" grid-item-height="1:3"
+  page-size-options="4;8;12;16;20" orderable="false" quick-filter="false" grid-item-height="1:1.2"
   sortable-columns="name" sort-column="" controls="false" refresh-button="false" pagination-controls="false"
-  gutter-size="1px" [ngStyle]="{'height':'10rem'}">
+  gutter-size="1px">
+  <!--<app-create-list  [id]= "song.id_song" [action]= "true"></app-create-list>-->
+
+ 
+
   <o-grid-item>
-    <o-column layout-padding class="container-item">
+    <app-create-list [action]= "false"></app-create-list> 
+    <!-- <o-column layout-padding class="container-item">
       <img src="./assets/images/Add_new_songlist.png" style="margin-top:8px">
       <h4 class="self-center">{{ 'CREATE_NEW_SONGLIST' | oTranslate }}</h4>
-    </o-column>
+    </o-column> -->
   </o-grid-item>
+  
   <o-grid-item *ngFor="let list of grid.dataArray">
     <o-column layout-padding class="container-item">
       <img src="./assets/images/album/1.jfif" style="margin-top:8px">

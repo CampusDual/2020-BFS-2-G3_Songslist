@@ -5,19 +5,24 @@
     </o-button>
   </div>
   <div *ngIf="artistResult">
-    <h2 class="datasheet-h2">{{artistResult.name_artist}}</h2>
+    <o-row justifyContent="center" layout-align="center">
+      <h2 class="datasheet-h2">{{artistResult.name_artist}}</h2>
+    </o-row>
 
-
-    <div class=datasheet-div>
-      <o-image class="datasheet-img" attr="image" type="RAISED" data="{{artistResult.img_artist}}" fxFlex="30"
-        height="90%" width="20%" auto-fit="true" enabled="true" read-only="true" show-controls="false"
-        full-screen-button="false" empty-image="./assets/images/no-image.png">
-      </o-image>
-      <o-form editable-detail="no" show-header="no">
-        <o-textarea-input attr="longtext" label="{{'DESCRIPTION' | oTranslate}}" [data]="getArtistDescription()"
-          fxFlex="70" height="100%" width="80%" required="no" read-only="true"></o-textarea-input>
-      </o-form>
-    </div>
+    <o-row class="datasheet-information-panel" justifyContent="center" layout-align="center">
+      <o-column fxFlex="20" justifyContent="center">
+        <o-image class="datasheet-img" attr="image" type="RAISED"  height="95%" width="95%"
+            data="./assets/images/artist/{{artistResult.img_artist}}.jfif" auto-fit="true" enabled="true" read-only="true"
+            show-controls="false" full-screen-button="false" empty-image="./assets/images/no-image.png">
+        </o-image>
+      </o-column>
+      <o-column fxFlex="70" align-items="center" justifyContent="center">
+        <o-form class="datashet-inputs-panel" editable-detail="no" show-header="no">
+          <o-textarea-input attr="longtext" label="{{'DESCRIPTION' | oTranslate}}" [data]="getArtistDescription()"
+            fxFlex="70" height="100%" width="80%" required="no" read-only="true"></o-textarea-input>
+        </o-form>
+      </o-column>
+    </o-row>
   </div>
 
   <div *ngIf="artistResult">

@@ -19,18 +19,76 @@ $color-font: #8b97a1;
 
 .button-back button{
    
-    margin: 2k  rem;
+    margin: 2em;
     //background-color: rgb(197, 236, 232);
     text-align: center;
     //color: #f7a240;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-size: 14px;
+    font-size: $font-size-medium;
     font-weight: 500;
-    background: #061220;
-    color: $color-font;
-    font-weight: bold;
-    
-    
+    background: $color-black;
+    color: $color-White;
+    font-weight: bold;    
+}
+
+.button-back:hover button{
+    color: $color-select;
+}
+
+.mat-expansion-panel{
+    background-color: $custom-color-background-elements !important;
+}
+
+.form-dialog{
+    background-color: $custom-color-background-elements !important;
+}
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+    color: $custom-color-font-text;
+}
+
+.mat-dialog-title ng-star-inserted{
+    color: $color-White;
+    background-color: $custom-color-background-elements !important;
+}
+
+.mat-expansion-panel-body{
+    background-color: $custom-color-background-elements;
+    color: $custom-color-font-text;
+}
+.mat.expanded{
+    background-color: $custom-color-background-elements;
+    color: $custom-color-font-text;
+}
+
+.mat-dialog-content{
+    background-color: $custom-color-background-elements;
+    color: $custom-color-font-text;
+}
+
+mat-expansion-panel-header ng-tns-c31-12 ng-star-inserted mat-expanded ng-trigger ng-trigger-expansionHeight{
+    background-color: $custom-color-background-elements;
+}
+
+.mat-menu-content:not(:empty) {
+    color: $color-White !important;
+    background-color:$custom-color-background-elements;
+}
+.mat-menu-panel {
+    color: $color-White !important;
+    background-color:$custom-color-background-elements;
+}
+
+.mat-menu-item{
+    color: $color-White !important;
+}
+
+
+.o-form form .o-form-content-wrapper {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1em;
 }
 
 .o-app-sidenav .o-app-sidenav-container .o-app-sidenav-content {
@@ -44,7 +102,81 @@ $color-font: #8b97a1;
     background-color: $custom-color-background;
 }
 .o-app-sidenav .o-app-sidenav-sidenav {
-    background: #021d33;;
+    background: #021d33;
+}
+
+.datasheet-information-panel[_ngcontent-c11] {
+
+    width: auto !important;
+}
+.mat-form-field {
+    margin-left: 2rem;
+
+}
+
+
+.mat-expansion-panel-header-description, .mat-expansion-indicator::after {
+    color: #8b97a1 !important;
+}
+.mat-expansion-panel-header-description:hover {
+    color: $color-select !important;
+}
+
+.mat-toolbar.mat-toolbar-single-row.ng-star-inserted {
+    color: $color-White;
+    background: #032540 !important;
+}
+
+.mat-list .mat-list-item, .mat-nav-list .mat-list-item, .mat-selection-list .mat-list-item {
+    color: $color-inputs;
+}
+
+.mat-checkbox-frame {
+    border-color:$custom-color-font-text;
+}
+
+.mat-expansion-panel-header:not([aria-disabled=true]) {
+    cursor: pointer;
+    background: $custom-color-background-elements;
+}
+
+.mat-expansion-panel-header:hover {
+    cursor: pointer;
+    background: $custom-color-background-elements;
+}
+
+.mat-expansion-panel-header-title {
+    color: $custom-color-font-text
+}
+
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']).cdk-keyboard-focused, .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']).cdk-program-focused, .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']):hover {
+    background: $custom-color-background;
+}
+
+.mat-select-arrow {
+    color: $custom-color-font-text
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: $color-select;
+    background-color: $custom-color-background;
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: $color-select;
+    background-color: $custom-color-background;
+}
+.mat-primary .mat-option.mat-selected:hover(.mat-option-disabled) {
+    color: $color-select;
+    background-color: $custom-color-background !important;
+}
+
+.mat-option {
+    color: $color-inputs;
+    background-color: $custom-color-background-elements;
+    text-align: center !important;
+}
+
+.mat-option :hover {
+    color: $color-black
 }
 .mat-checkbox-inner-container-no-side-margin {
     margin-left: 0;
@@ -60,6 +192,17 @@ $color-font: #8b97a1;
     font-size: medium;
 }
 
+.mat-dialog-container {
+    background: $custom-color-background-elements;
+    color: $custom-color-font-text;
+}
+
+.mat-accordion>.mat-expansion-panel-spacing:last-child, .mat-accordion>:last-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing {
+    margin-bottom: 0;
+    background: $custom-color-background-elements;
+    color: $custom-color-font-text;
+}
+
 mat-toolbar{
     border: none;
 }
@@ -68,12 +211,21 @@ mat-toolbar{
 
     width: 100%;
     height: 100%;
-    padding-top: 1.5%;
-    padding-left: 1.5%;
-    padding-right: 1%;
-    padding-bottom: 1%;    
+    //padding-top: 1.5%;
+    //padding-left: 1.5%;
+    //padding-right: 1%;
+    //padding-bottom: 1%;    
     text-decoration-color: #d89237;
     
+}
+
+.mat-button.mat-primary[disabled], .mat-button.mat-accent[disabled], .mat-button.mat-warn[disabled], .mat-button[disabled][disabled], .mat-icon-button.mat-primary[disabled], .mat-icon-button.mat-accent[disabled], .mat-icon-button.mat-warn[disabled], .mat-icon-button[disabled][disabled], .mat-stroked-button.mat-primary[disabled], .mat-stroked-button.mat-accent[disabled], .mat-stroked-button.mat-warn[disabled], .mat-stroked-button[disabled][disabled] {
+    color: $custom-color-font-text;
+}
+
+
+::placeholder{
+    color: $custom-color-font-text !important;
 }
 
 mat-header-cell{
@@ -95,36 +247,71 @@ ul{
 
 a{
     color: $custom-color-font-text !important;
+    font-size: $font-size-medium;
 }
 
 a:hover{
     color: $color-select !important;
     font-weight: bold;
-    padding: 1rem;
+    font-size: $font-size-medium;
 }
 a[_ngcontent-c11] {
     color: $custom-color-font-text ;
+    font-size: $font-size-medium;
     font-weight: bold;
-    padding: 1rem;
+
 }
 
 .mat-cell[_ngcontent-c11] {
+    font-size: $font-size-medium;
     text-align: center;
     color: #808787;
-    padding: 1rem;
+}
+
+.mat-select-value {
+    color: $custom-color-font-text;
+}
+.mat-paginator-page-size-select {
+    margin: 6px 4px 0 4px;
+    width: 56px;
+    border: none;
 }
 
 a[_ngcontent-c11]:hover {
+    font-size: $font-size-medium;
     color: $color-select ;
     font-weight: bold;
-    padding: 1rem;
 }
 
 .row {
     display: flex;
     align-items: stretch;
-    width: auto;
-    
+    width: auto;    
+}
+::-webkit-scrollbar {
+    width: 0;
+    height: 4px;
+    background-color: transparent;
+    opacity: 1.0;
+}
+.o-image .o-image-content .read-only-blocker {
+    left: 0;
+    right: 0;
+    position: initial !important;
+    top: 0;
+    z-index: 2;
+}
+.o-app-sidenav .o-app-sidenav-container .mat-drawer.o-app-sidenav-sidenav.mat-drawer-closed .o-app-sidenav-image .o-app-sidenav-image-container .o-app-sidenav-image {
+    max-height: 48px;
+    margin: 0 0 0 0 !important;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.o-app-sidenav-image{
+    margin: none !important;
 }
 
 .center {
@@ -289,7 +476,9 @@ h1{
     height: 100%;
     margin-left: 1rem;
 }
-
+.datasheet-information-panel[_ngcontent-c11] {
+    width: auto !important;
+}
 .datasheet-component{
     width: 100;
     height: 100%;
@@ -303,28 +492,33 @@ h1{
 
 .datasheet-acordion {
     justify-content: space-between;
-    //align-items: center;
     flex-basis: 0;
   }
 
 .datasheet-input,
-.datasheet-text-input-hover{
-    padding: 1rem;
+.datasheet-text-input-hover input{
+    
     color: $color-inputs;
 }
 
-.datasheet-text-input-hover:hover{
-    font-weight: bold;
-    color: $color-select;
+.datasheet-text-input-hover:hover input{
+    
+    color: $color-select !important;
     background: $custom-color-background;
-    padding: 1rem;
 }
 
 .datasheet-description{
-    font-weight: bold;
-    padding-top: 1rem;
-    color: $color-font;
+    color: $color-inputs;
     background: $custom-color-background;
+}
+.o-form-content-wrapper{
+    flex-direction: column;
+    box-sizing: border-box;
+    display: block !important;
+    max-width: 100%;
+    place-content: stretch flex-start;
+    align-items: stretch;
+    padding: 2em !important;
 }
 
 
@@ -422,19 +616,6 @@ section{
     flex-direction: column;
     display:flex;
     width: 35%;
-}
-
-// songlist
-.o-grid{
-    align-items: flex-start;
-}
-.o-grid-item{
-    align-items: flex-start;
-    display: flex;
-}
-
-.mat-grid-tile .mat-figure {
-    align-items: flex-start !important;
 }
 
 .self-center{

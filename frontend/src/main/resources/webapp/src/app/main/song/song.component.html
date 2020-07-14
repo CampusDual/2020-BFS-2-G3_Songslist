@@ -2,29 +2,33 @@
   <o-button class="button-back" attr="raised" type="RAISED" label="{{'BACK' | oTranslate}}" layout-padding
     [routerLink]="['/main/home']" [queryParams]="{tosearch: 'ok'}"></o-button>
   <div *ngIf="songResult">
-    <h2 class="datasheet-h2">
-      {{songResult.name_song}}
-    </h2>
-    <div class="datasheet-information-panel">
+
+    <div class="datasheet-information-panel" width="80%">
       <o-form class="datashet-inputs-panel" editable-detail="no" show-header="no" width="25%">
+        <h2 class="datasheet-h2">
+          {{songResult.name_song}}
+        </h2>
+
+
         <o-text-input class="datasheet-text-input-hover" attr="album" label="{{'ALBUM' | oTranslate}}"
           data="{{songResult.name_album}}" [routerLink]="['/main/album', songResult.id_album]"
           [queryParams]="{id: songResult.id_album}" href="#">
         </o-text-input>
+
         <o-text-input class="datasheet-text-input-hover" attr="artist" label="{{'ARTIST' | oTranslate}}"
           data="{{songResult.name_artist}}" [routerLink]="['/main/artist', songResult.id_artist]"
           [queryParams]="{id: songResult.id_artist}" href="#">
         </o-text-input>
+
+
         <o-text-input class="datasheet-input" attr="genre" label="{{'GENRE' | oTranslate}}"
           data="{{songResult.name_genre}}">
         </o-text-input>
         <o-text-input class="datasheet-input" attr="year" label="{{'DATE' | oTranslate}}" type="date"
           data="{{songResult.year_album | date: 'yyyy'}}" read-only="yes">
         </o-text-input>
-      </o-form>
-      <o-form editable-detail="no" show-header="no" width="50%">
         <o-textarea-input class="datasheet-description" attr="longtext" label="{{'DESCRIPTION' | oTranslate}}"
-          [data]="getSongDescription()" height="90%" width="100%" required="no" read-only="true">
+          [data]="getSongDescription()" required="no" read-only="true">
         </o-textarea-input>
         <!--<div class="div-button-add">
           <o-button class="button-add" attr="raised" type="RAISED" label="{{'ADD' | oTranslate}}"></o-button>

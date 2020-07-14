@@ -6,6 +6,7 @@ export interface ISongModel {
     id_song: number;
     id_genre: number;
     id_album: number;
+    img_album:number;
     name_genre: string;
     name_album: string;
     //img_song : string;

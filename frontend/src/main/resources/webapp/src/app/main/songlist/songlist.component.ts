@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ISonglistModel} from 'app/shared/models/isonglistmodel';
+
 import { SonglistService } from '../services/songlist.service';
+import { ListService } from '../services/listService';
 import { ISongModel } from 'app/shared/models/isong.model';
+import { DialogService } from 'ontimize-web-ngx';
+import { ISongListModel } from 'app/shared/models/isongList.model';
 
 @Component({
   selector: 'app-songlist',
@@ -10,11 +13,13 @@ import { ISongModel } from 'app/shared/models/isong.model';
 })
 export class SonglistComponent implements OnInit {
 
-  public songlistResult: ISonglistModel;
-  public songResult: ISongModel;
+  public songlistResult: ISongListModel;
+  public img : number;
 
   constructor(
-    private songlistService: SonglistService
+    private songlistService: SonglistService,
+    private listService: ListService,
+    private dialogService: DialogService
   ) { }
 
   ngOnInit(  
@@ -23,24 +28,18 @@ export class SonglistComponent implements OnInit {
   }
 
   loadMySonglists(){
-
     this.songlistService.getAllSonglist().subscribe(
+      (sl: any) => {
+          if (sl['data']) {
 
-      (songlist: any) => {
+              if (sl['data'].length > 0) {
 
-          if (songlist['data']) {
-
-              if (songlist['data'].length > 0) {
-
-                  this.songlistResult = songlist['data'];
-                  console.log('DATA SONGLIST ', songlist['data']);
-                  console.log('SONGLIST ', this.songlistResult);
+                  this.songlistResult = sl['data'];
 
               } else {
                   this.songlistResult = null;
               }
           }
-
       },
       err => console.error(err)
 
@@ -49,28 +48,13 @@ export class SonglistComponent implements OnInit {
 
   }
 
-  loadSongs(id: number){
-    this.songlistService.getSongs(id).subscribe(
-      (songs: any) => {
-          if (songs['data']) {
-              if (songs['data'].length > 0) {
-                  this.songResult = songs['data'];
-                  console.log('DATA SONGLIST ', songs['data']);
-                  console.log('SONGLIST ', this.songResult);
-              } else {
-                  this.songResult = null;              }
-          }
-      },
-      err => console.error(err)
-  );
-  console.log('fuera del subscribe', this.songResult);
-  }
+
+
   getResult(){
     return this.songlistResult;
   }
-  getSongs(){
-    return this.songResult;
-  }
+
+
 
 
 }

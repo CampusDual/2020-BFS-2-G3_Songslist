@@ -1,5 +1,6 @@
 {
   "ABOUT_YOU": "Acerca de ti",
+  "ACTION": "Acción",
   "ADD": "Añadir",   
   "ADD_TO_NEW_SONGLIST": "Añadir a una nueva lista",
   "ALBUM": "Álbum",
@@ -24,6 +25,7 @@
   "DISCOGRAPHY_AVAILABLE": "Discografía disponible",
   "EDIT_PROFILE": "Editar perfil",
   "EMAIL": "Correo",
+  "ENTER_CURRENT_PASS_TO_CONFIRM": "Contraseña actual para confirmar.",
   "ENTER_NEW_PASS": "Por favor, indique una nueva contraseña válida",
   "ERROR_MIN_LENGTH_REQUIRED": "El valor introducido tiene que tener una longitud mínima de 8 caracteres",
   "ERROR_PASS_REQUIRED": "Contraseña incorrecta.",  

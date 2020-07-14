@@ -32,7 +32,7 @@ export class ArtistService extends OntimizeEEService {
                 'id_artist': 4,
                 'name_artist': 12,
                 'description_artist': 12, 
-                'img_artist': 1111
+                'img_artist': 4
             }
         });
         var self = this;

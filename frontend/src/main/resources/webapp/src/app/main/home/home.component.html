@@ -64,7 +64,7 @@
 
 
         <ng-container matColumnDef="Img">
-          <mat-header-cell *matHeaderCellDef>{{'IMG' | oTranslate}}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{'FRONT' | oTranslate}}</mat-header-cell>
           <mat-cell *matCellDef="let song"><a [routerLink]="['/main/song',song.id_song]"
               [queryParams]="{id: song.id_song}" href="#">
               <!-- <img src='./assets/images/album/{{song.img_album}}'> -->

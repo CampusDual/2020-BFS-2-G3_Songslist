@@ -5,15 +5,17 @@
       <h2>{{'EDIT_PROFILE' | oTranslate}}</h2>
     </o-row>
     <form *ngIf="perfilResult && contactForm" fxFlex [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
-      
-      <o-row align-items="center" justifyContent="center" layout-align="center">
+
+      <o-row class="datasheet-information-panel" justifyContent="center" layout-align="center">
 
         <!-- *** IMAGEN *** -->
-        <o-column class="column-image" fxFlex="25" align-items="flow-root;" justifyContent="center" layout-align="center">
-          <o-image layout-align="center" attr="image" enabled="true" read-only="false" show-controls="false"
-            full-screen-button="true" empty-image="./assets/images/no-image.png" auto-fit="true"></o-image>
+        <o-column fxFlex="25" justifyContent="center">
+          <o-image class="datasheet-img" attr="image" type="RAISED" height="90%" width="90%"
+            data="./assets/images/avatars/15.jpg" auto-fit="true" enabled="true" read-only="true" show-controls="false"
+            full-screen-button="false" empty-image="./assets/images/no-image.png">
+          </o-image>
         </o-column>
-      
+
         <o-column display="flex" fxFlex="75" align-items="center" justifyContent="center">
 
           <!-- *** NICK + EMAIL *** -->
@@ -32,7 +34,8 @@
 
           <!-- *** NAME + SURNAME *** -->
 
-          <o-row class="row-form"style="margin: 1rem;" align-items="center" justifyContent="center" layout-align="center">
+          <o-row class="row-form" style="margin: 1rem;" align-items="center" justifyContent="center"
+            layout-align="center">
 
             <mat-form-field display="flex">
               <mat-label>{{'NAME' | oTranslate}}</mat-label>
@@ -44,7 +47,8 @@
             </mat-form-field>
 
           </o-row>
-          <o-row class="row-form"style="margin: 1rem;" align-items="center" justifyContent="center" layout-align="center">
+          <o-row class="row-form" style="margin: 1rem;" align-items="center" justifyContent="center"
+            layout-align="center">
             <!-- <o-email-input  attr="{{'EMAIL' | oTranslate}}" formControlName="email" fxFlex></o-email-input> -->
             <mat-form-field>
               <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
@@ -59,7 +63,7 @@
 
           <o-row class="row-form" align-items="center" justifyContent="center" layout-align="center">
             <mat-form-field>
-              <input matInput placeholder="{'NEW_PASSWORD'}" [type]="password" formControlName="newpassw">
+              <input matInput placeholder="{{'NEW_PASSWORD'}}" [type]="password" formControlName="newpassw">
               <mat-error *ngIf="passFormControl.hasError('required')">
                 {{'ENTER_NEW_PASS' | oTranslate}}
               </mat-error>
@@ -76,11 +80,10 @@
           </o-row>
 
           <o-row class="row-form" align-items="center" justifyContent="center" layout-align="center">
-            <div fxFlex="40" display="flex" class="div-passw"> {{'ENTER_CURRENT_PASS_TO_CONFIRM' | oTranslate}} </div>
             <mat-form-field fxFlex="40" display="flex">
               <mat-label>{{'CURRENT_PASWORD' | oTranslate}}</mat-label>
               <input class="datasheet-input" matInput type="password" formControlName="passw">
-
+              <mat-hint align="end" style="color: #0199c3;">{{'ENTER_CURRENT_PASS_TO_CONFIRM' | oTranslate}}</mat-hint>
             </mat-form-field>
           </o-row>
           <o-row class="row-form" layout-align="right">

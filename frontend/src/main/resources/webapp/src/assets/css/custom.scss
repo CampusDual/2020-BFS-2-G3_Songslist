@@ -61,16 +61,29 @@ $color-font: #8b97a1;
 }
 
 .datasheet-information-panel[_ngcontent-c11] {
-    /* padding-left: 20%; */
-    /* padding-right: 30%; */
-    padding-left: 20%;
-    padding-right: 20%;
+
     width: auto !important;
 }
 
 
 .mat-expansion-panel-header-description, .mat-expansion-indicator::after {
     color: #8b97a1 !important;
+}
+.mat-expansion-panel-header-description:hover {
+    color: $color-select !important;
+}
+
+.mat-toolbar.mat-toolbar-single-row.ng-star-inserted {
+    color: $color-White;
+    background: #032540 !important;
+}
+
+.mat-list .mat-list-item, .mat-nav-list .mat-list-item, .mat-selection-list .mat-list-item {
+    color: $color-inputs;
+}
+
+.mat-checkbox-frame {
+    border-color:$custom-color-font-text;
 }
 
 .mat-expansion-panel-header:not([aria-disabled=true]) {
@@ -398,7 +411,9 @@ h1{
     height: 100%;
     margin-left: 1rem;
 }
-
+.datasheet-information-panel[_ngcontent-c11] {
+    width: auto !important;
+}
 .datasheet-component{
     width: 100;
     height: 100%;

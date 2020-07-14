@@ -1,36 +1,37 @@
-<form class = "form-dialog"(ngSubmit)="onSaveForm()" [formGroup]="form" >
+<form class="form-dialog" (ngSubmit)="onSaveForm()" [formGroup]="form">
   <mat-dialog-content>
 
     <h2 *ngIf="action" mat-dialog-title style="color: white;">Add song to :</h2>
     <h2 *ngIf="!action" mat-dialog-title style="color: white; display: none;">Add new list :</h2>
     <mat-accordion>
       <span *ngIf="subtasks">
-      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle *ngIf="action" >
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{'ADD_TO_MY_SONGLISTS' | oTranslate}}
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <ul *ngIf="subtasks.length > 0">
-          <li *ngFor="let subtask of subtasks">
-            <mat-checkbox >
-              {{subtask.name_songlist}}
-            </mat-checkbox>
-          </li>
-        </ul>
-      </mat-expansion-panel>
-    </span>
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle *ngIf="action">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{'ADD_TO_MY_SONGLISTS' | oTranslate}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ul *ngIf="subtasks.length > 0">
+            <li *ngFor="let subtask of subtasks">
+              <div layout-padding></div>
+              <mat-checkbox>
+                {{subtask.name_songlist}}
+              </mat-checkbox>
+              <div layout-padding></div>
+            </li>
+          </ul>
+        </mat-expansion-panel>
+      </span>
 
       <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <strong>+ </strong>
             {{'CREATE_NEW_SONGLIST' | oTranslate}}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        
+
         <mat-form-field>
-          <input matInput placeholder="{{'SONGLIST_NAME' | oTranslate}}" formControlName="lstName">
+          <input matInput placeholder="{{'SONGLIST_NAME' | oTranslate}}" formControlName="lstName" autocomplete="off">
         </mat-form-field>
         <mat-form-field>
           <mat-label>{{'DESCRIPTION' | oTranslate}}</mat-label>
@@ -43,9 +44,15 @@
 
     <div class="row-reg center between">
 
-      <button mat-raised-button color="primary" type="submit" [ngStyle]="{'color':'#8b97a1'}"
+      <button class= " right button-save  width_10  height_2" mat-button color= "accent"  type="submit"
         [disabled]="!inputChange()">{{'SAVE' | oTranslate}}</button>
-      <button mat-raised-button color="primary" (click)="close()">{{'CANCEL' | oTranslate}}</button>
+      
+      <button class= " right button-save  width_10  height_2"  mat-button color= "accent" type="button" (click)="close()">{{'CANCEL' | oTranslate}}</button>
     </div>
   </mat-dialog-content>
 </form>
+
+
+
+
+

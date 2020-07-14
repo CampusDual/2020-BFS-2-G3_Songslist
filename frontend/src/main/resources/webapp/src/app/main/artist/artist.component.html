@@ -1,12 +1,19 @@
 <div class="component">
   <div>
-    <o-button class="button-back" attr="raised" type="RAISED" label="{{'BACK' | oTranslate}}" layout-padding
+    <o-button class="button-back right   width_10  height_2"  label="{{'BACK' | oTranslate}}" layout-padding
       [routerLink]="['/main/home']" [queryParams]="{tosearch: 'ok'}">
     </o-button>
+
+
+  
+
+
+
   </div>
   <div *ngIf="artistResult">
     <o-row justifyContent="center" layout-align="center">
-      <h2 class="datasheet-h2">{{artistResult.name_artist}}</h2>
+      <h2 class="datasheet-h2">{{artistResult.name_artist}} ({{'ARTIST' | oTranslate}})</h2>
+
     </o-row>
 
     <o-row class="datasheet-information-panel" justifyContent="center" layout-align="center">

@@ -11,22 +11,34 @@ import { ArtistComponent } from './artist/artist.component';
 import { SongComponent } from './song/song.component';
 import { SongService } from './services/song.service';
 import { ArtistService } from './services/artist.service';
+import { PerfilComponent } from './perfil/perfil.component';
+import { PerfilService } from './services/perfil.service';
+import { SonglistComponent } from './songlist/songlist.component';
+import { SonglistService } from './services/songlist.service';
+import { SonglistModule } from './songlist/songlist.module';
+import { SonglistDetailComponent } from './songlist-detail/songlist-detail.component';
 
 @NgModule({
   imports: [
     SharedModule,
     OntimizeWebModule,
     MainRoutingModule,
+    SonglistModule
   ],
   declarations: [
     AlbumComponent,
     MainComponent,
     ArtistComponent,
-    SongComponent
+    SongComponent,
+    PerfilComponent,
+    SonglistDetailComponent,
+
   ], providers: [
     AlbumService,
     ArtistService,
-    SongService
+    SongService,
+    PerfilService,
+    SonglistService
   ],
 })
 export class MainModule { }

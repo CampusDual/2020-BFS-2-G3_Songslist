@@ -39,8 +39,7 @@ export class SongComponent implements OnInit {
           if (songData['data'].length > 0) {
 
             this.songResult = songData['data'][0];
-            console.log('DATA', songData['data'])
-            console.log('SONGRESULT  ', this.songResult.name_song);
+            
 
           } else {
             this.songResult = null;

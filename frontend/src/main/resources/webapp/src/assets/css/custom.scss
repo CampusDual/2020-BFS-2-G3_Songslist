@@ -1,42 +1,700 @@
-$font-size-grande: 18px ;
+$font-size-xtra: 24px ;
+$font-size-grande: 20px ;
 $font-size-medium: 16px ;
-$font-size-normal: 14px ;
+$font-size-normal: 16px ;
 $font-size-small: 12px ;
 $color-black:rgba(0, 0, 0, 0.87);
 $color-White:rgba(255, 255, 255, 0.87);
 $color-grey : #808787;
 $color-dark-grey:#676d6d;
 $color-select :rgb(255, 204, 0);
+$color-inputs : #ffffff;
+$custom-color-background : #03192b;
+$custom-color-background-elements : #032540;
+$custom-color-font-title: #ffffff;
+$custom-color-font-text: #8b97a1;
+$custom-color-font-other: #0199c3;
+$color-font: #8b97a1;
+$color-transparent: #00000000;
 
 
 .button-back button{
    
-    margin: 2k  rem;
+    margin: 2em;
     //background-color: rgb(197, 236, 232);
     text-align: center;
     //color: #f7a240;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-size: 14px;
+    font-size: $font-size-medium;
     font-weight: 500;
-    
+    background: $custom-color-background-elements;
+    color: $color-White;
+    font-weight: bold;    
+    border-color: transparent !important;
+
+}
+
+.button-back:hover button{
+    color: $color-select;
+}
+
+
+.button-save:disabled button{
+   
+    margin: 2em;
+    //background-color: rgb(197, 236, 232);
+    text-align: center;
+    //color: #f7a240;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: $font-size-medium;
+    font-weight: 500;
+    background: $custom-color-background-elements !important;
+    color: red !important;
+    font-weight: bold;    
+    border-color: transparent !important;
+}
+
+.button-save:enabled button{
+   
+    margin: 2em;
+    //background-color: rgb(197, 236, 232);
+    text-align: center;
+    //color: #f7a240;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: $font-size-medium;
+    font-weight: 500;
+    background: $custom-color-background-elements !important;
+    color: $color-White !important;
+    font-weight: bold;    
+    border-color: transparent !important;
+}
+
+.button-save:hover button{
+    color: $color-select;
+}
+
+.mat-expansion-panel{
+    background-color: $custom-color-background-elements !important;
+}
+
+.form-dialog{
+    background-color: $custom-color-background-elements !important;
+}
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+    color: $custom-color-font-text;
+}
+
+.mat-dialog-title ng-star-inserted{
+    color: $color-White;
+    background-color: $custom-color-background-elements !important;
+}
+
+.mat-expansion-panel-body{
+    background-color: $custom-color-background-elements;
+    color: $custom-color-font-text;
+}
+.mat.expanded{
+    background-color: $custom-color-background-elements;
+    color: $custom-color-font-text;
+}
+
+.mat-dialog-content{
+    background-color: $custom-color-background-elements;
+    color: $custom-color-font-text;
+}
+
+mat-expansion-panel-header ng-tns-c31-12 ng-star-inserted mat-expanded ng-trigger ng-trigger-expansionHeight{
+    background-color: $custom-color-background-elements;
+}
+
+.mat-menu-content:not(:empty) {
+    color: $color-White !important;
+    background-color:$custom-color-background-elements;
+}
+.mat-menu-panel {
+    color: $color-White !important;
+    background-color:$custom-color-background-elements;
+}
+
+.mat-menu-item{
+    color: $color-White !important;
+}
+
+
+.o-form form .o-form-content-wrapper {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1em;
+}
+
+.o-app-sidenav .o-app-sidenav-container .o-app-sidenav-content {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: $custom-color-background;
+}
+
+.o-app-sidenav-sidenav .o-scroll{
+    background-color: $custom-color-background;
+}
+.o-app-sidenav .o-app-sidenav-sidenav {
+    background: #021d33;
+}
+
+.datasheet-information-panel[_ngcontent-c11] {
+
+    width: auto !important;
+}
+.mat-form-field {
+    margin-left: 2rem;
+
+}
+
+
+.mat-expansion-panel-header-description, .mat-expansion-indicator::after {
+    color: #8b97a1 !important;
+}
+.mat-expansion-panel-header-description:hover {
+    color: $color-select !important;
+}
+
+.mat-toolbar.mat-toolbar-single-row.ng-star-inserted {
+    color: $color-White;
+    background: #032540 !important;
+}
+
+.mat-list .mat-list-item, .mat-nav-list .mat-list-item, .mat-selection-list .mat-list-item {
+    color: $color-inputs;
+}
+
+.mat-checkbox-frame {
+    border-color:$custom-color-font-text;
+}
+
+.mat-expansion-panel-header:not([aria-disabled=true]) {
+    cursor: pointer;
+    background: $custom-color-background-elements;
+}
+
+.mat-expansion-panel-header:hover {
+    cursor: pointer;
+    background: $custom-color-background-elements;
+}
+
+.mat-expansion-panel-header-title {
+    color: $custom-color-font-text
+}
+
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']).cdk-keyboard-focused, .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']).cdk-program-focused, .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']):hover {
+    background: $custom-color-background;
+}
+
+.mat-select-arrow {
+    color: $custom-color-font-text
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: $color-select;
+    background-color: $custom-color-background;
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: $color-select;
+    background-color: $custom-color-background;
+}
+.mat-primary .mat-option.mat-selected:hover(.mat-option-disabled) {
+    color: $color-select;
+    background-color: $custom-color-background !important;
+}
+
+.mat-option {
+    color: $color-inputs;
+    background-color: $custom-color-background-elements;
+    text-align: center !important;
+}
+
+.mat-option :hover {
+    color: $color-black
+}
+.mat-checkbox-inner-container-no-side-margin {
+    margin-left: 0;
+    margin-right: 0;
+    border-color: #FFFFFF;
+    background: #032540;
+}
+
+.mat-header-cell {
+    color: $custom-color-font-title !important;
+    font-style: initial;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.mat-dialog-container {
+    background: $custom-color-background-elements;
+    color: $custom-color-font-text;
+}
+
+.mat-accordion>.mat-expansion-panel-spacing:last-child, .mat-accordion>:last-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing {
+    margin-bottom: 0;
+    background: $custom-color-background-elements;
+    color: $custom-color-font-text;
+}
+
+mat-toolbar{
+    border: none;
 }
 
 .component{   
+
+    width: 100%;
+    height: 100%;
+    //padding-top: 1.5%;
+    //padding-left: 1.5%;
+    //padding-right: 1%;
+    //padding-bottom: 1%;    
+    text-decoration-color: #d89237;
+    
+}
+
+
+.right   width_10  height_2
+
+.mat-button.mat-primary[disabled], .mat-button.mat-accent[disabled], .mat-button.mat-warn[disabled], .mat-button[disabled][disabled], .mat-icon-button.mat-primary[disabled], .mat-icon-button.mat-accent[disabled], .mat-icon-button.mat-warn[disabled], .mat-icon-button[disabled][disabled], .mat-stroked-button.mat-primary[disabled], .mat-stroked-button.mat-accent[disabled], .mat-stroked-button.mat-warn[disabled], .mat-stroked-button[disabled][disabled] {
+    color: $custom-color-font-text;
+}
+
+
+::placeholder{
+    color: $custom-color-font-text !important;
+}
+
+mat-header-cell{
+    color: $custom-color-font-text;
+}
+
+.mat-radio-outer-circle {
+    border-color: $color-White;
+}
+
+
+mat-form-field {
+    padding:1rem;
+    border: medium;
+    border-color: #8b97a1;
+    border-style: solid;
+    border-radius: 1em;
+    margin-left: 2em;
+    margin-top: 2em;
+}
+
+.mat-menu-item .mat-icon:not([color]), .mat-menu-item-submenu-trigger::after {
+    color: $color-White;
+}
+
+ul{
+    list-style-type: none
+}
+
+a{
+    color: $custom-color-font-text !important;
+    font-size: $font-size-medium;
+}
+
+a:hover{
+    color: $color-select !important;
+    font-weight: bold;
+    font-size: $font-size-medium;
+}
+a[_ngcontent-c11] {
+    color: $custom-color-font-text ;
+    font-size: $font-size-medium;
+    font-weight: bold;
+
+}
+
+.mat-cell[_ngcontent-c11] {
+    font-size: $font-size-medium;
+    text-align: center;
+    color: #808787;
+}
+
+.mat-select-value {
+    color: $custom-color-font-text;
+}
+.mat-paginator-page-size-select {
+    margin: 6px 4px 0 4px;
+    width: 56px;
+    border: none;
+}
+
+a[_ngcontent-c11]:hover {
+    font-size: $font-size-medium;
+    color: $color-select ;
+    font-weight: bold;
+}
+
+.row {
+    display: flex;
+    align-items: stretch;
+    width: auto;    
+}
+::-webkit-scrollbar {
+    width: 0;
+    height: 4px;
+    background-color: transparent;
+    opacity: 1.0;
+}
+.o-image .o-image-content .read-only-blocker {
+    left: 0;
+    right: 0;
+    position: initial !important;
+    top: 0;
+    z-index: 2;
+}
+.o-app-sidenav .o-app-sidenav-container .mat-drawer.o-app-sidenav-sidenav.mat-drawer-closed .o-app-sidenav-image .o-app-sidenav-image-container .o-app-sidenav-image {
+    max-height: 48px;
+    margin: 0 0 0 0 !important;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.o-app-sidenav-image{
+    margin: none !important;
+}
+
+.center {
+    justify-content: center;
+}
+
+.left {
+    justify-content: flex-start;
+}
+
+.right {
+    justify-content: flex-end;
+}
+
+.between {
+    justify-content: space-between;
+}
+
+.around {
+    justify-content: space-around;
+}
+
+.middle {
+    align-items: center;
+}
+
+.top {
+    align-items: flex-start;
+}
+
+.column {
+    margin: 0rem;
+    padding: 1;
+    flex-direction: column;
+    display:flex;
+    width: 100%;
+    padding: 2rem;
+}
+.column-image{
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    max-width: 100%;
+    place-content: flex-start !important;
+    align-items: stretch;
+    flex: 1 1 100%;
+}
+
+.content-colum{
+        margin-left: auto;
+        margin-right: auto; 
+}
+
+.div{
+    color: $color-font;
+    background: $custom-color-background;
+}
+
+// [CSS Button]
+.div-button{
+    padding: 2rem;
+    text-align: end;
+}
+
+// [CSS Titulo + Formulario]
+form {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background: $custom-color-background !important;
+     
+}
+
+label{
+    color: $color-font !important;
+    font-size: 14px !important;
+}
+
+input {
+    margin: 0.5rem;
+    font-size: $font-size-medium;
+    width: 85%;  
+    height: 100%;
+    align-items: stretch;
+    display: flex;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 1rem;
+    font-size: medium;
+    color: $color-inputs !important;    
+}
+.input-disable {
+    color: $color-select !important;   
+    font-weight: bolder;
+    font-size: $font-size-grande;
+    font-style: italic;
+}
+textarea {
+    // margin-left: 0.5rem;
+    // margin-top: 0.5rem;
+    margin: 0.5rem;
+    font-size: medium;
+    width: 85%;  
+    align-items: stretch;
+    display: flex;
+    margin: 0.5rem;
+    font-size: medium;
+    color: $custom-color-font-text;
+}
+
+.span-description{
+    align-self: center;
+    color: $custom-color-font-text;
+}
+
+.register-access{
+    color: $custom-color-font-title !important;
+    font-size: $font-size-xtra;
+    font-weight: bold;
+}
+.register-access:hover{
+    color: $color-select !important;
+    font-size: $font-size-xtra;
+    font-weight: bolder;
+}
+
+.annotation{
+    color: $custom-color-font-other;
+}
+.mat-table{
+    background: $custom-color-background;
+    color: $color-font;
+}
+.mat-paginator{
+    background: $custom-color-background;
+    color: $color-font;
+}
+
+h2{
+    text-align: center;
+    color: $custom-color-font-title;
+}
+h1{
+    text-align: center;
+    color: $custom-color-font-title;
+}
+
+//form
+.datasheet-text-input{
+    margin: 0.5rem;
+    font-size: $font-size-medium;
+    background: $custom-color-background;
+    color: $color-inputs;
+    
+}
+
+.datasheet-information-panel{
+    padding: 0.2rem;
+    
+}
+
+.datashet-inputs-panel{
+    height: 100%;
+    margin-left: 1rem;
+}
+.datasheet-information-panel[_ngcontent-c11] {
+    width: auto !important;
+}
+.datasheet-component{
     width: 100;
     height: 100%;
     padding-top: 1.5%;
     padding-left: 1.5%;
     padding-right: 3%;
     padding-bottom: 3%;
-    background-color: #e5e6e8;
-    text-decoration-color: #d89237;
+    color: $color-font;
+    background: $custom-color-background;
 }
 
-.button-back{
-   
-    margin: 2k rem;
-    text-align: center;
+.datasheet-acordion {
+    justify-content: space-between;
+    flex-basis: 0;
+  }
+
+.datasheet-input,
+.datasheet-text-input-hover input{
     
+    color: $color-inputs;
 }
+
+.datasheet-text-input-hover:hover input{
+    
+    color: $color-select !important;
+    background: $custom-color-background;
+}
+
+.datasheet-description{
+    color: $color-inputs;
+    background: $custom-color-background;
+}
+.o-form-content-wrapper{
+    flex-direction: column;
+    box-sizing: border-box;
+    display: block !important;
+    max-width: 100%;
+    place-content: stretch flex-start;
+    align-items: stretch;
+    padding: 2em !important;
+}
+
+
+.item-hover:hover{
+    font-weight: bold;
+    color: $color-select;
+    background: $custom-color-background;
+}
+
+.mat-toolbar.mat-toolbar-single-row.ng-star-inserted{
+    color: $color-font;
+    background: $custom-color-background;
+}
+
+.mat-toolbar{
+    display: none;
+    color: $color-font;
+    background: $custom-color-background;
+}
+
+.accordion-panel{
+    margin: 1rem;
+    color: $color-font;
+    background: $custom-color-background;
+}
+
+ // [Css Imgen]
+.datasheet-img{
+    align-self: center;
+    padding: 0.1rem;
+    border-radius: 4px;
+    overflow: visible;
+    transform: translate3d(0,0,0);
+    transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+}
+
+.title_page{
+    text-align: center;
+    color: $color-font;
+    background: $custom-color-background;
+}
+
+// ************** REGISTRO *********
+
+.row-reg{
+    //display: flex;
+    align-items: stretch;
+    width: auto;
+    width: 90%;
+    justify-content: space-evenly;
+}
+
+.row-form{
+    place-content: stretch;
+    align-items: stretch;
+    width: auto;
+    width: 90%;
+    justify-content: space-evenly;
+    place-content: flex-start;
+}
+
+.mat-drawer-container {
+    background-color: #fafafa;
+    color: $custom-color-font-title;
+
+}
+
+.input-register{
+    color: $color-inputs;
+    background: $custom-color-background;
+}
+.label-register{
+    color: $color-font
+}
+
+.mat-radio-label-content {
+    color: $color-White;
+}
+
+.mat-label-element[_ngcontent-c11] {
+    color: $custom-color-font-text !important;
+    font-size: 14px !important;
+}
+
+
+
+
+.component-register{   
+    width: 100;
+    height: 100%;
+    color: $color-font;
+    background: $custom-color-background;
+    text-decoration-color: #d89237;
+}
+.section-register{
+    width: 100%;
+    height: 100%;
+    background-color: $custom-color-background;
+}
+section{
+    background-color: $custom-color-background;
+}
+
+.column-reg {
+    margin: 1rem;
+    flex-direction: column;
+    display:flex;
+    width: 35%;
+}
+
+.self-center{
+    align-self: center;
+}
+
+.login-inner-container{
+    background-color: $custom-color-background !important;
+}
+
+
+.logo-container{
+    border-radius: 10% !important;
+}
+
+
+
 
 

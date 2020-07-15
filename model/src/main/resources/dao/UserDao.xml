@@ -13,6 +13,27 @@
 	</UpdateKeys>
 	<GeneratedKey>id_user</GeneratedKey>
 	<Queries>
+		<Query id="register">
+			<ValidColumns>
+				<Column>nick_user</Column>
+				<Column>id_user</Column>
+				<Column>name_user</Column>
+				<Column>surname_user</Column>
+				<Column>email_user</Column>
+				<Column>password_user</Column>
+				<Column>birthdate_user</Column>
+				<Column>description_user</Column>
+			</ValidColumns>
+            <Sentence>
+                <![CDATA[
+                    SELECT
+                        #COLUMNS#
+                    FROM
+                        ${mainschema}.TUSER
+                    #WHERE#
+                ]]>
+            </Sentence>
+		</Query>
 		<Query id="default">
 			<ValidColumns>
 				<Column>nick_user</Column>

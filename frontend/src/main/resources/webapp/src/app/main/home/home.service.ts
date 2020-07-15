@@ -39,7 +39,7 @@ export class HomeService extends OntimizeEEService {
                 'NAME': searchText,
                 'OPTION': radioSelected
                  },
-            columns: ['id_song', 'name_song', 'id_artist', 'name_artist', 'id_genre', 'name_genre', 'id_album', 'name_album'],
+            columns: ['id_song', 'name_song', 'id_artist', 'name_artist', 'id_genre', 'name_genre', 'id_album', 'name_album', 'img_album'],
         });
         // Opción 1 - usando métodos de ontimize para parsear la respuesta
         var self = this;

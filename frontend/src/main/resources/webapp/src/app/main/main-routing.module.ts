@@ -6,12 +6,20 @@ import { HomeModule } from './home/home.module';
 import { AlbumComponent } from './album/album.component';
 import { ArtistComponent } from './artist/artist.component';
 import { SongComponent } from './song/song.component';
-
+import { PerfilComponent } from './perfil/perfil.component';
+import { LoginComponent } from 'app/login/login.component';
+import { SonglistComponent } from './songlist/songlist.component';
+import { SonglistModule } from './songlist/songlist.module';
+import { SonglistDetailComponent } from './songlist-detail/songlist-detail.component';
 export function loadHomeModule() {
   return HomeModule;
 }
-
-
+export function loadSonglistModule() {
+  return SonglistModule;
+}
+function User (): boolean {
+  return JSON.parse(localStorage.getItem('com.ontimize.web.ngx.jee.seed')).session.id ;
+}
 export const routes: Routes = [
   {
     path: '',
@@ -25,24 +33,40 @@ export const routes: Routes = [
       },{
         path: 'song/:id',
         component: SongComponent
+      }, {
+        path: 'songlist',
+        component : SonglistComponent 
       }, 
       {
         path: 'album/:id',
         component: AlbumComponent
-      },   
+      },
+      {
+        path: 'perfil',
+        component: PerfilComponent
+      },
       {
         path: 'artist/:id',
         component: ArtistComponent
-      },           
+      },
+      {
+        path: 'perfil',
+        component: PerfilComponent
+      },
+      {
+        path: 'songlist-detail/:id',
+        component: SonglistDetailComponent
+      },
+      {
+        path: 'settings',
+        component: User ? PerfilComponent : LoginComponent
+      },
       {
         path: '**',
         loadChildren: loadHomeModule
       }
     ],
-    
-
   }
-  
 ];
 
 @NgModule({

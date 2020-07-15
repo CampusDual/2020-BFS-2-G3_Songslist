@@ -25,7 +25,7 @@ import com.ontimize.jee.server.rest.ORestController;
 @RestController
 @RequestMapping("/songlists")
 
-public class SonglistRestController extends ORestController<ISonglistService> {
+public class SonglistRestController extends ORestController<ISonglistService>  {
 
  @Autowired
  private ISonglistService songlistService;

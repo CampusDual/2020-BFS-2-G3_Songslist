@@ -1,0 +1,104 @@
+<div class="component">
+
+  <o-column *ngIf=" contactForm" class="content-colum">
+    <o-row align-items="center" justifyContent="center" place-content="center" layout-align="center">
+      <h2>{{'EDIT_PROFILE' | oTranslate}}</h2>
+    </o-row>
+    <form *ngIf="perfilResult && contactForm" fxFlex [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
+
+      <o-row class="datasheet-information-panel">
+
+        <!-- *** IMAGEN *** -->
+        
+        <o-column  justifyContent="center">
+          <o-row class="row-form" align-items="start" justifyContent="center" layout-align="center">
+          <o-image class="datasheet-img" attr="image" type="RAISED" height="80%" width="80%"
+            data="./assets/images/avatars/15.jpg" auto-fit="true" enabled="true" read-only="true" show-controls="false"
+            full-screen-button="false" empty-image="./assets/images/no-image.png">
+          </o-image>
+        </o-row>
+          
+          <o-row class="row-form" align-items="center" justifyContent="center" layout-align="center">
+            <mat-form-field >
+              <mat-label>{{'CURRENT_PASWORD' | oTranslate}}</mat-label>
+              <input class="datasheet-input" matInput type="password" formControlName="passw">
+            </mat-form-field>
+          </o-row>
+          <o-row class="row-form" layout-align="center">
+            <button class=" right   width_10  height_2" mat-button type="submit"
+              [disabled]="!inputChange()">{{'SAVE' | oTranslate}}</button>
+            <button class=" right   width_10 height_2" mat-button>Cancel</button>
+          </o-row>
+        </o-column>
+        <o-column display="flex" fxFlex="70" align-items="center" justifyContent="center">
+
+          <!-- *** NICK + EMAIL *** -->
+          <o-row class="row-form around" style="margin: 1rem;" align-items="space-around" justifyContent="center"
+            layout-align="center">
+            <mat-form-field display="flex">
+              <mat-label>{{'NICK' | oTranslate}}</mat-label>
+              <input class="input-disable" matInput type="text" formControlName="nick" placeholder="Your Nick"
+                readonly="yes">
+            </mat-form-field>
+            <mat-form-field display="flex" >
+              <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
+              <input class="datasheet-input" matInput type="text" formControlName="email" placeholder="Your email>">
+            </mat-form-field>
+          </o-row>
+
+          <!-- *** NAME + SURNAME *** -->
+
+          <o-row class="row-form" style="margin: 1rem;" align-items="center" justifyContent="center"
+            layout-align="center">
+
+            <mat-form-field display="flex">
+              <mat-label>{{'NAME' | oTranslate}}</mat-label>
+              <input class="datasheet-input" matInput type="text" formControlName="name" placeholder="Your Name">
+            </mat-form-field>
+            <mat-form-field display="flex">
+              <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
+              <input class="datasheet-input" matInput type="text" formControlName="surname" placeholder="Your surname>">
+            </mat-form-field>
+
+          </o-row>
+          <o-row class="row-form" style="margin: 1rem;" align-items="center" justifyContent="center"
+            layout-align="center">
+            <!-- <o-email-input  attr="{{'EMAIL' | oTranslate}}" formControlName="email" fxFlex></o-email-input> -->
+            <mat-form-field>
+              <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
+              <input class="datasheet-input" matInput type="date" formControlName="birthdate"
+                placeholder="Your birthdate">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{'ABOUT_YOU' | oTranslate}}</mat-label>
+              <textarea matInput formControlName="description" placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
+            </mat-form-field>
+          </o-row>
+
+          <o-row class="row-form" align-items="center" justifyContent="center" layout-align="center">
+            <mat-form-field>
+              <input matInput placeholder="{{'NEW_PASSWORD' | oTranslate}}" type="password" formControlName="newpassw">
+              <mat-error *ngIf="passFormControl.hasError('required')">
+                {{'ENTER_NEW_PASS' | oTranslate}}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Confirm password" type="password" formControlName="repnewpassw">
+              <mat-error *ngIf="newpassw != repnewpassw ">
+                {{'CONFIRM_NEW_PASS' | oTranslate}}
+              </mat-error>
+
+            </mat-form-field>
+          </o-row>
+          <o-row align-items="center" justifyContent="center" layout-align="center">
+          </o-row>
+
+          
+          
+
+        </o-column>
+      </o-row>
+    </form>
+  </o-column>
+</div>

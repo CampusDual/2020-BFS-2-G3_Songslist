@@ -42,7 +42,6 @@ export class AlbumComponent implements OnInit {
                     if (albumData['data'].length > 0) {
 
                         this.albumResult = albumData['data'][0];
-                    
 
                     } else {
                         this.albumResult = null;
@@ -51,7 +50,6 @@ export class AlbumComponent implements OnInit {
             },
             err => console.error(err)
         );
-        console.log('fuera del subscribe', this.albumResult);
     }
 
     ngOnStartAlbumSonglist(id: number) {
@@ -87,9 +85,4 @@ export class AlbumComponent implements OnInit {
     getSongResult(){
         return this.songResult;
     }
-
-
-
-
-
 }

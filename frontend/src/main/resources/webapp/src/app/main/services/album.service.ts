@@ -21,7 +21,7 @@ export class AlbumService extends OntimizeEEService {
     }
 
     getAlbumData(id:number) {
-        const url = CONFIG.apiEndpoint + '/' + 'albums/album/search';
+        const url = CONFIG.apiEndpoint + '/' + 'public/searchAlbum';
         var options = {
             headers: this.buildHeaders()
         };

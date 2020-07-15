@@ -5,35 +5,27 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ontimize.songslists.api.core.service.ISongService;
-import com.ontimize.songslists.model.core.dao.SongDao;
 import com.ontimize.db.EntityResult;
 import com.ontimize.db.SQLStatementBuilder;
 import com.ontimize.db.SQLStatementBuilder.BasicExpression;
 import com.ontimize.db.SQLStatementBuilder.BasicField;
 import com.ontimize.db.SQLStatementBuilder.BasicOperator;
-import com.ontimize.jee.server.rest.ORestController;
+import com.ontimize.songslists.api.core.service.IAlbumService;
+import com.ontimize.songslists.api.core.service.IArtistService;
+import com.ontimize.songslists.api.core.service.ISongService;
+import com.ontimize.songslists.model.core.dao.SongDao;
 
 @RestController
-@RequestMapping("/songs")
-@ComponentScan(basePackageClasses = { com.ontimize.songslists.api.core.service.ISongService.class })
-public class SongRestController extends ORestController<ISongService> {
-
+@RequestMapping("/public")
+public class PublicRestController {
 	@Autowired
 	private ISongService songService;
-
-	@Override
-	public ISongService getService() {
-		return this.songService;
-	}
-/**
 	@RequestMapping(value = "/searchSong", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public EntityResult currenSearch(@RequestBody Map<String, Object> req) {
 		String option;
@@ -47,29 +39,29 @@ public class SongRestController extends ORestController<ISongService> {
 				option = (String) filter.get("OPTION");
 				if (option != null) {
 					switch (option) {
-						case "song":
-							param.put("song", SongDao.ATTR_SONG_NAME);
-							break;
-						case "album":
-							param.put("album", SongDao.ATTR_ALBUM_NAME);
-							break;
-						case "artist":
-							param.put("artist", SongDao.ATTR_ARTIST_NAME);
-							break;
-						case "genre":
-							param.put("genre", SongDao.ATTR_GENRE_NAME);
-							break;
-						case "all":
-							param.put("song", SongDao.ATTR_SONG_NAME);
-							param.put("album", SongDao.ATTR_ALBUM_NAME);
-							param.put("artist", SongDao.ATTR_ARTIST_NAME);
-							param.put("genre", SongDao.ATTR_GENRE_NAME);
-						case "":
-							param.put("song", SongDao.ATTR_SONG_NAME);
-							param.put("album", SongDao.ATTR_ALBUM_NAME);
-							param.put("artist", SongDao.ATTR_ARTIST_NAME);
-							param.put("genre", SongDao.ATTR_GENRE_NAME);
-						default:
+					case "song":
+						param.put("song", SongDao.ATTR_SONG_NAME);
+						break;
+					case "album":
+						param.put("album", SongDao.ATTR_ALBUM_NAME);
+						break;
+					case "artist":
+						param.put("artist", SongDao.ATTR_ARTIST_NAME);
+						break;
+					case "genre":
+						param.put("genre", SongDao.ATTR_GENRE_NAME);
+						break;
+					case "all":
+						param.put("song", SongDao.ATTR_SONG_NAME);
+						param.put("album", SongDao.ATTR_ALBUM_NAME);
+						param.put("artist", SongDao.ATTR_ARTIST_NAME);
+						param.put("genre", SongDao.ATTR_GENRE_NAME);
+					case "":
+						param.put("song", SongDao.ATTR_SONG_NAME);
+						param.put("album", SongDao.ATTR_ALBUM_NAME);
+						param.put("artist", SongDao.ATTR_ARTIST_NAME);
+						param.put("genre", SongDao.ATTR_GENRE_NAME);
+					default:
 					}
 				}
 			} else {
@@ -113,5 +105,32 @@ public class SongRestController extends ORestController<ISongService> {
 		}
 		return bexpB;
 	}
-	*/
+	/*
+	@Autowired
+	private IAlbumService albumService;
+	@RequestMapping(value = "/searchAlbum", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult currenSearchAlbum(@RequestBody Map<String, Object> req) {
+		List<String> columns = (List<String>) req.get("columns");
+		Map<String, Object> filter = (Map<String, Object>) req.get("filter");
+		return albumService.albumQuery( filter,columns);
 	}
+	@Autowired
+	private IArtistService artistService;
+	@RequestMapping(value = "/searchArtist", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult currenSearchArtist(@RequestBody Map<String, Object> req) {
+		List<String> columns = (List<String>) req.get("columns");
+		Map<String, Object> filter = (Map<String, Object>) req.get("filter");
+		return albumService.albumQuery( filter,columns);
+		
+	}
+	@RequestMapping(value = "/searchAlbum", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult currenSearchSong(@RequestBody Map<String, Object> req) {
+		List<String> columns = (List<String>) req.get("columns");
+		Map<String, Object> filter = (Map<String, Object>) req.get("filter");
+		return albumService.albumQuery( filter,columns);
+		
+	}
+	*/
+	
+}
+

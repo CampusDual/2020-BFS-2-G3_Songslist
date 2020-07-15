@@ -24,7 +24,7 @@ export const routes: Routes = [
   {
     path: '',
     component: MainComponent,
-    canActivate: [AuthGuardService],
+   // canActivate: [AuthGuardService],
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
@@ -35,7 +35,8 @@ export const routes: Routes = [
         component: SongComponent
       }, {
         path: 'songlist',
-        component : SonglistComponent 
+        component : SonglistComponent,
+        canActivate: [AuthGuardService], 
       }, 
       {
         path: 'album/:id',
@@ -43,7 +44,8 @@ export const routes: Routes = [
       },
       {
         path: 'perfil',
-        component: PerfilComponent
+        component: PerfilComponent,
+        canActivate: [AuthGuardService],
       },
       {
         path: 'artist/:id',
@@ -51,7 +53,8 @@ export const routes: Routes = [
       },
       {
         path: 'perfil',
-        component: PerfilComponent
+        component: PerfilComponent,
+        canActivate: [AuthGuardService],
       },
       {
         path: 'songlist-detail/:id',

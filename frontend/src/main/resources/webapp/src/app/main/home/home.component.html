@@ -43,6 +43,10 @@
       </mat-form-field>
     </form>
   </div>
+
+  <div *ngIf=" searchSongs.length > 0">
+ <app-result-container [data]="searchSongs"></app-result-container>
+  </div>
   <div *ngIf=" searchSongs.length > 0">
     <!-- Table  ==> aplicar los cambios Material -->
     <div class="div-result">
@@ -61,7 +65,6 @@
             </mat-checkbox>
           </td>
         </ng-container>
-
 
         <ng-container matColumnDef="Img">
           <mat-header-cell *matHeaderCellDef>{{'FRONT' | oTranslate}}</mat-header-cell>
@@ -87,9 +90,7 @@
         <ng-container matColumnDef="Album">
           <mat-header-cell *matHeaderCellDef>{{'ALBUM' | oTranslate}}</mat-header-cell>
           <mat-cell class="duration-cell" *matCellDef="let song">
-
             <a [routerLink]="['/main/album', song.id_album]" [queryParams]="{id: song.id_album}" href="#">
-
               {{song.name_album}}
             </a></mat-cell>
         </ng-container>

@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
-    public dialog: MatDialog,
     private router: Router,
     private actRoute: ActivatedRoute,
     protected homeService: HomeService,
@@ -66,6 +65,7 @@ export class HomeComponent implements OnInit {
             console.log('igualo la parte de data a mi variable y la muestro ', this.searchSongs);
             this.dataSource = new MatTableDataSource<ISongModel>(this.searchSongs);
             this.dataSource.paginator = this.paginator;
+            //console.log('-------datasorce',this.dataSource);
           } else {
             this.searchSongs = Array();
           }

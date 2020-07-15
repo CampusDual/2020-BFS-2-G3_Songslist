@@ -1,10 +1,23 @@
 package com.ontimize.songslists.ws.core.rest;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.ontimize.songslists.api.core.service.IList_SongListService;
+import com.ontimize.songslists.model.core.dao.List_SonglistDao;
+import com.ontimize.db.EntityResult;
+import com.ontimize.db.SQLStatementBuilder;
+import com.ontimize.db.SQLStatementBuilder.BasicExpression;
+import com.ontimize.db.SQLStatementBuilder.BasicField;
+import com.ontimize.db.SQLStatementBuilder.BasicOperator;
 import com.ontimize.jee.server.rest.ORestController;
 
 @RestController
@@ -19,4 +32,33 @@ public class List_SonglistController extends ORestController<IList_SongListServi
  public IList_SongListService getService() {
   return this.list_songlistService;
  }
+ 
+
+ @RequestMapping(value = "/searchUserListSonglist", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult currenSearch(@RequestBody Map<String, Object> req) {
+	 
+		try {
+			List<String> columns = (List<String>) req.get("columns");
+			Map<String, Object> filter = (Map<String, Object>) req.get("filter");
+			
+			String userToSearch = (String) filter.get("USER");
+	
+			Map<String, Object> key = new HashMap<String, Object>();
+			key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
+					searchLike(userToSearch));
+			return list_songlistService.list_songlistQuery(key, columns);
+		} catch (Exception e) {
+			e.printStackTrace();
+			EntityResult res = new EntityResult();
+			res.setCode(EntityResult.OPERATION_WRONG);
+			return res;
+		}
+	}
+
+	private BasicExpression searchLike(String userToSearch) {
+			
+		BasicField users = new BasicField(List_SonglistDao.ATTR_SONGLIST_NICK_USER);
+		BasicExpression bexp = new BasicExpression(users, BasicOperator.LIKE_OP, "%"+userToSearch+"%");
+		return bexp;
+	}
 }

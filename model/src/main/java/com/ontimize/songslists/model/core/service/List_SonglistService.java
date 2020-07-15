@@ -1,7 +1,11 @@
 package com.ontimize.songslists.model.core.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -49,5 +53,6 @@ public class List_SonglistService implements IList_SongListService {
 	public EntityResult list_songlistDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
 		return this.daoHelper.delete(this.list_songlistDao, keyMap);
 	}
+	
 
 }

@@ -11,5 +11,5 @@ export interface ISongModel {
     name_album: string;
     //img_song : string;
     description_song?: string;
-    year_album: Date;
+    year_album?: Date;
  }

@@ -52,17 +52,30 @@ export class SonglistService extends OntimizeEEService {
         return dataObservable.pipe(share());
     }
 
+   
     getSongs(id:number) {
-        const url = CONFIG.apiEndpoint + '/' + 'list_songlists/list_songlist/search';
+        let idSonglist = id.toString;
+        const url = CONFIG.apiEndpoint + '/' + 'list_songlists/searchUserListSonglist';
         var options = {
             headers: this.buildHeaders()
         };
         var body = JSON.stringify({
             filter: {
                 USER: this.nick_user,
-                SONGLIST: id
+                SONGLIST: idSonglist
                  },
-            columns: ['id_song', 'name_song', 'name_album', 'img_album', 'year_album', 'name_artist', 'name_genre'],
+            columns: ['name_song'],
+
+            sqltypes: {
+                'name_song': 12,
+                'id_artist': 4,
+                'name_artist': 12,
+                'id_song': 4,
+                'id_genre': 4,
+                'id_album': 4,
+                'img_album': 4,
+
+            }
         });
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {

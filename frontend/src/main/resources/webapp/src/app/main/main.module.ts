@@ -16,6 +16,7 @@ import { PerfilService } from './services/perfil.service';
 import { SonglistComponent } from './songlist/songlist.component';
 import { SonglistService } from './services/songlist.service';
 import { SonglistModule } from './songlist/songlist.module';
+import { SonglistDetailComponent } from './songlist-detail/songlist-detail.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { SonglistModule } from './songlist/songlist.module';
     ArtistComponent,
     SongComponent,
     PerfilComponent,
+    SonglistDetailComponent,
 
   ], providers: [
     AlbumService,

@@ -14,8 +14,8 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<ontimize.boot.version>2.0.0</ontimize.boot.version>
-		<ontimize.jee.version>2.0.0</ontimize.jee.version>
+		<ontimize.boot.version>2.1.1</ontimize.boot.version>
+		<ontimize.jee.version>2.1.1</ontimize.jee.version>
 		<basicproject.version>0.0.1</basicproject.version>
 		<hsqldatabase.path>src/main/db</hsqldatabase.path>
 		<database.url>jdbc:hsqldb:hsql://localhost:9013/templateDB</database.url>
@@ -76,6 +76,26 @@
 
 		</dependencies>
 	</dependencyManagement>
+	<profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>imatia-artifactory</id>
+                    <url>https://artifactory.imatia.com/public-artifactory/libs-release</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
 <modules>  <module>api</module>
     <module>frontend</module>
     <module>boot</module>

@@ -15,6 +15,7 @@ $custom-color-font-title: #ffffff;
 $custom-color-font-text: #8b97a1;
 $custom-color-font-other: #0199c3;
 $color-font: #8b97a1;
+$color-transparent: #00000000;
 
 
 .button-back button{
@@ -26,12 +27,49 @@ $color-font: #8b97a1;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: $font-size-medium;
     font-weight: 500;
-    background: $color-black;
+    background: $custom-color-background-elements;
     color: $color-White;
     font-weight: bold;    
+    border-color: transparent !important;
+
 }
 
 .button-back:hover button{
+    color: $color-select;
+}
+
+
+.button-save:disabled button{
+   
+    margin: 2em;
+    //background-color: rgb(197, 236, 232);
+    text-align: center;
+    //color: #f7a240;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: $font-size-medium;
+    font-weight: 500;
+    background: $custom-color-background-elements !important;
+    color: red !important;
+    font-weight: bold;    
+    border-color: transparent !important;
+}
+
+.button-save:enabled button{
+   
+    margin: 2em;
+    //background-color: rgb(197, 236, 232);
+    text-align: center;
+    //color: #f7a240;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: $font-size-medium;
+    font-weight: 500;
+    background: $custom-color-background-elements !important;
+    color: $color-White !important;
+    font-weight: bold;    
+    border-color: transparent !important;
+}
+
+.button-save:hover button{
     color: $color-select;
 }
 
@@ -219,6 +257,9 @@ mat-toolbar{
     
 }
 
+
+.right   width_10  height_2
+
 .mat-button.mat-primary[disabled], .mat-button.mat-accent[disabled], .mat-button.mat-warn[disabled], .mat-button[disabled][disabled], .mat-icon-button.mat-primary[disabled], .mat-icon-button.mat-accent[disabled], .mat-icon-button.mat-warn[disabled], .mat-icon-button[disabled][disabled], .mat-stroked-button.mat-primary[disabled], .mat-stroked-button.mat-accent[disabled], .mat-stroked-button.mat-warn[disabled], .mat-stroked-button[disabled][disabled] {
     color: $custom-color-font-text;
 }
@@ -232,13 +273,23 @@ mat-header-cell{
     color: $custom-color-font-text;
 }
 
+.mat-radio-outer-circle {
+    border-color: $color-White;
+}
+
 
 mat-form-field {
-    padding:1.5rem;
+    padding:1rem;
     border: medium;
     border-color: #8b97a1;
     border-style: solid;
     border-radius: 1em;
+    margin-left: 2em;
+    margin-top: 2em;
+}
+
+.mat-menu-item .mat-icon:not([color]), .mat-menu-item-submenu-trigger::after {
+    color: $color-White;
 }
 
 ul{
@@ -387,6 +438,7 @@ form {
 
 label{
     color: $color-font !important;
+    font-size: 14px !important;
 }
 
 input {
@@ -594,6 +646,17 @@ h1{
     color: $color-font
 }
 
+.mat-radio-label-content {
+    color: $color-White;
+}
+
+.mat-label-element[_ngcontent-c11] {
+    color: $custom-color-font-text !important;
+    font-size: 14px !important;
+}
+
+
+
 
 .component-register{   
     width: 100;
@@ -625,6 +688,13 @@ section{
 .login-inner-container{
     background-color: $custom-color-background !important;
 }
+
+
+.logo-container{
+    border-radius: 10% !important;
+}
+
+
 
 
 

@@ -3,12 +3,13 @@
     <o-button class="button-back" attr="raised" type="RAISED" label="{{'BACK' | oTranslate}}" layout-padding
       [routerLink]="['/main/home']" [queryParams]="{tosearch: 'ok'}"></o-button>
   </div>
+  <o-row  justifyContent="center" layout-align="center">
+    <h2  fxFlex justifyContent="center" class="datasheet-h2">{{albumResult.name_album}} ({{'ALBUM' | oTranslate}})</h2>
+  </o-row>
   <div *ngIf="albumResult">
     
       <!----Information panel---->
-      <o-row  justifyContent="center" layout-align="center">
-        <h2  fxFlex justifyContent="center" class="datasheet-h2">{{albumResult.name_album}}</h2>
-      </o-row>
+      
       <o-column fxFlex justifyContent="center" >
       <o-row class="datasheet-information-panel"  justifyContent="center" layout-align="center" >
         <o-column fxFlex="25" justifyContent="center">

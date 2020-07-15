@@ -56,6 +56,7 @@ export class CreateListDialogComponent implements OnInit {
           console.log('nº results getAllSonglist', userData['data'].length);
           if (userData['code'] == 0) {
             this.subtasks = userData['data'];
+            this.subtasks.forEach(t => t.checked = false);
             console.log('this.subtasks',this.subtasks)
             console.log('this.subtasks nameSongList',this.subtasks[0].name_songlist)
           } else if (userData['code'] == 1) {
@@ -111,7 +112,7 @@ export class CreateListDialogComponent implements OnInit {
                         console.log('recibo la parte de data ', userData['data']);
                         console.log('nº results ', userData['data'].length);
                         if (userData['code'] == 0) {
-                          this.snackBarService.open('open', {
+                          this.snackBarService.open('se ha añadido la cancion a '+newList.name_songlist, {
                             action: 'Done',
                             milliseconds: 5000,
                             icon: 'check_circle',
@@ -119,7 +120,7 @@ export class CreateListDialogComponent implements OnInit {
                           });
                           this.dialogRef.close(this.form.value);
                         } else if (userData['code'] == 1) {
-                          this.snackBarService.open('warning', {
+                          this.snackBarService.open('warning  no se ha añadido la cancion a '+newList.name_songlist, {
                             action: 'Warning',
                             milliseconds: 5000,
                             icon: 'check_circle',
@@ -130,7 +131,7 @@ export class CreateListDialogComponent implements OnInit {
                     },
                     err => {
                       console.error(err)
-                      this.snackBarService.open('error', {
+                      this.snackBarService.open('error  no se ha añadido la cancion a '+newList.name_songlist, {
                         action: 'Error',
                         milliseconds: 5000,
                         icon: 'check_circle',
@@ -174,5 +175,33 @@ export class CreateListDialogComponent implements OnInit {
 
   inputChange(): boolean {
     return (this.form.get('lstName').status == 'VALID' && this.form.get('lstDescription').status == 'VALID');
+  }
+  setcheked( isCheck: boolean, subtask :ISongListModel){
+    console.log('isCheck',isCheck)
+    if (isCheck){
+      subtask.checked = !subtask.checked;
+      console.log('subtask.checked',subtask.checked)
+    }else{
+      subtask.checked = !subtask.checked;
+      console.log('subtask.checked',subtask.checked)
+    }
+    if (isCheck && subtask.checked){
+      this.snackBarService.open('se ha añadido la cancion a '+subtask.name_songlist, {
+        action: 'Done',
+        milliseconds: 5000,
+        icon: 'check_circle',
+        iconPosition: 'left'
+      });
+    }
+
+    else if (!isCheck && !subtask.checked){
+      this.snackBarService.open('se ha eleminado la cancion de '+subtask.name_songlist, {
+        action: 'Done',
+        milliseconds: 5000,
+        icon: 'check_circle',
+        iconPosition: 'left'
+      });
+    }
+
   }
 }

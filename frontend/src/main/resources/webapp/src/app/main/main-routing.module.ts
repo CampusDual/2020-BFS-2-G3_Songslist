@@ -10,6 +10,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { LoginComponent } from 'app/login/login.component';
 import { SonglistComponent } from './songlist/songlist.component';
 import { SonglistModule } from './songlist/songlist.module';
+import { SonglistDetailComponent } from './songlist-detail/songlist-detail.component';
 export function loadHomeModule() {
   return HomeModule;
 }
@@ -51,6 +52,10 @@ export const routes: Routes = [
       {
         path: 'perfil',
         component: PerfilComponent
+      },
+      {
+        path: 'songlist-detail/:id',
+        component: SonglistDetailComponent
       },
       {
         path: 'settings',

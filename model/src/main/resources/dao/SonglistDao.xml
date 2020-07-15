@@ -11,17 +11,17 @@
  <UpdateKeys>
   <Column>id_songlist</Column>
  </UpdateKeys>
- <GeneratedKey>id_songlist</GeneratedKey>
- 
+ <GeneratedKey>id_songlist</GeneratedKey> 
  <Queries>
      <Query id="default">
               <AmbiguousColumns>
             <AmbiguousColumn name="id_user" prefix="u" />
+            <AmbiguousColumn name="nick_user" prefix="u" />
+            <AmbiguousColumn name="id_songlist" prefix="sl" />
         </AmbiguousColumns>
         <FunctionColumns>
             <FunctionColumn name="ID_SONGLIST" value="id_songlist" />
             <FunctionColumn name="NAME_SONGLIST" value="name_songlist" />
-            <FunctionColumn name="USER" value="nick_user" />
             <FunctionColumn name="DESCRIPTION_SONGLIST" value="description_songlist" />
 
         </FunctionColumns>
@@ -31,7 +31,7 @@
                 #COLUMNS#
             FROM
                 ${mainschema}.tsonglist sl
-				LEFT JOIN ${mainschema}.tuser u ON u.id_user = sl.id_user
+				LEFT JOIN ${mainschema}.tuser u ON u.id_user = sl.id_user				
 			#WHERE#
             ]]>
         </Sentence>

@@ -488,15 +488,19 @@ textarea {
     font-size: $font-size-xtra;
     font-weight: bolder;
 }
+.loggin-button:hover{
+    color: $color-select !important;
+    background-color: black !important;
+}
 
 .guest-access{
-    color: $custom-color-font-title !important;
-    font-size: $font-size-xtra;
+    color: $custom-color-font-text !important;
+    font-size: $font-size-grande;
     font-weight: bold;
 }
 .guest-access:hover{
     color: $color-select !important;
-    font-size: $font-size-xtra;
+    font-size: $font-size-grande;
     font-weight: bolder;
 }
 

@@ -7,6 +7,7 @@ import { CONFIG } from 'app/app.config';
 import 'rxjs/add/operator/filter';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CreateListComponent } from '../create-list/create-list.component';
+import { LoginService } from 'ontimize-web-ngx';
 
 @Component({
   selector: 'home',
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
+    private loginService : LoginService,
     public dialog: MatDialog,
     private router: Router,
     private actRoute: ActivatedRoute,
@@ -39,6 +41,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    //this.loginService.isLoggedIn();
+
     this._route.queryParams
       .filter(params => params.tosearch)
       .subscribe(params => {

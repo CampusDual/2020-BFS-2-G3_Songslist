@@ -1,6 +1,6 @@
 import { NgModule, NgModuleFactory } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginModule } from './login/login.module';
+import { LoginModule } from './main/login/login.module';
 import { MainModule } from './main/main.module';
 import { RegisterModule } from './register/register.module';
 import { PerfilComponent } from './main/perfil/perfil.component';

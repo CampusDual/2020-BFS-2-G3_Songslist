@@ -489,6 +489,17 @@ textarea {
     font-weight: bolder;
 }
 
+.guest-access{
+    color: $custom-color-font-title !important;
+    font-size: $font-size-xtra;
+    font-weight: bold;
+}
+.guest-access:hover{
+    color: $color-select !important;
+    font-size: $font-size-xtra;
+    font-weight: bolder;
+}
+
 .annotation{
     color: $custom-color-font-other;
 }

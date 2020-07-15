@@ -28,6 +28,8 @@
         <span class="annotation">{{ 'NOT_ACCOUNT' | oTranslate }}:</span>
         <div layout-padding></div>
         <span class="register-access" [routerLink]="['/register']">{{ 'SIGN_UP' | oTranslate }}</span>
+        <div layout-padding></div>
+        <span class="no-register-access" [routerLink]="['/main']">{{ 'GUEST_ENTER' | oTranslate }}</span>
       </div>
     </form>
 

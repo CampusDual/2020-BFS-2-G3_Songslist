@@ -6,11 +6,6 @@ import { MatRadioChange, MatPaginator, MatTableDataSource, MatDialog } from '@an
 import { CONFIG } from 'app/app.config';
 import 'rxjs/add/operator/filter';
 import { SelectionModel } from '@angular/cdk/collections';
-<<<<<<< HEAD
-import { CreateListComponent } from '../create-list/create-list.component';
-import { LoginService } from 'ontimize-web-ngx';
-=======
->>>>>>> feature/result-container
 
 @Component({
   selector: 'home',
@@ -31,11 +26,6 @@ export class HomeComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
-<<<<<<< HEAD
-    private loginService : LoginService,
-    public dialog: MatDialog,
-=======
->>>>>>> feature/result-container
     private router: Router,
     private actRoute: ActivatedRoute,
     protected homeService: HomeService,

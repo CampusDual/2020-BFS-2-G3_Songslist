@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ResultContainerComponent } from './result-container.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { OntimizeWebModule } from 'ontimize-web-ngx';
+import { CreateListModule } from 'app/main/create-list/create-list.module';
 
 @NgModule({
   imports: [
     SharedModule,
     OntimizeWebModule,
-    CommonModule
+    CommonModule,
+    CreateListModule
   ],
   declarations: [
     //ResultContainerComponent

@@ -5,6 +5,7 @@ import { ResultContainerModule } from './componets/result-container/result-conta
 import { ResultContainerComponent } from './componets/result-container/result-container.component';
 import { RouterModule } from '@angular/router';
 import { CreateListModule } from './models/create-list/create-list.module';
+import { ResultListComponent } from './componets/result-list/result-list.component';
 
 @NgModule({
   imports: [
@@ -14,12 +15,14 @@ import { CreateListModule } from './models/create-list/create-list.module';
 
   ],
   declarations: [
-    ResultContainerComponent
+    ResultContainerComponent,
+    ResultListComponent
   ],
   exports: [
     CommonModule,
     ResultContainerComponent,
-    CreateListModule
+    CreateListModule,
+    ResultListComponent
 
   ]
 })

@@ -47,6 +47,7 @@ export class SonglistService extends OntimizeEEService {
     }
    
     getSongs(id:number) {
+        
         const url = CONFIG.apiEndpoint + '/' + 'list_songlists/searchUserListSonglist';
         var options = {
             headers: this.buildHeaders()
@@ -56,10 +57,9 @@ export class SonglistService extends OntimizeEEService {
                 SONGLIST: id,
                     USER: this.nick_user                    
                      },
-            columns: ['id_song', 'name_song', 'name_album', 'name_genre', 'year_album', 'description_song' ]
+            columns: ['id_song', 'name_song', 'name_album', 'name_genre', 'year_album', 'description_song', 'img_album']
         });
         var self = this;
-        console.log("en el servicio. self1", self);
         var dataObservable = new Observable(function (_innerObserver) {
 
             self.httpClient.post(url, body, options).subscribe(function (resp) {

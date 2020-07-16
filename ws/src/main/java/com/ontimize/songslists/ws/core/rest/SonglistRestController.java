@@ -63,9 +63,11 @@ public class SonglistRestController extends ORestController<ISonglistService>  {
 		BasicField songlists = new BasicField(SonglistDao.ATTR_SONGLIST_NAME);
 		BasicField users = new BasicField(SonglistDao.ATTR_SONGLIST_NICK_USER);
 		BasicExpression bexp1 = new BasicExpression(songlists, BasicOperator.LIKE_OP, "%"+songlistToSearch+"%");
-		BasicExpression bexp2 = new BasicExpression(users, BasicOperator.LIKE_OP, "%"+userToSearch+"%");
+		BasicExpression bexp2 = new BasicExpression(users, BasicOperator.LIKE_OP, userToSearch);
 		return new BasicExpression(bexp1, BasicOperator.AND_OP, bexp2);
 	}
+	
+
 }
 
 

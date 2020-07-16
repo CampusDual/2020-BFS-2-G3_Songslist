@@ -7,7 +7,7 @@ import { DialogService } from 'ontimize-web-ngx';
 import { ISongListModel } from 'app/shared/models/isongList.model';
 import { load } from '@angular/core/src/render3/instructions';
 import { Router, RouterLink } from '@angular/router';
-import { ISonglistDetailModel} from 'app/shared/models/isonglistDetailModel';
+import { ISonglistDetailModel } from 'app/shared/models/isonglistDetailModel';
 
 @Component({
   selector: 'app-songlist',
@@ -18,7 +18,7 @@ export class SonglistComponent implements OnInit {
 
   private resultados: ISongListModel[];
   private img: number = 0;
-  private numSongs : number = 0;
+  private numSongs: number = 0;
 
   constructor(
     private songlistService: SonglistService,
@@ -38,14 +38,8 @@ export class SonglistComponent implements OnInit {
     this.songlistService.getAllSonglist().subscribe(
       (sl: any) => {
         if (sl['data']) {
-          if (sl['data'].length > 0) { 
+          if (sl['data'].length > 0) {
             this.resultados = sl['data'];
-          for (var i: number; i < this.resultados.length; i++){
-            var aux = this.getData(this.resultados[i].id_songlist);
-            this.resultados[i].img = aux[0].img_album? aux[0].img_album : 0;
-            this.resultados[i].numSongs = aux.length;
-          }
-
           } else { // si la búsqueda no devuelve resultados.
             this.resultados = null;
           }
@@ -53,28 +47,25 @@ export class SonglistComponent implements OnInit {
       },
       err => console.error(err) // en caso de error.
     );
- 
   }
-  getData(id: number):Array<ISonglistDetailModel>{
-    var result : Array<ISonglistDetailModel>;
-    this.songlistService.getSongs(id).subscribe(
+  /*getImg(list: ISonglistDetailModel) {
+    console.log('id GETDATA', list.id_songlist);
+    var result: Array<ISonglistDetailModel>;
+    this.songlistService.getSongs(list.id_songlist).subscribe(
       (songlistData: any) => {
         if (songlistData['data'].length > 0) {
           result = songlistData['data'];
+          console.log("result dentro de IF", result);
+          this.img = 
         }
       },
       err => console.error(err)
     );
-    return result;
-  }
+    console.log('LO QUE DEVUELVE GETDATA = ', result);
+  }*/
 
-  getResult(){
+  getResult() {
     return this.resultados;
   }
 
-
-  openList(id: number){
-    var urlList : string = 'main/songlistdetail/'+id;
-    window.open(urlList, "_self");
-  }  
 }

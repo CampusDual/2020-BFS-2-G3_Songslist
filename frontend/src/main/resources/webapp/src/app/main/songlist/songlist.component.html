@@ -2,7 +2,7 @@
   [static-data]="getResult()" columns="name_user;name_songlist;description_songlist;" keys="id_songlist" [cols]="5"
   query-rows="12" show-page-size="true" page-size-options="4;8;12;16;20" orderable="false" quick-filter="false"
   grid-item-height="1:1" sortable-columns="name" sort-column="" controls="false" refresh-button="false"
-  pagination-controls="false" gutter-size="1px">
+  pagination-controls="false" gutter-size="1px" detail-mode="none">
 
   <!-- *** grid-item que ejerce de botón para añadir nuevas listas de canciones *** -->
   <o-grid-item>
@@ -10,17 +10,20 @@
   </o-grid-item>
   <span *ngIf="grid.dataArray">
     <o-grid-item *ngFor="let list of grid.dataArray">
-      <o-column (click)="openList(list.id_songlist)">
-      <!--<img src="./assets/images/album/{{list.img}}.jfif" style="margin-top:8px">-->
-        <img src="./assets/images/album/1.jfif" style="margin-top:8px">
-        <h4 class="self-center">{{ list.name_songlist }}</h4>
-        <div class="self-center">
-          <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ list.numSongs }} </span>
-        </div>
-        <div class="self-center">
-          <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ list.description_songlist }} </span>
-        </div>
-      </o-column>
+      <a href="/main/songlistdetail/{{list.id_songlist}}">
+        <o-column>
+          <img src="./assets/images/album/1.jfif" style="margin-top:8px">
+          <!-- <img src="./assets/images/album/{{list.img}}.jfif" style="margin-top:8px">-->
+          <h4 class="self-center">{{ list.name_songlist }}</h4>
+          <h4 class="self-center">{{ list.id_songlist }}</h4>
+          <div class="self-center">
+            <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ list.numSongs }} </span>
+          </div>
+          <div class="self-center">
+            <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ list.description_songlist }} </span>
+          </div>
+        </o-column>
+      </a>
     </o-grid-item>
   </span>
 </o-grid>

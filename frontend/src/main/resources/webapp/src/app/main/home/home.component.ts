@@ -6,7 +6,7 @@ import { MatRadioChange, MatPaginator, MatTableDataSource, MatDialog } from '@an
 import { CONFIG } from 'app/app.config';
 import 'rxjs/add/operator/filter';
 import { SelectionModel } from '@angular/cdk/collections';
-import { CreateListComponent } from '../create-list/create-list.component';
+
 
 @Component({
   selector: 'home',
@@ -38,16 +38,24 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this._route.queryParams
-      .filter(params => params.tosearch)
+      // .filter(params => params.tosearch )
       .subscribe(params => {
-        if (params.tosearch === "ok") {
+        if (params['tosearch'] === "ok") {
           const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
           let obj = myData['search'];
           this.search(obj.radioSelect, obj.searchText);
+        } else {
+          console.log('sub-to-parem', params);
+          this.defaultStart();
         }
       });
   };
+
+  defaultStart() {
+    this.search("all", "");
+  }
 
   search(radioSelected: string, searchText: string) {
     this.homeService.getSongData(radioSelected, searchText).subscribe(

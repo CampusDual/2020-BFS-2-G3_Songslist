@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { ResultContainerModule } from './componets/result-container/result-container.module';
 import { ResultContainerComponent } from './componets/result-container/result-container.component';
 import { RouterModule } from '@angular/router';
+import { CreateListModule } from './models/create-list/create-list.module';
 
 @NgModule({
   imports: [
     OntimizeWebModule,
-    RouterModule
+    RouterModule,
+    CreateListModule
 
   ],
   declarations: [
@@ -16,7 +18,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     CommonModule,
-    ResultContainerComponent
+    ResultContainerComponent,
+    CreateListModule
 
   ]
 })

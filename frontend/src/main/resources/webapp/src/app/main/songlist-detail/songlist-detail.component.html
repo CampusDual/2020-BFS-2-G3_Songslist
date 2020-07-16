@@ -1,3 +1,11 @@
-<p>
-  songlist-detail works!
-</p>
+
+<div class="fondo">
+  <o-list [static-data]="getlistResult()" title="{{'LIST_SONGLIST' | oTranslate}}" quick-filter="false"
+    refresh-button="false" insert-button="false" insert-button-floatable="false" delete-button="false" selectable="true"
+    dense="false" detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
+    <o-list-item *ngFor="let song of listResult">
+      <p class="item-hover" [routerLink]="['/main/song', song.id_song]" [queryParams]="{id: song.id_song}" href="#">
+        {{song.name_song}}</p>
+    </o-list-item>
+  </o-list>
+</div>

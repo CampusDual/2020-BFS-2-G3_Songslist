@@ -48,7 +48,7 @@
                 
                 LEFT JOIN ${mainschema}.tsong s ON s.id_song = lsl.id_song
                 LEFT JOIN ${mainschema}.tsonglist sl ON sl.id_songlist = lsl.id_songlist
-                LEFT JOIN ${mainschema}.tuser u ON u.id_user = sl.id_user; 
+                LEFT JOIN ${mainschema}.tuser u ON u.id_user = sl.id_user
                 LEFT JOIN ${mainschema}.tsong_album sa ON sa.id_song = s.id_song
                 LEFT JOIN ${mainschema}.talbum a ON sa.id_album = a.id_album
                 LEFT JOIN ${mainschema}.tartist art ON art.id_artist = a.id_artist

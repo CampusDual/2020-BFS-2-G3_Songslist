@@ -32,12 +32,6 @@ export class SonglistService extends OntimizeEEService {
                 SONGLIST: ''
                  },
             columns: ['id_songlist', 'nick_user', 'name_songlist', 'description_songlist'],
-            sqltypes: {
-                'id_songlist': 4,
-                'nick_user': 12,
-                'name_songlist': 12,
-                'description_songlist': 12
-            }
         });
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {
@@ -51,33 +45,21 @@ export class SonglistService extends OntimizeEEService {
         });
         return dataObservable.pipe(share());
     }
-
    
     getSongs(id:number) {
-        let idSonglist = id.toString;
         const url = CONFIG.apiEndpoint + '/' + 'list_songlists/searchUserListSonglist';
         var options = {
             headers: this.buildHeaders()
         };
         var body = JSON.stringify({
             filter: {
-                USER: this.nick_user,
-                SONGLIST: idSonglist
-                 },
-            columns: ['name_song'],
-
-            sqltypes: {
-                'name_song': 12,
-                'id_artist': 4,
-                'name_artist': 12,
-                'id_song': 4,
-                'id_genre': 4,
-                'id_album': 4,
-                'img_album': 4,
-
-            }
+                SONGLIST: id,
+                    USER: this.nick_user                    
+                     },
+            columns: ['id_song', 'name_song', 'name_album', 'name_genre', 'year_album', 'description_song' ]
         });
         var self = this;
+        console.log("en el servicio. self1", self);
         var dataObservable = new Observable(function (_innerObserver) {
 
             self.httpClient.post(url, body, options).subscribe(function (resp) {

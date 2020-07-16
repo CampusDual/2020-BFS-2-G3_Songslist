@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.ontimize.songslists.api.core.service.IList_SongListService;
 import com.ontimize.songslists.model.core.dao.List_SonglistDao;
+import com.ontimize.songslists.model.core.dao.SonglistDao;
 import com.ontimize.db.EntityResult;
 import com.ontimize.db.SQLStatementBuilder;
 import com.ontimize.db.SQLStatementBuilder.BasicExpression;
@@ -41,11 +42,12 @@ public class List_SonglistController extends ORestController<IList_SongListServi
 			List<String> columns = (List<String>) req.get("columns");
 			Map<String, Object> filter = (Map<String, Object>) req.get("filter");
 			
+			int songlistToSearch = Integer.parseInt((String)(filter.get("SONGLIST")));
 			String userToSearch = (String) filter.get("USER");
 	
 			Map<String, Object> key = new HashMap<String, Object>();
 			key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
-					searchLike(userToSearch));
+					searchLike(songlistToSearch, userToSearch));
 			return list_songlistService.list_songlistQuery(key, columns);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -55,10 +57,12 @@ public class List_SonglistController extends ORestController<IList_SongListServi
 		}
 	}
 
-	private BasicExpression searchLike(String userToSearch) {
+	private BasicExpression searchLike(int songlistToSearch, String userToSearch) {
 			
-		BasicField users = new BasicField(List_SonglistDao.ATTR_SONGLIST_NICK_USER);
-		BasicExpression bexp = new BasicExpression(users, BasicOperator.LIKE_OP, "%"+userToSearch+"%");
-		return bexp;
+		BasicField songlists = new BasicField(SonglistDao.ATTR_ID_SONG_LIST);
+		BasicField users = new BasicField(SonglistDao.ATTR_SONGLIST_NICK_USER);
+		BasicExpression bexp1 = new BasicExpression(songlists, BasicOperator.EQUAL_OP, songlistToSearch);
+		BasicExpression bexp2 = new BasicExpression(users, BasicOperator.LIKE_OP, userToSearch);
+		return new BasicExpression(bexp1, BasicOperator.AND_OP, bexp2);
 	}
 }

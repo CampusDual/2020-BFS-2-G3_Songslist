@@ -6,6 +6,8 @@ import { ISongModel } from 'app/shared/models/isong.model';
 import { DialogService } from 'ontimize-web-ngx';
 import { ISongListModel } from 'app/shared/models/isongList.model';
 import { load } from '@angular/core/src/render3/instructions';
+import { Router, RouterLink } from '@angular/router';
+import { ISonglistDetailModel} from 'app/shared/models/isonglistDetailModel';
 
 @Component({
   selector: 'app-songlist',
@@ -14,7 +16,7 @@ import { load } from '@angular/core/src/render3/instructions';
 })
 export class SonglistComponent implements OnInit {
 
-  private resultados: ISongListModel;
+  private resultados: ISongListModel[];
   private img: number = 0;
   private numSongs : number = 0;
 
@@ -38,8 +40,11 @@ export class SonglistComponent implements OnInit {
         if (sl['data']) {
           if (sl['data'].length > 0) { 
             this.resultados = sl['data'];
-            console.log("RESULTADOS DENTRO DEL IF = ", this.resultados);
-            console.log("IDs= ", this.resultados.id_songlist);
+          for (var i: number; i < this.resultados.length; i++){
+            var aux = this.getData(this.resultados[i].id_songlist);
+            this.resultados[i].img = aux[0].img_album? aux[0].img_album : 0;
+            this.resultados[i].numSongs = aux.length;
+          }
 
           } else { // si la búsqueda no devuelve resultados.
             this.resultados = null;
@@ -50,36 +55,26 @@ export class SonglistComponent implements OnInit {
     );
  
   }
-  getAnotherData(id:number){
+  getData(id: number):Array<ISonglistDetailModel>{
+    var result : Array<ISonglistDetailModel>;
     this.songlistService.getSongs(id).subscribe(
-      (sl: any) => {
-        if (sl['data']) {
-          if (sl['data'].length > 0) { 
-            this.img = sl['data'][0].img_album;
-            this.numSongs = sl['data'].length;
-            console.log("RESULTADOS DENTRO DEL 2ªIF = ", this.resultados);
-          } else { // si la búsqueda no devuelve resultados.
-            this.resultados = null;
-          }
+      (songlistData: any) => {
+        if (songlistData['data'].length > 0) {
+          result = songlistData['data'];
         }
       },
-      err => console.error(err) // en caso de error.
+      err => console.error(err)
     );
-
+    return result;
   }
 
-  getImage(id: number){
-    console.log('IMAGEN = ', this.img)
-    return this.img;
-  }
-  getCountSongs(id: number){
-    return this.numSongs;
-
-  }
   getResult(){
     return this.resultados;
-
   }
 
-  
+
+  openList(id: number){
+    var urlList : string = 'main/songlistdetail/'+id;
+    window.open(urlList, "_self");
+  }  
 }

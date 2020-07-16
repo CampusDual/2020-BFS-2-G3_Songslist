@@ -65,7 +65,7 @@ export const routes: Routes = [
         canActivate: [AuthGuardService],
       },
       {
-        path: 'songlist-detail/:id',
+        path: 'songlistdetail/:id',
         component: SonglistDetailComponent
       },
       {

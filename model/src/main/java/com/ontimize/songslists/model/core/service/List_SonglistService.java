@@ -31,7 +31,19 @@ public class List_SonglistService implements IList_SongListService {
 	@Override
 	public EntityResult list_songlistQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException {
-		return this.daoHelper.query(this.list_songlistDao, keyMap, attrList);
+		if (keyMap.containsKey("id_user")){
+			keyMap.remove("id_user");
+		}
+		if (keyMap.containsKey("user")) {
+			if (keyMap.get("user") == "owner") {
+		keyMap.put("id_user", userSrv.getID());
+			}
+			keyMap.remove("user");
+		}
+		EntityResult res = this.daoHelper.query(this.list_songlistDao, keyMap, attrList);
+		if (keyMap.containsKey("name_songlist"))
+		res.put("img_List", songListSrv.getImgID((String)keyMap.get("name_songlist")));
+		return res; 
 	}
 
 	@Override

@@ -17,8 +17,7 @@ import { SonglistComponent } from './songlist/songlist.component';
 import { SonglistService } from './services/songlist.service';
 import { SonglistModule } from './songlist/songlist.module';
 import { SonglistDetailComponent } from './songlist-detail/songlist-detail.component';
-import { LoginComponent } from './login/login.component';
-import { LoginModule } from './login/login.module';
+
 
 @NgModule({
   imports: [
@@ -26,7 +25,7 @@ import { LoginModule } from './login/login.module';
     OntimizeWebModule,
     MainRoutingModule,
     SonglistModule,
-    LoginModule
+
 
   ],
   declarations: [

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, Inject } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HomeService } from './home.service';
 import { ISongModel } from 'app/shared/models/isong.model';
@@ -6,7 +6,6 @@ import { MatRadioChange, MatPaginator, MatTableDataSource, MatDialog } from '@an
 import { CONFIG } from 'app/app.config';
 import 'rxjs/add/operator/filter';
 import { SelectionModel } from '@angular/cdk/collections';
-import { CreateListComponent } from '../create-list/create-list.component';
 import { LoginService } from 'ontimize-web-ngx';
 @Component({
   selector: 'home',
@@ -25,6 +24,7 @@ export class HomeComponent implements OnInit {
   mnjError: string;
   selection = new SelectionModel<ISongModel>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  loggedIn :boolean;
 
   constructor(
     private router: Router,
@@ -32,7 +32,9 @@ export class HomeComponent implements OnInit {
     protected homeService: HomeService,
     private renderer: Renderer2,
     private _route: ActivatedRoute, // recivir parametro id
+    @Inject(LoginService) private loginService: LoginService,
   ) {
+    this.loggedIn = loginService.isLoggedIn();
   }
 
   ngOnInit() {

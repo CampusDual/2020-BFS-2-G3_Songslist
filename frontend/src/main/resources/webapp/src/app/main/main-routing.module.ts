@@ -7,11 +7,11 @@ import { AlbumComponent } from './album/album.component';
 import { ArtistComponent } from './artist/artist.component';
 import { SongComponent } from './song/song.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { LoginComponent } from 'app/main/login/login.component';
+import { LoginComponent } from 'app/login/login.component';
 import { SonglistComponent } from './songlist/songlist.component';
 import { SonglistModule } from './songlist/songlist.module';
 import { SonglistDetailComponent } from './songlist-detail/songlist-detail.component';
-import { LoginModule } from './login/login.module';
+import { LoginModule } from '../login/login.module';
 export function loadHomeModule() {
   return HomeModule;
 }
@@ -35,9 +35,9 @@ export const routes: Routes = [
         path: 'home',
         loadChildren: loadHomeModule
       },
-      {
+      /*{
         path: 'login',
-        component: LoginComponent      },
+        component: LoginComponent      },*/
       {
         path: 'song/:id',
         component: SongComponent

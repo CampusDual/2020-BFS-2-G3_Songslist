@@ -23,6 +23,7 @@
       <AmbiguousColumn name="id_songlist" prefix="sl" />
       <AmbiguousColumn name="id_genre" prefix="g" />
       <AmbiguousColumn name="nick_user" prefix="u" />
+      <AmbiguousColumn name="id_user" prefix="u" />
         </AmbiguousColumns>
         <FunctionColumns>
         

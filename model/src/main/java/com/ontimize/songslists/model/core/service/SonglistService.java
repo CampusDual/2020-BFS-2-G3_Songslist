@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import com.ontimize.db.EntityResult;
+import com.ontimize.songslists.api.core.service.IList_SongListService;
 import com.ontimize.songslists.api.core.service.ISonglistService;
 import com.ontimize.songslists.api.core.service.IUserService;
 import com.ontimize.songslists.model.core.dao.SonglistDao;
@@ -23,11 +24,43 @@ public class SonglistService implements ISonglistService{
 	 @Autowired private SonglistDao songlistDao;
 	 @Autowired private DefaultOntimizeDaoHelper daoHelper;
 	 @Autowired private IUserService userSrv;
+	 @Autowired private IList_SongListService listSrv;
 	 
 	 @Override
 	 public EntityResult songlistQuery(Map<String, Object> keyMap, List<String> attrList)
 	   throws OntimizeJEERuntimeException {
-	  return this.daoHelper.query(this.songlistDao, keyMap, attrList);
+		/*	if (keyMap.containsKey("id_user")){
+				keyMap.remove("id_user");
+			}
+			if (keyMap.containsKey("user")) {
+				if (keyMap.get("user") == "owner") {
+			keyMap.put("id_user", userSrv.getID());
+				}
+				keyMap.remove("user");
+			}
+			EntityResult res = this.daoHelper.query(this.songlistDao, keyMap, attrList);
+			
+			if (keyMap.get("name_songlist")!="") {
+				HashMap<String, Integer> map = new HashMap<>();
+				//map.put("image", getImgID((String)keyMap.get("name_songlist")));
+				Vector vector = new Vector ();
+				vector.addElement(listSrv.getImgID((String)keyMap.get("name_songlist")));
+				res.put("image", vector);
+				
+			}else if(keyMap.get("name_songlist")=="") {
+				HashMap<String, Integer> map = new HashMap<>();
+				//map.put("image", getImgID((String)keyMap.get("name_songlist")));
+				Vector vector = new Vector ();
+				vector.addElement(listSrv.getImgID());
+				res.put("image", vector);
+			}
+			
+			return res; */
+			
+				return this.daoHelper.query(this.songlistDao, keyMap, attrList);
+			
+		 
+		 
 	 }
 
 	 @Override

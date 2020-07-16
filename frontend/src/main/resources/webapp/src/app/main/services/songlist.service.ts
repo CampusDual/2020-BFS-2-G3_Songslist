@@ -22,14 +22,14 @@ export class SonglistService extends OntimizeEEService {
         });
     }
     getAllSonglist() {
-        const url = CONFIG.apiEndpoint + '/' + 'songlists/searchSonglist';
+        const url = CONFIG.apiEndpoint + '/' + 'songlists/songlist/search';
         var options = {
             headers: this.buildHeaders()
         };
         var body = JSON.stringify({
             filter: {
-                USER: this.nick_user,
-                SONGLIST: ''
+                user: this.nick_user,
+                name_songlist: ''
                  },
             columns: ['id_songlist', 'nick_user', 'name_songlist', 'description_songlist'],
         });
@@ -57,7 +57,7 @@ export class SonglistService extends OntimizeEEService {
                 SONGLIST: id,
                     USER: this.nick_user                    
                      },
-            columns: ['id_song', 'name_song', 'name_album', 'name_genre', 'year_album', 'description_song', 'img_album']
+            columns: ['id_song', 'name_song', 'name_album', 'name_artist', 'name_genre', 'year_album', 'description_song', 'img_album']
         });
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {

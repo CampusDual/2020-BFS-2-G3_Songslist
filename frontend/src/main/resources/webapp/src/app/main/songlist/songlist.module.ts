@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/cor
 import { OntimizeWebModule } from 'ontimize-web-ngx';
 import { SharedModule } from '../../shared/shared.module';
 import { SonglistComponent } from './songlist.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -10,6 +11,7 @@ import { SonglistComponent } from './songlist.component';
   imports: [
     SharedModule,
     OntimizeWebModule,
+    RouterModule
 
   ],
   declarations: [

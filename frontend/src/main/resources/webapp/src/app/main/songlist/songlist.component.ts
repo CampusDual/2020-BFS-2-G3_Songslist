@@ -39,6 +39,7 @@ export class SonglistComponent implements OnInit {
       (sl: any) => {
         if (sl['data']) {
           if (sl['data'].length > 0) {
+            console.log('DATA = ', sl['data']);
             this.resultados = sl['data'];
           } else { // si la búsqueda no devuelve resultados.
             this.resultados = null;
@@ -65,6 +66,7 @@ export class SonglistComponent implements OnInit {
   }*/
 
   getResult() {
+    console.log('RESULTADOS = ', this.resultados);
     return this.resultados;
   }
 

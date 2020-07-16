@@ -7,7 +7,6 @@ import { CONFIG } from 'app/app.config';
 import 'rxjs/add/operator/filter';
 import { SelectionModel } from '@angular/cdk/collections';
 
-
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -32,8 +31,6 @@ export class HomeComponent implements OnInit {
     protected homeService: HomeService,
     private renderer: Renderer2,
     private _route: ActivatedRoute, // recivir parametro id
-
-
   ) {
   }
 

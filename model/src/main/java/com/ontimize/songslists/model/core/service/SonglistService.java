@@ -56,8 +56,8 @@ public class SonglistService implements ISonglistService{
 			}
 			
 			return res; */
-			
-				return this.daoHelper.query(this.songlistDao, keyMap, attrList);
+
+				return this.daoHelper.query(songlistDao, keyMap, attrList);
 			
 		 
 		 

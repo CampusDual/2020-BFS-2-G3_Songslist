@@ -10,13 +10,13 @@
   </o-grid-item>
   <span *ngIf="grid.dataArray">
     <o-grid-item *ngFor="let list of grid.dataArray">
-      <a [routerLink]="['/main/songlistdetail', list.id_songlist]"
+      <span [routerLink]="['/main/songlistdetail', list.id_songlist]"
       [queryParams]="{id: list.id_songlist}" href="#">
         <o-column>
-          <img src="./assets/images/album/{{list.image}}.jfif" style="margin-top:8px">
-          <!-- <img src="./assets/images/album/{{list.img}}.jfif" style="margin-top:8px">-->
+
+          <img *ngIf= "list.image" src="./assets/images/album/{{list.image}}.jfif" style="margin-top:8px">
+          <img *ngIf= "!list.image" src="./assets/images/album/0.jfif" style="margin-top:8px">
           <h4 class="self-center">{{ list.name_songlist }}</h4>
-          <h4 class="self-center">{{ list.id_songlist }}</h4>
           <div class="self-center">
             <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ list.numSongs }} </span>
           </div>
@@ -24,7 +24,7 @@
             <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ list.description_songlist }} </span>
           </div>
         </o-column>
-      </a>
+      </span>
     </o-grid-item>
   </span>
 </o-grid>

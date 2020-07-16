@@ -27,13 +27,14 @@
 				<FunctionColumn name="ID_SONGLIST" value="sl.id_songlist" />
 				<FunctionColumn name="NAME_SONGLIST" value="sl.name_songlist" />
 				<FunctionColumn name="DESCRIPTION_SONGLIST"	value="sl.description_songlist" />
-				<FunctionColumn name="IMG_ALBUM" value="a.img_album" />
+				<FunctionColumn name="IMAGE" value="min(a.img_album)" />
 
 			</FunctionColumns>
 			<Sentence>
             <![CDATA[
             SELECT
                 #COLUMNS#
+               
             FROM
                 ${mainschema}.tsonglist sl
 				LEFT JOIN ${mainschema}.tuser u ON u.id_user = sl.id_user
@@ -44,7 +45,7 @@
 								
 			#WHERE#
 			
-			GROUP BY sl.id_songlist, u.nick_user, sl.name_songlist, sl.name_songlist, a.img_album
+			GROUP BY sl.id_songlist, u.nick_user
             ]]>
         </Sentence>
 		</Query>

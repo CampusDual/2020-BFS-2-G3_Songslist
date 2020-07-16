@@ -94,6 +94,20 @@ public class SonglistService implements ISonglistService{
 				return -1;
 			}
 		}
-	 
-	
+		
+		public int getImgID(String nameSongList) {
+			try {
+				HashMap<String, Object> mykeyMap = new HashMap<String, Object>();
+				mykeyMap.put("name_songlist", nameSongList);
+				mykeyMap.put("id_user", userSrv.getID());
+				List<String> myList = new ArrayList<String>();
+				myList.add("img_album");
+				EntityResult enRest = this.daoHelper.query(this.songlistDao, mykeyMap, myList);
+				Vector contentID = (Vector) enRest.get("img_album");
+				int [] id = (int[]) contentID.elementAt(0);
+				return id[0];
+			} catch (Exception e) {
+				return -1;
+			}
+		}
 }

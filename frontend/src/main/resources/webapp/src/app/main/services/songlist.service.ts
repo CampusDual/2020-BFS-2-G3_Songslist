@@ -21,6 +21,11 @@ export class SonglistService extends OntimizeEEService {
             'Authorization': 'Bearer ' + myData.session.id
         });
     }
+
+    /* 
+    * Este método devuelve la lista con todas las listas de canciones del usuario logueado.
+    * Se utiliza para el grid de My songlist
+    */
     getAllSonglist() {
         const url = CONFIG.apiEndpoint + '/' + 'songlists/searchSonglist';
         var options = {
@@ -45,8 +50,10 @@ export class SonglistService extends OntimizeEEService {
         });
         return dataObservable.pipe(share());
     }
-   
-    getSongs(id:number) {
+   /*
+   * Este método devuelve las canciones (con todos los datos de album, artista y género relacionados)
+   */
+   getSongs(id:number) {
         
         const url = CONFIG.apiEndpoint + '/' + 'list_songlists/searchUserListSonglist';
         var options = {

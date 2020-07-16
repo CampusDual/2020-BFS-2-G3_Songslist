@@ -49,21 +49,6 @@ export class SonglistComponent implements OnInit {
       err => console.error(err) // en caso de error.
     );
   }
-  /*getImg(list: ISonglistDetailModel) {
-    console.log('id GETDATA', list.id_songlist);
-    var result: Array<ISonglistDetailModel>;
-    this.songlistService.getSongs(list.id_songlist).subscribe(
-      (songlistData: any) => {
-        if (songlistData['data'].length > 0) {
-          result = songlistData['data'];
-          console.log("result dentro de IF", result);
-          this.img = 
-        }
-      },
-      err => console.error(err)
-    );
-    console.log('LO QUE DEVUELVE GETDATA = ', result);
-  }*/
 
   getResult() {
     console.log('RESULTADOS = ', this.resultados);

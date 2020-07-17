@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Inject } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ISongModel } from 'app/shared/models/isong.model';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoginService } from 'ontimize-web-ngx';
 
 
 @Component({
@@ -15,12 +16,16 @@ export class ResultContainerComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @Input( "data") data :ISongModel[] ;
   dataSource;
+  loggedIn :boolean;
+  songsColums : Array<string>;
   constructor(
     private router: Router,
     private actRoute: ActivatedRoute,
     private _route: ActivatedRoute, // recivir parametro id
+    @Inject(LoginService) private loginService: LoginService,
     ) {
-   
+      this.loggedIn=  loginService.isLoggedIn();
+      this.songsColums = this.loggedIn ? ['select','Img','Song','Album','Artist','Genre','Action'] :['select','Img','Song','Album','Artist','Genre'];
    }
 
   ngOnInit() {

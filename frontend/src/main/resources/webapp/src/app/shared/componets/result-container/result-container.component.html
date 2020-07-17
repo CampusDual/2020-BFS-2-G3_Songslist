@@ -66,16 +66,16 @@
 
       </ng-container>
 
-      <ng-container matColumnDef="Action">
+      <ng-container matColumnDef="Action" *ngIf="loggedIn">
         <mat-header-cell *matHeaderCellDef>{{'ACTION' | oTranslate}}</mat-header-cell>
         <mat-cell class="duration-cell" *matCellDef="let song">
            <app-create-list  [id]= "song.id_song" [action]= "true"></app-create-list> 
         </mat-cell>
       </ng-container>
 
-      <mat-header-row *matHeaderRowDef="['select','Img','Song', 'Album', 'Artist','Genre','Action']"></mat-header-row>
+      <mat-header-row *matHeaderRowDef="songsColums"></mat-header-row>
 
-      <mat-row *matRowDef="let row; columns:['select','Img','Song','Album','Artist','Genre','Action']"></mat-row>
+      <mat-row *matRowDef="let row; columns:songsColums"></mat-row>
     </mat-table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 

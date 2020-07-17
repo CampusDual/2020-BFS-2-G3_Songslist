@@ -1,0 +1,34 @@
+<o-grid #grid class="list-grid-item" attr="grid" title="{{ 'PERSONAL_SONGLIST' | oTranslate }}" [static-data]="data"
+  columns="name_user;name_songlist;description_songlist;" keys="id_songlist" [cols]="5" query-rows="12"
+  show-page-size="true" page-size-options="4;8;12;16;20" orderable="false" quick-filter="false" grid-item-height="1:1"
+  sortable-columns="name" sort-column="" controls="false" refresh-button="false" pagination-controls="false"
+  gutter-size="1px" detail-mode="none">
+
+  // *** grid-item que ejerce de botón para añadir nuevas listas de canciones ***
+  
+  <div *ngIf=" this.getOwnerValue() == 'true' ">
+   <!-- <span *ngIf="loggedIn">-->
+      <o-grid-item>
+        <app-create-list [action]="false"></app-create-list>
+      </o-grid-item>
+   <!-- </span>-->
+    </div>
+  <span *ngIf="grid.dataArray">
+    <o-grid-item *ngFor="let list of grid.dataArray">
+      <span [routerLink]="['/main/songlistdetail', list.id_songlist]" [queryParams]="{id: list.id_songlist}" href="#">
+        <o-column>
+
+          <img *ngIf="list.image" src="./assets/images/album/{{list.image}}.jfif" style="margin-top:8px">
+          <img *ngIf="!list.image" src="./assets/images/album/0.jfif" style="margin-top:8px">
+          <h4 class="self-center">{{ list.name_songlist }}</h4>
+          <div class="self-center">
+            <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ list.numSongs }} </span>
+          </div>
+          <div class="self-center">
+            <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ list.description_songlist }} </span>
+          </div>
+        </o-column>
+      </span>
+    </o-grid-item>
+  </span>
+</o-grid>

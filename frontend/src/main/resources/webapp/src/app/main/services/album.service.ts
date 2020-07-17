@@ -21,7 +21,7 @@ export class AlbumService extends OntimizeEEService {
     }
 
     getAlbumData(id:number) {
-        const url = CONFIG.apiEndpoint + '/' + 'albums/album/search';
+        const url = CONFIG.apiEndpoint + '/' + 'public/publicAlbum';
         var options = {
             headers: this.buildHeaders()
         };
@@ -62,8 +62,9 @@ export class AlbumService extends OntimizeEEService {
         };
         var body = JSON.stringify({
             filter: {
+                id_album : id
                  },
-            columns: ['id_song', 'name_song', 'id_artist', 'name_artist', 'id_genre', 'name_genre', 'id_album', 'name_album'],
+            columns: ['id_song', 'name_song', 'id_artist', 'name_artist', 'id_genre', 'name_genre', 'id_album', 'name_album','img_album'],
             sqltypes: {
                 'id_song': 4,
                 'name_song': 12,
@@ -72,7 +73,9 @@ export class AlbumService extends OntimizeEEService {
                 'id_artist': 4,
                 'name_artist': 12,
                 'id_genre': 4,
-                'name_genre': 12
+                'name_genre': 12,
+                'img_album':4
+               
             }
         });
         var self = this;

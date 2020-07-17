@@ -21,6 +21,11 @@ export class SonglistService extends OntimizeEEService {
             'Authorization': 'Bearer ' + myData.session.id
         });
     }
+
+    /* 
+    * Este método devuelve la lista con todas las listas de canciones del usuario logueado.
+    * Se utiliza para el grid de My songlist
+    */
     getAllSonglist() {
         const url = CONFIG.apiEndpoint + '/' + 'songlists/searchSonglist';
         var options = {
@@ -31,13 +36,7 @@ export class SonglistService extends OntimizeEEService {
                 USER: this.nick_user,
                 SONGLIST: ''
                  },
-            columns: ['id_songlist', 'nick_user', 'name_songlist', 'description_songlist'],
-            sqltypes: {
-                'id_songlist': 4,
-                'nick_user': 12,
-                'name_songlist': 12,
-                'description_songlist': 12
-            }
+            columns: ['id_songlist', 'nick_user', 'name_songlist', 'description_songlist', 'image'],
         });
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {
@@ -51,31 +50,21 @@ export class SonglistService extends OntimizeEEService {
         });
         return dataObservable.pipe(share());
     }
-
-   
-    getSongs(id:number) {
-        let idSonglist = id.toString;
+   /*
+   * Este método devuelve las canciones (con todos los datos de album, artista y género relacionados)
+   */
+   getSongs(id:number) {
+        
         const url = CONFIG.apiEndpoint + '/' + 'list_songlists/searchUserListSonglist';
         var options = {
             headers: this.buildHeaders()
         };
         var body = JSON.stringify({
             filter: {
-                USER: this.nick_user,
-                SONGLIST: idSonglist
-                 },
-            columns: ['name_song'],
-
-            sqltypes: {
-                'name_song': 12,
-                'id_artist': 4,
-                'name_artist': 12,
-                'id_song': 4,
-                'id_genre': 4,
-                'id_album': 4,
-                'img_album': 4,
-
-            }
+                SONGLIST: id,
+                    USER: this.nick_user                    
+                     },
+            columns: ['id_song', 'name_song', 'name_album', 'name_artist', 'name_genre', 'year_album', 'description_song', 'img_album']
         });
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {

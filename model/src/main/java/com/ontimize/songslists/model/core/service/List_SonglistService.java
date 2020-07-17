@@ -31,8 +31,29 @@ public class List_SonglistService implements IList_SongListService {
 	@Override
 	public EntityResult list_songlistQuery(Map<String, Object> keyMap, List<String> attrList)
 			throws OntimizeJEERuntimeException {
-		return this.daoHelper.query(this.list_songlistDao, keyMap, attrList);
+		if (keyMap.containsKey("id_user")){
+			keyMap.remove("id_user");
+		}
+		if (keyMap.containsKey("user")) {
+			if (keyMap.get("user") == "owner") {
+		keyMap.put("id_user", userSrv.getID());
+			}
+			keyMap.remove("user");
+		}
+		EntityResult res = this.daoHelper.query(this.list_songlistDao, keyMap, attrList);
+		
+		if (keyMap.containsKey("name_songlist")) {
+			HashMap<String, Integer> map = new HashMap<>();
+			//map.put("image", getImgID((String)keyMap.get("name_songlist")));
+			Vector vector = new Vector ();
+			vector.addElement(getImgID((String)keyMap.get("name_songlist")));
+			res.put("image", vector);
+			
+		}
+		
+		return res; 
 	}
+	
 
 	@Override
 	public EntityResult list_songlistInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
@@ -52,6 +73,39 @@ public class List_SonglistService implements IList_SongListService {
 	@Override
 	public EntityResult list_songlistDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
 		return this.daoHelper.delete(this.list_songlistDao, keyMap);
+	}
+	
+	public int getImgID(String nameSongList) {
+		try {
+			HashMap<String, Object> mykeyMap = new HashMap<String, Object>();
+			mykeyMap.put("name_songlist", nameSongList);
+			mykeyMap.put("id_user", userSrv.getID());
+			List<String> myList = new ArrayList<String>();
+			myList.add("img_album");
+			EntityResult enRest = this.daoHelper.query(this.list_songlistDao, mykeyMap, myList);
+			Vector contentID = (Vector) enRest.get("img_album");
+			System.out.println(contentID.toString());
+			int id = (int) contentID.elementAt(0);
+			return id;
+		} catch (Exception e) {
+			return -1;
+		}
+	}
+	public int getImgID() {
+		try {
+			HashMap<String, Object> mykeyMap = new HashMap<String, Object>();
+			mykeyMap.put("id_user", userSrv.getID());
+			List<String> myList = new ArrayList<String>();
+			myList.add("img_album");
+			myList.add("name_songlist");
+			EntityResult enRest = this.daoHelper.query(this.list_songlistDao, mykeyMap, myList);
+			Vector contentID = (Vector) enRest.get("img_album");
+			System.out.println(contentID.toString());
+			int id = (int) contentID.elementAt(0);
+			return id;
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 	
 

@@ -7,5 +7,7 @@ export interface ISongListModel {
       description_songlist ?: string;  
       id_user? : number;
       checked? : boolean;
+      image? : number;
+      numSongs? : number;
    }
   

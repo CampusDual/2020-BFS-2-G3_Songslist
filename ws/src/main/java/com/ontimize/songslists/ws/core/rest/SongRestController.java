@@ -33,7 +33,7 @@ public class SongRestController extends ORestController<ISongService> {
 	public ISongService getService() {
 		return this.songService;
 	}
-
+/**
 	@RequestMapping(value = "/searchSong", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public EntityResult currenSearch(@RequestBody Map<String, Object> req) {
 		String option;
@@ -113,4 +113,5 @@ public class SongRestController extends ORestController<ISongService> {
 		}
 		return bexpB;
 	}
-}
+	*/
+	}

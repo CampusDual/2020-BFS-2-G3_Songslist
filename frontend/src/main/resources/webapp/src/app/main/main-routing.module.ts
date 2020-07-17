@@ -11,8 +11,12 @@ import { LoginComponent } from 'app/login/login.component';
 import { SonglistComponent } from './songlist/songlist.component';
 import { SonglistModule } from './songlist/songlist.module';
 import { SonglistDetailComponent } from './songlist-detail/songlist-detail.component';
+import { LoginModule } from '../login/login.module';
 export function loadHomeModule() {
   return HomeModule;
+}
+export function loadLoginModule() {
+  return LoginModule;
 }
 export function loadSonglistModule() {
   return SonglistModule;
@@ -24,18 +28,23 @@ export const routes: Routes = [
   {
     path: '',
     component: MainComponent,
-    canActivate: [AuthGuardService],
+   // canActivate: [AuthGuardService],
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
         path: 'home',
         loadChildren: loadHomeModule
-      },{
+      },
+      /*{
+        path: 'login',
+        component: LoginComponent      },*/
+      {
         path: 'song/:id',
         component: SongComponent
       }, {
         path: 'songlist',
-        component : SonglistComponent 
+        component : SonglistComponent,
+        canActivate: [AuthGuardService], 
       }, 
       {
         path: 'album/:id',
@@ -43,7 +52,8 @@ export const routes: Routes = [
       },
       {
         path: 'perfil',
-        component: PerfilComponent
+        component: PerfilComponent,
+        canActivate: [AuthGuardService],
       },
       {
         path: 'artist/:id',
@@ -51,10 +61,11 @@ export const routes: Routes = [
       },
       {
         path: 'perfil',
-        component: PerfilComponent
+        component: PerfilComponent,
+        canActivate: [AuthGuardService],
       },
       {
-        path: 'songlist-detail/:id',
+        path: 'songlistdetail/:id',
         component: SonglistDetailComponent
       },
       {

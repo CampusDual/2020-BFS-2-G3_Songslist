@@ -1,40 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <JdbcEntitySetup
- xmlns="http://www.ontimize.com/schema/jdbc"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
- catalog="" schema="${mainschema}" table="tsonglist"
- datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
- <DeleteKeys>
-  <Column>id_songlist</Column>
- </DeleteKeys>
- <UpdateKeys>
-  <Column>id_songlist</Column>
- </UpdateKeys>
- <GeneratedKey>id_songlist</GeneratedKey> 
- <Queries>
-     <Query id="default">
-              <AmbiguousColumns>
-            <AmbiguousColumn name="id_user" prefix="u" />
-            <AmbiguousColumn name="nick_user" prefix="u" />
-            <AmbiguousColumn name="id_songlist" prefix="sl" />
-        </AmbiguousColumns>
-        <FunctionColumns>
-            <FunctionColumn name="ID_SONGLIST" value="id_songlist" />
-            <FunctionColumn name="NAME_SONGLIST" value="name_songlist" />
-            <FunctionColumn name="DESCRIPTION_SONGLIST" value="description_songlist" />
+	xmlns="http://www.ontimize.com/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+	catalog="" schema="${mainschema}" table="tsonglist"
+	datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+	<DeleteKeys>
+		<Column>id_songlist</Column>
+	</DeleteKeys>
+	<UpdateKeys>
+		<Column>id_songlist</Column>
+	</UpdateKeys>
+	<GeneratedKey>id_songlist</GeneratedKey>
+	<Queries>
+		<Query id="default">
+			<AmbiguousColumns>
+				<AmbiguousColumn name="id_user" prefix="u" />
+				<AmbiguousColumn name="nick_user" prefix="u" />
+				<AmbiguousColumn name="id_songlist" prefix="sl" />
+				<AmbiguousColumn name="id_list_songlist" prefix="lsl" />
+				<AmbiguousColumn name="id_song" prefix="s" />
+				<AmbiguousColumn name="id_album" prefix="a" />
+				
+			</AmbiguousColumns>
+			<FunctionColumns>
+				<FunctionColumn name="ID_SONGLIST" value="sl.id_songlist" />
+				<FunctionColumn name="NAME_SONGLIST" value="sl.name_songlist" />
+				<FunctionColumn name="DESCRIPTION_SONGLIST"	value="sl.description_songlist" />
+				<FunctionColumn name="IMAGE" value="min(a.img_album)" />
 
-        </FunctionColumns>
-         <Sentence>
+			</FunctionColumns>
+			<Sentence>
             <![CDATA[
             SELECT
                 #COLUMNS#
+               
             FROM
                 ${mainschema}.tsonglist sl
-				LEFT JOIN ${mainschema}.tuser u ON u.id_user = sl.id_user				
+				LEFT JOIN ${mainschema}.tuser u ON u.id_user = sl.id_user
+				LEFT JOIN ${mainschema}.tlists_songlist lsl  ON sl.id_songlist = lsl.id_songlist		
+				LEFT JOIN ${mainschema}.tsong s ON s.id_song = lsl.id_song	
+				LEFT JOIN ${mainschema}.tsong_album sa ON s.id_song = sa.id_song
+				LEFT JOIN ${mainschema}.talbum a ON a.id_album = sa.id_album
+								
 			#WHERE#
+			
+			GROUP BY sl.id_songlist, u.nick_user
             ]]>
         </Sentence>
-     </Query>
- </Queries>
+		</Query>
+	</Queries>
 </JdbcEntitySetup>

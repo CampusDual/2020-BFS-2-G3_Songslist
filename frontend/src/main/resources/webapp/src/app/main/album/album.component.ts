@@ -13,7 +13,7 @@ import { ISongModel } from 'app/shared/models/isong.model';
 export class AlbumComponent implements OnInit {
     public parametro: any;
     public albumResult: IAlbumModel;
-    public songResult: ISongModel;
+    public songResult: ISongModel [];
 
 
     constructor(

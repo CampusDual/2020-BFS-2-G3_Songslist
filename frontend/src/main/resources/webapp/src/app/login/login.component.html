@@ -22,12 +22,17 @@
         <input matInput class="mat-input" #password placeholder="{{ 'PASSWORD' | oTranslate }}" id="password"
           type="password"  formControlName="password">
       </mat-form-field>
-      <button mat-raised-button color="primary" type="submit">{{ 'LOGIN' | oTranslate }}</button>
+      <button class="loggin-button" mat-raised-button color="primary" type="submit">{{ 'LOGIN' | oTranslate }}</button>
       <div layout-padding></div>
       <div fxLayout="column" fxLayoutAlign="center center" layout-padding>
+        
         <span class="annotation">{{ 'NOT_ACCOUNT' | oTranslate }}:</span>
         <div layout-padding></div>
-        <span class="register-access" [routerLink]="['/register']">{{ 'SIGN_UP' | oTranslate }}</span>
+        <span class="register-access" [routerLink]="['../register']">{{ 'SIGN_UP' | oTranslate }}</span>
+        <div layout-padding></div>
+        <span class="guest-access" [routerLink]="['/main/home']">{{ 'GUEST_ACCESS' | oTranslate }}</span>
+
+        
       </div>
     </form>
 

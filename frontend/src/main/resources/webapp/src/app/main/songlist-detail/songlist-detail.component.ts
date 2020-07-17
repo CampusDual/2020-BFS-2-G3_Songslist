@@ -35,12 +35,11 @@ export class SonglistDetailComponent implements OnInit {
       },
       err => console.error(err)
     );
-    console.log('LISTA DE CANCIONES = ', this.listResult);
   }
   getlistResult() {
-    console.log('get LISTA DE CANCIONES = ', this.listResult);
     return this.listResult;
   }
+
 
 
 }

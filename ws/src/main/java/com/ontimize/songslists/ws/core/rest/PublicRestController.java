@@ -26,6 +26,11 @@ import com.ontimize.songslists.model.core.dao.SongDao;
 public class PublicRestController {
 	@Autowired
 	private ISongService songService;
+	@Autowired
+	private IAlbumService albumService;
+	@Autowired
+	private IArtistService artistService;
+
 	@RequestMapping(value = "/searchSong", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public EntityResult currenSearch(@RequestBody Map<String, Object> req) {
 		String option;
@@ -106,31 +111,82 @@ public class PublicRestController {
 		return bexpB;
 	}
 	/*
-	@Autowired
-	private IAlbumService albumService;
 	@RequestMapping(value = "/searchAlbum", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public EntityResult currenSearchAlbum(@RequestBody Map<String, Object> req) {
+	public EntityResult currenSearchAlbum(@RequestBody Map<?, ?> req) {
 		List<String> columns = (List<String>) req.get("columns");
 		Map<String, Object> filter = (Map<String, Object>) req.get("filter");
+		if(filter.containsKey("id_album")){
+			int album = Integer.parseInt((String)filter.get("id_album"));
+			filter.put("id_album",album);
+		}
 		return albumService.albumQuery( filter,columns);
 	}
-	@Autowired
-	private IArtistService artistService;
-	@RequestMapping(value = "/searchArtist", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public EntityResult currenSearchArtist(@RequestBody Map<String, Object> req) {
+*/
+	@RequestMapping(value = "/publicAlbum", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult currenSearchAlbum(@RequestBody Map<?, ?> req) {
+		try{
 		List<String> columns = (List<String>) req.get("columns");
 		Map<String, Object> filter = (Map<String, Object>) req.get("filter");
+		if(filter.containsKey("id_album")){
+			int album = Integer.parseInt((String)filter.get("id_album"));
+			filter.put("id_album",album);
+		}
 		return albumService.albumQuery( filter,columns);
-		
+		} catch (Exception e) {
+			e.printStackTrace();
+			EntityResult res = new EntityResult();
+			res.setCode(EntityResult.OPERATION_WRONG);
+			return res;
+		}
 	}
-	@RequestMapping(value = "/searchAlbum", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public EntityResult currenSearchSong(@RequestBody Map<String, Object> req) {
+	
+	
+	
+	@RequestMapping(value = "/publicArtist", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult currenSearchArtist(@RequestBody Map<?, ?> req) {
+		try{
 		List<String> columns = (List<String>) req.get("columns");
 		Map<String, Object> filter = (Map<String, Object>) req.get("filter");
-		return albumService.albumQuery( filter,columns);
-		
+		if(filter.containsKey("id_artist")){
+			int artist = Integer.parseInt((String)filter.get("id_artist"));
+			filter.put("id_artist",artist);
+		}
+		return artistService.artistQuery( filter,columns);
+		} catch (Exception e) {
+			e.printStackTrace();
+			EntityResult res = new EntityResult();
+			res.setCode(EntityResult.OPERATION_WRONG);
+			return res;
+		}
+	}
+	
+	@RequestMapping(value = "/publicSong", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult currenSearchSong(@RequestBody Map<?, ?> req) {
+		try{
+		List<String> columns = (List<String>) req.get("columns");
+		Map<String, Object> filter = (Map<String, Object>) req.get("filter");
+		if(filter.containsKey("id_song")){
+			int song = Integer.parseInt((String)filter.get("id_song"));
+			filter.put("id_song",song);
+		}
+		return songService.songQuery( filter,columns);
+		} catch (Exception e) {
+			e.printStackTrace();
+			EntityResult res = new EntityResult();
+			res.setCode(EntityResult.OPERATION_WRONG);
+			return res;
+		}
+	}
+	/*
+	@RequestMapping(value = "/searchSong", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult currenSearchSong(@RequestBody Map<?, ?> req) {
+		List<String> columns = (List<String>) req.get("columns");
+		Map<String, Object> filter = (Map<String, Object>) req.get("filter");
+		if(filter.containsKey("id_song")){
+			int song = Integer.parseInt((String)filter.get("id_song"));
+			filter.put("id_song",song);
+		}
+		return songService.songQuery( filter,columns);
 	}
 	*/
-	
 }
-

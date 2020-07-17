@@ -24,11 +24,12 @@ export class ResultContainerComponent implements OnInit {
     private _route: ActivatedRoute, // recivir parametro id
     @Inject(LoginService) private loginService: LoginService,
     ) {
-      this.loggedIn=  loginService.isLoggedIn();
-      this.songsColums = this.loggedIn ? ['select','Img','Song','Album','Artist','Genre','Action'] :['select','Img','Song','Album','Artist','Genre'];
+
    }
 
   ngOnInit() {
+    this.loggedIn=  this.loginService.isLoggedIn();
+    this.songsColums = this.loggedIn ? ['select','Img','Song','Album','Artist','Genre','Action'] :['select','Img','Song','Album','Artist','Genre'];
   this.dataSource = new MatTableDataSource<ISongModel>(this.data);
   this.dataSource.paginator = this.paginator;
   console.log('-----------datasorce on componet ',this.dataSource);

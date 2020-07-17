@@ -6,6 +6,8 @@ import { ResultContainerComponent } from './componets/result-container/result-co
 import { RouterModule } from '@angular/router';
 import { CreateListModule } from './models/create-list/create-list.module';
 import { ResultListComponent } from './componets/result-list/result-list.component';
+import { SendMenssagesComponent } from './componets/send-menssages/send-menssages.component';
+import { ReceiveMenssagesComponent } from './componets/receive-menssages/receive-menssages.component';
 
 @NgModule({
   imports: [
@@ -16,13 +18,17 @@ import { ResultListComponent } from './componets/result-list/result-list.compone
   ],
   declarations: [
     ResultContainerComponent,
-    ResultListComponent
+    ResultListComponent,
+    SendMenssagesComponent,
+    ReceiveMenssagesComponent
   ],
   exports: [
     CommonModule,
     ResultContainerComponent,
     CreateListModule,
-    ResultListComponent
+    ResultListComponent,
+    SendMenssagesComponent,
+    ReceiveMenssagesComponent
 
   ]
 })

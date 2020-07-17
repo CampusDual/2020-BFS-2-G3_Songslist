@@ -1,5 +1,9 @@
 <!-- Radio => onclick  -->
 <div class="component">
+<div *ngIf="msm">
+  <app-send-menssages [MSM]="msm"></app-send-menssages>
+  <app-receive-menssages></app-receive-menssages>
+</div>
   <div class="div-center div-radioButon">
     <p>
       <mat-label class='label-radio-button mat-label-element'>

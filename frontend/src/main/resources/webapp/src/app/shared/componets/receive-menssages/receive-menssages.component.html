@@ -1,0 +1,6 @@
+<div *ngIf = "messages">
+<h4>Mensajes:  </h4>
+<div *ngFor= "let mensaje of messages; index as i">
+  {{i}}/{{messages.length}}.{{mensaje.text}}
+</div>
+</div>

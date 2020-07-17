@@ -1,0 +1,38 @@
+<form class="example-form" >
+  <mat-form-field class="example-full-width" MatFormFieldAppearance = 'legacy' type FloatLabelType = 'always'  >
+    <mat-label>Message</mat-label>
+    <input   (keyup)="onItemChange($event.target.value)" matInput #message maxlength="256" placeholder="Ex. I need help with...">
+    <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+  </mat-form-field>
+</form>
+<!-- <form class="example-form" >
+  <mat-form-field class="example-full-width" MatFormFieldAppearance = 'standard' type FloatLabelType = 'never'  >
+    <mat-label>Message</mat-label>
+    <input matInput #message maxlength="256" placeholder="Ex. I need help with...">
+    <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+  </mat-form-field>
+</form>
+<form class="example-form" >
+  <mat-form-field class="example-full-width" MatFormFieldAppearance = 'fill' type FloatLabelType = 'auto'  >
+    <mat-label>Message</mat-label>
+    <input matInput #message maxlength="256" placeholder="Ex. I need help with...">
+    <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+  </mat-form-field>
+</form>
+<form class="example-form" >
+  <mat-form-field class="example-full-width" MatFormFieldAppearance = 'outline'  >
+    <mat-label>Message</mat-label>
+    <input matInput #message maxlength="256" placeholder="Ex. I need help with...">
+    <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+  </mat-form-field>
+</form> -->
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+  <!-- <button mat-button color="primary" type="submit">Primary</button> -->
+  <button mat-button color="accent" type="submit" (click)="sendClick()">Accent</button>
+  <!-- <button mat-button color="warn" type="submit">Warn</button>
+  <button mat-button disabled>Disabled</button> -->
+</mat-button-toggle-group>

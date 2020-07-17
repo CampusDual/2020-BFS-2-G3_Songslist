@@ -13,6 +13,7 @@ import { LoginService } from 'ontimize-web-ngx';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+ msm : string;
   tosearch;
   // input radio
   selectOptions: string[] = ['Song', 'Album', 'Genre', 'Artist'];
@@ -38,7 +39,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.msm = "mensaje enviado como input desde componente home ";
     this._route.queryParams
       // .filter(params => params.tosearch )
       .subscribe(params => {

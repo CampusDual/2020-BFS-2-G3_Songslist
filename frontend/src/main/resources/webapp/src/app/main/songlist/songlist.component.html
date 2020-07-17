@@ -4,23 +4,23 @@
       {{'SELECT_OPTION' | oTranslate}} </mat-label>
   </p>
   <p>
-    <mat-radio-group class="mat-radio-group-element">
-      <div class="input-radio-buttns">
+    <mat-radio-group class="mat-radio-group-element" style="display: block;">
+      <div class="input-radio-buttns" >
         <mat-radio-button #radiobutton class="form-check-input-song" type="radio" value="MyList" name="radio-search"
-          (change)="onClickRadio($event)"> {{'MYLIST' | oTranslate}} </mat-radio-button>
+          (change)="onClickRadio($event)" aria-selected="owner"> {{'MY_LISTS' | oTranslate}} </mat-radio-button>
         <mat-radio-button #radiobutton class="form-check-input-album" type="radio" value="List" name="radio-search"
-          (change)="onClickRadio($event)"> {{'LIST' | oTranslate}} </mat-radio-button>
+          (change)="onClickRadio($event)" aria-selected="!owner" checked="checked"> {{'PUBLIC_LISTS' | oTranslate}} </mat-radio-button>
       </div>
     </mat-radio-group>
   </p>
 </div>
 <div class="div-center div-input">
   <form class="form-width">
-    <mat-form-field class="form-field-width">
+    <mat-form-field class="form-field-width" style="width: 80%;">
       <mat-label>{{'SEARCH' | oTranslate}}</mat-label>
       <input class="mat-input-element" id="input" matInput #message maxlength="256"
         placeholder="{{'EXAMPLE_TEXT_SEARCH' | oTranslate}}" type="text" value="" name="input-search"
-        (keyup)="onItemChange($event.target.value)" autocomplete="off">
+        (keyup)="onItemChange($event.target.value)" autocomplete="off" style="width: 100%;">
       <mat-hint align="start">
         <strong>
           <span *ngIf=" !mnjError " style="color: #0199c3">

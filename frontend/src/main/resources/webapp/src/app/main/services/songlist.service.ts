@@ -50,6 +50,36 @@ export class SonglistService extends OntimizeEEService {
         });
         return dataObservable.pipe(share());
     }
+
+    /* 
+    * Este método devuelve la lista con todas las listas de canciones del usuario logueado.
+    * Se utiliza para el grid de My songlist
+    */
+   getPublicSonglist() {
+    const url = CONFIG.apiEndpoint + '/' + 'songlists/searchSonglist';
+    var options = {
+        headers: this.buildHeaders()
+    };
+    var body = JSON.stringify({
+        filter: {
+            USER: '',
+            SONGLIST: ''
+             },
+        columns: ['id_songlist', 'nick_user', 'name_songlist', 'description_songlist', 'image'],
+    });    
+    var self = this;
+    var dataObservable = new Observable(function (_innerObserver) {
+        self.httpClient.post(url, body, options).subscribe(function (resp) {
+
+            self.parseSuccessfulQueryResponse(resp, _innerObserver);
+
+        }, function (error) {
+            self.parseUnsuccessfulQueryResponse(error, _innerObserver);
+        }, function () { return _innerObserver.complete(); });
+    });
+    return dataObservable.pipe(share());
+}
+
    /*
    * Este método devuelve las canciones (con todos los datos de album, artista y género relacionados)
    */

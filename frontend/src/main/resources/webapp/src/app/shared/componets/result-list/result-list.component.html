@@ -5,13 +5,14 @@
   gutter-size="1px" detail-mode="none">
 
   // *** grid-item que ejerce de botón para añadir nuevas listas de canciones ***
-  <span *ngIf="owner">
-    <span *ngIf="loggedIn">
+  
+  <div *ngIf=" this.getOwnerValue() == 'true' ">
+   <!-- <span *ngIf="loggedIn">-->
       <o-grid-item>
         <app-create-list [action]="false"></app-create-list>
       </o-grid-item>
-    </span>
-  </span>
+   <!-- </span>-->
+    </div>
   <span *ngIf="grid.dataArray">
     <o-grid-item *ngFor="let list of grid.dataArray">
       <span [routerLink]="['/main/songlistdetail', list.id_songlist]" [queryParams]="{id: list.id_songlist}" href="#">

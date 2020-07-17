@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { SonglistService } from '../services/songlist.service';
 import { ListService } from '../services/listService';
@@ -9,18 +9,19 @@ import { load } from '@angular/core/src/render3/instructions';
 import { Router, RouterLink } from '@angular/router';
 import { ISonglistDetailModel } from 'app/shared/models/isonglistDetailModel';
 import { MatRadioChange } from '@angular/material';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-songlist',
   templateUrl: './songlist.component.html',
   styleUrls: ['./songlist.component.scss']
 })
-export class SonglistComponent implements OnInit {
+export class SonglistComponent implements OnInit{
 
   private resultados: ISongListModel[];
   private img: number = 0;
   private numSongs: number = 0;
-  owner : boolean ;
+  owner: boolean;
   selectOptions: string[] = ['MyList', 'List'];
   radioSelected: string;
   searchText: string = '';
@@ -34,7 +35,9 @@ export class SonglistComponent implements OnInit {
 
   ngOnInit(
   ) {
-    this.loadMySonglists();
+    console.log("Valor owner en constructor", this.owner);
+    this.owner ? this.loadMySonglists() : this.loadSonglists();
+    
   }
 
   /*
@@ -49,6 +52,8 @@ export class SonglistComponent implements OnInit {
             console.log('DATA = ', sl['data']);
             this.owner = true;
             this.resultados = sl['data'];
+            console.log("resultados mis listas", this.resultados);
+            console.log('valor owner', this.owner);
           } else { // si la búsqueda no devuelve resultados.
             this.resultados = null;
           }
@@ -60,13 +65,16 @@ export class SonglistComponent implements OnInit {
 
   loadSonglists() {
     console.log('_____operation List_______');
-    this.songlistService.getAllSonglist().subscribe(
+    this.songlistService.getPublicSonglist().subscribe(
       (sl: any) => {
         if (sl['data']) {
           if (sl['data'].length > 0) {
             console.log('DATA = ', sl['data']);
             this.owner = false;
+            this.resultados = null;
             this.resultados = sl['data'];
+            console.log("resultados listas publicas", this.resultados);
+            console.log('valor owner', this.owner);
           } else { // si la búsqueda no devuelve resultados.
             this.resultados = null;
           }
@@ -100,7 +108,7 @@ export class SonglistComponent implements OnInit {
     }
     if (!a) {
       this.mnjError = `ERROR`;
-     
+
     } else {
       this.mnjError = '';
     }
@@ -109,15 +117,12 @@ export class SonglistComponent implements OnInit {
     }
   }
 
-
   onClickRadio(mrChange: MatRadioChange) {
     console.log('event  radioSelected is : ', mrChange.value);
     this.radioSelected = mrChange.value;
     this.stringValidate();
-    if (this.searchText.length > 2) {
-      console.log(' radioSelected is : ', this.radioSelected);
-      this.search(this.radioSelected, this.searchText);
-    }
+    console.log(' radioSelected is : ', this.radioSelected);
+    this.search(this.radioSelected, this.searchText);
   }
 
   onItemChange($event) {
@@ -126,15 +131,13 @@ export class SonglistComponent implements OnInit {
     if (this.searchText.length > 2) {
       this.search(this.radioSelected, this.searchText);
       console.log(' searchText is : ', this.searchText);
-
     }
   }
 
-    search(radioSelected: string, searchText: string) {
-      if (radioSelected == "MyList"){ this.loadMySonglists();}
-      if (radioSelected == "List"){this.loadSonglists();}
-    }
-  
+  getOwner
 
-
+  search(radioSelected: string, searchText: string) {
+    if (radioSelected == "MyList") { this.loadMySonglists(); }
+    if (radioSelected == "List") { this.loadSonglists(); }
+  }
 }

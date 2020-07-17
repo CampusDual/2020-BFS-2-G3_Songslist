@@ -35,7 +35,7 @@ public class List_SonglistController extends ORestController<IList_SongListServi
  }
  
 
- @RequestMapping(value = "/searchUserListSonglist", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+ @RequestMapping(value = "/searchListSonglist", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public EntityResult currenSearch(@RequestBody Map<String, Object> req) {
 	 
 		try {
@@ -46,8 +46,15 @@ public class List_SonglistController extends ORestController<IList_SongListServi
 			String userToSearch = (String) filter.get("USER");
 	
 			Map<String, Object> key = new HashMap<String, Object>();
-			key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
-					searchLike(songlistToSearch, userToSearch));
+			if (userToSearch.equals("")) {
+				key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
+						searchAnyListLike(songlistToSearch));
+				
+			}else {
+				key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
+						searchUserListLike(songlistToSearch, userToSearch));
+			}
+			
 			return list_songlistService.list_songlistQuery(key, columns);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,7 +64,7 @@ public class List_SonglistController extends ORestController<IList_SongListServi
 		}
 	}
 
-	private BasicExpression searchLike(int songlistToSearch, String userToSearch) {
+	private BasicExpression searchUserListLike(int songlistToSearch, String userToSearch) {
 			
 		BasicField songlists = new BasicField(SonglistDao.ATTR_ID_SONG_LIST);
 		BasicField users = new BasicField(SonglistDao.ATTR_SONGLIST_NICK_USER);
@@ -65,6 +72,14 @@ public class List_SonglistController extends ORestController<IList_SongListServi
 		BasicExpression bexp2 = new BasicExpression(users, BasicOperator.LIKE_OP, userToSearch);
 		return new BasicExpression(bexp1, BasicOperator.AND_OP, bexp2);
 	}
+	private BasicExpression searchAnyListLike(int songlistToSearch) {
+		
+		BasicField songlists = new BasicField(SonglistDao.ATTR_ID_SONG_LIST);
+		BasicExpression bexp1 = new BasicExpression(songlists, BasicOperator.EQUAL_OP, songlistToSearch);
+		return bexp1;
+	}
+	
+	
 	
 	
 }

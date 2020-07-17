@@ -29,17 +29,6 @@
         <input class="mat-input-element" id="input" matInput #message maxlength="256"
           placeholder="{{'EXAMPLE_TEXT_SEARCH' | oTranslate}}" type="text" value="" name="input-search"
           (keyup)="onItemChange($event.target.value)" autocomplete="off">
-        <mat-hint align="start">
-          <strong>
-            <span *ngIf=" !mnjError " style="color: #0199c3">
-              {{'THREE_LETTER_MSJ' | oTranslate}}
-            </span>
-            <span class='mensaje-error' *ngIf=" mnjError  && mnjError.length > 0">
-              {{'THREE_LETTER_MSJ' | oTranslate}}
-            </span>
-          </strong>
-        </mat-hint>
-        <mat-hint align="end" style="color: #0199c3;">{{message.value.length}} / 256</mat-hint>
       </mat-form-field>
     </form>
   </div>

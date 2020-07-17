@@ -51,8 +51,7 @@ public class SonglistRestController extends ORestController<ISonglistService>  {
 				key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
 						searchPublicLike(songlistToSearch, userToSearch));
 				
-			}else {
-				
+			}else {			
 			
 			key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
 					searchPrivateLike(songlistToSearch, userToSearch));

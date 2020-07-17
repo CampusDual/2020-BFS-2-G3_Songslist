@@ -26,7 +26,7 @@ export class SonglistService extends OntimizeEEService {
     * Este método devuelve la lista con todas las listas de canciones del usuario logueado.
     * Se utiliza para el grid de My songlist
     */
-    getAllSonglist() {
+    getAllSonglist(searchSonglist: String) {
         const url = CONFIG.apiEndpoint + '/' + 'songlists/searchSonglist';
         var options = {
             headers: this.buildHeaders()
@@ -34,7 +34,7 @@ export class SonglistService extends OntimizeEEService {
         var body = JSON.stringify({
             filter: {
                 USER: this.nick_user,
-                SONGLIST: ''
+                SONGLIST: searchSonglist
                  },
             columns: ['id_songlist', 'nick_user', 'name_songlist', 'description_songlist', 'image'],
         });
@@ -55,7 +55,7 @@ export class SonglistService extends OntimizeEEService {
     * Este método devuelve la lista con todas las listas de canciones del usuario logueado.
     * Se utiliza para el grid de My songlist
     */
-   getPublicSonglist() {
+   getPublicSonglist(searchSonglist: String) {
     const url = CONFIG.apiEndpoint + '/' + 'songlists/searchSonglist';
     var options = {
         headers: this.buildHeaders()
@@ -63,7 +63,7 @@ export class SonglistService extends OntimizeEEService {
     var body = JSON.stringify({
         filter: {
             USER: '',
-            SONGLIST: ''
+            SONGLIST: searchSonglist
              },
         columns: ['id_songlist', 'nick_user', 'name_songlist', 'description_songlist', 'image'],
     });    
@@ -85,14 +85,14 @@ export class SonglistService extends OntimizeEEService {
    */
    getSongs(id:number) {
         
-        const url = CONFIG.apiEndpoint + '/' + 'list_songlists/searchUserListSonglist';
+        const url = CONFIG.apiEndpoint + '/' + 'list_songlists/searchListSonglist';
         var options = {
             headers: this.buildHeaders()
         };
         var body = JSON.stringify({
             filter: {
                 SONGLIST: id,
-                    USER: this.nick_user                    
+                USER: '',      
                      },
             columns: ['id_song', 'name_song', 'name_album', 'name_artist', 'name_genre', 'year_album', 'description_song', 'img_album']
         });

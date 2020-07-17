@@ -26,6 +26,7 @@
   "DISCOGRAPHY_AVAILABLE": "Discography available",
   "EDIT_PROFILE": "Edit profile",
   "EMAIL": "Email",
+  "EMPTY_LIST": "Empty list",
   "ENTER_CURRENT_PASS_TO_CONFIRM": "Current pass to confirm changes",
   "ENTER_NEW_PASS": "Please, enter a valid new password",
   "ERROR_MIN_LENGTH_REQUIRED": "The value length entered must be at least 8 characters.", 

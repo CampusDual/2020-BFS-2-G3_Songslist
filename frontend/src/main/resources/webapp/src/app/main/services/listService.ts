@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CONFIG } from 'app/app.config';
-import { OntimizeEEService, Observable } from 'ontimize-web-ngx';
+import { OntimizeEEService, Observable, Subject } from 'ontimize-web-ngx';
 import { share } from 'rxjs/operators';
 
 @Injectable(
@@ -10,6 +10,39 @@ import { share } from 'rxjs/operators';
      }
 )
 export class ListService extends OntimizeEEService {
+    private subjectRefresh = new Subject<any>();
+    private subjectMessage = new Subject<any>();
+    private subjectAction = new Subject<any>();
+
+    sendAction(message: string) {
+        this.subjectAction.next({ action: message });
+    }
+    sendRefresh(message: string) {
+        this.subjectRefresh.next({ refresh: message });
+    }
+    sendMessage(message: string) {
+        this.subjectMessage.next({ text: message });
+    }
+
+    clearMessages() {
+        this.subjectMessage.next();
+    }
+    clearActions() {
+        this.subjectAction.next();
+    }
+    clearRefresh() {
+        this.subjectRefresh.next();
+    }
+
+    getMessage(): Observable<any> {
+        return this.subjectMessage.asObservable();
+    }
+    getRefresh(): Observable<any> {
+        return this.subjectRefresh.asObservable();
+    }
+    getAction(): Observable<any> {
+        return this.subjectAction.asObservable();
+    }
 
     buildHeaders () {
         const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));

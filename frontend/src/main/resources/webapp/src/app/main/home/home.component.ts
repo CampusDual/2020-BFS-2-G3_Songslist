@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, Inject, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HomeService } from './home.service';
 import { ISongModel } from 'app/shared/models/isong.model';
@@ -7,12 +7,17 @@ import { CONFIG } from 'app/app.config';
 import 'rxjs/add/operator/filter';
 import { SelectionModel } from '@angular/cdk/collections';
 import { LoginService } from 'ontimize-web-ngx';
+import { Subscription } from 'rxjs';
+import { ListService } from '../services/listService';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy  {
+  refreshMessages: any[] = [];
+  refreshSubscription  : Subscription;
+  subscription : Subscription;
   tosearch;
   // input radio
   selectOptions: string[] = ['Song', 'Album', 'Genre', 'Artist'];
@@ -29,6 +34,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private actRoute: ActivatedRoute,
+    protected listService: ListService,
     protected homeService: HomeService,
     private renderer: Renderer2,
     private _route: ActivatedRoute, // recivir parametro id
@@ -38,19 +44,35 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this._route.queryParams
+    this.subscription = this._route.queryParams
       // .filter(params => params.tosearch )
       .subscribe(params => {
         if (params['tosearch'] === "ok") {
           const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
           let obj = myData['search'];
-          this.search(obj.radioSelect, obj.searchText);
+          this.radioSelected =obj.radioSelect;
+          this.searchText = obj.searchText
+          this.search( this.radioSelected,this.searchText);
         } else {
           console.log('sub-to-parem', params);
           this.defaultStart();
         }
       });
+      this.refreshSubscription = this.listService.getRefresh().subscribe(message => {
+        if (message) {
+          if (message.action){
+            if (message.action == "song" || message.action == "all"){
+              console.log('home-component recive  REFRESH_SONG OR REFRESH_ALL');
+              this.refreshMessages.push(message);
+              this.search(this.radioSelected, this.searchText)
+        } else {
+          // clear messages when empty message received
+          this.refreshMessages = [];
+        }
+      }
+      }
+      });
+
   };
 
   defaultStart() {
@@ -58,7 +80,7 @@ export class HomeComponent implements OnInit {
   }
 
   search(radioSelected: string, searchText: string) {
-    this.homeService.getSongData(radioSelected, searchText).subscribe(
+    this.subscription = this.homeService.getSongData(radioSelected, searchText).subscribe(
       (x: any) => {
         console.log('recibo todo ', x);
         if (x['data']) {
@@ -167,6 +189,11 @@ export class HomeComponent implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.subscription.unsubscribe();
+}
+
 
 
 }

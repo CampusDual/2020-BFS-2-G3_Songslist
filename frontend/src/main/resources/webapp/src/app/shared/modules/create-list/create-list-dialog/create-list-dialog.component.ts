@@ -112,7 +112,11 @@ export class CreateListDialogComponent implements OnInit {
                         console.log('recibo la parte de data ', userData['data']);
                         console.log('nº results ', userData['data'].length);
                         if (userData['code'] == 0) {
-                          this.snackBarService.open('se ha añadido la cancion a '+newList.name_songlist, {
+                          console.log('create-list-dialog send REFRESHLIST');
+                          this.sendRefreshList();
+                          console.log('create-list-dialog send REFRESHSONG');
+                          this.sendRefreshSong();
+                           this.snackBarService.open('se ha añadido la cancion a '+newList.name_songlist, {
                             action: 'Done',
                             milliseconds: 5000,
                             icon: 'check_circle',
@@ -186,6 +190,10 @@ export class CreateListDialogComponent implements OnInit {
       console.log('subtask.checked',subtask.checked)
     }
     if (isCheck && subtask.checked){
+      console.log('create-list-dialog send REFRESHLIST');
+      this.sendRefreshList();
+      console.log('create-list-dialog send REFRESHSONG');
+      this.sendRefreshSong();
       this.snackBarService.open('se ha añadido la cancion a '+subtask.name_songlist, {
         action: 'Done',
         milliseconds: 5000,
@@ -195,6 +203,10 @@ export class CreateListDialogComponent implements OnInit {
     }
 
     else if (!isCheck && !subtask.checked){
+      console.log('create-list-dialog send REFRESHLIST');
+      this.sendRefreshList();
+      console.log('create-list-dialog send REFRESHSONG');
+      this.sendRefreshSong();
       this.snackBarService.open('se ha eleminado la cancion de '+subtask.name_songlist, {
         action: 'Done',
         milliseconds: 5000,
@@ -204,4 +216,25 @@ export class CreateListDialogComponent implements OnInit {
     }
 
   }
+  sendRefreshSong(): void {
+    // send message to subscribers via observable subject
+    this.listService.sendRefresh('song');
+}
+  sendRefreshList(): void {
+    // send message to subscribers via observable subject
+    this.listService.sendRefresh('list');
+}
+  sendRefreshAlbum(): void {
+    // send message to subscribers via observable subject
+    this.listService.sendRefresh('album');
+}
+sendRefreshAll(): void {
+  // send message to subscribers via observable subject
+  this.listService.sendRefresh('all');
+}
+
+clearMessages(): void {
+    // clear messages
+    this.listService.clearMessages();
+}
 }

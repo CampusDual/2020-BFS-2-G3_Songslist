@@ -31,11 +31,6 @@ export class CreateListDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data) {
     this.songid = data.id;
     this.action = data.action;
-    // this.subtasks = [
-    //   { name: 'list1', completed: false, color: 'accent' },
-    //   { name: 'list2', completed: false, color: 'accent' },
-    //   { name: 'lis3', completed: false, color: 'accent' }
-    // ];
     if (data.action = false) {
       this.step = 1;
     } else {
@@ -48,17 +43,13 @@ export class CreateListDialogComponent implements OnInit {
       lstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(25), Validators.pattern(this.textPattern)]],
       lstDescription: ['', [Validators.minLength(0), Validators.maxLength(200)]]
     });
-    this.songlistService.getAllSonglist().subscribe(
+    this.songlistService.getAllSonglist('').subscribe(
       (userData: any) => {
-        console.log('recibo todo getAllSonglist', userData);
+        
         if (userData['data']) {
-          console.log('recibo la parte de data  getAllSonglist', userData['data']);
-          console.log('nº results getAllSonglist', userData['data'].length);
           if (userData['code'] == 0) {
             this.subtasks = userData['data'];
             this.subtasks.forEach(t => t.checked = false);
-            console.log('this.subtasks',this.subtasks)
-            console.log('this.subtasks nameSongList',this.subtasks[0].name_songlist)
           } else if (userData['code'] == 1) {
             
           }
@@ -98,23 +89,14 @@ export class CreateListDialogComponent implements OnInit {
       this.listService.insertList(newList.name_songlist, newList.description_songlist)
         .subscribe(
           (userData: any) => {
-            console.log('recibo todo ', userData);
             if (userData['data']) {
-              console.log('recibo la parte de data ', userData['data']);
-              console.log('nº results ', userData['data'].length);
               if (userData['code'] == 0) {
-                console.log('addSong parameter songid[', this.songid, '] name_songList [', newList.name_songlist, ']')
                 this.listService.addSong(this.songid, newList.name_songlist)
                   .subscribe(
                     (userData: any) => {
-                      console.log('recibo todo ', userData);
                       if (userData['data']) {
-                        console.log('recibo la parte de data ', userData['data']);
-                        console.log('nº results ', userData['data'].length);
                         if (userData['code'] == 0) {
-                          console.log('create-list-dialog send REFRESHLIST');
                           this.sendRefreshList();
-                          console.log('create-list-dialog send REFRESHSONG');
                           this.sendRefreshSong();
                            this.snackBarService.open('se ha añadido la cancion a '+newList.name_songlist, {
                             action: 'Done',
@@ -181,18 +163,13 @@ export class CreateListDialogComponent implements OnInit {
     return (this.form.get('lstName').status == 'VALID' && this.form.get('lstDescription').status == 'VALID');
   }
   setcheked( isCheck: boolean, subtask :ISongListModel){
-    console.log('isCheck',isCheck)
     if (isCheck){
       subtask.checked = !subtask.checked;
-      console.log('subtask.checked',subtask.checked)
     }else{
       subtask.checked = !subtask.checked;
-      console.log('subtask.checked',subtask.checked)
     }
     if (isCheck && subtask.checked){
-      console.log('create-list-dialog send REFRESHLIST');
       this.sendRefreshList();
-      console.log('create-list-dialog send REFRESHSONG');
       this.sendRefreshSong();
       this.snackBarService.open('se ha añadido la cancion a '+subtask.name_songlist, {
         action: 'Done',
@@ -203,9 +180,7 @@ export class CreateListDialogComponent implements OnInit {
     }
 
     else if (!isCheck && !subtask.checked){
-      console.log('create-list-dialog send REFRESHLIST');
       this.sendRefreshList();
-      console.log('create-list-dialog send REFRESHSONG');
       this.sendRefreshSong();
       this.snackBarService.open('se ha eleminado la cancion de '+subtask.name_songlist, {
         action: 'Done',

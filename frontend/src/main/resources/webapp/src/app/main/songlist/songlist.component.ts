@@ -43,7 +43,7 @@ export class SonglistComponent implements OnInit {
   ngOnInit(
   ) {
     this.cleanSearch();
-    this.owner ? this.loadMySonglists() : this.loadSonglists();
+    this.owner ? this.loadMySonglists(this.searchText) : this.loadSonglists(this.searchText);
 
   }
 
@@ -54,8 +54,8 @@ export class SonglistComponent implements OnInit {
   /*
   Método que llama a un servicio para consultar las listas de canciones del usuario logueado.
   */
-  loadMySonglists() {
-    this.songlistService.getAllSonglist(this.searchText).subscribe(
+  loadMySonglists(searchText : string) {
+    this.songlistService.getAllSonglist(searchText).subscribe(
       (sl: any) => {
         if (sl['data']) {
           if (sl['data'].length > 0) {
@@ -70,9 +70,9 @@ export class SonglistComponent implements OnInit {
     );
   }
 
-  loadSonglists() {
+  loadSonglists(searchtext : string) {
     console.log('_____operation List_______');
-    this.songlistService.getPublicSonglist(this.searchText).subscribe(
+    this.songlistService.getPublicSonglist(searchtext).subscribe(
       (sl: any) => {
         if (sl['data']) {
           if (sl['data'].length > 0) {
@@ -114,21 +114,9 @@ export class SonglistComponent implements OnInit {
 
 
   inputSearch(radioSelected: string, searchText: string) {
-    this.songlistService.getPublicSonglist(searchText).subscribe(
-      (x: any) => {
-        if (x['data']) {
-          if (x['data'].length > 0) {
-            this.resultados = x['data'];
-            const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
-            myData['search'] = { radioSelect: this.radioSelected, searchText: this.searchText };
-            localStorage.setItem(CONFIG.uuid, JSON.stringify(myData));
-          } else {
-            this.resultados = Array();
-          }
-        }
-      },
-      err => console.error(err)
-    );
+    this.searchText = searchText;
+    if(radioSelected == 'MyList')  this.loadMySonglists(this.searchText); 
+    else this.loadSonglists(this.searchText);
   }
 
   onClickRadio(radio: MatRadioChange) {
@@ -146,8 +134,4 @@ export class SonglistComponent implements OnInit {
 
   }
 
-  search(radioSelected: string, searchText: string) {
-    if (radioSelected == "MyList") { this.loadMySonglists(); }
-    if (radioSelected == "List") { this.loadSonglists(); }
-  }
 }

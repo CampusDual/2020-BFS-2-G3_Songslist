@@ -16,17 +16,17 @@
   <span *ngIf="grid.dataArray">
     <o-grid-item *ngFor="let list of grid.dataArray">
       <span [routerLink]="['/main/songlistdetail', list.id_songlist]" [queryParams]="{id: list.id_songlist}" href="#">
-        <o-column>
+        <o-column layout-padding class="container-item center ">
 
-          <img *ngIf="list.image" src="./assets/images/album/{{list.image}}.jfif" style="margin-top:8px">
-          <img *ngIf="!list.image" src="./assets/images/album/0.jfif" style="margin-top:8px">
-          <h3 class="self-center">{{ list.name_songlist }}</h3>
-          <h4 class="self-center">{{ list.nick_user }}</h4>
+          <img class="self-center" *ngIf="list.image" src="./assets/images/album/{{list.image}}.jfif" style="margin-top:8px" width="175rem" height="175rem">
+          <img class="self-center" *ngIf="!list.image" src="./assets/images/album/0.jfif" style="margin-top:8px" width="175rem" height="175rem">
+          <div class="self-center"><p> <strong> {{ list.name_songlist }} </strong> </p></div>
+          <p class="self-center"> {{ list.nick_user }} </p>
           <div *ngIf="list.image" class="self-center">
-            <span class="span-description" [ngStyle]="{'align-self:':'center'}"> ({{ list.description_songlist }}) </span>
+            <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ list.description_songlist }} </span>
           </div>
           <div *ngIf="!list.image" class="self-center">
-            <span class="span-description" [ngStyle]="{'align-self:':'center'}">  {{ 'EMPTY_LIST' | oTranslate }}  </span>
+            <span class="span-description" [ngStyle]="{'align-self:':'center'}">  {{ ('EMPTY_LIST') | oTranslate }}  </span>
           </div>
         </o-column>
       </span>

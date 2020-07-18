@@ -46,6 +46,7 @@
 			#WHERE#
 			
 			GROUP BY sl.id_songlist, u.nick_user
+			ORDER BY sl.name_songlist
             ]]>
         </Sentence>
 		</Query>

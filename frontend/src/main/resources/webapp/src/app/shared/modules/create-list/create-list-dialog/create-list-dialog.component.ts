@@ -193,18 +193,22 @@ export class CreateListDialogComponent implements OnInit {
   }
   sendRefreshSong(): void {
     // send message to subscribers via observable subject
+    console.log('sendRefresh => song');
     this.listService.sendRefresh('song');
 }
   sendRefreshList(): void {
     // send message to subscribers via observable subject
+    console.log('sendRefresh => list');
     this.listService.sendRefresh('list');
 }
   sendRefreshAlbum(): void {
     // send message to subscribers via observable subject
+    console.log('sendRefresh => album');
     this.listService.sendRefresh('album');
 }
 sendRefreshAll(): void {
   // send message to subscribers via observable subject
+  console.log('sendRefresh => all');
   this.listService.sendRefresh('all');
 }
 

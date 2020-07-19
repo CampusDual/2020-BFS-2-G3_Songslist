@@ -59,12 +59,20 @@ export class HomeComponent implements OnInit, OnDestroy  {
         }
       });
       this.refreshSubscription = this.listService.getRefresh().subscribe(message => {
+        console.log('home-refreshSubscription-message',message);
         if (message) {
-          if (message.action){
-            if (message.action == "song" || message.action == "all"){
+          console.log('home-refreshSubscription-message-refresh',message.action);
+          if (message.refresh){
+            if (message.refresh == "song" || message.refresh == "all"){
               console.log('home-component recive  REFRESH_SONG OR REFRESH_ALL');
               this.refreshMessages.push(message);
+              if (this.radioSelected && this.searchText ){
+              console.log('REFRESH_SONG OR REFRESH_ALL {radioSelected [', this.radioSelected,'], searchText[',this.searchText,']}');
               this.search(this.radioSelected, this.searchText)
+              } else {
+                console.log('REFRESH_SONG OR REFRESH_ALL {defaultStart}');
+                this.defaultStart();
+              }
         } else {
           // clear messages when empty message received
           this.refreshMessages = [];

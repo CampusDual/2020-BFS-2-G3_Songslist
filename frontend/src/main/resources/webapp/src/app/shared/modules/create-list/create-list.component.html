@@ -1,16 +1,7 @@
 <button *ngIf="action" mat-button (click)="openDialog()">
   <mat-icon>playlist_add</mat-icon> Añadir a lista
 </button>
-
-<!-- <div *ngIf="!action" (click)="openDialog()">
-  <o-grid>
-    <o-grid-item>
-      <img src="./assets/images/Add_new_songlist.png" style="margin-top:8px">
-      <h4 class="self-center">{{ 'CREATE_NEW_SONGLIST' | oTranslate }}</h4>
-    </o-grid-item>
-  </o-grid>
-</div> -->
-  <o-column layout-padding class="container-item"  *ngIf="!action" (click)="openDialog()">
-    <img src="./assets/images/Add_new_songlist.png" style="margin-top:8px" width="175rem" height="175rem">
+  <o-column  style="align-items: flex-start;" *ngIf="!action" (click)="openDialog()">
+    <img src="./assets/images/Add_new_songlist.png" style="margin-top:8px;" width="175rem" height="175rem" >
     <h4 class="self-center">{{ 'CREATE_NEW_SONGLIST' | oTranslate }}</h4>
   </o-column>

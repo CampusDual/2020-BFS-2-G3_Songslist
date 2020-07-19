@@ -36,8 +36,11 @@ public class SonglistRestController extends ORestController<ISonglistService>  {
  }
  
  
- @RequestMapping(value = "/searchSonglist", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public EntityResult currenSearch(@RequestBody Map<String, Object> req) {
+ @RequestMapping(
+		 value = "/searchSonglist", 
+		 method = RequestMethod.POST, 
+		 produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult currentSearch(@RequestBody Map<String, Object> req) {
 	 
 		try {
 			List<String> columns = (List<String>) req.get("columns");

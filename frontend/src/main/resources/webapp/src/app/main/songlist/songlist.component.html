@@ -1,26 +1,30 @@
-<div class="div-center div-radioButon">
-  <p>
-    <mat-label class='label-radio-button mat-label-element'>
-      {{'SELECT_OPTION' | oTranslate}} </mat-label>
-  </p>
-  <p>
-    <mat-radio-group class="mat-radio-group-element">
-      <div class="input-radio-buttns">
-        <mat-radio-button #radiobutton class="form-check-input-song" type="radio" value="MyList" name="radio-search"
-          (change)="onClickRadio($event)"> {{'MYLIST' | oTranslate}} </mat-radio-button>
-        <mat-radio-button #radiobutton class="form-check-input-album" type="radio" value="List" name="radio-search"
-          (change)="onClickRadio($event)"> {{'LIST' | oTranslate}} </mat-radio-button>
+<div fxLayout="column" style="padding: 2rem; display: grid; min-height: min-content;">
+    <br>
+
+      <div fxLayout="row" fxFill fxLayoutAlign="center " style="width: max-content; display: grid; height: fit-content;">
+        <mat-radio-group style="height: fit-content;">
+
+          <mat-radio-button #radiobutton class="form-check-input-song" type="radio" value="MyList" name="radio-search"
+            (change)="onClickRadio($event)" aria-selected="owner" style="padding-right: 2rem ;">
+            {{'MY_LISTS' | oTranslate}}
+          </mat-radio-button>
+
+
+          <mat-radio-button #radiobutton class="form-check-input-album" type="radio" value="List" name="radio-search"
+            (change)="onClickRadio($event)" aria-selected="!owner" checked="checked"> {{'PUBLIC_LISTS' | oTranslate}}
+          </mat-radio-button>
+
+          </mat-radio-group>
       </div>
-    </mat-radio-group>
-  </p>
 </div>
-<div class="div-center div-input">
+
+<div>
   <form class="form-width">
-    <mat-form-field class="form-field-width">
+    <mat-form-field class="form-field-width" style="width: 80%;">
       <mat-label>{{'SEARCH' | oTranslate}}</mat-label>
       <input class="mat-input-element" id="input" matInput #message maxlength="256"
         placeholder="{{'EXAMPLE_TEXT_SEARCH' | oTranslate}}" type="text" value="" name="input-search"
-        (keyup)="onItemChange($event.target.value)" autocomplete="off">
+        (keyup)="onItemChange($event.target.value)" autocomplete="off" style="width: 100%; display: grid;">
       <mat-hint align="start">
         <strong>
           <span *ngIf=" !mnjError " style="color: #0199c3">
@@ -35,42 +39,11 @@
     </mat-form-field>
   </form>
 </div>
-
-
-
+<br>
+<hr>
+<br>
 <div *ngIf="resultados">
   <div *ngIf="resultados.length > 0">
-      <app-result-list [data]="resultados"[owner]=[owner]></app-result-list>
+    <app-result-list [data]="resultados" [owner]=[owner]></app-result-list>
+  </div>
 </div>
-</div>
-<!-- 
-<o-grid #grid class="list-grid-item" attr="grid" title="{{ 'PERSONAL_SONGLIST' | oTranslate }}"
-  [static-data]="getResult()" columns="name_user;name_songlist;description_songlist;" keys="id_songlist" [cols]="5"
-  query-rows="12" show-page-size="true" page-size-options="4;8;12;16;20" orderable="false" quick-filter="false"
-  grid-item-height="1:1" sortable-columns="name" sort-column="" controls="false" refresh-button="false"
-  pagination-controls="false" gutter-size="1px" detail-mode="none">
-
-  // *** grid-item que ejerce de botón para añadir nuevas listas de canciones *** 
-  <o-grid-item>
-    <app-create-list [action]="false"></app-create-list>
-  </o-grid-item>
-  <span *ngIf="grid.dataArray">
-    <o-grid-item *ngFor="let list of grid.dataArray">
-      <span [routerLink]="['/main/songlistdetail', list.id_songlist]"
-      [queryParams]="{id: list.id_songlist}" href="#">
-        <o-column>
-
-          <img *ngIf= "list.image" src="./assets/images/album/{{list.image}}.jfif" style="margin-top:8px">
-          <img *ngIf= "!list.image" src="./assets/images/album/0.jfif" style="margin-top:8px">
-          <h4 class="self-center">{{ list.name_songlist }}</h4>
-          <div class="self-center">
-            <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ list.numSongs }} </span>
-          </div>
-          <div class="self-center">
-            <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ list.description_songlist }} </span>
-          </div>
-        </o-column>
-      </span>
-    </o-grid-item>
-  </span>
-</o-grid> -->

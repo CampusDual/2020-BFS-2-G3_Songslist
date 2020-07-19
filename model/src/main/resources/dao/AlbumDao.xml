@@ -38,6 +38,7 @@
                 LEFT JOIN ${mainschema}.tartist art ON alb.id_artist = art.id_artist
                 LEFT JOIN ${mainschema}.tgenre g ON alb.id_genre = g.id_genre
             #WHERE#
+            ORDER BY alb.id_album desc
             ]]>
         </Sentence>
      </Query>

@@ -162,11 +162,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
     if (this.searchText.length > 2) {
       this.search(this.radioSelected, this.searchText);
       console.log(' searchText is : ', this.searchText);
-
-    }
-
-
-
+    }else{this.searchText == ""}
   }
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {

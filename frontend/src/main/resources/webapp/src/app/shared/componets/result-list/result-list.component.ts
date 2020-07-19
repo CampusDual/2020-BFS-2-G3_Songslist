@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { ISongListModel } from 'app/shared/models/isongList.model';
+import { ISongListModel } from '../../models/isongList.model';
 import { LoginService } from 'ontimize-web-ngx';
 
 @Component({
@@ -17,7 +17,10 @@ export class ResultListComponent implements OnInit {
     this.loggedIn =  loginService.isLoggedIn();
    }
   ngOnInit() {
-    console.log('owner value : ',this.owner);
+    this.getOwnerValue();
+  }
+  getOwnerValue():boolean{
+    return this.owner;
   }
 
 }

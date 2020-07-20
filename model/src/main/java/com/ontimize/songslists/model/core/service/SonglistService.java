@@ -38,6 +38,13 @@ public class SonglistService implements ISonglistService{
 				}
 				keyMap.remove("user");
 			}
+			if (keyMap.containsKey("id_user")){
+				keyMap.remove("id_user");
+			}
+			if (keyMap.containsKey("id_songlist")){
+				int a = Integer.parseInt((String)keyMap.get("id_songlist"));
+				keyMap.put("id_songlist",a);
+			}
 			/*
 			EntityResult res = this.daoHelper.query(this.songlistDao, keyMap, attrList);
 			

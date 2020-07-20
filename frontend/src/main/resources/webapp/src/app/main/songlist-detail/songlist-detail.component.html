@@ -1,4 +1,5 @@
-<div class="div-center div-input">
+<!--
+  <div class="div-center div-input">
   <form class="form-width">
     <mat-form-field class="form-field-width">
       <mat-label>{{'SEARCH' | oTranslate}}</mat-label>
@@ -8,6 +9,39 @@
     </mat-form-field>
   </form>
 </div>
+-->
+
+<div>
+  <o-button class="button-back right   width_10  height_2" label="{{'BACK' | oTranslate}}" layout-padding
+    [routerLink]="['/main/songlist']" >
+  </o-button>
+
+</div>
+<div *ngIf="songListResult">
+  <o-row justifyContent="center" layout-align="center">
+    <h2 class="datasheet-h2">{{songListResult.name_songlist}} ({{'NAME' | oTranslate}})</h2>
+
+  </o-row>
+
+  <o-row class="datasheet-information-panel" justifyContent="center" layout-align="center">
+    <o-column fxFlex="20" justifyContent="center">
+      <o-image class="datasheet-img" attr="image" type="RAISED" height="95%" width="95%"
+        data="./assets/images/album/{{songListResult.image}}.jfif" auto-fit="true" enabled="true" read-only="true"
+        *ngIf="songListResult.image" 
+        show-controls="false" full-screen-button="false" empty-image="./assets/images/no-image.png">
+      </o-image>
+    </o-column>
+    <o-column fxFlex="70" align-items="center" justifyContent="center">
+      <o-form class="datashet-inputs-panel" editable-detail="no" show-header="no">
+        <o-textarea-input attr="longtext" label="{{'DESCRIPTION' | oTranslate}}" [data]="songListResult.description_songlist"
+          fxFlex="70" height="100%" width="80%" required="no" read-only="true"></o-textarea-input>
+      </o-form>
+    </o-column>
+  </o-row>
+</div>
+<br>
+<!-- <br> -->
+<br>
 
 
 <div *ngIf=" listResult">

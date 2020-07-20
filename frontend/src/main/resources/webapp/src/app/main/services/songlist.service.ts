@@ -108,7 +108,34 @@ export class SonglistService extends OntimizeEEService {
         });
         return dataObservable.pipe(share());
     }
+    getSonglist(idS: number){
+        const url = CONFIG.apiEndpoint + '/' + 'songlists/songlist/search';
+        var options = {
+            headers: this.buildHeaders()
+        };
+        var body = JSON.stringify({
+            filter: {
+                id_songlist : idS
+                     },
+                     columns: ['id_songlist', 'nick_user', 'name_songlist', 'description_songlist', 'image']
+                     /*,
+                     sqltypes: {
+                        id_songlist: 2
+                    }*/
+        });
+        var self = this;
+        var dataObservable = new Observable(function (_innerObserver) {
 
+            self.httpClient.post(url, body, options).subscribe(function (resp) {
+                self.parseSuccessfulQueryResponse(resp, _innerObserver);
+
+            }, function (error) {
+                self.parseUnsuccessfulQueryResponse(error, _innerObserver);
+            }, function () { return _innerObserver.complete(); });
+        });
+        return dataObservable.pipe(share());
+
+    }
 
 
 }

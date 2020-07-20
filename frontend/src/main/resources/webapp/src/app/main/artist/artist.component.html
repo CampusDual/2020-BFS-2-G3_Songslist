@@ -27,7 +27,7 @@
     </o-row>
   </div>
   <br>
-  <hr>
+  <br>
   <br>
   <div *ngIf="artistResult">
     <h2>{{ 'DISCOGRAPHY_AVAILABLE' | oTranslate }}</h2>
@@ -47,7 +47,7 @@
                 style="margin-top:8px" width="175rem" height="175rem">
   
               <div class="self-center">
-                <p> <strong> {{ list.name_album }} -- {{albumResult.year_album | date: 'yyyy'}}</strong> </p>
+                <p> <strong> {{ list.name_album }} </strong> </p>
               </div>
             </o-column>
           </span>

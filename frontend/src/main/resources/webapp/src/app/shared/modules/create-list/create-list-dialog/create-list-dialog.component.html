@@ -1,33 +1,38 @@
 <form class="form-dialog" (ngSubmit)="onSaveForm()" [formGroup]="form">
   <mat-dialog-content>
-
-    <h2 *ngIf="action" mat-dialog-title style="color: white;">Add song to :</h2>
-    <h2 *ngIf="!action" mat-dialog-title style="color: white; display: none;">Add new list :</h2>
+    <p class= "x-to-close" (click)="close()">
+      <mat-icon class="x-to-close mat-icon material-icons ng-star-inserted" role="img" aria-hidden="true">close</mat-icon>
+    </p>
+    <!--<h2 *ngIf="action" mat-dialog-title style="color: white;">Add song to :</h2>
+    <h2 *ngIf="!action" mat-dialog-title style="color: white; display: none;">Add new list :</h2>-->
+    
     <mat-accordion>
       <span *ngIf="subtasks">
 
-      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle *ngIf="action" >
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{'ADD_TO_MY_SONGLISTS' | oTranslate}}
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <ul *ngIf="subtasks.length > 0">
-          <li *ngFor="let subtask of subtasks">
-            <div layout-padding></div>
-            <mat-checkbox [checked]="subtask.checked"(change)="setcheked($event.checked , subtask )">
-              {{subtask.name_songlist}}
-            </mat-checkbox>
-            <div layout-padding></div>
-          </li>
-        </ul>
-      </mat-expansion-panel>
-    </span>
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle *ngIf="action">
+          
+          <mat-expansion-panel-header>
+            
+            <mat-panel-title>
+              {{'ADD_TO_EXISTING_SONGLISTS' | oTranslate}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ul *ngIf="subtasks.length > 0">
+            <li *ngFor="let subtask of subtasks">
+              <div layout-padding></div>
+              <mat-checkbox [checked]="subtask.checked" (change)="setcheked($event.checked , subtask )">
+                {{subtask.name_songlist}}
+              </mat-checkbox>
+              <div layout-padding></div>
+            </li>
+          </ul>
+        </mat-expansion-panel>
+      </span>
 
       <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{'CREATE_NEW_SONGLIST' | oTranslate}}
+            {{'ADD_TO_NEW_SONGLIST' | oTranslate}}
           </mat-panel-title>
         </mat-expansion-panel-header>
 
@@ -40,20 +45,16 @@
             placeholder="{{'DESCRIPTION_SONGLIST' | oTranslate}}"></textarea>
         </mat-form-field>
 
+      <!-- *** BOTONERA *** -->
+        <div class="row-reg center between" style="text-align: end;">
+
+          <button class=" right button-save  width_10  height_2" mat-button color="accent" type="submit"
+            [disabled]="!inputChange()">{{'SAVE' | oTranslate}}</button>
+
+          <!--<button class=" right button-save  width_10  height_2" mat-button color="accent" type="button"
+            (click)="close()">{{'CANCEL' | oTranslate}}</button>-->
+        </div>
       </mat-expansion-panel>
     </mat-accordion>
-
-    <div class="row-reg center between">
-
-      <button class= " right button-save  width_10  height_2" mat-button color= "accent"  type="submit"
-        [disabled]="!inputChange()">{{'SAVE' | oTranslate}}</button>
-      
-      <button class= " right button-save  width_10  height_2"  mat-button color= "accent" type="button" (click)="close()">{{'CANCEL' | oTranslate}}</button>
-    </div>
   </mat-dialog-content>
 </form>
-
-
-
-
-

@@ -6,6 +6,8 @@ import { SnackBarService } from 'ontimize-web-ngx';
 import { ListService } from 'app/main/services/listService';
 import { SonglistService } from 'app/main/services/songlist.service';
 import { ISongListModel } from 'app/shared/models/isongList.model';
+import { getMaxListeners } from 'process';
+import { stringify } from 'querystring';
 
 
 @Component({
@@ -17,10 +19,11 @@ export class CreateListDialogComponent implements OnInit {
   form: FormGroup;
   name: string;
   songid: number;
-  subtasks : ISongListModel[] ;
+  subtasks: ISongListModel[];
   action: boolean;
   panelOpenState = false;
   step: number;
+  list:  Array<ISongListModel>;
   private textPattern: any = /^[a-zA-Z0-9]+(?:[_ -]?[a-zA-Z0-9])*$/;
   constructor(
     public songlistService: SonglistService,
@@ -45,13 +48,13 @@ export class CreateListDialogComponent implements OnInit {
     });
     this.songlistService.getAllSonglist('').subscribe(
       (userData: any) => {
-        
         if (userData['data']) {
           if (userData['code'] == 0) {
             this.subtasks = userData['data'];
-            this.subtasks.forEach(t => t.checked = false);
+            this.list= this.getList( );
+            console.log('list[]', this.list);
           } else if (userData['code'] == 1) {
-            
+
           }
         }
       },
@@ -86,72 +89,8 @@ export class CreateListDialogComponent implements OnInit {
       if (this.form.get('lstDescription').status == 'VALID') {
         newList['description_songlist'] = this.form.value.lstDescription;
       }
-      this.listService.insertList(newList.name_songlist, newList.description_songlist)
-        .subscribe(
-          (userData: any) => {
-            if (userData['data']) {
-              if (userData['code'] == 0) {
-                this.listService.addSong(this.songid, newList.name_songlist)
-                  .subscribe(
-                    (userData: any) => {
-                      if (userData['data']) {
-                        if (userData['code'] == 0) {
-                          this.sendRefreshList();
-                          this.sendRefreshSong();
-                           this.snackBarService.open('se ha añadido la cancion a '+newList.name_songlist, {
-                            action: 'Done',
-                            milliseconds: 5000,
-                            icon: 'check_circle',
-                            iconPosition: 'left'
-                          });
-                          this.dialogRef.close(this.form.value);
-                        } else if (userData['code'] == 1) {
-                          this.snackBarService.open('warning  no se ha añadido la cancion a '+newList.name_songlist, {
-                            action: 'Warning',
-                            milliseconds: 5000,
-                            icon: 'check_circle',
-                            iconPosition: 'left'
-                          });
-                        }
-                      }
-                    },
-                    err => {
-                      console.error(err)
-                      this.snackBarService.open('error  no se ha añadido la cancion a '+newList.name_songlist, {
-                        action: 'Error',
-                        milliseconds: 5000,
-                        icon: 'check_circle',
-                        iconPosition: 'left'
-                      });
-                    }
-                  );
-                this.snackBarService.open('open', {
-                  action: 'Done',
-                  milliseconds: 5000,
-                  icon: 'check_circle',
-                  iconPosition: 'left'
-                });
-                this.dialogRef.close(this.form.value);
-              } else if (userData['code'] == 1) {
-                this.snackBarService.open('warning', {
-                  action: 'Warning',
-                  milliseconds: 5000,
-                  icon: 'check_circle',
-                  iconPosition: 'left'
-                });
-              }
-            }
-          },
-          err => {
-            console.error(err)
-            this.snackBarService.open('error', {
-              action: 'Error',
-              milliseconds: 5000,
-              icon: 'check_circle',
-              iconPosition: 'left'
-            });
-          }
-        );
+
+      this.insertSongToACerateLIst(newList);
     }
   }
 
@@ -162,16 +101,17 @@ export class CreateListDialogComponent implements OnInit {
   inputChange(): boolean {
     return (this.form.get('lstName').status == 'VALID' && this.form.get('lstDescription').status == 'VALID');
   }
-  setcheked( isCheck: boolean, subtask :ISongListModel){
-    if (isCheck){
+  setcheked(isCheck: boolean, subtask: ISongListModel) {
+    if (isCheck) {
       subtask.checked = !subtask.checked;
-    }else{
+    } else {
       subtask.checked = !subtask.checked;
     }
-    if (isCheck && subtask.checked){
+    if (isCheck && subtask.checked) {
+      this.insertSongToALIst(subtask);
       this.sendRefreshList();
       this.sendRefreshSong();
-      this.snackBarService.open('se ha añadido la cancion a '+subtask.name_songlist, {
+      this.snackBarService.open('se ha añadido la cancion a ' + subtask.name_songlist, {
         action: 'Done',
         milliseconds: 5000,
         icon: 'check_circle',
@@ -179,10 +119,11 @@ export class CreateListDialogComponent implements OnInit {
       });
     }
 
-    else if (!isCheck && !subtask.checked){
+    else if (!isCheck && !subtask.checked) {
+     this.deleteSongToALIst(subtask);
       this.sendRefreshList();
       this.sendRefreshSong();
-      this.snackBarService.open('se ha eleminado la cancion de '+subtask.name_songlist, {
+      this.snackBarService.open('se ha eleminado la cancion de ' + subtask.name_songlist, {
         action: 'Done',
         milliseconds: 5000,
         icon: 'check_circle',
@@ -193,23 +134,216 @@ export class CreateListDialogComponent implements OnInit {
   }
   sendRefreshSong(): void {
     // send message to subscribers via observable subject
+    console.log('sendRefresh => song');
     this.listService.sendRefresh('song');
-}
+  }
   sendRefreshList(): void {
     // send message to subscribers via observable subject
+    console.log('sendRefresh => list');
     this.listService.sendRefresh('list');
-}
+  }
   sendRefreshAlbum(): void {
     // send message to subscribers via observable subject
+    console.log('sendRefresh => album');
     this.listService.sendRefresh('album');
-}
-sendRefreshAll(): void {
-  // send message to subscribers via observable subject
-  this.listService.sendRefresh('all');
-}
+  }
+  sendRefreshAll(): void {
+    // send message to subscribers via observable subject
+    console.log('sendRefresh => all');
+    this.listService.sendRefresh('all');
+  }
 
-clearMessages(): void {
+  clearMessages(): void {
     // clear messages
     this.listService.clearMessages();
-}
+  }
+
+
+  insertSongToALIst(subtask: ISongListModel) {
+    this.listService.addSong(this.songid, subtask.name_songlist)
+      .subscribe(
+        (userData: any) => {
+          if (userData['data']) {
+            if (userData['code'] == 0) {
+              this.sendRefreshList();
+              this.sendRefreshSong();
+              this.snackBarService.open('se ha añadido la cancion a ' + subtask.name_songlist, {
+                action: 'Done',
+                milliseconds: 5000,
+                icon: 'check_circle',
+                iconPosition: 'left'
+              });
+            } else if (userData['code'] == 1) {
+              this.snackBarService.open('warning  no se ha añadido la cancion a ' + subtask.name_songlist, {
+                action: 'Warning',
+                milliseconds: 5000,
+                icon: 'check_circle',
+                iconPosition: 'left'
+              });
+            }
+          }
+        },
+        err => {
+          console.error(err)
+          this.snackBarService.open('error  no se ha añadido la cancion a ' + subtask.name_songlist, {
+            action: 'Error',
+            milliseconds: 5000,
+            icon: 'check_circle',
+            iconPosition: 'left'
+          });
+        }
+      );
+  }
+  deleteSongToALIst(subtask: ISongListModel) {
+    this.listService.deleteSong(this.songid, subtask.name_songlist )
+      .subscribe(
+        (userData: any) => {
+          if (userData['data']) {
+            if (userData['code'] == 0) {
+              this.sendRefreshList();
+              this.sendRefreshSong();
+              this.snackBarService.open('se ha añadido la cancion a ' + subtask.name_songlist, {
+                action: 'Done',
+                milliseconds: 5000,
+                icon: 'check_circle',
+                iconPosition: 'left'
+              });
+            } else if (userData['code'] == 1) {
+              this.snackBarService.open('warning  no se ha añadido la cancion a ' + subtask.name_songlist, {
+                action: 'Warning',
+                milliseconds: 5000,
+                icon: 'check_circle',
+                iconPosition: 'left'
+              });
+            }
+          }
+        },
+        err => {
+          console.error(err)
+          this.snackBarService.open('error  no se ha añadido la cancion a ' + subtask.name_songlist, {
+            action: 'Error',
+            milliseconds: 5000,
+            icon: 'check_circle',
+            iconPosition: 'left'
+          });
+        }
+      );
+  }
+
+  insertSongToACerateLIst(newList) {
+    this.listService.insertList(newList.name_songlist, newList.description_songlist)
+      .subscribe(
+        (userData: any) => {
+          if (userData['data']) {
+            if (userData['code'] == 0) {
+              this.listService.addSong(this.songid, newList.name_songlist)
+                .subscribe(
+                  (userData: any) => {
+                    if (userData['data']) {
+                      if (userData['code'] == 0) {
+                        this.sendRefreshList();
+                        this.sendRefreshSong();
+                        this.snackBarService.open('se ha añadido la cancion a ' + newList.name_songlist, {
+                          action: 'Done',
+                          milliseconds: 5000,
+                          icon: 'check_circle',
+                          iconPosition: 'left'
+                        });
+                        this.dialogRef.close(this.form.value);
+                      } else if (userData['code'] == 1) {
+                        this.snackBarService.open('warning  no se ha añadido la cancion a ' + newList.name_songlist, {
+                          action: 'Warning',
+                          milliseconds: 5000,
+                          icon: 'check_circle',
+                          iconPosition: 'left'
+                        });
+                      }
+                    }
+                  },
+                  err => {
+                    console.error(err)
+                    this.snackBarService.open('error  no se ha añadido la cancion a ' + newList.name_songlist, {
+                      action: 'Error',
+                      milliseconds: 5000,
+                      icon: 'check_circle',
+                      iconPosition: 'left'
+                    });
+                  }
+                );
+              this.snackBarService.open('open', {
+                action: 'Done',
+                milliseconds: 5000,
+                icon: 'check_circle',
+                iconPosition: 'left'
+              });
+              this.dialogRef.close(this.form.value);
+            } else if (userData['code'] == 1) {
+              this.snackBarService.open('warning', {
+                action: 'Warning',
+                milliseconds: 5000,
+                icon: 'check_circle',
+                iconPosition: 'left'
+              });
+            }
+          }
+        },
+        err => {
+          console.error(err)
+          this.snackBarService.open('error', {
+            action: 'Error',
+            milliseconds: 5000,
+            icon: 'check_circle',
+            iconPosition: 'left'
+          });
+        }
+      );
+  }
+  getList(): ISongListModel[] {
+    console.log('songid =>', this.songid)
+    this.listService.getListIncludingSong(this.songid)
+      .subscribe(
+        (songListData: any) => {
+          console.log('{ getList()}___songListData[\'data\']', songListData['data']);
+          if (songListData['data']) {
+            console.log('getList()}___songListData[\'code\']', songListData['code']);
+
+            if (songListData['code'] == 0) {
+              console.log('getList()}___songListData[\'data\'].length', songListData['data'].length);
+              if (songListData['data'].length) {
+                if (songListData['data'].length > 0) {
+                  this.list = songListData['data'];
+                  console.log('start list == >', this.list);
+                  this.subtasks.forEach(t => {
+                    let songInList: boolean = false;
+                    this.list.forEach(c =>{
+                      if (c.name_songlist == t.name_songlist){
+                        songInList = true;
+                      }
+                      });
+                    t.checked = songInList ? true : false;
+                    console.log('t.name_songlist',t.name_songlist);
+                    console.log('this.list',this.list);
+                    console.log('this.list',this.list);
+                    console.log('this.list.includes(t.name_songlist)',this.list.forEach(c =>{c.name_songlist == t.name_songlist}));
+                  });
+                  console.log('resultados mis listas ', this.subtasks);
+                  return this.list;
+                }
+              }
+            } else if (songListData['code'] == 1) {
+              this.subtasks.forEach(t => t.checked =  false);
+              return null;
+            }
+          }
+          return null;
+
+        },
+        err => {
+          console.error(err)
+          this.subtasks.forEach(t => t.checked =  false);
+          return null;
+        }
+      );
+      return null;
+  }
 }

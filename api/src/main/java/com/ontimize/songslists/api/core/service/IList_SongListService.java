@@ -20,4 +20,5 @@ public interface IList_SongListService {
 	public EntityResult list_songlistDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
 	public int getImgID(String nameSongList);
 	public int getImgID();
+	public int getList_SongListID(int idSong, String nameSongList);
 }

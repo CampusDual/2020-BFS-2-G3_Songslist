@@ -29,7 +29,7 @@ public class SonglistService implements ISonglistService{
 	 @Override
 	 public EntityResult songlistQuery(Map<String, Object> keyMap, List<String> attrList)
 	   throws OntimizeJEERuntimeException {
-		/*	if (keyMap.containsKey("id_user")){
+			if (keyMap.containsKey("id_user")){
 				keyMap.remove("id_user");
 			}
 			if (keyMap.containsKey("user")) {
@@ -38,6 +38,7 @@ public class SonglistService implements ISonglistService{
 				}
 				keyMap.remove("user");
 			}
+			/*
 			EntityResult res = this.daoHelper.query(this.songlistDao, keyMap, attrList);
 			
 			if (keyMap.get("name_songlist")!="") {

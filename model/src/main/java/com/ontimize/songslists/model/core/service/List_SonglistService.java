@@ -27,6 +27,7 @@ public class List_SonglistService implements IList_SongListService {
 	private DefaultOntimizeDaoHelper daoHelper;
 	@Autowired private IUserService userSrv;
 	@Autowired private ISonglistService songListSrv;
+	 @Autowired private ISonglistService songlistService;
 
 	@Override
 	public EntityResult list_songlistQuery(Map<String, Object> keyMap, List<String> attrList)
@@ -72,6 +73,12 @@ public class List_SonglistService implements IList_SongListService {
 
 	@Override
 	public EntityResult list_songlistDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+		if (keyMap.containsKey("name_songlist")){
+		String name_SongList = (String)keyMap.get("name_songlist");
+		keyMap.remove("name_songlist");
+		int songListid = songListSrv.getSongListID(name_SongList);
+		keyMap.put("id_songlist",songListSrv.getSongListID(name_SongList));
+		}
 		return this.daoHelper.delete(this.list_songlistDao, keyMap);
 	}
 	
@@ -100,6 +107,22 @@ public class List_SonglistService implements IList_SongListService {
 			myList.add("name_songlist");
 			EntityResult enRest = this.daoHelper.query(this.list_songlistDao, mykeyMap, myList);
 			Vector contentID = (Vector) enRest.get("img_album");
+			System.out.println(contentID.toString());
+			int id = (int) contentID.elementAt(0);
+			return id;
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+	public int getList_SongListID(int idSong, String nameSongList) {
+		try {
+			HashMap<String, Object> mykeyMap = new HashMap<String, Object>();
+			mykeyMap.put("id_song", idSong);
+			mykeyMap.put("id_songlist",songlistService.getSongListID(nameSongList));
+			List<String> myList = new ArrayList<String>();
+			myList.add("id_list_songlist");
+			EntityResult enRest = this.daoHelper.query(this.list_songlistDao, mykeyMap, myList);
+			Vector contentID = (Vector) enRest.get("id_list_songlist");
 			System.out.println(contentID.toString());
 			int id = (int) contentID.elementAt(0);
 			return id;

@@ -111,4 +111,54 @@ export class ListService extends OntimizeEEService {
         });
         return dataObservable.pipe(share());
     }
+     deleteSong(id_song : number , name_songlist: string ){
+        const url = CONFIG.apiEndpoint + '/' + 'list_songlists/delSong';
+        var dataObject = {}
+        if (name_songlist ) dataObject['name_songlist']=name_songlist ;
+        if (id_song ) dataObject['id_song']=id_song ;
+        var options = {
+           headers: this.buildHeaders()
+        };
+      var body = JSON.stringify({
+        filter: dataObject
+
+   });
+        var self = this;
+        var dataObservable = new Observable(function (_innerObserver) {
+
+            self.httpClient.post(url,body, options).subscribe(function (resp) {
+                self.parseSuccessfulQueryResponse(resp, _innerObserver);
+
+            }, function (error) {
+                self.parseUnsuccessfulQueryResponse(error, _innerObserver);
+            }, function () { return _innerObserver.complete(); });
+        });
+        return dataObservable.pipe(share());
+    }
+
+    
+    getListIncludingSong(songId : number) {
+        const url = CONFIG.apiEndpoint + '/' + 'songlists/songlist/search';
+        var options = {
+            headers: this.buildHeaders()
+        };
+        var body = JSON.stringify({
+            filter: {
+                id_song: songId,
+                "user": "owner"
+                 },
+            columns: ['name_songlist'],
+        });    
+        var self = this;
+        var dataObservable = new Observable(function (_innerObserver) {
+            self.httpClient.post(url, body, options).subscribe(function (resp) {
+    
+                self.parseSuccessfulQueryResponse(resp, _innerObserver);
+    
+            }, function (error) {
+                self.parseUnsuccessfulQueryResponse(error, _innerObserver);
+            }, function () { return _innerObserver.complete(); });
+        });
+        return dataObservable.pipe(share());
+    }
 }

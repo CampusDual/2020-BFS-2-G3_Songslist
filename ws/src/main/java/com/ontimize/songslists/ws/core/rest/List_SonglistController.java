@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.ontimize.songslists.api.core.service.IList_SongListService;
+import com.ontimize.songslists.api.core.service.ISonglistService;
 import com.ontimize.songslists.model.core.dao.List_SonglistDao;
 import com.ontimize.songslists.model.core.dao.SonglistDao;
 import com.ontimize.db.EntityResult;
@@ -29,6 +30,9 @@ public class List_SonglistController extends ORestController<IList_SongListServi
  @Autowired
  private IList_SongListService list_songlistService;
 
+ @Autowired
+ private ISonglistService songlistService;
+ 
  @Override
  public IList_SongListService getService() {
   return this.list_songlistService;
@@ -82,7 +86,28 @@ public class List_SonglistController extends ORestController<IList_SongListServi
 		return bexp1;
 	}
 	
-	
+	@RequestMapping(value = "/delSong", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult currenSearchSong(@RequestBody Map<?, ?> req) {
+		try{
+			Map<String, Object> filter = (Map<String, Object>) req.get("filter");
+			Map<String, Object> Myfilter = new HashMap<String, Object>();
+		if(filter.containsKey("id_song") && filter.containsKey("name_songlist")) {	
+			int songID = (int) filter.get("id_song");
+			String name =(String)filter.get("name_songlist");
+			int SongListID = songlistService.getSongListID((String)filter.get("name_songlist"));
+		int List_SongListID = list_songlistService.getList_SongListID(songID,name);
+		Myfilter.put("id_list_songlist", List_SongListID);
+		}else {
+			Myfilter =filter;
+		}
+		return list_songlistService.list_songlistDelete( Myfilter);
+		} catch (Exception e) {
+			e.printStackTrace();
+			EntityResult res = new EntityResult();
+			res.setCode(EntityResult.OPERATION_WRONG);
+			return res;
+		}
+	}
 	
 	
 }

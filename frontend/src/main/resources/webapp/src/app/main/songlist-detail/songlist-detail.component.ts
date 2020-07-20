@@ -11,6 +11,7 @@ import { SonglistService } from '../services/songlist.service';
 export class SonglistDetailComponent implements OnInit {
 
   public parametro: any;
+  public songListResult :  ISonglistDetailModel;
   public listResult : ISonglistDetailModel;
   constructor(
     private _route: ActivatedRoute,
@@ -22,6 +23,7 @@ export class SonglistDetailComponent implements OnInit {
       this.parametro = params['id'];
 
     });
+    this.ngOnStartList(this.parametro);
     this.ngOnStartDetail(this.parametro);
   }
   ngOnStartDetail(id: number){
@@ -36,6 +38,25 @@ export class SonglistDetailComponent implements OnInit {
       err => console.error(err)
     );
   }
+  ngOnStartList(id: number){
+    console.log('cargando lista',id );
+    this.songlistService.getSonglist(id).subscribe(
+      (sl: any) => {
+        console.log('StartList data',sl['data']);
+        if (sl['data']) {
+          console.log('StartList data lenght',sl['data'].length);
+          if (sl['data'].length > 0) {
+            console.log('StartList data array',sl['data'][0]);
+            this.songListResult = sl['data'][0];
+          } else { // si la búsqueda no devuelve resultados.
+            this.songListResult = null;
+          }
+        }
+      },
+      err => console.error(err) // en caso de error.
+    );
+  }
+
   getlistResult() {
     return this.listResult;
   }

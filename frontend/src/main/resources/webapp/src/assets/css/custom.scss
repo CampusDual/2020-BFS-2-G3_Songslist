@@ -34,6 +34,17 @@ $color-transparent: #00000000;
 
 }
 
+.x-to-close{
+    text-align: end;
+    position: initial !important;
+    color: $color-White;
+    cursor: pointer;
+    
+}
+.x-to-close:hover{
+    color: $color-select;
+}
+
 .button-back:hover button{
     color: $color-select;
 }

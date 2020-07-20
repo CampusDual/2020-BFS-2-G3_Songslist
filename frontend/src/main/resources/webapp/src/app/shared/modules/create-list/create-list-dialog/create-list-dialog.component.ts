@@ -111,24 +111,23 @@ export class CreateListDialogComponent implements OnInit {
       this.insertSongToALIst(subtask);
       this.sendRefreshList();
       this.sendRefreshSong();
-      this.snackBarService.open('se ha añadido la cancion a ' + subtask.name_songlist, {
-        action: 'Done',
-        milliseconds: 5000,
-        icon: 'check_circle',
-        iconPosition: 'left'
-      });
     }
 
     else if (!isCheck && !subtask.checked) {
      this.deleteSongToALIst(subtask);
       this.sendRefreshList();
       this.sendRefreshSong();
-      this.snackBarService.open('se ha eleminado la cancion de ' + subtask.name_songlist, {
-        action: 'Done',
-        milliseconds: 5000,
-        icon: 'check_circle',
-        iconPosition: 'left'
-      });
+    }
+    if (!isCheck && subtask.checked){
+      console.log('!isCheck && subtask.checked --> ', !isCheck && subtask.checked);
+      console.log('subtask.checked --> ', subtask.checked);
+      console.log('!isCheck  --> ', isCheck )
+      
+    }
+    if (isCheck && !subtask.checked){
+      console.log('isCheck && !subtask.checked --> ', isCheck && !subtask.checked);
+      console.log('!subtask.checked --> ', subtask.checked);
+      console.log('isCheck  --> ', isCheck )
     }
 
   }
@@ -202,7 +201,7 @@ export class CreateListDialogComponent implements OnInit {
             if (userData['code'] == 0) {
               this.sendRefreshList();
               this.sendRefreshSong();
-              this.snackBarService.open('se ha añadido la cancion a ' + subtask.name_songlist, {
+              this.snackBarService.open('se ha eliminado la cancion a ' + subtask.name_songlist, {
                 action: 'Done',
                 milliseconds: 5000,
                 icon: 'check_circle',

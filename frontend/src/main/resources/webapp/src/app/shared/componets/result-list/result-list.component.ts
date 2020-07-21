@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { ISongListModel } from '../../models/isongList.model';
 import { LoginService, SnackBarService } from 'ontimize-web-ngx';
 import { ListService } from 'app/main/services/listService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-result-list',
@@ -17,6 +18,7 @@ export class ResultListComponent implements OnInit {
     @Inject(LoginService) private loginService: LoginService,
     public listService: ListService,
     protected snackBarService: SnackBarService,
+    public router: Router
   ) {
     this.loggedIn =  loginService.isLoggedIn();
    }
@@ -27,11 +29,13 @@ export class ResultListComponent implements OnInit {
     return this.owner;
   }
   onClickOK($event){
+    $event.stopPropagation();
     this.homeLinkEnabled = false;
   console.log('click on ok button');
   this.homeLinkEnabled = true;
   }
   onClickCloused($event,list : ISongListModel){
+    $event.stopPropagation();
     this.homeLinkEnabled = false;
     console.log('click on cloused button');
     this.deleteList(list );
@@ -73,6 +77,15 @@ export class ResultListComponent implements OnInit {
           });
         }
       );
+  }
+  onClickGrid($event , list: ISongListModel ){
+    $event.stopPropagation();
+    if ( this.homeLinkEnabled){
+      console.log('link a --> /main/songlistdetail' );
+      this.router.navigate(['/main/songlistdetail' , list.id_songlist]);
+     // [routerLink]=['/main/songlistdetail', list.id_songlist] ;
+      // [queryParams]="{id: list.id_songlist}";
+    }
   }
 
 

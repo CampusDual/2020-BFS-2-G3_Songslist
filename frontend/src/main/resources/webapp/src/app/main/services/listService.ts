@@ -136,21 +136,20 @@ export class ListService extends OntimizeEEService {
         return dataObservable.pipe(share());
     }
     deleteList(id_songlist: number ){
-        const url = CONFIG.apiEndpoint + '/' + 'list_songlists/list_songlist/'+ id_songlist;
-        // var dataObject = {}
-        // if (name_songlist ) dataObject['name_songlist']=name_songlist ;
-        // if (id_song ) dataObject['id_song']=id_song ;
+        const url = CONFIG.apiEndpoint + '/' + 'list_songlists/delSonglist';
+         var dataObject = {}
+         if (id_songlist ) dataObject['id_songlist']=id_songlist ;
         var options = {
            headers: this.buildHeaders()
         };
-//       var body = JSON.stringify({
-//         filter: dataObject
+      var body = JSON.stringify({
+         filter: dataObject
 
-//    });
+    });
         var self = this;
         var dataObservable = new Observable(function (_innerObserver) {
 
-            self.httpClient.delete(url, options).subscribe(function (resp) {
+            self.httpClient.post(url, body, options).subscribe(function (resp) {
                 self.parseSuccessfulQueryResponse(resp, _innerObserver);
 
             }, function (error) {

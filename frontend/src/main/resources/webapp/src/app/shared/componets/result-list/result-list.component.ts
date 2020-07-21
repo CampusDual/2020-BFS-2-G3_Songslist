@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { ISongListModel } from '../../models/isongList.model';
-import { LoginService, SnackBarService } from 'ontimize-web-ngx';
+import { LoginService, SnackBarService, DialogService } from 'ontimize-web-ngx';
 import { ListService } from 'app/main/services/listService';
 import { Router } from '@angular/router';
 
@@ -20,7 +20,8 @@ export class ResultListComponent implements OnInit {
     @Inject(LoginService) private loginService: LoginService,
     public listService: ListService,
     protected snackBarService: SnackBarService,
-    public router: Router
+    public router: Router,
+    protected dialogService: DialogService
   ) {
     this.loggedIn =  loginService.isLoggedIn();
    }
@@ -39,7 +40,21 @@ export class ResultListComponent implements OnInit {
     $event.stopPropagation();
     this.homeLinkEnabled = false;
     console.log('click on cloused button');
-    this.deleteList(list );
+    if (this.dialogService) {
+      const dialogRef  = this.dialogService.confirm('Confirm dialog title', 'Do you really want to accept?');
+      // dialogRef.afterClosed().subscribe(result => {
+      //   console.log(`Dialog result: ${result}`);
+      // });
+     console.log('dialogo', this.dialogService);
+
+
+      
+     
+     this.deleteList(list );
+      this.sendRefreshSong();
+      this.sendRefreshList();
+    }
+  
     this.homeLinkEnabled = true;
   }
 
@@ -115,6 +130,18 @@ export class ResultListComponent implements OnInit {
     // clear messages
     this.listService.clearMessages();
   }
-
+  getFiles() {
+    return {
+      'html': {
+        'data': HTML_DATA
+      },
+      'scss': {
+        'data': undefined
+      },
+      'typescript': {
+        'data': TYPESCRIPT_DATA
+      }
+    };
+  }
 
 }

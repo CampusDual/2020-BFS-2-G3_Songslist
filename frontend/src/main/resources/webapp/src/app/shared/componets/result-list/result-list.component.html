@@ -6,7 +6,7 @@
 
   // *** grid-item que ejerce de botón para añadir nuevas listas de canciones ***
 
-  <div *ngIf="owner">
+  <div *ngIf="loggedIn">
     <!-- <span *ngIf="loggedIn">-->
     <o-grid-item>
       <app-create-list [action]="false"></app-create-list>
@@ -17,8 +17,8 @@
     <o-grid-item *ngFor="let list of grid.dataArray" width="175rem">
       <o-column layout-padding class=" container-item center " width=" 175rem"  (click)=" homeLinkEnabled? onClickGrid($event, list): null">
         <div class="div-content-button"width="175rem" style="width: max-content;">
-            <button  mat-mini-fab  color="primary" class="content-button-left"  icon="done" type="FAB-MINI"  (click)="onClickOK($event)" style="left: 0;"> <mat-icon>done</mat-icon></button>
-            <button  mat-mini-fab  color="primary" class="content-button-right"   icon = "highlight_off" type="FAB-MINI"  (click)="onClickCloused($event,list)" style="right: 0;"> <mat-icon>highlight_off</mat-icon></button>
+            <button *ngIf="list.owner" mat-mini-fab  color="primary" class="content-button-left"  icon="done" type="FAB-MINI"  (click)="onClickOK($event)" style="left: 0;"> <mat-icon>done</mat-icon></button>
+            <button *ngIf="list.owner" mat-mini-fab  color="primary" class="content-button-right"   icon = "highlight_off" type="FAB-MINI"  (click)="onClickCloused($event,list)" style="right: 0;"> <mat-icon>highlight_off</mat-icon></button>
             <img class="self-center" *ngIf="list.image" src="./assets/images/album/{{list.image}}.jfif"
               style="margin-top:8px; align-self:center" width="175rem" height="175rem" >
             <img class="self-center" *ngIf="!list.image" src="./assets/images/album/0.jfif" style="margin-top:8px"

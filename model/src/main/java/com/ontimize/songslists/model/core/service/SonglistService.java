@@ -33,14 +33,12 @@ public class SonglistService implements ISonglistService{
 				keyMap.remove("id_user");
 			}
 			if (keyMap.containsKey("user")) {
-				if (keyMap.get("user") == "owner") {
+				if (keyMap.get("user").equals("owner")) {
 			keyMap.put("id_user", userSrv.getID());
 				}
 				keyMap.remove("user");
 			}
-			if (keyMap.containsKey("id_user")){
-				keyMap.remove("id_user");
-			}
+			
 			if (keyMap.containsKey("id_songlist")){
 				int a = Integer.parseInt((String)keyMap.get("id_songlist"));
 				keyMap.put("id_songlist",a);
@@ -64,7 +62,7 @@ public class SonglistService implements ISonglistService{
 			}
 			
 			return res; */
-
+				keyMap.toString();
 				return this.daoHelper.query(songlistDao, keyMap, attrList);
 			
 		 

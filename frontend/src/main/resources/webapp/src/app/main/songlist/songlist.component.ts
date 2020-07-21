@@ -11,6 +11,7 @@ import { ISonglistDetailModel } from 'app/shared/models/isonglistDetailModel';
 import { MatRadioChange, MatTableDataSource, MatPaginator } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { CONFIG } from 'app/app.config';
+import { ToolsService } from '../services/tools.service';
 
 @Component({
   selector: 'app-songlist',
@@ -18,8 +19,9 @@ import { CONFIG } from 'app/app.config';
   styleUrls: ['./songlist.component.scss']
 })
 export class SonglistComponent implements OnInit {
-
+  private dataRest : ISongListModel[];
   private resultados: ISongListModel[];
+  private MyList : ISongListModel[];
   private img: number = 0;
   private numSongs: number = 0;
   owner: boolean;
@@ -36,31 +38,33 @@ export class SonglistComponent implements OnInit {
     private renderer: Renderer2,
     private _route: ActivatedRoute,
     private songlistService: SonglistService,
+    private toolsService :ToolsService,
     private listService: ListService,
     private dialogService: DialogService
   ) { }
 
   ngOnInit(
   ) {
-    this.cleanSearch();
-    this.owner ? this.loadMySonglists(this.searchText) : this.loadSonglists(this.searchText);
-
+    this.search();
   }
 
-  cleanSearch() {
-    this.inputSearch("List", "");
-  }
 
+  search(searchText? : string){
+     (searchText)?   this.loadSonglistOwnerId(searchText) : this.loadSonglistOwnerId();
+  }
   /*
   Método que llama a un servicio para consultar las listas de canciones del usuario logueado.
   */
-  loadMySonglists(searchText : string) {
-    this.songlistService.getAllSonglist(searchText).subscribe(
+  loadSonglistOwnerId(searchText? : string) {
+    this.listService.getSonglistOwnerId().subscribe(
       (sl: any) => {
         if (sl['data']) {
           if (sl['data'].length > 0) {
             this.owner = true;
-            this.resultados = sl['data'];
+            this.MyList = sl['data'];
+            console.log('loadSonglistOwnerId  variables vacias ');
+            console.log('loadSonglistOwnerId variables vacias MyList',this.MyList);
+            (searchText)?  this.loadSonglists(searchText) : this.loadSonglists();
           } else { // si la búsqueda no devuelve resultados.
             this.resultados = null;
           }
@@ -70,15 +74,41 @@ export class SonglistComponent implements OnInit {
     );
   }
 
-  loadSonglists(searchtext : string) {
+  loadSonglists(searchtext? : string) {
+    let a : boolean = false;
     console.log('_____operation List_______');
-    this.songlistService.getPublicSonglist(searchtext).subscribe(
+   let  f = searchtext ? this.songlistService.getPublicSonglist(searchtext) : this.songlistService.getPublicSonglist() ;
+   f.subscribe(
       (sl: any) => {
         if (sl['data']) {
+          console.log('llega a data ',sl['data']);
           if (sl['data'].length > 0) {
             this.owner = false;
             this.resultados = null;
             this.resultados = sl['data'];
+            console.log('loadSonglists  variables vacias ');
+            console.log('loadSonglists  variables vacias resultados ', this.resultados );
+            console.log('loadSonglists variables vacias MyList', this.MyList);
+            if (this.resultados && this.MyList){
+            this.resultados.forEach( t => {
+              //t.owner = (t.nick_user == this.toolsService.getNickUser()) ? true : false;
+                  this.MyList.forEach( c => {
+                    if (t.id_songlist == c.id_songlist){
+                      a = true;
+                    }
+                  });
+                  t.owner = a ? true : false;
+                  a = false;
+            });
+            this.dataRest = this.resultados;
+            console.log('app-songlist   cargado dataRes',this.dataRest);
+          }else {
+            console.log('loadSonglists  variables vacias ');
+            console.log('loadSonglists  variables vacias resultados ',this.resultados );
+            console.log('loadSonglists variables vacias MyList',this.MyList);
+            console.log('loadSonglists variables vacias dataRest', this.dataRest);
+          }
+
           } else { // si la búsqueda no devuelve resultados.
             this.resultados = null;
           }
@@ -113,24 +143,12 @@ export class SonglistComponent implements OnInit {
   }
 
 
-  inputSearch(radioSelected: string, searchText: string) {
-    this.searchText = searchText;
-    if(radioSelected == 'MyList')  this.loadMySonglists(this.searchText); 
-    else this.loadSonglists(this.searchText);
-  }
 
-  onClickRadio(radio: MatRadioChange) {
-    this.radioSelected = radio.value;
-    console.log("radio = ", radio.value);
-    console.log("RadioSelected", this.radioSelected)
-    this.stringValidate();
-    this.inputSearch(this.radioSelected, this.searchText);
-  }
 
   onItemChange($event) {
     this.searchText = $event;
     this.stringValidate();
-    this.inputSearch(this.radioSelected, this.searchText);
+    this.search( this.searchText);
 
   }
 

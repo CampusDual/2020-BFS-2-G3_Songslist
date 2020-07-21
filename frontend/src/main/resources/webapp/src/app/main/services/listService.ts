@@ -185,4 +185,29 @@ export class ListService extends OntimizeEEService {
         });
         return dataObservable.pipe(share());
     }
+
+    getSonglistOwnerId() {
+        const url = CONFIG.apiEndpoint + '/' + 'songlists/songlist/search';
+        var options = {
+            headers: this.buildHeaders()
+        };
+        var body = JSON.stringify({
+            filter: {
+                "user": "owner"
+                 },
+            columns: ['id_songlist'],
+        });    
+        var self = this;
+        var dataObservable = new Observable(function (_innerObserver) {
+            self.httpClient.post(url, body, options).subscribe(function (resp) {
+    
+                self.parseSuccessfulQueryResponse(resp, _innerObserver);
+    
+            }, function (error) {
+                self.parseUnsuccessfulQueryResponse(error, _innerObserver);
+            }, function () { return _innerObserver.complete(); });
+        });
+        return dataObservable.pipe(share());
+    }
+
 }

@@ -9,5 +9,6 @@ export interface ISongListModel {
       checked? : boolean;
       image? : number;
       numSongs? : number;
+      owner?:boolean;
    }
   

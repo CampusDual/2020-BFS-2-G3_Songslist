@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ResultListComponent implements OnInit {
   loggedIn : boolean ;
-  @Input( "data") data :ISongListModel[] ;
-  @Input( "owner") owner :boolean ;
+  @Input( "data") data : ISongListModel[] ;
+
   homeLinkEnabled: boolean = true;
   constructor(
     @Inject(LoginService) private loginService: LoginService,
@@ -23,11 +23,9 @@ export class ResultListComponent implements OnInit {
     this.loggedIn =  loginService.isLoggedIn();
    }
   ngOnInit() {
-    this.getOwnerValue();
+    console.log('app-result-list', this.data);
   }
-  getOwnerValue():boolean{
-    return this.owner;
-  }
+
   onClickOK($event){
     $event.stopPropagation();
     this.homeLinkEnabled = false;

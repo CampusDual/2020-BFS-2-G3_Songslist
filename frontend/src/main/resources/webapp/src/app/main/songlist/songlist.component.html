@@ -1,22 +1,4 @@
-<div fxLayout="column" style="padding: 2rem; display: grid; min-height: min-content;">
-    <br>
 
-      <div fxLayout="row" fxFill fxLayoutAlign="center " style="width: max-content; display: grid; height: fit-content;">
-        <mat-radio-group style="height: fit-content;">
-
-          <mat-radio-button #radiobutton class="form-check-input-song" type="radio" value="MyList" name="radio-search"
-            (change)="onClickRadio($event)" aria-selected="owner" style="padding-right: 2rem ;">
-            {{'MY_LISTS' | oTranslate}}
-          </mat-radio-button>
-
-
-          <mat-radio-button #radiobutton class="form-check-input-album" type="radio" value="List" name="radio-search"
-            (change)="onClickRadio($event)" aria-selected="!owner" checked="checked"> {{'PUBLIC_LISTS' | oTranslate}}
-          </mat-radio-button>
-
-          </mat-radio-group>
-      </div>
-</div>
 
 <div>
   <form class="form-width">
@@ -42,8 +24,8 @@
 <br>
 <hr>
 <br>
-<div *ngIf="resultados">
-  <div *ngIf="resultados.length > 0">
-    <app-result-list [data]="resultados" [owner]=[owner]></app-result-list>
+<div *ngIf="dataRest">
+  <div *ngIf="dataRest.length > 0">
+    <app-result-list [data]="dataRest" [owner]=[owner]></app-result-list>
   </div>
 </div>

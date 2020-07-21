@@ -26,6 +26,6 @@
 <br>
 <div *ngIf="dataRest">
   <div *ngIf="dataRest.length > 0">
-    <app-result-list [data]="dataRest" [owner]=[owner]></app-result-list>
+    <app-result-list [dataMyList]="dataRestMyList" [dataRestList]="dataRestList"></app-result-list>
   </div>
 </div>

@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
 })
 export class ResultListComponent implements OnInit {
   loggedIn : boolean ;
-  @Input( "data") data : ISongListModel[] ;
+
+  @Input( "dataMyList") dataMyList : ISongListModel[] ;
+  @Input( "dataRestList") dataRestList : ISongListModel[] ;
 
   homeLinkEnabled: boolean = true;
   constructor(
@@ -23,7 +25,8 @@ export class ResultListComponent implements OnInit {
     this.loggedIn =  loginService.isLoggedIn();
    }
   ngOnInit() {
-    console.log('app-result-list', this.data);
+    console.log('app-result-list', this.dataMyList);
+    console.log('app-result-list', this.dataRestList);
   }
 
   onClickOK($event){

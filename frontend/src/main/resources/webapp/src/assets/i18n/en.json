@@ -42,6 +42,7 @@
   "GENRE": "Genre",
   "GUEST_ACCESS": "Guest access",
   "HOME": "Home",
+  "LAST_ALBUMS_ADDED": "Last albums added",
   "LOGIN": "Login",
   "LOGOUT": "Logout",
   "MIN_LENGHT_SIX": "Password must contain at least 6 characters",

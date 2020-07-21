@@ -16,12 +16,12 @@
   <span *ngIf="grid.dataArray">
     <o-grid-item *ngFor="let list of grid.dataArray"  width="175rem" >
       <span [routerLink]="homeLinkEnabled ?['/main/songlistdetail', list.id_songlist] : null" [queryParams]="{id: list.id_songlist}" href="#">
-        <o-column layout-padding class="container-item center "width="175rem">
-          <div class="div-content-button"width="175rem">
-            <button  mat-mini-fab  color="primary" class="content-button-left"  icon="done" type="FAB-MINI"  (click)="onClickOK($event)"> <mat-icon>done</mat-icon></button>
-            <button  mat-mini-fab  color="primary" class="content-button-right"   icon = "highlight_off" type="FAB-MINI"  (click)="onClickCloused($event,list)"> <mat-icon>highlight_off</mat-icon></button>
+        <o-column layout-padding class="container-item center " width="175rem">
+          <div class="div-content-button"width="175rem" style="width: max-content;">
+            <button  mat-mini-fab  color="primary" class="content-button-left"  icon="done" type="FAB-MINI"  (click)="onClickOK($event)" style="left: 0;"> <mat-icon>done</mat-icon></button>
+            <button  mat-mini-fab  color="primary" class="content-button-right"   icon = "highlight_off" type="FAB-MINI"  (click)="onClickCloused($event,list)" style="right: 0;"> <mat-icon>highlight_off</mat-icon></button>
             <img class="self-center" *ngIf="list.image" src="./assets/images/album/{{list.image}}.jfif"
-              style="margin-top:8px" width="175rem" height="175rem">
+              style="margin-top:8px; align-self:center" width="175rem" height="175rem" >
             <img class="self-center" *ngIf="!list.image" src="./assets/images/album/0.jfif" style="margin-top:8px"
               width="175rem" height="175rem">
           </div>

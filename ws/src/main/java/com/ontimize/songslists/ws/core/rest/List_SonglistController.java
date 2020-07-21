@@ -109,5 +109,23 @@ public class List_SonglistController extends ORestController<IList_SongListServi
 		}
 	}
 	
-	
+	@RequestMapping(value = "/delSonglist", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult deleteSonglist(@RequestBody Map<?, ?> req) {
+		try{
+			Map<String, Object> filter = (Map<String, Object>) req.get("filter");
+			Map<String, Object> Myfilter = new HashMap<String, Object>();
+		if(filter.containsKey("id_songlist")) {	
+			int songlistID = (int) filter.get("id_songlist");
+		Myfilter.put("id_songlist", songlistID);
+		}else {
+			Myfilter =filter;
+		}
+		return songlistService.songlistDelete( Myfilter);
+		} catch (Exception e) {
+			e.printStackTrace();
+			EntityResult res = new EntityResult();
+			res.setCode(EntityResult.OPERATION_WRONG);
+			return res;
+		}
+	}
 }

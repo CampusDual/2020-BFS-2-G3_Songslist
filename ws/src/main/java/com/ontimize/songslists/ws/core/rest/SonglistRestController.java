@@ -43,21 +43,23 @@ public class SonglistRestController extends ORestController<ISonglistService>  {
 	public EntityResult currentSearch(@RequestBody Map<String, Object> req) {
 	 
 		try {
+			String songlistToSearch = "";
 			List<String> columns = (List<String>) req.get("columns");
 			Map<String, Object> filter = (Map<String, Object>) req.get("filter");
-			
-			String songlistToSearch = (String) filter.get("SONGLIST");
+			if (filter.containsKey("SONGLIST")){
+			 songlistToSearch = (String) filter.get("SONGLIST");
+			}
 			String userToSearch = (String) filter.get("USER");
 	
 			Map<String, Object> key = new HashMap<String, Object>();
-			if(userToSearch.equals("")) {
+			if(filter.containsKey("SONGLIST")) {
 				key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
 						searchPublicLike(songlistToSearch, userToSearch));
 				
 			}else {			
 			
 			key.put(SQLStatementBuilder.ExtendedSQLConditionValuesProcessor.EXPRESSION_KEY,
-					searchPrivateLike(songlistToSearch, userToSearch));
+					searchPrivateLike( userToSearch));
 			}
 			return songlistService.songlistQuery(key, columns);
 		} catch (Exception e) {
@@ -68,12 +70,12 @@ public class SonglistRestController extends ORestController<ISonglistService>  {
 		}
 	}
 
-	private BasicExpression searchPrivateLike(String songlistToSearch, String userToSearch) {
+	private BasicExpression searchPrivateLike( String userToSearch) {
 			
 		BasicField songlists = new BasicField(SonglistDao.ATTR_SONGLIST_NAME);
 		BasicField users = new BasicField(SonglistDao.ATTR_SONGLIST_NICK_USER);
-		BasicExpression bexp1 = new BasicExpression(songlists, BasicOperator.LIKE_OP, "%"+songlistToSearch+"%");
-		BasicExpression bexp2 = new BasicExpression(users, BasicOperator.LIKE_OP, userToSearch);
+		BasicExpression bexp1 = new BasicExpression(songlists, BasicOperator.LIKE_OP, "%"+"%");
+		BasicExpression bexp2 = new BasicExpression(users, BasicOperator.LIKE_OP, "%"+"%");
 		return new BasicExpression(bexp1, BasicOperator.AND_OP, bexp2);
 	}
 	private BasicExpression searchPublicLike(String songlistToSearch, String userToSearch) {
@@ -81,7 +83,7 @@ public class SonglistRestController extends ORestController<ISonglistService>  {
 		BasicField songlists = new BasicField(SonglistDao.ATTR_SONGLIST_NAME);
 		BasicField users = new BasicField(SonglistDao.ATTR_SONGLIST_NICK_USER);
 		BasicExpression bexp1 = new BasicExpression(songlists, BasicOperator.LIKE_OP, "%"+songlistToSearch+"%");
-		BasicExpression bexp2 = new BasicExpression(users, BasicOperator.LIKE_OP, "%"+userToSearch+"%");
+		BasicExpression bexp2 = new BasicExpression(users, BasicOperator.LIKE_OP, "%"+"%");
 		return new BasicExpression(bexp1, BasicOperator.AND_OP, bexp2);
 	}
 	

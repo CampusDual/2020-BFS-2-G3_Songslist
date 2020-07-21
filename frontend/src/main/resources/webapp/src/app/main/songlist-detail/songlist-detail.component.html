@@ -44,9 +44,9 @@
 <br>
 
 
-<div *ngIf=" listResult">
+<div *ngIf=" listResult && songListResult">
   <div *ngIf=" listResult.length > 0">
-    <app-result-container [data]="listResult"></app-result-container>
+    <app-result-container [data]="listResult" [songlistData]="songListResult" ></app-result-container>
   </div>
 </div>
 

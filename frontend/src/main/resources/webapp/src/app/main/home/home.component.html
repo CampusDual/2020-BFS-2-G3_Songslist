@@ -32,8 +32,22 @@
       </mat-form-field>
     </form>
   </div>
+  <span *ngIf="default && resultNewAlbums">
+    <div>
+      <app-result-container [dataAlbums]="resultNewAlbums" >
+      </app-result-container>
+    </div>
+  </span>
+  <span>
 
-  <div *ngIf=" searchSongs.length > 0">
-    <app-result-container [data]="searchSongs"></app-result-container>
-  </div>
-  
+  </span>
+
+  <span *ngIf="!default">
+    <div *ngIf="!searchSongs">
+      <p>Búsqueda sin resultados</p>
+    </div>
+    <div *ngIf=" searchSongs">
+      <app-result-container [data]="searchSongs" >
+      </app-result-container>
+    </div>
+  </span>

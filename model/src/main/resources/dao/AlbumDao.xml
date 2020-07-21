@@ -39,6 +39,7 @@
                 LEFT JOIN ${mainschema}.tgenre g ON alb.id_genre = g.id_genre
             #WHERE#
             ORDER BY alb.id_album desc
+            LIMIT 5
             ]]>
         </Sentence>
      </Query>

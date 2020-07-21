@@ -13,4 +13,7 @@ export interface ISonglistDetailModel {
     id_artist : number;
     name_artist ?: string;
     description_song ?: string;
+    image?: number;
+    description_songlist?: string;
+
  }

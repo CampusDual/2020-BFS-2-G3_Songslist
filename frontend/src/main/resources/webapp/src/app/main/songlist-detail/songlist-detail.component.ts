@@ -12,7 +12,7 @@ export class SonglistDetailComponent implements OnInit {
 
   public parametro: any;
   public songListResult :  ISonglistDetailModel;
-  public listResult : ISonglistDetailModel;
+  public listResult : ISonglistDetailModel[];
   constructor(
     private _route: ActivatedRoute,
     private songlistService: SonglistService

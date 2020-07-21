@@ -130,18 +130,5 @@ export class ResultListComponent implements OnInit {
     // clear messages
     this.listService.clearMessages();
   }
-  getFiles() {
-    return {
-      'html': {
-        'data': HTML_DATA
-      },
-      'scss': {
-        'data': undefined
-      },
-      'typescript': {
-        'data': TYPESCRIPT_DATA
-      }
-    };
-  }
-
+  
 }

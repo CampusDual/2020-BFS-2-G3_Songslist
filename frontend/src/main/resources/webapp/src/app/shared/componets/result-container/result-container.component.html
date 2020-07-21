@@ -84,7 +84,10 @@
       <ng-container matColumnDef="Action" *ngIf="loggedIn">
         <mat-header-cell *matHeaderCellDef>{{'ACTION' | oTranslate}}</mat-header-cell>
         <mat-cell class="duration-cell" *matCellDef="let song">
-          <app-create-list [id]="song.id_song" [action]="true"></app-create-list>
+          <app-create-list *ngIf="!songlistData" [id]="song.id_song" [action]="true"></app-create-list>
+          <button *ngIf="songlistData" mat-button (click)="openDeleteSong(song)">
+            <mat-icon>delete</mat-icon> delete song of the list
+          </button>
         </mat-cell>
       </ng-container>
 

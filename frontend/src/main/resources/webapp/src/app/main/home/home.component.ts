@@ -9,15 +9,19 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { LoginService } from 'ontimize-web-ngx';
 import { Subscription } from 'rxjs';
 import { ListService } from '../services/listService';
+import { IAlbumModel } from 'app/shared/models/ialbum.model';
+import { AlbumService } from '../services/album.service';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy  {
+export class HomeComponent implements OnInit, OnDestroy {
+  resultNewAlbums: IAlbumModel[] = null;
+  resultNewSongs: ISongModel[] = null;
   refreshMessages: any[] = [];
-  refreshSubscription  : Subscription;
-  subscription : Subscription;
+  refreshSubscription: Subscription;
+  subscription: Subscription;
   tosearch;
   // input radio
   selectOptions: string[] = ['Song', 'Album', 'Genre', 'Artist'];
@@ -29,13 +33,15 @@ export class HomeComponent implements OnInit, OnDestroy  {
   mnjError: string;
   selection = new SelectionModel<ISongModel>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  loggedIn :boolean;
+  loggedIn: boolean;
+  default: boolean = true;
 
   constructor(
     private router: Router,
     private actRoute: ActivatedRoute,
     protected listService: ListService,
     protected homeService: HomeService,
+    protected albumService: AlbumService,
     private renderer: Renderer2,
     private _route: ActivatedRoute, // recivir parametro id
     @Inject(LoginService) private loginService: LoginService,
@@ -44,68 +50,93 @@ export class HomeComponent implements OnInit, OnDestroy  {
   }
 
   ngOnInit() {
+
     this.subscription = this._route.queryParams
       // .filter(params => params.tosearch )
       .subscribe(params => {
         if (params['tosearch'] === "ok") {
           const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
           let obj = myData['search'];
-          this.radioSelected =obj.radioSelect;
+          this.radioSelected = obj.radioSelect;
           this.searchText = obj.searchText
-          this.search( this.radioSelected,this.searchText);
+          //this.clean();
+          this.search(this.radioSelected, this.searchText);
         } else {
-          console.log('sub-to-parem', params);
-          this.defaultStart();
+          console.log("INIT ELSE ");
         }
       });
-      this.refreshSubscription = this.listService.getRefresh().subscribe(message => {
-        console.log('home-refreshSubscription-message',message);
-        if (message) {
-          console.log('home-refreshSubscription-message-refresh',message.action);
-          if (message.refresh){
-            if (message.refresh == "song" || message.refresh == "all"){
-              console.log('home-component recive  REFRESH_SONG OR REFRESH_ALL');
-              this.refreshMessages.push(message);
-              if (this.radioSelected && this.searchText ){
-              console.log('REFRESH_SONG OR REFRESH_ALL {radioSelected [', this.radioSelected,'], searchText[',this.searchText,']}');
+    this.refreshSubscription = this.listService.getRefresh().subscribe(message => {
+
+      if (message) {
+
+        if (message.refresh) {
+          if (message.refresh == "song" || message.refresh == "all") {
+
+            this.refreshMessages.push(message);
+            if (this.default) {
+              this.loadNewAlbums();
+            } else {
+
               this.search(this.radioSelected, this.searchText)
-              } else {
-                console.log('REFRESH_SONG OR REFRESH_ALL {defaultStart}');
-                this.defaultStart();
-              }
-        } else {
-          // clear messages when empty message received
-          this.refreshMessages = [];
+            }
+          } else {
+            // clear messages when empty message received
+            this.refreshMessages = [];
+          }
         }
       }
-      }
-      });
+    });
+    this.defaultStart();
 
   };
 
   defaultStart() {
-    this.search("all", "");
+    
+
+    if (this.default) {
+      this.loadNewAlbums();
+    }
+    else {
+      this.search(this.radioSelected, this.searchText);
+    }
+
+  }
+  loadNewAlbums() {
+    this.albumService.getNewAlbum().subscribe(
+      (albumData: any) => {
+        if (albumData['data']) {
+          if (albumData['data'].length > 0) {
+            this.resultNewAlbums = albumData['data'];
+            this.defaultStart();
+          }
+        }
+      },
+      err => console.error(err)
+    );
   }
 
   search(radioSelected: string, searchText: string) {
+    console.log('SEARCH ---> ', this.searchText);
     this.subscription = this.homeService.getSongData(radioSelected, searchText).subscribe(
       (x: any) => {
-        console.log('recibo todo ', x);
         if (x['data']) {
-          console.log('recibo la parte de data ', x['data']);
-          console.log('nº results ', x['data'].length);
           if (x['data'].length > 0) {
-            console.log('recibo todo ', x);
+            //this.searchSongs = [];
             this.searchSongs = x['data'];
             const myData = JSON.parse(localStorage.getItem(CONFIG.uuid));
             myData['search'] = { radioSelect: this.radioSelected, searchText: this.searchText };
+            console.log('searchSongs _____', this.searchSongs);
             localStorage.setItem(CONFIG.uuid, JSON.stringify(myData));
-            console.log('igualo la parte de data a mi variable y la muestro ', this.searchSongs);
             this.dataSource = new MatTableDataSource<ISongModel>(this.searchSongs);
             this.dataSource.paginator = this.paginator;
+            this.default = true;
+            this.default = false;
             //console.log('-------datasorce',this.dataSource);
           } else {
-            this.searchSongs = Array();
+            this.searchSongs=[];
+            this.default = false;
+            this.default = true;
+            
           }
         }
       },
@@ -124,54 +155,41 @@ export class HomeComponent implements OnInit, OnDestroy  {
   }
 
   stringValidate() { // take al words legth >3
-    let words: string[] = this.searchText.trim().split(' ');
-    console.log(words);
+    let words: string[] = this.searchText.trim().split(' ');    
     let wordToFind: string[] = new Array();
-    let a = false;
     for (let word of words) {
-      console.log('cada letra : ' + word);
       let trimword = word.trim();
-      console.log('condicion letra : ' + trimword.length);
-      console.log('letra aplicando trim : ' + trimword);
       if (trimword.length >= 3) {
-        console.log(trimword);
-        console.log(wordToFind);
         wordToFind.push(trimword);
-        a = true;
-      } else if (trimword.length == 0) {
-        a = true;
+      } else {
+        this.mnjError = `ERROR`;     
       }
     }
-    if (!a) {
-      this.mnjError = `ERROR`;
-      this.searchSongs = Array();
-    } else {
-      this.mnjError = '';
-    }
-    if (wordToFind) {
+    if (wordToFind) {      
       this.searchText = wordToFind.join(' ');
     }
   }
 
-
   onClickRadio(mrChange: MatRadioChange) {
-    console.log('event  radioSelected is : ', mrChange.value);
     this.radioSelected = mrChange.value;
-    this.stringValidate();
-    if (this.searchText.length > 2) {
-      console.log(' radioSelected is : ', this.radioSelected);
-      this.search(this.radioSelected, this.searchText);
-    }
+    this.stringValidate();    
   }
 
-  onItemChange($event) {
+  onItemChange($event) { 
+    this.default = false; 
+    this.default = true;      
+         
     this.searchText = $event;
     this.stringValidate();
-    if (this.searchText.length > 2) {
+    if(this.searchText.length >2){
+      // this.searchSongs = [];
       this.search(this.radioSelected, this.searchText);
-      console.log(' searchText is : ', this.searchText);
-    }else{this.searchText == ""}
+    }else {
+      this.default = true;      
+      this.defaultStart();      
+    }    
   }
+
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -193,12 +211,10 @@ export class HomeComponent implements OnInit, OnDestroy  {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
+
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();
-}
-
-
-
+  }
 }
 

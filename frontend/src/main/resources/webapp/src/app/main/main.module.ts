@@ -18,12 +18,15 @@ import { SonglistService } from './services/songlist.service';
 import { SonglistModule } from './songlist/songlist.module';
 import { SonglistDetailComponent } from './songlist-detail/songlist-detail.component';
 
+
 @NgModule({
   imports: [
     SharedModule,
     OntimizeWebModule,
     MainRoutingModule,
-    SonglistModule
+    SonglistModule,
+
+
   ],
   declarations: [
     AlbumComponent,

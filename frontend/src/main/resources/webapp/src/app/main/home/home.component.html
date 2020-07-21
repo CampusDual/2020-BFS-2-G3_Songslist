@@ -29,100 +29,25 @@
         <input class="mat-input-element" id="input" matInput #message maxlength="256"
           placeholder="{{'EXAMPLE_TEXT_SEARCH' | oTranslate}}" type="text" value="" name="input-search"
           (keyup)="onItemChange($event.target.value)" autocomplete="off">
-        <mat-hint align="start">
-          <strong>
-            <span *ngIf=" !mnjError " style="color: #0199c3">
-              {{'THREE_LETTER_MSJ' | oTranslate}}
-            </span>
-            <span class='mensaje-error' *ngIf=" mnjError  && mnjError.length > 0">
-              {{'THREE_LETTER_MSJ' | oTranslate}}
-            </span>
-          </strong>
-        </mat-hint>
-        <mat-hint align="end" style="color: #0199c3;">{{message.value.length}} / 256</mat-hint>
       </mat-form-field>
     </form>
   </div>
-  <div *ngIf=" searchSongs.length > 0">
-    <!-- Table  ==> aplicar los cambios Material -->
-    <div class="div-result">
-      <mat-table class="lessons-table mat-table-element" [dataSource]="dataSource">
-
-        <!-- Checkbox Column -->
-        <ng-container matColumnDef="select">
-          <th mat-header-cell *matHeaderCellDef>
-            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
-              [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
-            </mat-checkbox>
-          </th>
-          <td mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-              [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
-            </mat-checkbox>
-          </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="Img">
-          <mat-header-cell *matHeaderCellDef>{{'FRONT' | oTranslate}}</mat-header-cell>
-          <mat-cell *matCellDef="let song"><a [routerLink]="['/main/song',song.id_song]"
-              [queryParams]="{id: song.id_song}" href="#">
-              <!-- <img src='./assets/images/album/{{song.img_album}}'> -->
-              <o-image class="datasheet-img" attr="image" type="RAISED" fxFlex="40"
-                data="./assets/images/album/{{song.img_album}}.jfif" height="90%" width="20%" auto-fit="true"
-                enabled="true" read-only="true" show-controls="false" full-screen-button="false"
-                empty-image="./assets/images/no-image.png">
-              </o-image>
-            </a></mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="Song">
-          <mat-header-cell *matHeaderCellDef>{{'SONG' | oTranslate}}</mat-header-cell>
-          <mat-cell *matCellDef="let song">
-            <a [routerLink]="['/main/song',song.id_song]" [queryParams]="{id: song.id_song}" href="#">
-              {{song.name_song}}
-            </a></mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="Album">
-          <mat-header-cell *matHeaderCellDef>{{'ALBUM' | oTranslate}}</mat-header-cell>
-          <mat-cell class="duration-cell" *matCellDef="let song">
-
-            <a [routerLink]="['/main/album', song.id_album]" [queryParams]="{id: song.id_album}" href="#">
-
-              {{song.name_album}}
-            </a></mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="Artist">
-          <mat-header-cell *matHeaderCellDef>{{'ARTIST' | oTranslate}}</mat-header-cell>
-          <mat-cell class="description-cell" *matCellDef="let song">
-            <a [routerLink]="['/main/artist', song.id_artist]" [queryParams]="{id: song.id_artist}" href="#">
-              {{song.name_artist}}
-            </a></mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="Genre">
-          <mat-header-cell *matHeaderCellDef>{{'GENRE' | oTranslate}}</mat-header-cell>
-          <mat-cell class="duration-cell" *matCellDef="let song">
-            {{song.name_genre}}
-          </mat-cell>
-
-        </ng-container>
-
-        <ng-container matColumnDef="Action">
-          <mat-header-cell *matHeaderCellDef>{{'ACTION' | oTranslate}}</mat-header-cell>
-          <mat-cell class="duration-cell" *matCellDef="let song">
-            <app-create-list  [id]= "song.id_song" [action]= "true"></app-create-list>
-          </mat-cell>
-        </ng-container>
-
-        <mat-header-row *matHeaderRowDef="['select','Img','Song', 'Album', 'Artist','Genre','Action']"></mat-header-row>
-
-        <mat-row *matRowDef="let row; columns:['select','Img','Song','Album','Artist','Genre','Action']"></mat-row>
-      </mat-table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-
+  <span *ngIf="default && resultNewAlbums">
+    <div>
+      <app-result-container [dataAlbums]="resultNewAlbums" >
+      </app-result-container>
     </div>
-  </div>
-</div><!-- cierre componente-->
+  </span>
+  <span>
+
+  </span>
+
+  <span *ngIf="!default">
+    <div *ngIf="!searchSongs">
+      <p>Búsqueda sin resultados</p>
+    </div>
+    <div *ngIf=" searchSongs">
+      <app-result-container [data]="searchSongs" >
+      </app-result-container>
+    </div>
+  </span>

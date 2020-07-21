@@ -1,0 +1,36 @@
+.div-content-button{
+position: relative;
+z-index:1
+}
+.content-button-left{
+    position: absolute;
+    top: 0.5em;
+    left: 0;
+    color: green;
+    opacity: 0.3;
+    z-index: 2;
+}
+.content-button-right{
+    position: absolute;
+    top: 0.5em;
+    right: 0;
+    color: red;
+    opacity: 0.3;
+    z-index: 2;
+}
+.content-button-left:hover{
+    position: absolute;
+    top: 0.5em;
+    left: 0;
+    color: green;
+    opacity: 1;
+    z-index: 2;
+}
+.content-button-right:hover{
+    position: absolute;
+    top: 0.5em;
+    right: 0;
+    color: red;
+    opacity: 1;
+    z-index: 2;
+}

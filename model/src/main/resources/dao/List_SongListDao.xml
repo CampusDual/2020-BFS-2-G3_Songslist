@@ -22,11 +22,13 @@
       <AmbiguousColumn name="id_artist" prefix="art" />
       <AmbiguousColumn name="id_songlist" prefix="sl" />
       <AmbiguousColumn name="id_genre" prefix="g" />
+      <AmbiguousColumn name="nick_user" prefix="u" />
+      <AmbiguousColumn name="id_user" prefix="u" />
         </AmbiguousColumns>
         <FunctionColumns>
+        
             <FunctionColumn name="ID_LIST_SONGLIST" value="id_list_songlist" />
-            <FunctionColumn name="ID_SONGLIST" value="lsl.id_songlist" />
-            
+            <FunctionColumn name="ID_SONGLIST" value="lsl.id_songlist" />            
             <FunctionColumn name="NAME_SONG" value="s.name_song" />
             <FunctionColumn name="NAME_ALBUM" value="a.name_album" />
             <FunctionColumn name="YEAR_ALBUM" value="a.year_album" />
@@ -35,6 +37,7 @@
             <FunctionColumn name="NAME_SONGLIST" value="sl.name_songlist" />
             <FunctionColumn name="DESCRIPTION_SONGLIST" value="sl.description_songlist" />
             <FunctionColumn name="NAME_GENRE" value="g.name_genre" />
+            <FunctionColumn name="NICK_USER" value="u.nick_user" />
 
         </FunctionColumns>
          <Sentence>
@@ -43,13 +46,14 @@
                 #COLUMNS#
             FROM
                 ${mainschema}.tlists_songlist lsl
+                
                 LEFT JOIN ${mainschema}.tsong s ON s.id_song = lsl.id_song
                 LEFT JOIN ${mainschema}.tsonglist sl ON sl.id_songlist = lsl.id_songlist
+                LEFT JOIN ${mainschema}.tuser u ON u.id_user = sl.id_user
                 LEFT JOIN ${mainschema}.tsong_album sa ON sa.id_song = s.id_song
                 LEFT JOIN ${mainschema}.talbum a ON sa.id_album = a.id_album
                 LEFT JOIN ${mainschema}.tartist art ON art.id_artist = a.id_artist
-                LEFT JOIN ${mainschema}.tgenre g ON g.id_genre = a.id_genre
-                
+                LEFT JOIN ${mainschema}.tgenre g ON g.id_genre = a.id_genre               
 
             #WHERE#
             ]]>

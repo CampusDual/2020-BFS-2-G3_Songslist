@@ -1,29 +1,31 @@
-<o-grid #grid class="list-grid-item" attr="grid" title="{{ 'PERSONAL_SONGLIST' | oTranslate }}" [static-data]="getResult()"
-  columns="name_user;name_songlist;description_songlist;" keys="id_songlist" [cols]="5" query-rows="12" show-page-size="true"
-  page-size-options="4;8;12;16;20" orderable="false" quick-filter="false" grid-item-height="1:1"
-  sortable-columns="name" sort-column="" controls="false" refresh-button="false" pagination-controls="false"
-  gutter-size="1px">
- 
 
- 
-  <!-- *** grid-item que ejerce de botón para añadir nuevas listas de canciones *** -->
-  <o-grid-item>
-    <app-create-list [action]= "false"></app-create-list> 
-  </o-grid-item>
 
-  <!-- *** listas de canciones del usuario *** -->
-  <o-grid-item *ngFor="let list of grid.dataArray">
-    <a [routerLink]="['/main/song-list-detail', list.id_songlist]" [queryParams]="{id: list.id_songlist}" >
-    <o-column layout-padding class="container-item">
-      <!--
-      <img src="./assets/images/album/{{getImage(list.id_songlist)}}.jfif" style="margin-top:8px">
-      -->
-      <img src="./assets/images/album/1.jfif" style="margin-top:8px">
-      <h4 class="self-center">{{ list.name_songlist }}</h4>
-      <div class="self-center">
-        <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ list.description_songlist }} </span>
-      </div>
-    </o-column>
-  </a>
-  </o-grid-item>
-</o-grid>
+<div>
+  <form class="form-width">
+    <mat-form-field class="form-field-width" style="width: 80%;">
+      <mat-label>{{'SEARCH' | oTranslate}}</mat-label>
+      <input class="mat-input-element" id="input" matInput #message maxlength="256"
+        placeholder="{{'EXAMPLE_TEXT_SEARCH' | oTranslate}}" type="text" value="" name="input-search"
+        (keyup)="onItemChange($event.target.value)" autocomplete="off" style="width: 100%; display: grid;">
+      <mat-hint align="start">
+        <strong>
+          <span *ngIf=" !mnjError " style="color: #0199c3">
+            {{'THREE_LETTER_MSJ' | oTranslate}}
+          </span>
+          <span class='mensaje-error' *ngIf=" mnjError  && mnjError.length > 0">
+            {{'THREE_LETTER_MSJ' | oTranslate}}
+          </span>
+        </strong>
+      </mat-hint>
+      <mat-hint align="end" style="color: #0199c3;">{{message.value.length}} / 256</mat-hint>
+    </mat-form-field>
+  </form>
+</div>
+<br>
+<hr>
+<br>
+<div *ngIf="dataRest">
+  <div *ngIf="dataRest.length > 0">
+    <app-result-list [dataMyList]="dataRestMyList" [dataRestList]="dataRestList"></app-result-list>
+  </div>
+</div>

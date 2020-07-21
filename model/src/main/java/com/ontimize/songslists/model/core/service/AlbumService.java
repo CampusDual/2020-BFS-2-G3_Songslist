@@ -2,6 +2,8 @@ package com.ontimize.songslists.model.core.service;
 
 import java.util.List;
 import java.util.Map;
+
+import org.hsqldb.lib.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -39,5 +41,4 @@ public class AlbumService implements IAlbumService{
 	 public EntityResult albumDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
 	  return this.daoHelper.delete(this.albumDao, keyMap);
 	 }
-
 }

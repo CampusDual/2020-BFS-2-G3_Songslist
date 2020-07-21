@@ -26,12 +26,12 @@ export class ResultContainerComponent implements OnInit {
   songsColums: Array<string>;
   constructor(
     private snackBarService : SnackBarService,
-    private protected dialogService: DialogService,
+    private dialogService: DialogService,
     private router: Router,
     private actRoute: ActivatedRoute,
     private _route: ActivatedRoute, // recivir parametro id
     @Inject(LoginService) private loginService: LoginService,
-    private listService : ListService;
+    private listService : ListService
   ) {
 
   }

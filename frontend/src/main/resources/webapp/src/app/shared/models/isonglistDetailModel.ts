@@ -15,5 +15,7 @@ export interface ISonglistDetailModel {
     description_song ?: string;
     image?: number;
     description_songlist?: string;
+    nick_user?:string;
+    owner?:boolean;
 
  }

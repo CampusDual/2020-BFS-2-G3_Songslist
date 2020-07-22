@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { SonglistService } from '../services/songlist.service';
 import { Subscription } from 'rxjs';
 import { ListService } from '../services/listService';
+import { ToolsService } from '../services/tools.service';
 
 @Component({
   selector: 'app-songlist-detail',
@@ -19,6 +20,7 @@ export class SonglistDetailComponent implements OnInit {
   public listResult: ISonglistDetailModel[];
   private option: boolean = true;
   constructor(
+    private toolsService : ToolsService ,
     private _route: ActivatedRoute,
     private songlistService: SonglistService,
     private listService: ListService
@@ -93,6 +95,9 @@ export class SonglistDetailComponent implements OnInit {
           if (sl['data'].length > 0) {
             console.log('StartList data array', sl['data'][0]);
             this.songListResult = sl['data'][0];
+            console.log('___ songListUser',this.songListResult.nick_user);
+            console.log('___Logged user',this.toolsService.getNickUser());
+            this.songListResult.owner = (this.songListResult.nick_user === this.toolsService.getNickUser())? true : false; 
           } else { // si la búsqueda no devuelve resultados.
             this.songListResult = null;
           }

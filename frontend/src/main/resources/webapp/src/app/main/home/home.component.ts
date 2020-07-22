@@ -64,17 +64,13 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
       });
     this.refreshSubscription = this.listService.getRefresh().subscribe(message => {
-
       if (message) {
-
         if (message.refresh) {
           if (message.refresh == "song" || message.refresh == "all") {
-
             this.refreshMessages.push(message);
             if (this.default) {
               this.loadNewAlbums();
             } else {
-
               this.search(this.radioSelected, this.searchText)
             }
           } else {

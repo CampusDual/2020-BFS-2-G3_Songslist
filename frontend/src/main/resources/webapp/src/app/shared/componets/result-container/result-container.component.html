@@ -56,10 +56,12 @@
         <mat-header-cell *matHeaderCellDef>{{'ACTION' | oTranslate}}</mat-header-cell>
         <mat-cell class="duration-cell" *matCellDef="let song">
           <app-create-list *ngIf="!songlistData" [id]="song.id_song" [action]="true"></app-create-list>
+          <span *ngIf="songlistData">
           <app-create-list *ngIf="songlistData.owner == false" [id]="song.id_song" [action]="true"></app-create-list>
           <button *ngIf="songlistData.owner" mat-button (click)="openDeleteSong(song)">
             <mat-icon>delete</mat-icon> {{'DELETE_FROM_LIST' | oTranslate}}
           </button>
+        </span>
         </mat-cell>
       </ng-container>
 

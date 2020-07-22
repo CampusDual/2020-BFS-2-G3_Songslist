@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { IAlbumModel } from 'app/shared/models/ialbum.model';
 
 @Component({
@@ -6,10 +6,10 @@ import { IAlbumModel } from 'app/shared/models/ialbum.model';
   templateUrl: './default-container.component.html',
   styleUrls: ['./default-container.component.scss']
 })
-export class DefaultContainerComponent implements OnInit {
+export class DefaultContainerComponent implements OnChanges {
 
   @Input("dataAlbums") dataAlbums: IAlbumModel[];
   constructor() { }
 
-  ngOnInit() { }
+  ngOnChanges() { }
 }

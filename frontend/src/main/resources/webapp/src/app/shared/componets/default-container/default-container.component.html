@@ -9,7 +9,7 @@
 
     <span *ngIf="grid.dataArray">
       <o-grid-item *ngFor="let list of grid.dataArray">
-        <span [routerLink]="['/main/album', list.id_album]" [queryParams]="{id: list.id_album}" href="#">
+        <a [routerLink]="['/main/album', list.id_album]" [queryParams]="{id: list.id_album}" href="#">
           <o-column layout-padding class="container-item center ">
 
             <img class="self-center" *ngIf="list.img_album" src="./assets/images/album/{{list.img_album}}.jfif"
@@ -21,7 +21,7 @@
               <p>  {{ list.name_artist }}  </p>
             </div>
           </o-column>
-        </span>
+        </a>
       </o-grid-item>
     </span>
   </o-grid>

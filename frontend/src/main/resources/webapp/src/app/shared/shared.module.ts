@@ -6,6 +6,7 @@ import { ResultContainerComponent } from './componets/result-container/result-co
 import { RouterModule } from '@angular/router';
 import { CreateListModule } from './modules/create-list/create-list.module';
 import { ResultListComponent } from './componets/result-list/result-list.component';
+import { DefaultContainerComponent } from './componets/default-container/default-container.component';
 
 @NgModule({
   imports: [
@@ -16,11 +17,13 @@ import { ResultListComponent } from './componets/result-list/result-list.compone
   ],
   declarations: [
     ResultContainerComponent,
+    DefaultContainerComponent,
     ResultListComponent
   ],
   exports: [
     CommonModule,
     ResultContainerComponent,
+    DefaultContainerComponent,
     CreateListModule,
     ResultListComponent
 

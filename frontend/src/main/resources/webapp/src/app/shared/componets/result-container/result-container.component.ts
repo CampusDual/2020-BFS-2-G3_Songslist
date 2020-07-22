@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Inject, OnChanges } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ISongModel } from 'app/shared/models/isong.model';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
@@ -14,7 +14,7 @@ import { ISongListModel } from 'app/shared/models/isongList.model';
   templateUrl: './result-container.component.html',
   styleUrls: ['./result-container.component.scss']
 })
-export class ResultContainerComponent implements OnInit {
+export class ResultContainerComponent implements  OnChanges{
   selection = new SelectionModel<ISongModel>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @Input("data") data: ISongModel[];
@@ -36,7 +36,7 @@ export class ResultContainerComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngOnChanges() {
 
     this.loggedIn = this.loginService.isLoggedIn();
     if (this.data) {

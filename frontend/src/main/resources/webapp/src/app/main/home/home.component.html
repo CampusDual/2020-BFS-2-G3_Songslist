@@ -8,16 +8,20 @@
     <p>
       <mat-radio-group class="mat-radio-group-element">
         <div class="input-radio-buttns">
-          <mat-radio-button #radiobuttonSong class="form-check-input-song" type="radio" value="song" name="radio-search"
-            (change)="onClickRadio($event)"> {{'SONG' | oTranslate}} </mat-radio-button>
-          <mat-radio-button #radiobuttonAlbum class="form-check-input-album" type="radio" value="album" name="radio-search"
-            (change)="onClickRadio($event)"> {{'ALBUM' | oTranslate}} </mat-radio-button>
-          <mat-radio-button #radiobuttonArtist class="form-check-input-artist" type="radio" value="artist" name="radio-search"
-            (change)='onClickRadio($event)'> {{'ARTIST' | oTranslate}} </mat-radio-button>
-          <mat-radio-button #radiobuttonGenre class="form-check-input-genre" type="radio" value="genre" name="radio-search"
-            (change)="onClickRadio($event)"> {{'GENRE' | oTranslate}} </mat-radio-button>
-          <mat-radio-button #radiobuttonAll class="form-check-input-genre" type="radio" value="all" name="radio-search"
-            checked="checked" (change)="onClickRadio($event)"> {{'ALL' | oTranslate}} </mat-radio-button>
+          <mat-radio-button #radiobutton class="form-check-input-song" type="radio" value="song" name="radio-search"
+            (change)="onClickRadio($event)" [checked]="radioSelected ==='song'"> {{'SONG' | oTranslate}}
+          </mat-radio-button>
+          <mat-radio-button #radiobutton class="form-check-input-album" type="radio" value="album"
+            name="radio-search" (change)="onClickRadio($event)" [checked]="radioSelected ==='album'">
+            {{'ALBUM' | oTranslate}} </mat-radio-button>
+          <mat-radio-button #radiobutton class="form-check-input-artist" type="radio" value="artist"
+            name="radio-search" (change)='onClickRadio($event)' [checked]="radioSelected ==='artist'">
+            {{'ARTIST' | oTranslate}} </mat-radio-button>
+          <mat-radio-button #radiobutton class="form-check-input-genre" type="radio" value="genre"
+            name="radio-search" (change)="onClickRadio($event)" [checked]=" radioSelected ==='genre'" > {{'GENRE' | oTranslate}}  </mat-radio-button>
+          <mat-radio-button #radiobutton class=" form-check-input-genre" type="radio" value="all"
+            name="radio-search" [checked] =" radioSelected ==='all'" (change)="onClickRadio($event)"> {{'ALL' | oTranslate}}
+          </mat-radio-button>
         </div>
       </mat-radio-group>
     </p>
@@ -34,7 +38,7 @@
   </div>
   <span *ngIf="default && resultNewAlbums">
     <div>
-      <app-default-container [dataAlbums]="resultNewAlbums" >
+      <app-default-container [dataAlbums]="resultNewAlbums">
       </app-default-container>
     </div>
   </span>
@@ -47,7 +51,7 @@
       <p>Búsqueda sin resultados</p>
     </div>
     <div *ngIf=" searchSongs">
-      <app-result-container [data]="searchSongs" >
+      <app-result-container [data]="searchSongs">
       </app-result-container>
     </div>
   </span>

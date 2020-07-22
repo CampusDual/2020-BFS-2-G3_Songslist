@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./result-list.component.scss']
 })
 export class ResultListComponent implements OnInit {
-  loggedIn : boolean ;
+  loggedIn: boolean;
 
-  @Input( "dataMyList") dataMyList : ISongListModel[] ;
-  @Input( "dataRestList") dataRestList : ISongListModel[] ;
+  @Input("dataMyList") dataMyList: ISongListModel[];
+  @Input("dataRestList") dataRestList: ISongListModel[];
 
   homeLinkEnabled: boolean = true;
   constructor(
@@ -23,44 +23,43 @@ export class ResultListComponent implements OnInit {
     public router: Router,
     protected dialogService: DialogService
   ) {
-    this.loggedIn =  loginService.isLoggedIn();
-   }
+    this.loggedIn = loginService.isLoggedIn();
+  }
   ngOnInit() {
     console.log('app-result-list', this.dataMyList);
     console.log('app-result-list', this.dataRestList);
   }
 
-  onClickOK($event){
+  onClickOK($event) {
     $event.stopPropagation();
     this.homeLinkEnabled = false;
-  console.log('click on ok button');
-  this.homeLinkEnabled = true;
+    console.log('click on ok button');
+    this.homeLinkEnabled = true;
   }
-  onClickCloused($event,list : ISongListModel){
+  async onClickCloused($event, list: ISongListModel) {
     $event.stopPropagation();
     this.homeLinkEnabled = false;
     console.log('click on cloused button');
     if (this.dialogService) {
-      const dialogRef  = this.dialogService.confirm('Confirm dialog title', 'Do you really want to accept?');
-      // dialogRef.afterClosed().subscribe(result => {
-      //   console.log(`Dialog result: ${result}`);
-      // });
-     console.log('dialogo', this.dialogService);
-
-
-      
-     
-     this.deleteList(list );
-      this.sendRefreshSong();
-      this.sendRefreshList();
+      const dialogRef = await this.dialogService.confirm('Confirm dialog title', 'Do you really want to accept?');
+      console.log(dialogRef);
+      if (dialogRef) {
+        console.log('dialogo', this.dialogService);
+        this.deleteList(list);
+        this.sendRefreshSong();
+        this.sendRefreshList();
+      } else {
+        console.log(dialogRef);
+      }
     }
-  
     this.homeLinkEnabled = true;
   }
 
 
-  deleteList(list : ISongListModel) {
-    this.listService.deleteList(list.id_songlist )
+
+
+  deleteList(list: ISongListModel) {
+    this.listService.deleteList(list.id_songlist)
       .subscribe(
         (userData: any) => {
           if (userData['data']) {
@@ -94,12 +93,12 @@ export class ResultListComponent implements OnInit {
         }
       );
   }
-  onClickGrid($event , list: ISongListModel ){
+  onClickGrid($event, list: ISongListModel) {
     $event.stopPropagation();
-    if ( this.homeLinkEnabled){
-      console.log('link a --> /main/songlistdetail' );
-      this.router.navigate(['/main/songlistdetail' , list.id_songlist]);
-     // [routerLink]=['/main/songlistdetail', list.id_songlist] ;
+    if (this.homeLinkEnabled) {
+      console.log('link a --> /main/songlistdetail');
+      this.router.navigate(['/main/songlistdetail', list.id_songlist]);
+      // [routerLink]=['/main/songlistdetail', list.id_songlist] ;
       // [queryParams]="{id: list.id_songlist}";
     }
   }
@@ -130,5 +129,5 @@ export class ResultListComponent implements OnInit {
     // clear messages
     this.listService.clearMessages();
   }
-  
+
 }

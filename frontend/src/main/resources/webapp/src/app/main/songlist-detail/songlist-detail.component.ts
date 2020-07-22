@@ -44,6 +44,28 @@ export class SonglistDetailComponent implements OnInit {
 
     this.ngOnStartList(this.parametro);
     this.ngOnStartDetail(this.parametro);
+
+    // this.refreshSubscription = this.listService.getRefresh().subscribe(message => {
+
+    //   if (message) {
+
+    //     if (message.refresh) {
+    //       if (message.refresh == "song" || message.refresh == "all") {
+
+    //         this.refreshMessages.push(message);
+    //         if (this.default) {
+    //           this.loadNewAlbums();
+    //         } else {
+
+    //           this.search(this.radioSelected, this.searchText)
+    //         }
+    //       } else {
+    //         // clear messages when empty message received
+    //         this.refreshMessages = [];
+    //       }
+    //     }
+    //   }
+    // });
   }
   ngOnStartDetail(id: number) {
     this.songlistService.getSongs(id).subscribe(

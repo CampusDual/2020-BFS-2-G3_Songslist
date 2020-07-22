@@ -14,7 +14,7 @@ import { ISongListModel } from 'app/shared/models/isongList.model';
   templateUrl: './result-container.component.html',
   styleUrls: ['./result-container.component.scss']
 })
-export class ResultContainerComponent implements  OnChanges{
+export class ResultContainerComponent implements OnChanges {
   selection = new SelectionModel<ISongModel>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @Input("data") data: ISongModel[];
@@ -25,14 +25,21 @@ export class ResultContainerComponent implements  OnChanges{
   loggedIn: boolean;
   songsColums: Array<string>;
   constructor(
-    private snackBarService : SnackBarService,
+    private snackBarService: SnackBarService,
     private dialogService: DialogService,
     private router: Router,
     private actRoute: ActivatedRoute,
     private _route: ActivatedRoute, // recivir parametro id
     @Inject(LoginService) private loginService: LoginService,
+<<<<<<< HEAD
     private listService : ListService
   ) { }
+=======
+    private listService: ListService
+  ) {
+
+  }
+>>>>>>> develop
 
   ngOnChanges() {
 
@@ -74,55 +81,69 @@ export class ResultContainerComponent implements  OnChanges{
     console.log('return this.dataSongs ==> ', this.newSongs);
     return this.newSongs;
   }
-  openDeleteSong(delData: ISongModel){
+
+
+
+  async openDeleteSong(delData: ISongModel) {
     if (this.dialogService) {
-      const dialogRef  = this.dialogService.confirm('Confirm dialog title', 'Do you really want to accept?');
+      const dialogRef = await this.dialogService.confirm('Confirm dialog title', 'Do you really want to accept?');
       // dialogRef.afterClosed().subscribe(result => {
       //   console.log(`Dialog result: ${result}`);
       // });
-     console.log('dialogo', this.dialogService);
-     this.deleteSongInList(delData );
-      this.sendRefreshSong();
-      this.sendRefreshList();
-    }
-  }
-  deleteSongInList(delData : ISongModel){
-    this.listService.deleteSong(delData.id_song, this.songlistData.name_songlist )
-    .subscribe(
-      (userData: any) => {
-        if (userData['data']) {
-          if (userData['code'] == 0) {
-            this.sendRefreshList();
-            this.sendRefreshSong();
-            this.snackBarService.open('se ha eliminado la cancion a ' + delData.name_song, {
-              action: 'Done',
-              milliseconds: 5000,
-              icon: 'check_circle',
-              iconPosition: 'left'
-            });
-          } else if (userData['code'] == 1) {
-            this.snackBarService.open('warning  no se ha eliminado la cancion a ' + delData.name_song, {
-              action: 'Warning',
-              milliseconds: 5000,
-              icon: 'check_circle',
-              iconPosition: 'left'
-            });
-          }
-        }
-      },
-      err => {
-        console.error(err)
-        this.snackBarService.open('error  no se ha eliminiado la cancion a ' + delData.name_song, {
-          action: 'Error',
-          milliseconds: 5000,
-          icon: 'check_circle',
-          iconPosition: 'left'
-        });
+      console.log(dialogRef);
+      if (dialogRef) {
+        console.log('dialogo', this.dialogService);
+        this.deleteSongInList(delData);
+        this.sendRefreshSong();
+        this.sendRefreshList();
+      } else {
+        console.log(dialogRef);
       }
-    );
-}
-  
-  
+
+    }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> develop
+  }
+  deleteSongInList(delData: ISongModel) {
+    this.listService.deleteSong(delData.id_song, this.songlistData.name_songlist)
+      .subscribe(
+        (userData: any) => {
+          if (userData['data']) {
+            if (userData['code'] == 0) {
+              this.sendRefreshList();
+              this.sendRefreshSong();
+              this.snackBarService.open('se ha eliminado la cancion a ' + delData.name_song, {
+                action: 'Done',
+                milliseconds: 5000,
+                icon: 'check_circle',
+                iconPosition: 'left'
+              });
+            } else if (userData['code'] == 1) {
+              this.snackBarService.open('warning  no se ha eliminado la cancion a ' + delData.name_song, {
+                action: 'Warning',
+                milliseconds: 5000,
+                icon: 'check_circle',
+                iconPosition: 'left'
+              });
+            }
+          }
+        },
+        err => {
+          console.error(err)
+          this.snackBarService.open('error  no se ha eliminiado la cancion a ' + delData.name_song, {
+            action: 'Error',
+            milliseconds: 5000,
+            icon: 'check_circle',
+            iconPosition: 'left'
+          });
+        }
+      );
+  }
+
+
 
   sendRefreshSong(): void {
     // send message to subscribers via observable subject

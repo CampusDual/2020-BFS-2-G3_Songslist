@@ -25,15 +25,13 @@ export class SonglistDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._route.params.forEach((params: Params) => {
-      this.parametro = params['id'];
-    });
+    this.start();
     this.refreshSubscription = this.listService.getRefresh().subscribe(message => {
       if (message) {
         if (message.refresh) {
           if (message.refresh == "song" || message.refresh == 'list'|| message.refresh == "all") {
-            this.refreshMessages.push(message);    
-            
+            this.start();
+            this.refreshMessages.push(message);
           } else {
             // clear messages when empty message received
             this.refreshMessages = [];
@@ -41,9 +39,15 @@ export class SonglistDetailComponent implements OnInit {
         }
       }
     });
-
+  }
+  start(){
+    this._route.params.forEach((params: Params) => {
+      this.parametro = params['id'];
+    });
     this.ngOnStartList(this.parametro);
     this.ngOnStartDetail(this.parametro);
+  }
+
 
     // this.refreshSubscription = this.listService.getRefresh().subscribe(message => {
 
@@ -66,7 +70,7 @@ export class SonglistDetailComponent implements OnInit {
     //     }
     //   }
     // });
-  }
+
   ngOnStartDetail(id: number) {
     this.songlistService.getSongs(id).subscribe(
       (songlistData: any) => {

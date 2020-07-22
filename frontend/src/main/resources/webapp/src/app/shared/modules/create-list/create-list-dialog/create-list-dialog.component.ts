@@ -276,7 +276,7 @@ export class CreateListDialogComponent implements OnInit {
                 );
               this.dialogRef.close(this.form.value);
             } else if (userData['code'] == 1) {
-              this.snackBarService.open('warning no se ha creado la lista ' + newList.name_songlist,, {
+              this.snackBarService.open('warning no se ha creado la lista ' + newList.name_songlist, {
                 action: 'Warning',
                 milliseconds: 5000,
                 icon: 'check_circle',

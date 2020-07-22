@@ -105,14 +105,14 @@ export class ResultContainerComponent implements OnChanges {
             if (userData['code'] == 0) {
               this.sendRefreshList();
               this.sendRefreshSong();
-              this.snackBarService.open('se ha eliminado la cancion a ' + delData.name_song, {
+              this.snackBarService.open( delData.name_song +  'has been removed from list' , {
                 action: 'Done',
                 milliseconds: 5000,
                 icon: 'check_circle',
                 iconPosition: 'left'
               });
             } else if (userData['code'] == 1) {
-              this.snackBarService.open('warning  no se ha eliminado la cancion a ' + delData.name_song, {
+              this.snackBarService.open('warning! ' + delData.name_song + ' has not been removed from list', {
                 action: 'Warning',
                 milliseconds: 5000,
                 icon: 'check_circle',
@@ -123,7 +123,7 @@ export class ResultContainerComponent implements OnChanges {
         },
         err => {
           console.error(err)
-          this.snackBarService.open('error  no se ha eliminiado la cancion a ' + delData.name_song, {
+          this.snackBarService.open('Error! Song has not been removed from list'  + delData.name_song, {
             action: 'Error',
             milliseconds: 5000,
             icon: 'check_circle',

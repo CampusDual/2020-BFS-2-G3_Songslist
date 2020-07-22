@@ -66,14 +66,14 @@ export class ResultListComponent implements OnInit {
             if (userData['code'] == 0) {
               this.sendRefreshList();
               this.sendRefreshSong();
-              this.snackBarService.open('se ha eliminado la lista ' + list.name_songlist, {
+              this.snackBarService.open( list.name_songlist + ' has been removed', {
                 action: 'Done',
                 milliseconds: 5000,
                 icon: 'check_circle',
                 iconPosition: 'left'
               });
             } else if (userData['code'] == 1) {
-              this.snackBarService.open('warning  no se ha eliminado  la lista' + list.name_songlist, {
+              this.snackBarService.open('Warning! ' + list.name_songlist + 'hasn´t been removed' , {
                 action: 'Warning',
                 milliseconds: 5000,
                 icon: 'check_circle',
@@ -84,7 +84,7 @@ export class ResultListComponent implements OnInit {
         },
         err => {
           console.error(err)
-          this.snackBarService.open('warning  no se ha eliminado  la lista ' + list.name_songlist, {
+          this.snackBarService.open('Warning! ' + list.name_songlist + 'hasn´t been removed', {
             action: 'Error',
             milliseconds: 5000,
             icon: 'check_circle',

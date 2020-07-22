@@ -204,7 +204,7 @@ export class PerfilComponent implements OnInit {
               console.log('nº results ', userData['data'].length);
               if (userData['code'] == 0) {
                 this.alert = 1;
-                this.snackBarService.open('Snackbar text', {
+                this.snackBarService.open('profile has been updated successfully', {
                   action: 'Done',
                   milliseconds: 5000,
                   icon: 'check_circle',
@@ -214,7 +214,7 @@ export class PerfilComponent implements OnInit {
                 this.ngOnStartForm();
               } else if (userData['code'] == 1) {
                 this.alert = 0;
-                this.snackBarService.open('Snackbar text', {
+                this.snackBarService.open('Error! failed to update profile', {
                   action: 'Done',
                   milliseconds: 5000,
                   icon: 'check_circle',

@@ -90,7 +90,7 @@ export class RegisterComponent implements OnInit {
             this.onAssignRole(userData['data'].id_user);
             this.onAssignPreference(this.user.nick_user);
             this.registerForm = this.createForm();
-            this.snackBarService.open('User created', {
+            this.snackBarService.open('User has been created', {
               action: 'Done',
               milliseconds: 5000,
               icon: 'check_circle',
@@ -100,7 +100,7 @@ export class RegisterComponent implements OnInit {
             this.snackBarService.open
             (
 
-              'User hasn´t been created. Choose another nick.',
+              'Warning! User hasn´t been created. Choose another nick.',
               {
                 action: 'Done',
                 milliseconds: 5000,
@@ -114,7 +114,17 @@ export class RegisterComponent implements OnInit {
 
       },
       err => {
-        console.error(err)
+        console.error(err);
+        this.snackBarService.open            (
+
+              'Warning! User hasn´t been created. Choose another nick.',
+              {
+                action: 'Done',
+                milliseconds: 5000,
+                icon: 'check_circle',
+                iconPosition: 'left'
+              }
+            );
       }
 
 

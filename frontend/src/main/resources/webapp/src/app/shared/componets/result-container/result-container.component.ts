@@ -32,9 +32,7 @@ export class ResultContainerComponent implements  OnChanges{
     private _route: ActivatedRoute, // recivir parametro id
     @Inject(LoginService) private loginService: LoginService,
     private listService : ListService
-  ) {
-
-  }
+  ) { }
 
   ngOnChanges() {
 
@@ -76,7 +74,6 @@ export class ResultContainerComponent implements  OnChanges{
     console.log('return this.dataSongs ==> ', this.newSongs);
     return this.newSongs;
   }
-
   openDeleteSong(delData: ISongModel){
     if (this.dialogService) {
       const dialogRef  = this.dialogService.confirm('Confirm dialog title', 'Do you really want to accept?');
@@ -88,8 +85,6 @@ export class ResultContainerComponent implements  OnChanges{
       this.sendRefreshSong();
       this.sendRefreshList();
     }
-  
-
   }
   deleteSongInList(delData : ISongModel){
     this.listService.deleteSong(delData.id_song, this.songlistData.name_songlist )

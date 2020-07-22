@@ -165,14 +165,14 @@ export class CreateListDialogComponent implements OnInit {
             if (userData['code'] == 0) {
               this.sendRefreshList();
               this.sendRefreshSong();
-              this.snackBarService.open('se ha añadido la cancion a ' + subtask.name_songlist, {
+              this.snackBarService.open('Song has been added to ' + subtask.name_songlist, {
                 action: 'Done',
                 milliseconds: 5000,
                 icon: 'check_circle',
                 iconPosition: 'left'
               });
             } else if (userData['code'] == 1) {
-              this.snackBarService.open('warning  no se ha añadido la cancion a ' + subtask.name_songlist, {
+              this.snackBarService.open('Error! We couldn´t add the song to ' + subtask.name_songlist, {
                 action: 'Warning',
                 milliseconds: 5000,
                 icon: 'check_circle',
@@ -183,7 +183,7 @@ export class CreateListDialogComponent implements OnInit {
         },
         err => {
           console.error(err)
-          this.snackBarService.open('error  no se ha añadido la cancion a ' + subtask.name_songlist, {
+          this.snackBarService.open('Error! We couldn´t add the song to ' + subtask.name_songlist, {
             action: 'Error',
             milliseconds: 5000,
             icon: 'check_circle',
@@ -200,14 +200,14 @@ export class CreateListDialogComponent implements OnInit {
             if (userData['code'] == 0) {
               this.sendRefreshList();
               this.sendRefreshSong();
-              this.snackBarService.open('se ha eliminado la cancion a ' + subtask.name_songlist, {
+              this.snackBarService.open('Song remove from ' + subtask.name_songlist, {
                 action: 'Done',
                 milliseconds: 5000,
                 icon: 'check_circle',
                 iconPosition: 'left'
               });
             } else if (userData['code'] == 1) {
-              this.snackBarService.open('warning  no se ha añadido la cancion a ' + subtask.name_songlist, {
+              this.snackBarService.open('Warning! Song hasn´t been removed from ' + subtask.name_songlist, {
                 action: 'Warning',
                 milliseconds: 5000,
                 icon: 'check_circle',
@@ -218,7 +218,7 @@ export class CreateListDialogComponent implements OnInit {
         },
         err => {
           console.error(err)
-          this.snackBarService.open('error  no se ha añadido la cancion a ' + subtask.name_songlist, {
+          this.snackBarService.open('Warning! Song hasn´t been added to ' + subtask.name_songlist, {
             action: 'Error',
             milliseconds: 5000,
             icon: 'check_circle',
@@ -234,7 +234,7 @@ export class CreateListDialogComponent implements OnInit {
         (userData: any) => {
           if (userData['data']) {
             if (userData['code'] == 0) {
-              this.snackBarService.open('se ha creado la lista ' + newList.name_songlist, {
+              this.snackBarService.open(newList.name_songlist + ' has been created.', {
                 action: 'Done',
                 milliseconds: 5000,
                 icon: 'check_circle',
@@ -247,7 +247,7 @@ export class CreateListDialogComponent implements OnInit {
                       if (userData['code'] == 0) {
                         this.sendRefreshList();
                         this.sendRefreshSong();
-                        this.snackBarService.open('se ha añadido la cancion a ' + newList.name_songlist, {
+                        this.snackBarService.open('Song has been added to ' + newList.name_songlist, {
                           action: 'Done',
                           milliseconds: 5000,
                           icon: 'check_circle',
@@ -255,7 +255,7 @@ export class CreateListDialogComponent implements OnInit {
                         });
                         this.dialogRef.close(this.form.value);
                       } else if (userData['code'] == 1) {
-                        this.snackBarService.open('warning  no se ha añadido la cancion a ' + newList.name_songlist, {
+                        this.snackBarService.open('Warning!  Song hasn´t been added to ' + newList.name_songlist, {
                           action: 'Warning',
                           milliseconds: 5000,
                           icon: 'check_circle',
@@ -266,7 +266,7 @@ export class CreateListDialogComponent implements OnInit {
                   },
                   err => {
                     console.error(err)
-                    this.snackBarService.open('error  no se ha añadido la cancion a ' + newList.name_songlist, {
+                    this.snackBarService.open('Error! Song hasn´t been added to ' + newList.name_songlist, {
                       action: 'Error',
                       milliseconds: 5000,
                       icon: 'check_circle',
@@ -276,7 +276,7 @@ export class CreateListDialogComponent implements OnInit {
                 );
               this.dialogRef.close(this.form.value);
             } else if (userData['code'] == 1) {
-              this.snackBarService.open('warning no se ha creado la lista ' + newList.name_songlist,, {
+              this.snackBarService.open('Warning! ' + newList.name_songlist + 'hasn´t been created', {
                 action: 'Warning',
                 milliseconds: 5000,
                 icon: 'check_circle',
@@ -287,7 +287,7 @@ export class CreateListDialogComponent implements OnInit {
         },
         err => {
           console.error(err)
-          this.snackBarService.open('error  no se ha creado la lista ' + newList.name_songlist, {
+          this.snackBarService.open('Error! ' + newList.name_songlist +' hasn´t been created', {
             action: 'Error',
             milliseconds: 5000,
             icon: 'check_circle',

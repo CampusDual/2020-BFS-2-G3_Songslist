@@ -17,10 +17,10 @@
         </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="Song">
+      <ng-container matColumnDef="Song" >
         <mat-header-cell *matHeaderCellDef>{{'SONG' | oTranslate}}</mat-header-cell>
         <mat-cell *matCellDef="let song">
-          <a [routerLink]="['/main/song',song.id_song]" [queryParams]="{id: song.id_song}" href="#">
+          <a [routerLink]="['/main/song',song.id_song]" [queryParams]="{id: song.id_song}" href="#" style="text-align: start; margin-inline-end: 10px;">
             {{song.name_song}}
           </a>
         </mat-cell>
@@ -29,7 +29,7 @@
       <ng-container matColumnDef="Album">
         <mat-header-cell *matHeaderCellDef>{{'ALBUM' | oTranslate}}</mat-header-cell>
         <mat-cell class="duration-cell" *matCellDef="let song">
-          <a [routerLink]="['/main/album', song.id_album]" [queryParams]="{id: song.id_album}" href="#">
+          <a [routerLink]="['/main/album', song.id_album]" [queryParams]="{id: song.id_album}" href="#" style="text-align: start; margin-inline-end: 10px;">
             {{song.name_album}}
           </a>
         </mat-cell>
@@ -38,7 +38,7 @@
       <ng-container matColumnDef="Artist">
         <mat-header-cell *matHeaderCellDef>{{'ARTIST' | oTranslate}}</mat-header-cell>
         <mat-cell class="description-cell" *matCellDef="let song">
-          <a [routerLink]="['/main/artist', song.id_artist]" [queryParams]="{id: song.id_artist}" href="#">
+          <a [routerLink]="['/main/artist', song.id_artist]" [queryParams]="{id: song.id_artist}" href="#" style="text-align: start; margin-inline-end: 10px;">
             {{song.name_artist}}
           </a>
         </mat-cell>
@@ -57,7 +57,7 @@
         <mat-cell class="duration-cell" *matCellDef="let song">
           <app-create-list *ngIf="!songlistData" [id]="song.id_song" [action]="true"></app-create-list>
           <button *ngIf="songlistData" mat-button (click)="openDeleteSong(song)">
-            <mat-icon>delete</mat-icon> delete song of the list
+            <mat-icon>delete</mat-icon> {{'DELETE_FROM_LIST' | oTranslate}}
           </button>
         </mat-cell>
       </ng-container>

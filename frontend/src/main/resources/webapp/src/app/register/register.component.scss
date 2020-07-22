@@ -1,0 +1,8 @@
+$color-select :rgb(255, 204, 0);
+
+.register-btn{
+    color: white;
+}
+.register-btn.hover{
+    color: $color-select !important;
+}

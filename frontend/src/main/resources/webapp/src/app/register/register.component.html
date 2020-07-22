@@ -22,11 +22,11 @@
           <mat-form-field class="column-reg" [ngClass]="">
             <mat-label>{{'NICK' | oTranslate}}</mat-label>
             <input class="input-register" matInput type="text" formControlName="nick" placeholder="Your Nick"
-              required="true" variant="outlined">
+              required="true" variant="outlined" autocomplete="off">
           </mat-form-field>
           <mat-form-field class="column-reg" [ngClass]="">
             <mat-label>{{'EMAIL' | oTranslate}}</mat-label>
-            <input class="input-register" matInput type="email" formControlName="email" placeholder="Your email">
+            <input class="input-register" matInput type="email" formControlName="email" placeholder="Your email" autocomplete="off">
           </mat-form-field>
         </div>
 
@@ -34,23 +34,23 @@
         <div class="row-reg center between">
           <mat-form-field class="column-reg" [ngClass]="">
             <mat-label>{{'NAME' | oTranslate}}</mat-label>
-            <input class="input-register" matInput type="text" formControlName="name" placeholder="Your Name">
+            <input class="input-register" matInput type="text" formControlName="name" placeholder="Your Name" autocomplete="off">
           </mat-form-field>
           <mat-form-field class="column-reg" [ngClass]="">
             <mat-label>{{'SURNAME' | oTranslate}}</mat-label>
-            <input class="input-register" matInput type="text" formControlName="surname" placeholder="Your surname>">
+            <input class="input-register" matInput type="text" formControlName="surname" placeholder="Your surname" autocomplete="off">
           </mat-form-field>
         </div>
         <!-- *** bIRTHDATE + DESCRIPTION ***-->
         <div class="row-reg center between">
           <mat-form-field class="column-reg" [ngClass]="">
             <mat-label>{{'BIRTHDATE' | oTranslate}}</mat-label>
-            <input class="input-register" matInput type="date" formControlName="birthdate" placeholder="Your birthdate">
+            <input class="input-register" matInput type="date" style="color: white;" formControlName="birthdate" placeholder="Your birthdate">
           </mat-form-field>
           <mat-form-field class="column-reg" [ngClass]="">
             <mat-label>{{'ABOUT_YOU' | oTranslate}}</mat-label>
             <textarea class="input-register" margin="dense" matInput formControlName="description"
-              placeholder="{{'ABOUT_YOU' | oTranslate}}"></textarea>
+              placeholder="{{'ABOUT_YOU' | oTranslate}}" style="color: white;" autocomplete="off"></textarea>
           </mat-form-field>
         </div>
         <!-- *** PASSWORD + REPEAT_PASSWORD ***-->
@@ -86,17 +86,12 @@
           </mat-form-field>
         </div>
         <!-- *** BUTTONS ***-->
-        <div class="row-reg center around">
-         
-            <button mat-raised-button color="primary" type="submit" [ngStyle]="{'color':'#8b97a1'}"
-              [disabled]="!registerForm.valid || !this.match">{{'CREATE_USER' | oTranslate}}</button>
-       
 
-        
-            <button mat-raised-button color="primary" type="button"
-              [routerLink]="['/login']">{{'CANCEL' | oTranslate}}</button>
-          
-        </div>
+          <o-row class="row-form" layout-align="center">
+            <button class="register-btn right   width_10  height_2" mat-button type="submit"
+              [disabled]="!registerForm.valid || !this.match">{{'CREATE_USER' | oTranslate}}</button>
+            <button class="register-btn right   width_10 height_2" mat-button [routerLink]="['/login']">{{'CANCEL' | oTranslate}}</button>
+          </o-row>
 
       </o-column>
 

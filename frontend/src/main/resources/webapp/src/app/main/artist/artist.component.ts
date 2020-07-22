@@ -52,15 +52,10 @@ export class ArtistComponent implements OnInit {
         );
     }
     ngOnStartArtistAlbumlist(id: number) {
-
         this.artistService.getArtistAlbumlist(id).subscribe(
-
             (albumlist: any) => {
-
                 if (albumlist['data']) {
-
                     if (albumlist['data'].length > 0) {
-
                         this.albumResult = albumlist['data'];
                         console.log('DATA ALBUMLIST ', albumlist['data']);
                         console.log('ALBUMLIST ', this.albumResult);

@@ -305,7 +305,7 @@ export class CreateListDialogComponent implements OnInit {
           if (userData['code'] == 0) {
             this.sendRefreshList();
             this.sendRefreshSong();
-            this.snackBarService.open('se ha creado la lista ' + newList.name_songlist, {
+            this.snackBarService.open('List ' + newList.name_songlist + ' has been created', {
               action: 'Done',
               milliseconds: 5000,
               icon: 'check_circle',
@@ -313,7 +313,7 @@ export class CreateListDialogComponent implements OnInit {
             });
             this.dialogRef.close(this.form.value);
           } else if (userData['code'] == 1) {
-            this.snackBarService.open('warning no se ha creado la lista ' + newList.name_songlist, {
+            this.snackBarService.open('Warning! List ' + newList.name_songlist + ' has not been created', {
               action: 'Warning',
               milliseconds: 5000,
               icon: 'check_circle',
@@ -324,7 +324,7 @@ export class CreateListDialogComponent implements OnInit {
       },
       err => {
         console.error(err)
-        this.snackBarService.open('error  no se ha creado la lista ' + newList.name_songlist, {
+        this.snackBarService.open('Error! List ' + newList.name_songlist + ' has not been created' , {
           action: 'Error',
           milliseconds: 5000,
           icon: 'check_circle',

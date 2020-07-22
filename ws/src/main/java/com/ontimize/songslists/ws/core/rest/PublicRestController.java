@@ -148,7 +148,23 @@ public class PublicRestController {
 			return res;
 		}
 	}
-	
+	@RequestMapping(value = "/publicArtistAlbums", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult getArtistAlbums(@RequestBody Map<?, ?> req) {
+		try{
+		List<String> columns = (List<String>) req.get("columns");
+		Map<String, Object> filter = (Map<String, Object>) req.get("filter");
+		if(filter.containsKey("id_artist")){
+			int artist = Integer.parseInt((String)filter.get("id_artist"));
+			filter.put("id_artist",artist);
+		}
+		return albumService.albumQuery( filter,columns);
+		} catch (Exception e) {
+			e.printStackTrace();
+			EntityResult res = new EntityResult();
+			res.setCode(EntityResult.OPERATION_WRONG);
+			return res;
+		}
+	}
 	
 	
 	@RequestMapping(value = "/publicArtist", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -1,3 +1,5 @@
+import { Timestamp } from "rxjs/internal/operators/timestamp";
+
 export interface IUserModel {
       id_user: number ;
       nick_user: string ;
@@ -5,8 +7,8 @@ export interface IUserModel {
       surname_user?: string,
       email_user?: string,
       password_user: string,
-      birthdate_user?: Date,
+      birthdate_user?: any,
       description_user? : string,
-      new_passw? : string,
+      new_passw? : string
    }
   

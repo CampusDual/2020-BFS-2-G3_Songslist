@@ -49,7 +49,7 @@ export class ArtistService extends OntimizeEEService {
     }
 
     getArtistAlbumlist(id: number) {
-        const url = CONFIG.apiEndpoint + '/' + 'albums/album/search';
+        const url = CONFIG.apiEndpoint + '/' + 'public/publicArtistAlbums';
         var options = {
             headers: this.buildHeaders()
         };

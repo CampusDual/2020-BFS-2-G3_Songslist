@@ -46,6 +46,10 @@ td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
     border-bottom-style: none;
 }
 
+.delete-bt:hover{
+  color: red;
+}
+
 .bg {
   background-color: darkred;
 }

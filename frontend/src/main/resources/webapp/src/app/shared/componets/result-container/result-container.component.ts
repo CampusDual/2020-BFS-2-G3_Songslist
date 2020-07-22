@@ -96,8 +96,6 @@ export class ResultContainerComponent implements OnChanges {
       }
 
     }
-
-
   }
   deleteSongInList(delData: ISongModel) {
     this.listService.deleteSong(delData.id_song, this.songlistData.name_songlist)

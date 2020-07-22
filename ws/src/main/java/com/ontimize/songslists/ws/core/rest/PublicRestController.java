@@ -19,6 +19,9 @@ import com.ontimize.db.SQLStatementBuilder.BasicOperator;
 import com.ontimize.songslists.api.core.service.IAlbumService;
 import com.ontimize.songslists.api.core.service.IArtistService;
 import com.ontimize.songslists.api.core.service.ISongService;
+import com.ontimize.songslists.api.core.service.IUserPreferenceService;
+import com.ontimize.songslists.api.core.service.IUserRoleService;
+import com.ontimize.songslists.api.core.service.IUserService;
 import com.ontimize.songslists.model.core.dao.SongDao;
 
 @RestController
@@ -28,6 +31,12 @@ public class PublicRestController {
 	private ISongService songService;
 	@Autowired
 	private IAlbumService albumService;
+	@Autowired
+	private IUserService userService;
+	@Autowired
+	private IUserRoleService userroleService;
+	@Autowired
+	private IUserPreferenceService userpreferenceService;
 	@Autowired
 	private IArtistService artistService;
 
@@ -177,16 +186,56 @@ public class PublicRestController {
 			return res;
 		}
 	}
-	/*
-	@RequestMapping(value = "/searchSong", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public EntityResult currenSearchSong(@RequestBody Map<?, ?> req) {
-		List<String> columns = (List<String>) req.get("columns");
-		Map<String, Object> filter = (Map<String, Object>) req.get("filter");
-		if(filter.containsKey("id_song")){
-			int song = Integer.parseInt((String)filter.get("id_song"));
-			filter.put("id_song",song);
+	
+	@RequestMapping(value = "/publicRegister", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult currentCreateUser(@RequestBody Map<?, ?> req) {
+		try{
+			Map<String, Object> attr = new HashMap<String, Object>();
+			if(req.containsKey("attr")) {
+				attr = (Map<String, Object>) req.get("attr");
+			}
+		return userService.userInsert(attr);
+		} catch (Exception e) {
+			e.printStackTrace();
+			EntityResult res = new EntityResult();
+			res.setCode(EntityResult.OPERATION_WRONG);
+			return res;
 		}
-		return songService.songQuery( filter,columns);
 	}
-	*/
+	
+	@RequestMapping(value = "/publicUserrole", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult currentAssignRole(@RequestBody Map<?, ?> req) {
+		try{
+			System.out.println(req.toString());
+			Map<String, Object> attr = new HashMap<String, Object>();
+			if(req.containsKey("attr")) {
+				attr = (Map<String, Object>) req.get("attr");
+				System.out.println(attr.toString());
+			}
+		return userroleService.userroleInsert(attr);
+		} catch (Exception e) {
+			e.printStackTrace();
+			EntityResult res = new EntityResult();
+			res.setCode(EntityResult.OPERATION_WRONG);
+			return res;
+		}
+	}
+	@RequestMapping(value = "/publicUserpreference", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EntityResult currentAssignPreference(@RequestBody Map<?, ?> req) {
+		try{
+			System.out.println(req.toString());
+			Map<String, Object> attr = new HashMap<String, Object>();
+			if(req.containsKey("attr")) {
+				attr = (Map<String, Object>) req.get("attr");
+				System.out.println(attr.toString());
+			}
+		return userpreferenceService.userpreferenceInsert(attr);
+		} catch (Exception e) {
+			e.printStackTrace();
+			EntityResult res = new EntityResult();
+			res.setCode(EntityResult.OPERATION_WRONG);
+			return res;
+		}
+	}
+
 }

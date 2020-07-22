@@ -8,6 +8,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RegisterService } from 'app/main/services/registerService';
 import { viewAttached, getViewData } from '@angular/core/src/render3/instructions';
 import { OSnackBarConfig, SnackBarService } from 'ontimize-web-ngx';
+import { window } from 'rxjs/operators';
 
 @Component({
   selector: 'register',
@@ -26,7 +27,10 @@ export class RegisterComponent implements OnInit {
   public match: boolean = false;
   public minLenght: boolean = true;
   public writeSomething: boolean = false;
-  constructor(private registerService: RegisterService, protected dialogService: DialogService) { }
+  constructor(
+    private registerService: RegisterService,
+    protected dialogService: DialogService,
+    private snackBarService: SnackBarService,) { }
   ngOnInit() {
     this.registerForm = this.createForm();
   }
@@ -57,7 +61,7 @@ export class RegisterComponent implements OnInit {
   onResetForm(): void {
     this.registerForm.reset();
   }
-  
+
   showConfirm(evt: any) {
     if (this.dialogService) {
       const config: ODialogConfig = {
@@ -67,7 +71,7 @@ export class RegisterComponent implements OnInit {
     }
   }
   onRegisterUser(): void {
-    let snackBarService:SnackBarService;
+    let snackBarService: SnackBarService;
     console.log('pulsoboton')
     console.log('PARAMETROS: ', this.registerForm.value)
     new Date(this.registerForm.value.birthdate).getTime() / 1000
@@ -82,25 +86,40 @@ export class RegisterComponent implements OnInit {
     this.registerService.registerUser(this.user).subscribe(
       (userData: any) => {
         if (userData['data']) {
-          this.onAssignRole(userData['data'].id_user);
-          console.log('USERNICKNICK = ', this.user.nick_user);
-          this.onAssignPreference(this.user.nick_user);
-          if (userData['data'].length > 0) {
-            this.userResult = userData['data'][0];
+          if (userData['code'] == 0) {
+            this.onAssignRole(userData['data'].id_user);
+            this.onAssignPreference(this.user.nick_user);
             this.registerForm = this.createForm();
-            return this.userResult;
-          } else {
-            this.userResult = null;
+            this.snackBarService.open('User created', {
+              action: 'Done',
+              milliseconds: 5000,
+              icon: 'check_circle',
+              iconPosition: 'left'
+            });
+          } else{
+            this.snackBarService.open
+            (
+
+              'User hasn´t been created. Choose another nick.',
+              {
+                action: 'Done',
+                milliseconds: 5000,
+                icon: 'check_circle',
+                iconPosition: 'left'
+              }
+            );
           }
+
         }
-        snackBarService.open("{{ 'USER_CREATED' | oTranslate}}");
-        this.onResetForm();
+
       },
-      err => {        
-        snackBarService.open("{{ 'USER_CREATED_ERROR' | oTranslate}}");
+      err => {
+        console.error(err)
       }
-      
+
+
     );
+
   }
 
   onAssignRole(id: number) {
@@ -139,7 +158,7 @@ export class RegisterComponent implements OnInit {
         }
       },
       err => {
-        
+
         console.error(err);
       }
     );

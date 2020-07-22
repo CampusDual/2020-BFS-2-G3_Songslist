@@ -63,23 +63,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.search(this.radioSelected, this.searchText);
         }
       });
-    // this.refreshSubscription = this.listService.getRefresh().subscribe(message => {
-    //   if (message) {
-    //     if (message.refresh) {
-    //       if (message.refresh == "song" || message.refresh == "all") {
-    //         this.refreshMessages.push(message);
-    //         if (this.default) {
-    //           this.loadNewAlbums();
-    //         } else {
-    //           this.search(this.radioSelected, this.searchText)
-    //         }
-    //       } else {
-    //         // clear messages when empty message received
-    //         this.refreshMessages = [];
-    //       }
-    //     }
-    //   }
-    // });
     this.defaultStart();
   };
   defaultStart() {
@@ -123,7 +106,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.default = false;
             //console.log('-------datasorce',this.dataSource);
           } else {
-            this.searchSongs=[];
+            this.searchSongs = [];
             this.default = true;
             this.defaultStart();
           }
@@ -157,10 +140,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (wordToFind) {
       this.searchText = wordToFind.join(' ');
     }
-    if(this.searchText.length >2){
+    if (this.searchText.length > 2) {
       //this.searchSongs = [];
       this.search(this.radioSelected, this.searchText);
-    }else {
+    } else {
       this.default = true;
       this.defaultStart();
     }
@@ -171,7 +154,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.stringValidate();
   }
 
-  onItemChange($event) { 
+  onItemChange($event) {
     this.searchText = $event;
     this.stringValidate();
 

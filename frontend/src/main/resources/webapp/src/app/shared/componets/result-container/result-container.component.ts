@@ -31,15 +31,10 @@ export class ResultContainerComponent implements OnChanges {
     private actRoute: ActivatedRoute,
     private _route: ActivatedRoute, // recivir parametro id
     @Inject(LoginService) private loginService: LoginService,
-<<<<<<< HEAD
-    private listService : ListService
-  ) { }
-=======
     private listService: ListService
   ) {
 
   }
->>>>>>> develop
 
   ngOnChanges() {
 
@@ -101,11 +96,6 @@ export class ResultContainerComponent implements OnChanges {
       }
 
     }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> develop
   }
   deleteSongInList(delData: ISongModel) {
     this.listService.deleteSong(delData.id_song, this.songlistData.name_songlist)

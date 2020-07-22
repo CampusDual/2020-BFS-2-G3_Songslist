@@ -22,4 +22,5 @@ public interface ISonglistService {
 	 public int getSongListID(String name) ;
 	 
 	 public boolean isNameSonglist ( String nameSongList ) ;
+	 public int getImgID(String nameSongList);
 }

@@ -1,3 +1,62 @@
-<p>
-  songlist-detail works!
-</p>
+<!--
+  <div class="div-center div-input">
+  <form class="form-width">
+    <mat-form-field class="form-field-width">
+      <mat-label>{{'SEARCH' | oTranslate}}</mat-label>
+      <input class="mat-input-element" id="input" matInput #message maxlength="256"
+        placeholder="{{'EXAMPLE_TEXT_SEARCH' | oTranslate}}" type="text" value="" name="input-search"
+        (keyup)="onItemChange($event.target.value)" autocomplete="off">
+    </mat-form-field>
+  </form>
+</div>
+-->
+
+<div>
+  <o-button class="button-back right   width_10  height_2" label="{{'BACK' | oTranslate}}" layout-padding
+    [routerLink]="['/main/songlist']" >
+  </o-button>
+
+</div>
+<div *ngIf="songListResult">
+  <o-row justifyContent="center" layout-align="center">
+    <h2 class="datasheet-h2">{{songListResult.name_songlist}} ({{'NAME' | oTranslate}})</h2>
+
+  </o-row>
+
+  <o-row class="datasheet-information-panel" justifyContent="center" layout-align="center">
+    <o-column fxFlex="20" justifyContent="center">
+      <o-image class="datasheet-img" attr="image" type="RAISED" height="95%" width="95%"
+        data="./assets/images/album/{{songListResult.image}}.jfif" auto-fit="true" enabled="true" read-only="true"
+        *ngIf="songListResult.image" 
+        show-controls="false" full-screen-button="false" empty-image="./assets/images/no-image.png">
+      </o-image>
+    </o-column>
+    <o-column fxFlex="70" align-items="center" justifyContent="center">
+      <o-form class="datashet-inputs-panel" editable-detail="no" show-header="no">
+        <o-textarea-input attr="longtext" label="{{'DESCRIPTION' | oTranslate}}" [data]="songListResult.description_songlist"
+          fxFlex="70" height="100%" width="80%" required="no" read-only="true"></o-textarea-input>
+      </o-form>
+    </o-column>
+  </o-row>
+</div>
+<br>
+<!-- <br> -->
+<br>
+
+
+<div *ngIf=" listResult && songListResult">
+  <div *ngIf=" listResult.length > 0">
+    <app-result-container [data]="listResult" [songlistData]="songListResult" ></app-result-container>
+  </div>
+</div>
+
+<!-- <div>
+  <o-list [static-data]="getlistResult()" title="{{'LIST_SONGLIST' | oTranslate}}" quick-filter="false"
+    refresh-button="false" insert-button="false" insert-button-floatable="false" delete-button="false" selectable="true"
+    dense="false" detail-button-in-row="false" edit-button-in-row="false" detail-mode="none">
+    <o-list-item *ngFor="let song of listResult">
+      <p class="item-hover" [routerLink]="['/main/song', song.id_song]" [queryParams]="{id: song.id_song}" href="#">
+        {{song.name_song}}</p>
+    </o-list-item>
+  </o-list>
+</div> -->

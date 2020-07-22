@@ -2,8 +2,8 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/cor
 import { OntimizeWebModule } from 'ontimize-web-ngx';
 import { SharedModule } from '../../shared/shared.module';
 import { SonglistComponent } from './songlist.component';
-import { CreateListModule } from '../create-list/create-list.module';
-import { CreateListDialogComponent } from '../create-list/create-list-dialog/create-list-dialog.component';
+import { RouterModule } from '@angular/router';
+
 
 
 
@@ -11,7 +11,8 @@ import { CreateListDialogComponent } from '../create-list/create-list-dialog/cre
   imports: [
     SharedModule,
     OntimizeWebModule,
-    CreateListModule
+    RouterModule
+
   ],
   declarations: [
     SonglistComponent

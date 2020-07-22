@@ -1,0 +1,72 @@
+
+<div *ngIf="dataSource">
+  <!-- Table  ==> aplicar los cambios Material -->
+  <div class="div-result">
+    <mat-table class="lessons-table mat-table-element" [dataSource]="dataSource">
+      <ng-container matColumnDef="Img">
+        <mat-header-cell *matHeaderCellDef>{{'FRONT' | oTranslate}}</mat-header-cell>
+        <mat-cell *matCellDef="let song">
+          <a [routerLink]="['/main/song',song.id_song]" [queryParams]="{id: song.id_song}" href="#">
+            <!-- <img src='./assets/images/album/{{song.img_album}}'> -->
+            <o-image class="datasheet-img" attr="image" type="RAISED" fxFlex="40"
+              data="./assets/images/album/{{song.img_album}}.jfif" height="90%" width="20%" auto-fit="true"
+              enabled="true" read-only="true" show-controls="false" full-screen-button="false"
+              empty-image="./assets/images/no-image.png">
+            </o-image>
+          </a>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Song">
+        <mat-header-cell *matHeaderCellDef>{{'SONG' | oTranslate}}</mat-header-cell>
+        <mat-cell *matCellDef="let song">
+          <a [routerLink]="['/main/song',song.id_song]" [queryParams]="{id: song.id_song}" href="#">
+            {{song.name_song}}
+          </a>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Album">
+        <mat-header-cell *matHeaderCellDef>{{'ALBUM' | oTranslate}}</mat-header-cell>
+        <mat-cell class="duration-cell" *matCellDef="let song">
+          <a [routerLink]="['/main/album', song.id_album]" [queryParams]="{id: song.id_album}" href="#">
+            {{song.name_album}}
+          </a>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Artist">
+        <mat-header-cell *matHeaderCellDef>{{'ARTIST' | oTranslate}}</mat-header-cell>
+        <mat-cell class="description-cell" *matCellDef="let song">
+          <a [routerLink]="['/main/artist', song.id_artist]" [queryParams]="{id: song.id_artist}" href="#">
+            {{song.name_artist}}
+          </a>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Genre">
+        <mat-header-cell *matHeaderCellDef>{{'GENRE' | oTranslate}}</mat-header-cell>
+        <mat-cell class="duration-cell" *matCellDef="let song">
+          {{song.name_genre}}
+        </mat-cell>
+
+      </ng-container>
+
+      <ng-container matColumnDef="Action" *ngIf="loggedIn">
+        <mat-header-cell *matHeaderCellDef>{{'ACTION' | oTranslate}}</mat-header-cell>
+        <mat-cell class="duration-cell" *matCellDef="let song">
+          <app-create-list *ngIf="!songlistData" [id]="song.id_song" [action]="true"></app-create-list>
+          <button *ngIf="songlistData" mat-button (click)="openDeleteSong(song)">
+            <mat-icon>delete</mat-icon> delete song of the list
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="songsColums"></mat-header-row>
+
+      <mat-row *matRowDef="let row; columns:songsColums"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+  </div>
+</div>

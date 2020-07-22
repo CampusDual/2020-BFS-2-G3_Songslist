@@ -30,7 +30,7 @@ export class HomeService extends OntimizeEEService {
     }
 
     getSongData(radioSelected: string , searchText: string) {
-        const url = CONFIG.apiEndpoint + '/' + 'songs/searchSong';
+        const url = CONFIG.apiEndpoint + '/' + 'public/searchSong';
         var options = {
             headers: this.buildHeaders()
         };

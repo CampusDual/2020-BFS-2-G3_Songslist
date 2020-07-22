@@ -1,0 +1,92 @@
+<h2>{{ 'PERSONAL_SONGLIST' | oTranslate }}</h2>
+<o-grid #grid class="list-grid-item" attr="grid" title="{{ 'PERSONAL_SONGLIST' | oTranslate }}"
+  [static-data]="dataMyList" columns="name_user;name_songlist;description_songlist;" keys="id_songlist" [cols]="5"
+  query-rows="12" show-page-size="true" page-size-options="4;8;12;16;20" orderable="false" quick-filter="true"
+  grid-item-height="1:1.3" sortable-columns="name" sort-column="" controls="false" refresh-button="false"
+  pagination-controls="false" gutter-size="1px" detail-mode="none" [fixed-header]="false">
+
+  // *** grid-item que ejerce de botón para añadir nuevas listas de canciones ***
+
+  <div *ngIf="loggedIn">
+    <!-- <span *ngIf="loggedIn">-->
+    <o-grid-item>
+      <app-create-list [action]="false"></app-create-list>
+    </o-grid-item>
+    <!-- </span>-->
+  </div>
+  <span *ngIf="grid.dataArray">
+    <o-grid-item *ngFor="let list of grid.dataArray" width="175rem">
+      <o-column layout-padding class=" container-item center " width=" 175rem"
+        (click)=" homeLinkEnabled? onClickGrid($event, list): null">
+        <div class="div-content-button" width="175rem" style="width: max-content;">
+          <!--<button *ngIf="list.owner" mat-mini-fab  color="primary" class="content-button-left"  icon="done" type="FAB-MINI"  (click)="onClickOK($event)" style="left: 0;"> <mat-icon>done</mat-icon></button>-->
+          <button *ngIf="list.owner" mat-mini-fab color="primary" class="content-button-right" icon="highlight_off"
+            type="FAB-MINI" (click)="onClickCloused($event,list)" style="background: transparent; padding: 2px; right: 0;">
+            <mat-icon>highlight_off</mat-icon>
+          </button>
+          <img class="self-center" *ngIf="list.image" src="./assets/images/album/{{list.image}}.jfif"
+            style="margin-top:8px; align-self:center" width="175rem" height="175rem">
+          <img class="self-center" *ngIf="!list.image" src="./assets/images/empty_list.png" style="margin-top:8px"
+            width="175rem" height="175rem">
+        </div>
+        <div class="self-center">
+          <p> <strong> {{ list.name_songlist }} </strong> </p>
+        </div>
+        <p class="self-center"> {{ list.nick_user }} </p>
+        <div *ngIf="list.image" class="self-center" width="175rem">
+          <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ list.description_songlist }} </span>
+        </div>
+        <div *ngIf="!list.image" class="self-center" width="175rem">
+          <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ ('EMPTY_LIST') | oTranslate }}
+          </span>
+        </div>
+      </o-column>
+
+    </o-grid-item>
+  </span>
+</o-grid>
+<h2>{{ 'PUBLIC_SONGLIST' | oTranslate }}</h2>
+
+<o-grid #grid2 class="list-grid-item" attr="grid" title="{{ 'PUBLIC_SONGLIST' | oTranslate }}"
+  [static-data]="dataRestList" columns="name_user;name_songlist;description_songlist;" keys="id_songlist" [cols]="5"
+  query-rows="12" show-page-size="true" page-size-options="4;8;12;16;20" orderable="false" quick-filter="true"
+  grid-item-height="1:1.3" sortable-columns="name" sort-column="" controls="false" refresh-button="false"
+  pagination-controls="false" gutter-size="1px" detail-mode="none" [fixed-header]="false">
+
+  // *** grid-item que ejerce de botón para añadir nuevas listas de canciones ***
+
+
+  <span *ngIf="grid2.dataArray">
+    <o-grid-item *ngFor="let list of grid2.dataArray" width="175rem">
+      <o-column layout-padding class=" container-item center " width=" 175rem"
+        (click)=" homeLinkEnabled? onClickGrid($event, list): null">
+        <div class="div-content-button" width="175rem" style="width: max-content;">
+          <button *ngIf="list.owner" mat-mini-fab color="primary" class="content-button-left" icon="done"
+            type="FAB-MINI" (click)="onClickOK($event)" style="left: 0;">
+            <mat-icon>done</mat-icon>
+          </button>
+          <button *ngIf="list.owner" mat-mini-fab color="primary" class="content-button-right" icon="highlight_off"
+            type="FAB-MINI" (click)="onClickCloused($event,list)" style="right: 0;">
+            <mat-icon>highlight_off</mat-icon>
+          </button>
+          <img class="self-center" *ngIf="list.image" src="./assets/images/album/{{list.image}}.jfif"
+            style="margin-top:8px; align-self:center" width="175rem" height="175rem">
+            <img class="self-center" *ngIf="!list.image" src="./assets/images/empty_list.png" style="margin-top:8px"
+            width="175rem" height="175rem">
+        </div>
+        <div class="self-center">
+          <p> <strong> {{ list.name_songlist }} </strong> </p>
+        </div>
+        <p class="self-center"> {{ list.nick_user }} </p>
+        <div *ngIf="list.image" class="self-center" width="175rem">
+          <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ list.description_songlist }} </span>
+        </div>
+        <div *ngIf="!list.image" class="self-center" width="175rem">
+          <span class="span-description" [ngStyle]="{'align-self:':'center'}"> {{ ('EMPTY_LIST') | oTranslate }}
+          </span>
+        </div>
+      </o-column>
+
+    </o-grid-item>
+  </span>
+</o-grid>

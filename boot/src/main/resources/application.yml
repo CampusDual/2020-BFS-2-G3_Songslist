@@ -26,6 +26,7 @@ ontimize:
          uppperString: true
          upperLike: true
    security:
+      ignorePaths: /public/**
       mode: default
       roleInformationService:
          roleRepository: UserRoleDao

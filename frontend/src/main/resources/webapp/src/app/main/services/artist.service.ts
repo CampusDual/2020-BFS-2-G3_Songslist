@@ -19,7 +19,7 @@ export class ArtistService extends OntimizeEEService {
         });
     }
     getArtistData(id:number) {
-        const url = CONFIG.apiEndpoint + '/' + 'artists/artist/search';
+        const url = CONFIG.apiEndpoint + '/' + 'public/publicArtist';
         var options = {
             headers: this.buildHeaders()
         };

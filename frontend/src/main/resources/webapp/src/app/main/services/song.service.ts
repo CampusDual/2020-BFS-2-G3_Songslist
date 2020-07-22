@@ -20,7 +20,7 @@ export class SongService extends OntimizeEEService {
         });
     }
     getSongData(id:number) {
-        const url = CONFIG.apiEndpoint + '/' + 'songs/song/search';
+        const url = CONFIG.apiEndpoint + '/' + 'public/publicSong';
         var options = {
             headers: this.buildHeaders()
         };

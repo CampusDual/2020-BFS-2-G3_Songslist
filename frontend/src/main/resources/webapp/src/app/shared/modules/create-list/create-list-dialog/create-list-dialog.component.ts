@@ -89,8 +89,7 @@ export class CreateListDialogComponent implements OnInit {
       if (this.form.get('lstDescription').status == 'VALID') {
         newList['description_songlist'] = this.form.value.lstDescription;
       }
-
-      this.insertSongToACerateLIst(newList);
+      (this.songid)? this.insertSongToACreateList(newList) : this.createLIst(newList);
     }
   }
 
@@ -229,12 +228,18 @@ export class CreateListDialogComponent implements OnInit {
       );
   }
 
-  insertSongToACerateLIst(newList) {
+  insertSongToACreateList(newList) {
     this.listService.insertList(newList.name_songlist, newList.description_songlist)
       .subscribe(
         (userData: any) => {
           if (userData['data']) {
             if (userData['code'] == 0) {
+              this.snackBarService.open('se ha creado la lista ' + newList.name_songlist, {
+                action: 'Done',
+                milliseconds: 5000,
+                icon: 'check_circle',
+                iconPosition: 'left'
+              });
               this.listService.addSong(this.songid, newList.name_songlist)
                 .subscribe(
                   (userData: any) => {
@@ -269,15 +274,9 @@ export class CreateListDialogComponent implements OnInit {
                     });
                   }
                 );
-              this.snackBarService.open('open', {
-                action: 'Done',
-                milliseconds: 5000,
-                icon: 'check_circle',
-                iconPosition: 'left'
-              });
               this.dialogRef.close(this.form.value);
             } else if (userData['code'] == 1) {
-              this.snackBarService.open('warning', {
+              this.snackBarService.open('warning no se ha creado la lista ' + newList.name_songlist,, {
                 action: 'Warning',
                 milliseconds: 5000,
                 icon: 'check_circle',
@@ -288,7 +287,7 @@ export class CreateListDialogComponent implements OnInit {
         },
         err => {
           console.error(err)
-          this.snackBarService.open('error', {
+          this.snackBarService.open('error  no se ha creado la lista ' + newList.name_songlist, {
             action: 'Error',
             milliseconds: 5000,
             icon: 'check_circle',
@@ -297,6 +296,44 @@ export class CreateListDialogComponent implements OnInit {
         }
       );
   }
+  createLIst(newList){
+    this.listService.insertList(newList.name_songlist, newList.description_songlist)
+    .subscribe(
+      (userData: any) => {
+        if (userData['data']) {
+          if (userData['code'] == 0) {
+            this.sendRefreshList();
+            this.sendRefreshSong();
+            this.snackBarService.open('se ha creado la lista ' + newList.name_songlist, {
+              action: 'Done',
+              milliseconds: 5000,
+              icon: 'check_circle',
+              iconPosition: 'left'
+            });
+            this.dialogRef.close(this.form.value);
+          } else if (userData['code'] == 1) {
+            this.snackBarService.open('warning no se ha creado la lista ' + newList.name_songlist, {
+              action: 'Warning',
+              milliseconds: 5000,
+              icon: 'check_circle',
+              iconPosition: 'left'
+            });
+          }
+        }
+      },
+      err => {
+        console.error(err)
+        this.snackBarService.open('error  no se ha creado la lista ' + newList.name_songlist, {
+          action: 'Error',
+          milliseconds: 5000,
+          icon: 'check_circle',
+          iconPosition: 'left'
+        });
+      }
+    );
+}
+
+
   getList(): ISongListModel[] {
     console.log('songid =>', this.songid)
     this.listService.getListIncludingSong(this.songid)

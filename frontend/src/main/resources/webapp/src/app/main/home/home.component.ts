@@ -61,8 +61,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.searchText = obj.searchText
           //this.clean();
           this.search(this.radioSelected, this.searchText);
-        } else {
-          console.log("INIT ELSE ");
         }
       });
     this.refreshSubscription = this.listService.getRefresh().subscribe(message => {
@@ -87,11 +85,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     });
     this.defaultStart();
-
   };
-
-  defaultStart() {
-    
+  defaultStart() {   
 
     if (this.default) {
       this.loadNewAlbums();
@@ -99,7 +94,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     else {
       this.search(this.radioSelected, this.searchText);
     }
-
   }
   loadNewAlbums() {
     this.albumService.getNewAlbum().subscribe(
@@ -107,6 +101,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (albumData['data']) {
           if (albumData['data'].length > 0) {
             this.resultNewAlbums = albumData['data'];
+            console.log('NEW ALBUMS ', this.resultNewAlbums);
             this.defaultStart();
           }
         }
@@ -129,14 +124,13 @@ export class HomeComponent implements OnInit, OnDestroy {
             localStorage.setItem(CONFIG.uuid, JSON.stringify(myData));
             this.dataSource = new MatTableDataSource<ISongModel>(this.searchSongs);
             this.dataSource.paginator = this.paginator;
-            this.default = true;
+
             this.default = false;
             //console.log('-------datasorce',this.dataSource);
           } else {
             this.searchSongs=[];
-            this.default = false;
             this.default = true;
-            
+            this.defaultStart();                
           }
         }
       },
@@ -168,6 +162,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (wordToFind) {      
       this.searchText = wordToFind.join(' ');
     }
+    if(this.searchText.length >2){
+      //this.searchSongs = [];
+      this.search(this.radioSelected, this.searchText);
+    }else {     
+      this.default = true;
+      this.defaultStart();  
+    } 
+    
   }
 
   onClickRadio(mrChange: MatRadioChange) {
@@ -176,18 +178,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onItemChange($event) { 
-    this.default = false; 
-    this.default = true;      
          
     this.searchText = $event;
     this.stringValidate();
-    if(this.searchText.length >2){
-      // this.searchSongs = [];
-      this.search(this.radioSelected, this.searchText);
-    }else {
-      this.default = true;      
-      this.defaultStart();      
-    }    
+         
+
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

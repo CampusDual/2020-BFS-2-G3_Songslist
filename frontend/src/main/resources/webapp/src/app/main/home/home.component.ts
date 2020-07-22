@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   tosearch;
   // input radio
   selectOptions: string[] = ['Song', 'Album', 'Genre', 'Artist'];
-  radioSelected: string;
+  radioSelected: string = 'all';
   dataSource;
   searchText: string = '';
   searchSongs: ISongModel[] = Array();

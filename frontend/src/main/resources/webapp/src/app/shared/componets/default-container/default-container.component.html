@@ -5,7 +5,7 @@
     columns="name_album;" keys="id_album" [cols]="5" query-rows="1" show-page-size="false" page-size-options="2" pageable="no"
     orderable="false" quick-filter="false" grid-item-height="1:1.3" sortable-columns="name_albums"
     sort-column="id_album" controls="false" refresh-button="false" pagination-controls="false" gutter-size="1px"
-    detail-mode="none">
+    detail-mode="none" [fixed-header]="false">
 
     <span *ngIf="grid.dataArray">
       <o-grid-item *ngFor="let list of grid.dataArray">

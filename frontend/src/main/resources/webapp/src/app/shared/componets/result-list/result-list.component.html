@@ -3,7 +3,7 @@
   [static-data]="dataMyList" columns="name_user;name_songlist;description_songlist;" keys="id_songlist" [cols]="5"
   query-rows="12" show-page-size="true" page-size-options="4;8;12;16;20" orderable="false" quick-filter="true"
   grid-item-height="1:1.3" sortable-columns="name" sort-column="" controls="false" refresh-button="false"
-  pagination-controls="false" gutter-size="1px" detail-mode="none">
+  pagination-controls="false" gutter-size="1px" detail-mode="none" [fixed-header]="false">
 
   // *** grid-item que ejerce de botón para añadir nuevas listas de canciones ***
 
@@ -45,15 +45,13 @@
     </o-grid-item>
   </span>
 </o-grid>
-
 <h2>{{ 'PUBLIC_SONGLIST' | oTranslate }}</h2>
-
 
 <o-grid #grid2 class="list-grid-item" attr="grid" title="{{ 'PUBLIC_SONGLIST' | oTranslate }}"
   [static-data]="dataRestList" columns="name_user;name_songlist;description_songlist;" keys="id_songlist" [cols]="5"
   query-rows="12" show-page-size="true" page-size-options="4;8;12;16;20" orderable="false" quick-filter="true"
   grid-item-height="1:1.3" sortable-columns="name" sort-column="" controls="false" refresh-button="false"
-  pagination-controls="false" gutter-size="1px" detail-mode="none">
+  pagination-controls="false" gutter-size="1px" detail-mode="none" [fixed-header]="false">
 
   // *** grid-item que ejerce de botón para añadir nuevas listas de canciones ***
 
@@ -73,7 +71,7 @@
           </button>
           <img class="self-center" *ngIf="list.image" src="./assets/images/album/{{list.image}}.jfif"
             style="margin-top:8px; align-self:center" width="175rem" height="175rem">
-          <img class="self-center" *ngIf="!list.image" src="./assets/images/album/0.jfif" style="margin-top:8px"
+            <img class="self-center" *ngIf="!list.image" src="./assets/images/empty_list.png" style="margin-top:8px"
             width="175rem" height="175rem">
         </div>
         <div class="self-center">

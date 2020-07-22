@@ -18,6 +18,8 @@ $color-font: #8b97a1;
 $color-transparent: #00000000;
 
 
+
+
 .button-back button{
    
     margin: 2em;
@@ -112,6 +114,10 @@ align-items: flex-start !important;
 .mat.expanded{
     background-color: $custom-color-background-elements;
     color: $custom-color-font-text;
+}
+
+.o-grid-totals{
+    color: $custom-color-background;
 }
 
 .mat-dialog-content{

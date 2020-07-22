@@ -46,7 +46,7 @@ export class CreateListDialogComponent implements OnInit {
       lstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(25), Validators.pattern(this.textPattern)]],
       lstDescription: ['', [Validators.minLength(0), Validators.maxLength(200)]]
     });
-    this.songlistService.getAllSonglist('').subscribe(
+    this.listService.getSonglistOwnerAll().subscribe(
       (userData: any) => {
         if (userData['data']) {
           if (userData['code'] == 0) {

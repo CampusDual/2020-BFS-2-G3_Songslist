@@ -62,14 +62,6 @@ export class RegisterComponent implements OnInit {
     this.registerForm.reset();
   }
 
-  showConfirm(evt: any) {
-    if (this.dialogService) {
-      const config: ODialogConfig = {
-        icon: 'alarm',
-        okButtonText: 'Usuario creado, It rocks!'
-      };
-    }
-  }
   onRegisterUser(): void {
     let snackBarService: SnackBarService;
     console.log('pulsoboton')
@@ -81,7 +73,7 @@ export class RegisterComponent implements OnInit {
       this.user.name_user = this.registerForm.value.name;
       this.user.surname_user = this.registerForm.value.surname;
       this.user.email_user = this.registerForm.value.email;
-      this.user.birthdate_user = this.registerForm.value.birthdate;
+      this.user.birthdate_user = Date.parse(this.registerForm.value.birthdate)/1000;
     }
     this.registerService.registerUser(this.user).subscribe(
       (userData: any) => {

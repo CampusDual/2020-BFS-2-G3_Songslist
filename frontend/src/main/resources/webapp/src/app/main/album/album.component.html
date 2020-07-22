@@ -29,6 +29,10 @@
             <o-text-input class="datasheet-input" attr="year" label="{{'DATE' | oTranslate}}" fxFlex type="date"
               data="{{albumResult.year_album | date: 'yyyy'}}" read-only="yes">
             </o-text-input>
+            <o-textarea-input class="datasheet-input" attr="longtext" label="{{'DESCRIPTION' | oTranslate}}" fxFlex type="description"
+              data="{{albumResult.description_album}}" required="no" read-only="yes">
+            </o-textarea-input>
+
           </o-form>
         </o-column>
       </o-row>

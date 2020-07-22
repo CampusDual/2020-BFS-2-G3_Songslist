@@ -63,26 +63,26 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.search(this.radioSelected, this.searchText);
         }
       });
-    this.refreshSubscription = this.listService.getRefresh().subscribe(message => {
-      if (message) {
-        if (message.refresh) {
-          if (message.refresh == "song" || message.refresh == "all") {
-            this.refreshMessages.push(message);
-            if (this.default) {
-              this.loadNewAlbums();
-            } else {
-              this.search(this.radioSelected, this.searchText)
-            }
-          } else {
-            // clear messages when empty message received
-            this.refreshMessages = [];
-          }
-        }
-      }
-    });
+    // this.refreshSubscription = this.listService.getRefresh().subscribe(message => {
+    //   if (message) {
+    //     if (message.refresh) {
+    //       if (message.refresh == "song" || message.refresh == "all") {
+    //         this.refreshMessages.push(message);
+    //         if (this.default) {
+    //           this.loadNewAlbums();
+    //         } else {
+    //           this.search(this.radioSelected, this.searchText)
+    //         }
+    //       } else {
+    //         // clear messages when empty message received
+    //         this.refreshMessages = [];
+    //       }
+    //     }
+    //   }
+    // });
     this.defaultStart();
   };
-  defaultStart() {   
+  defaultStart() {
 
     if (this.default) {
       this.loadNewAlbums();
@@ -98,7 +98,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           if (albumData['data'].length > 0) {
             this.resultNewAlbums = albumData['data'];
             console.log('NEW ALBUMS ', this.resultNewAlbums);
-            this.defaultStart();
           }
         }
       },
@@ -126,7 +125,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           } else {
             this.searchSongs=[];
             this.default = true;
-            this.defaultStart();                
+            this.defaultStart();
           }
         }
       },
@@ -145,39 +144,36 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   stringValidate() { // take al words legth >3
-    let words: string[] = this.searchText.trim().split(' ');    
+    let words: string[] = this.searchText.trim().split(' ');
     let wordToFind: string[] = new Array();
     for (let word of words) {
       let trimword = word.trim();
       if (trimword.length >= 3) {
         wordToFind.push(trimword);
       } else {
-        this.mnjError = `ERROR`;     
+        this.mnjError = `ERROR`;
       }
     }
-    if (wordToFind) {      
+    if (wordToFind) {
       this.searchText = wordToFind.join(' ');
     }
     if(this.searchText.length >2){
       //this.searchSongs = [];
       this.search(this.radioSelected, this.searchText);
-    }else {     
+    }else {
       this.default = true;
-      this.defaultStart();  
-    } 
-    
+      this.defaultStart();
+    }
   }
 
   onClickRadio(mrChange: MatRadioChange) {
     this.radioSelected = mrChange.value;
-    this.stringValidate();    
+    this.stringValidate();
   }
 
   onItemChange($event) { 
-         
     this.searchText = $event;
     this.stringValidate();
-         
 
   }
 

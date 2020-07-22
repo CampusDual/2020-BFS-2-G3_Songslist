@@ -84,7 +84,7 @@ export class SonglistComponent implements OnInit {
             console.log('loadSonglistOwnerId variables vacias MyList', this.MyList);
             (searchText) ? this.loadSonglists(searchText) : this.loadSonglists();
           } else { // si la búsqueda no devuelve resultados.
-            this.resultados = null;
+            (searchText) ? this.loadSonglists(searchText) : this.loadSonglists();
           }
         }
       },
@@ -107,9 +107,9 @@ export class SonglistComponent implements OnInit {
             console.log('loadSonglists  variables vacias ');
             console.log('loadSonglists  variables vacias resultados ', this.resultados);
             console.log('loadSonglists variables vacias MyList', this.MyList);
-            if (this.resultados && this.MyList) {
+            if (this.resultados ) {
+              if( this.MyList){
               this.resultados.forEach(t => {
-                //t.owner = (t.nick_user == this.toolsService.getNickUser()) ? true : false;
                 this.MyList.forEach(c => {
                   if (t.id_songlist == c.id_songlist) {
                     a = true;
@@ -118,6 +118,13 @@ export class SonglistComponent implements OnInit {
                 t.owner = a ? true : false;
                 a = false;
               });
+            }else{
+              this.resultados.forEach(t => {
+                t.owner =  false;
+              });
+
+            }
+
               this.dataRestMyList = [];
               this.dataRestList = [];
               this.resultados.forEach(r => {

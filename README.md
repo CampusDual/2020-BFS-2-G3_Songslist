@@ -1,11 +1,4 @@
 # SongsLists
 ---
-Biblioteca musical actual donde buscar música y crear tus propias listas musicales. Se podrá valorar las canciones y escribir un comentario. También se podrá consultar información sobre las bandas, los discos y las canciones, así como la valoración y las opiniones de los demás usuarios. 
-
-El usuario indicará unos artistas y unos géneros musicales favoritos y en base a esto se le mostrarán sugerencias de bandas, discos o canciones  
-
-que no tenga incluidas en ninguna de sus listas. 
-
-## Comenzando
----
-0. Install framework Ontimize
+SOnglist es un proyecto realizado por Bieito Sousa y Marcos Laíño durante su participación en el campus de desarrollo full stack organizado por Campus Dual e Imatia.
+Consiste en una biblioteca musical en la que el usuario puede consultar información sobre canciones, discos o artistas y, al mismo tiempo, crearse listas de reproducción con sus canciones favoritas  para compartir sus gustos con sus conocidos o consultar las listas de otros usuarios.

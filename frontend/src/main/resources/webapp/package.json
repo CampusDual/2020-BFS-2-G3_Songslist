@@ -61,6 +61,6 @@
     "webpack-cli": "3.1.0",
     "webpack-dev-server": "3.1.14",
     "braces": "2.3.1",
-    "serialize-javascript": ">=2.1.1"
+    "serialize-javascript": ">=3.1.0"
   }
 }
